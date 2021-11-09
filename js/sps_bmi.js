@@ -1,7 +1,7 @@
 /*
- * @copyright Copyright (c) 2021 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -22,13 +22,13 @@
 
 (function() {
 	var renderHeader = function () {
-		var count = OCP.InitialState.loadState('nmc_spica', 'unread-counter');
-		var icon = document.createElement('div');
-		icon.classList = 'icon-mail';
-		var badge = document.createElement('span');
-		var hasUnread = (count > 0);
-		badge.classList = 'unread-badge' + (hasUnread ? ' has-unread' : '');
-		badge.textContent = count;
+		//var count = OCP.InitialState.loadState('sps_bmi', 'unread-counter');
+		//var icon = document.createElement('div');
+		//icon.classList = 'icon-mail';
+		//var badge = document.createElement('span');
+		//var hasUnread = (count > 0);
+		//badge.classList = 'unread-badge' + (hasUnread ? ' has-unread' : '');
+		//badge.textContent = count;
 
 		var label = document.createElement('div');
 		label.textContent = t('core', 'Email');
@@ -36,10 +36,11 @@
 		var parentMailWrapper = document.createElement('div');
 		parentMailWrapper.id = "contactsmenu";
 		var mailWrapper = document.createElement('a');
-		mailWrapper.href = OCP.InitialState.loadState('nmc_spica', 'mail-url');
-		mailWrapper.classList = 'nmc_spica_wrapper';
+		mailWrapper.href = OCP.InitialState.loadState('sps_bmi', 'mail-url');
+		console.debug('MAIL URL', mailWrapper.href)
+		mailWrapper.classList = 'sps_bmi_wrapper';
 		mailWrapper.appendChild(icon);
-		mailWrapper.appendChild(badge);
+		//mailWrapper.appendChild(badge);
 		mailWrapper.appendChild(label);
 
 		parentMailWrapper.appendChild(mailWrapper);

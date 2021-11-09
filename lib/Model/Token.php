@@ -23,7 +23,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\NmcSpica\Model;
+namespace OCA\SpsBmi\Model;
 
 use JsonSerializable;
 

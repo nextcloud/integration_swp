@@ -21,13 +21,13 @@
  *
  */
 
-namespace OCA\NmcSpica\Service;
+namespace OCA\SpsBmi\Service;
 
-use OCA\NmcSpica\AppInfo\Application;
-use OCA\NmcSpica\Exception\ServiceException;
+use OCA\SpsBmi\AppInfo\Application;
+use OCA\SpsBmi\Exception\ServiceException;
 use OCP\IConfig;
 
-class SpicaBaseService {
+class OxBaseService {
 
 	/** @var IConfig */
 	private $config;
@@ -36,9 +36,9 @@ class SpicaBaseService {
 	/** @var string|null */
 	private $userId;
 
-	private $spicaBaseUrl;
-	private $spicaAppId;
-	private $spicaAppSecret;
+	private $oxBaseUrl;
+	private $oxAppId;
+	private $oxAppSecret;
 
 	public function __construct(IConfig $config, TokenService $tokenService, $userId) {
 		$this->config = $config;
@@ -48,34 +48,34 @@ class SpicaBaseService {
 			return;
 		}
 
-		$this->spicaBaseUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_SPICA_URL);
-		$this->spicaAppId = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_SPICA_APPID);
-		$this->spicaAppSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_SPICA_APPSECRET);
+		$this->oxBaseUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
+		$this->oxAppId = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_APPID);
+		$this->oxAppSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_APPSECRET);
 	}
 
 	public function checkSetup(): bool {
-		return $this->userId !== null && $this->spicaBaseUrl !== '' && $this->spicaAppId !== '' && $this->spicaAppSecret !== '';
+		return $this->userId !== null && $this->oxBaseUrl !== '' && $this->oxAppId !== '' && $this->oxAppSecret !== '';
 	}
 
-	public function getSpicaBaseUrl(string $endpoint): string {
-		return ltrim(rtrim($this->spicaBaseUrl, '/') . '/' . trim($endpoint, '/'), '/');
+	public function getOxBaseUrl(string $endpoint): string {
+		return ltrim(rtrim($this->oxBaseUrl, '/') . '/' . trim($endpoint, '/'), '/');
 	}
 
-	protected function getSpicaOptions(): array {
-		$spicaDebugUserToken = $this->config->getAppValue(Application::APP_ID, 'spica-usertoken');
+	protected function getOxOptions(): array {
+		$oxDebugUserToken = $this->config->getAppValue(Application::APP_ID, 'ox-usertoken');
 
 		$oidcToken = $this->tokenService->getToken();
-		if (!$oidcToken && $spicaDebugUserToken === '') {
-			$this->logger->debug('Attempt to fetch unread count but could not find SPICA token');
-			throw new ServiceException('Could not get spica request options');
+		if (!$oidcToken && $oxDebugUserToken === '') {
+			$this->logger->debug('Attempt to fetch unread count but could not find OX token');
+			throw new ServiceException('Could not get ox request options');
 		}
-		$spicaToken = $spicaDebugUserToken !== '' ? $spicaDebugUserToken : $oidcToken->getAccessToken();
+		$oxToken = $oxDebugUserToken !== '' ? $oxDebugUserToken : $oidcToken->getAccessToken();
 
 		return [
 			'headers' => [
-				'X-UserToken' => $spicaToken,
+				'X-UserToken' => $oxToken,
 			],
-			'auth' => [ $this->spicaAppId, $this->spicaAppSecret ],
+			'auth' => [ $this->oxAppId, $this->oxAppSecret ],
 		];
 	}
 }

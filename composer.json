@@ -1,5 +1,5 @@
 {
-  "name": "nextcloud/nmc_spica",
+  "name": "nextcloud/sps_bmi",
   "scripts": {
     "cs:fix": "php-cs-fixer fix",
     "cs:check": "php-cs-fixer fix --dry-run --diff",

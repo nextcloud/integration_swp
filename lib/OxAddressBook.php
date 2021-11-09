@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  * @copyright 2021 Annna Larch <anna.larch@nextcloud.com>
  *
- * Spica Integration
+ * ox Integration
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -22,17 +22,17 @@ declare(strict_types=1);
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\NmcSpica;
+namespace OCA\SpsBmi;
 
-use OCA\NmcSpica\AppInfo\Application;
-use OCA\NmcSpica\Exception\ServiceException;
-use OCA\NmcSpica\Service\SpicaContactsService;
+use OCA\SpsBmi\AppInfo\Application;
+use OCA\SpsBmi\Exception\ServiceException;
+use OCA\SpsBmi\Service\OxContactsService;
 use OCP\IAddressBook;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
 
-class SpicaAddressBook implements IAddressBook {
+class OxAddressBook implements IAddressBook {
 
 	/** @var IConfig */
 	private $config;
@@ -40,8 +40,8 @@ class SpicaAddressBook implements IAddressBook {
 	/** @var ICache */
 	private $cache;
 
-	/** @var SpicaContactsService */
-	private $spicaContactsService;
+	/** @var OxContactsService */
+	private $oxContactsService;
 
 	/** @var string|null */
 	private $userId;
@@ -49,25 +49,25 @@ class SpicaAddressBook implements IAddressBook {
 	/**
 	 * ContactController constructor.
 	 *
-	 * @param SpicaContactsService $spicaContactsService
+	 * @param OxContactsService $oxContactsService
 	 */
-	public function __construct(IConfig $config, ICacheFactory $cacheFactory, SpicaContactsService $spicaContactsService, $userId) {
-		$this->spicaContactsService = $spicaContactsService;
+	public function __construct(IConfig $config, ICacheFactory $cacheFactory, OxContactsService $oxContactsService, $userId) {
+		$this->oxContactsService = $oxContactsService;
 		$this->config = $config;
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_contacts');
 		$this->userId = $userId;
 	}
 
 	public function getKey() {
-		return 'spicaAddressBook'; // I don't think we can provide this
+		return 'oxAddressBook'; // I don't think we can provide this
 	}
 
 	public function getUri(): string {
-		return $this->spicaContactsService->getSpicaBaseUrl(''); // expose this or no?
+		return $this->oxContactsService->getOxBaseUrl(''); // expose this or no?
 	}
 
 	public function getDisplayName() {
-		return 'SPICA Address Book'; // translate this?
+		return 'OX Address Book'; // translate this?
 	}
 
 	/**
@@ -91,7 +91,7 @@ class SpicaAddressBook implements IAddressBook {
 			return $hit;
 		}
 		try {
-			$result = $this->spicaContactsService->search($pattern, $options);
+			$result = $this->oxContactsService->search($pattern, $options);
 		} catch (ServiceException $e) {
 			return [];
 		}

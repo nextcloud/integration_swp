@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  * @copyright 2021 Annna Larch <anna.larch@nextcloud.com>
  *
- * Spica Integration
+ * Ox Integration
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -22,14 +22,14 @@ declare(strict_types=1);
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\NmcSpica\Service;
+namespace OCA\SpsBmi\Service;
 
-use OCA\NmcSpica\Exception\ServiceException;
+use OCA\SpsBmi\Exception\ServiceException;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 
-class SpicaContactsService extends SpicaBaseService {
+class OxContactsService extends OxBaseService {
 
 	/** @var IClientService */
 	private $clientService;
@@ -55,13 +55,13 @@ class SpicaContactsService extends SpicaBaseService {
 			return [];
 		}
 		$searchTerm = '*' . str_replace(' ', '*,*', $searchTerm) . '*';
-		$searchUrl = $this->getSpicaBaseUrl('/rest/contacts/v1') . '/query?filter=or(is(first,any(' .$searchTerm .')),is(last,any('.$searchTerm.')),is(emails.*.email,any('.$searchTerm.')))&fields=take(first,last,emails)';
+		$searchUrl = $this->getOxBaseUrl('/rest/contacts/v1') . '/query?filter=or(is(first,any(' .$searchTerm .')),is(last,any('.$searchTerm.')),is(emails.*.email,any('.$searchTerm.')))&fields=take(first,last,emails)';
 		if (isset($options['limit'])) {
 			$searchUrl .= '&count=' . $options['limit'];
 		}
 		try {
 			$client = $this->clientService->newClient();
-			$response = $client->get($searchUrl, $this->getSpicaOptions());
+			$response = $client->get($searchUrl, $this->getOxOptions());
 			$responseBody = $response->getBody();
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception $e) {

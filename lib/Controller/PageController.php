@@ -24,10 +24,10 @@
 declare(strict_types=1);
 
 
-namespace OCA\NmcSpica\Controller;
+namespace OCA\SpsBmi\Controller;
 
-use OCA\NmcSpica\Model\Token;
-use OCA\NmcSpica\Service\TokenService;
+use OCA\SpsBmi\Model\Token;
+use OCA\SpsBmi\Service\TokenService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;

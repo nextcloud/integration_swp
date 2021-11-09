@@ -24,17 +24,17 @@
 declare(strict_types=1);
 
 
-namespace OCA\NmcSpica\Service;
+namespace OCA\SpsBmi\Service;
 
 use Exception;
-use OCA\NmcSpica\AppInfo\Application;
+use OCA\SpsBmi\AppInfo\Application;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 
-class SpicaMailService extends SpicaBaseService {
+class OxMailService extends OxBaseService {
 
 	/** @var IConfig */
 	private $config;
@@ -66,10 +66,10 @@ class SpicaMailService extends SpicaBaseService {
 			return;
 		}
 
-		$unreadUrl = $this->getSpicaBaseUrl('/rest/messaging/v1/emails/inbox/unread/count');
+		$unreadUrl = $this->getOxBaseUrl('/rest/messaging/v1/emails/inbox/unread/count');
 		try {
 			$client = $this->clientService->newClient();
-			$response = $client->get($unreadUrl, array_merge($this->getSpicaOptions(), [ 'timeout' => 5 ]));
+			$response = $client->get($unreadUrl, array_merge($this->getOxOptions(), [ 'timeout' => 5 ]));
 			$responseBody = $response->getBody();
 			$result = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 			if (!isset($result['count'])) {

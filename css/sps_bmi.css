@@ -1,18 +1,19 @@
-.nmc_spica_wrapper {
+/* Override NC style here */
+.sps_bmi_wrapper {
 	display: flex;
 	align-items: center;
 	color: var(--color-primary-text);
 }
 
-.nmc_spica_wrapper .icon-mail {
+.sps_bmi_wrapper .icon-mail {
 	padding: 12px;
 }
 
-.nmc_spica_wrapper .unread-badge {
+.sps_bmi_wrapper .unread-badge {
 	display: none;
 }
 
-.nmc_spica_wrapper .has-unread {
+.sps_bmi_wrapper .has-unread {
 	border-radius: 14px;
 	background-color: var(--color-error);
 	display: block;

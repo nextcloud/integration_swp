@@ -23,12 +23,12 @@
 
 declare(strict_types=1);
 
-namespace OCA\NmcSpica\AppInfo;
+namespace OCA\SpsBmi\AppInfo;
 
-use OCA\NmcSpica\Listener\TokenObtainedEventListener;
-use OCA\NmcSpica\Service\TokenService;
-use OCA\NmcSpica\Service\SpicaMailService;
-use OCA\NmcSpica\SpicaAddressBook;
+use OCA\SpsBmi\Listener\TokenObtainedEventListener;
+use OCA\SpsBmi\Service\TokenService;
+use OCA\SpsBmi\Service\OxMailService;
+use OCA\SpsBmi\OxAddressBook;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -43,14 +43,14 @@ use OCP\IURLGenerator;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'nmc_spica';
+	public const APP_ID = 'sps_bmi';
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
-	public const APP_CONFIG_SPICA_URL = 'spica-baseurl';
-	public const APP_CONFIG_SPICA_APPID = 'spica-appid';
-	public const APP_CONFIG_SPICA_APPSECRET = 'spica-appsecret';
+	public const APP_CONFIG_OX_URL = 'ox-baseurl';
+	public const APP_CONFIG_OX_APPID = 'ox-appid';
+	public const APP_CONFIG_OX_APPSECRET = 'ox-appsecret';
 
 	public const APP_CONFIG_CACHE_TTL_MAIL = 'cache-ttl-mail';
 	public const APP_CONFIG_CACHE_TTL_MAIL_DEFAULT = 60;
@@ -71,15 +71,15 @@ class Application extends App implements IBootstrap {
 			TokenService $tokenService,
 			INavigationManager $navigationManager,
 			IManager $contactsManager,
-			SpicaAddressBook $spicaAddressBook,
+			OxAddressBook $oxAddressBook,
 			IL10N $l10n,
-			SpicaMailService $unreadService,
+			OxMailService $unreadService,
 			IURLGenerator $urlGenerator,
 			IConfig $config,
 			$userId
 		) {
-			Util::addScript('nmc_spica', 'nmc_spica');
-			Util::addStyle('nmc_spica', 'nmc_spica');
+			Util::addScript('sps_bmi', 'sps_bmi');
+			Util::addStyle('sps_bmi', 'sps_bmi');
 			if (!$userId) {
 				return;
 			}
@@ -89,22 +89,22 @@ class Application extends App implements IBootstrap {
 				return;
 			}
 
-			$contactsManager->registerAddressBook($spicaAddressBook);
+			$contactsManager->registerAddressBook($oxAddressBook);
 
 			if ($token->isExpired()) {
 				$tokenService->reauthenticate();
 			}
 
-			$initialState->provideLazyInitialState('unread-counter', function () use ($unreadService) {
-				return $unreadService->getUnreadCounter();
-			});
+			//$initialState->provideLazyInitialState('unread-counter', function () use ($unreadService) {
+			//	return $unreadService->getUnreadCounter();
+			//});
 
 			$initialState->provideLazyInitialState('mail-url', function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');;
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, 'no-value!');;
 			});
 
-			Util::addScript('nmc_spica', 'nmc_spica');
-			Util::addStyle('nmc_spica', 'nmc_spica');
+			Util::addScript('sps_bmi', 'sps_bmi');
+			Util::addStyle('sps_bmi', 'sps_bmi');
 		});
 	}
 }

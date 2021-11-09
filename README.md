@@ -1,4 +1,4 @@
-# NextMagentacloud app for SPICA integration
+# Nextcloud app for OpenXChange integration
 
 ## Implemented features:
 - Unread email counter
@@ -9,19 +9,19 @@
 
 ## OIDC token handling
 
-During login the access_token and refresh token are passed by the user_oidc app to the nmc_spica app thorugh a dispatched event. nmc_spica will request a fresh token with the `spica` scope and regularly refreshs it with the refresh token that was initially provided by the OpenID Connect login.
+During login the access_token and refresh token are passed by the user_oidc app to the nmc_spica app thorugh a dispatched event. sps_bmi will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
 
 ## Configuration:
 
-Configure SPICA API endpoint:
+Configure OX API endpoint:
 
-	occ config:app:set nmc_spica spica-baseurl --value="https://spica.ver.sul.t-online.de"
-	occ config:app:set nmc_spica spica-appid --value="my-app-id"
-	occ config:app:set nmc_spica spica-appsecret --value="my-secret-key"
+	occ config:app:set sps_bmi ox-baseurl --value="https://my.ox.instance"
+	occ config:app:set sps_bmi ox-appid --value="my-app-id"
+	occ config:app:set sps_bmi ox-appsecret --value="my-secret-key"
 
 Setting a webmail url:
 
-	occ config:app:set nmc_spica webmail-url --value="https://emailvt.sgp.telekom.de"
+	occ config:app:set sps_bmi webmail-url --value="https://my.ox.instance/webmail"
 
 ## Local testing
 

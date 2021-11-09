@@ -23,9 +23,9 @@
 
 declare(strict_types=1);
 
-namespace OCA\NmcSpica\Service;
+namespace OCA\SpsBmi\Service;
 
-use OCA\NmcSpica\Model\Token;
+use OCA\SpsBmi\Model\Token;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -94,7 +94,8 @@ class TokenService {
 						'client_secret' => $oidcProvider->getClientSecret(),
 						'grant_type' => 'refresh_token',
 						'refresh_token' => $token->getRefreshToken(),
-						'scope' => 'spica',
+						// TODO check that
+						'scope' => $oidcProvider->getScope(),
 					],
 				]
 			);

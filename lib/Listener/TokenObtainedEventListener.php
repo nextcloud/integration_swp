@@ -23,10 +23,10 @@
 
 declare(strict_types=1);
 
-namespace OCA\NmcSpica\Listener;
+namespace OCA\SpsBmi\Listener;
 
-use OCA\NmcSpica\Service\SpicaMailService;
-use OCA\NmcSpica\Service\TokenService;
+use OCA\SpsBmi\Service\OxMailService;
+use OCA\SpsBmi\Service\TokenService;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
@@ -40,10 +40,10 @@ class TokenObtainedEventListener implements IEventListener {
 	/** @var TokenService */
 	private $tokenService;
 
-	/** @var SpicaMailService */
+	/** @var OxMailService */
 	private $mailService;
 
-	public function __construct(IClientService $clientService, TokenService $tokenService, SpicaMailService $mailService) {
+	public function __construct(IClientService $clientService, TokenService $tokenService, OxMailService $mailService) {
 		$this->clientService = $clientService;
 		$this->tokenService = $tokenService;
 		$this->mailService = $mailService;
@@ -73,7 +73,8 @@ class TokenObtainedEventListener implements IEventListener {
 					'client_secret' => $provider->getClientSecret(),
 					'grant_type' => 'refresh_token',
 					'refresh_token' => $refreshToken,
-					'scope' => 'spica',
+					// TODO check that
+					'scope' => $provider->getScope(),
 				],
 			]
 		);

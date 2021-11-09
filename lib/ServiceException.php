@@ -21,7 +21,7 @@
  *
  */
 
-namespace OCA\NmcSpica\Exception;
+namespace OCA\SpsBmi\Exception;
 
 use Exception;
 
