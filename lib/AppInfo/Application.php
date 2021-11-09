@@ -100,7 +100,7 @@ class Application extends App implements IBootstrap {
 			//});
 
 			$initialState->provideLazyInitialState('mail-url', function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, 'no-value!');;
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, 'https://localhost/webmail');;
 			});
 
 			Util::addScript('sps_bmi', 'sps_bmi');
