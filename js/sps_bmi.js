@@ -52,44 +52,46 @@
 
 	document.querySelector('.header-right').insertBefore(renderHeader(), document.getElementById('settings'));
 
-	// override click on mailto: links
-	const body = document.querySelector('body')
-	body.addEventListener('click', (e) => {
-		console.debug('click on', e.target.tagName)
-		if (e.target.tagName === 'A') {
-			const link = e.target
-			const href = link.getAttribute('href')
-			//const href = 'mailto:plop@plop.net,second@lala.org?'
-			//	+ 'subject=Give%20me%20love'
-			//	+ '&body=the%20body'
-			//	+ '&cc=plopCC@plop.net,secondCC@lala.org'
-			//	+ '&bcc=plopBCC@plop.net,secondBCC@lala.org'
-			if (href.match(/^mailto:/i)) {
-				e.preventDefault()
-				const url = new URL(href)
-				const targetMails = url.pathname.split(',')
-				const body = url.searchParams.get('body')
-				const subject = url.searchParams.get('subject')
-				const cc = url.searchParams.get('cc')
-				const bcc = url.searchParams.get('bcc')
+	if (mailUrl) {
+		// override click on mailto: links
+		const body = document.querySelector('body')
+		body.addEventListener('click', (e) => {
+			console.debug('click on', e.target.tagName)
+			if (e.target.tagName === 'A') {
+				const link = e.target
+				const href = link.getAttribute('href')
+				//const href = 'mailto:plop@plop.net,second@lala.org?'
+				//	+ 'subject=Give%20me%20love'
+				//	+ '&body=the%20body'
+				//	+ '&cc=plopCC@plop.net,secondCC@lala.org'
+				//	+ '&bcc=plopBCC@plop.net,secondBCC@lala.org'
+				if (href.match(/^mailto:/i)) {
+					e.preventDefault()
+					const url = new URL(href)
+					const targetMails = url.pathname.split(',')
+					const body = url.searchParams.get('body')
+					const subject = url.searchParams.get('subject')
+					const cc = url.searchParams.get('cc')
+					const bcc = url.searchParams.get('bcc')
 
-				const newUrl = new URL(mailUrl)
-				// TODO adapt this to OX webmail params
-				newUrl.searchParams.append('emails', targetMails.join(','))
-				if (body) {
-					newUrl.searchParams.append('body', body)
+					const newUrl = new URL(mailUrl)
+					// TODO adapt this to OX webmail params
+					newUrl.searchParams.append('emails', targetMails.join(','))
+					if (body) {
+						newUrl.searchParams.append('body', body)
+					}
+					if (subject) {
+						newUrl.searchParams.append('subject', subject)
+					}
+					if (cc) {
+						newUrl.searchParams.append('cc', cc)
+					}
+					if (bcc) {
+						newUrl.searchParams.append('bcc', bcc)
+					}
+					window.open(newUrl.href, '_blank')
 				}
-				if (subject) {
-					newUrl.searchParams.append('subject', subject)
-				}
-				if (cc) {
-					newUrl.searchParams.append('cc', cc)
-				}
-				if (bcc) {
-					newUrl.searchParams.append('bcc', bcc)
-				}
-				window.open(newUrl.href, '_blank')
 			}
-		}
-	})
+		})
+	}
 })()
