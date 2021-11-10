@@ -1,8 +1,8 @@
 <?php
 /*
- * @copyright Copyright (c) 2021 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -73,7 +73,7 @@ class TokenObtainedEventListener implements IEventListener {
 					'client_secret' => $provider->getClientSecret(),
 					'grant_type' => 'refresh_token',
 					'refresh_token' => $refreshToken,
-					// TODO check that
+					// TODO check if we need a different scope for this
 					'scope' => $provider->getScope(),
 				],
 			]

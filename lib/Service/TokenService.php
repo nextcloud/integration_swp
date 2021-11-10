@@ -1,8 +1,8 @@
 <?php
 /*
- * @copyright Copyright (c) 2021 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -33,6 +33,7 @@ use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
+use Psr\Log\LoggerInterface;
 
 class TokenService {
 	private const SESSION_TOKEN_KEY = 'nmcuser-token';
@@ -47,18 +48,29 @@ class TokenService {
 	private $userSession;
 	/** @var IRequest */
 	private $request;
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
 
-	public function __construct(ISession $session, IClientService $client, IURLGenerator $urlGenerator, IUserSession $userSession, IRequest $request) {
+	public function __construct(ISession $session,
+								IClientService $client,
+								IURLGenerator $urlGenerator,
+								IUserSession $userSession,
+								LoggerInterface $logger,
+								IRequest $request) {
 		$this->session = $session;
 		$this->client = $client->newClient();
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
 		$this->request = $request;
+		$this->logger = $logger;
 	}
 
 	public function storeToken(array $tokenData): Token {
 		$token = new Token($tokenData);
 		$this->session->set(self::SESSION_TOKEN_KEY, json_encode($token, JSON_THROW_ON_ERROR));
+		$this->logger->warning('Store token');
 		return $token;
 	}
 
@@ -94,11 +106,12 @@ class TokenService {
 						'client_secret' => $oidcProvider->getClientSecret(),
 						'grant_type' => 'refresh_token',
 						'refresh_token' => $token->getRefreshToken(),
-						// TODO check that
+						// TODO check if we need a different scope for this
 						'scope' => $oidcProvider->getScope(),
 					],
 				]
 			);
+			$this->logger->warning('Refresh token success');
 			return $this->storeToken(
 				array_merge(
 					json_decode($result->getBody(), true, 512, JSON_THROW_ON_ERROR),
@@ -106,6 +119,7 @@ class TokenService {
 				)
 			);
 		} catch (\Exception $e) {
+			$this->logger->error('Failed to refresh token ', ['exception' => $e]);
 			// Failed to refresh, return old token which will be retried or otherwise timeout if expired
 			return $token;
 		}

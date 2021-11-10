@@ -1,8 +1,8 @@
 <?php
 /*
- * @copyright Copyright (c) 2021 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -37,8 +37,6 @@ class OxBaseService {
 	private $userId;
 
 	private $oxBaseUrl;
-	private $oxAppId;
-	private $oxAppSecret;
 
 	public function __construct(IConfig $config, TokenService $tokenService, $userId) {
 		$this->config = $config;
@@ -49,12 +47,10 @@ class OxBaseService {
 		}
 
 		$this->oxBaseUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
-		$this->oxAppId = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_APPID);
-		$this->oxAppSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_APPSECRET);
 	}
 
 	public function checkSetup(): bool {
-		return $this->userId !== null && $this->oxBaseUrl !== '' && $this->oxAppId !== '' && $this->oxAppSecret !== '';
+		return $this->userId !== null && $this->oxBaseUrl !== '';
 	}
 
 	public function getOxBaseUrl(string $endpoint): string {
@@ -66,16 +62,15 @@ class OxBaseService {
 
 		$oidcToken = $this->tokenService->getToken();
 		if (!$oidcToken && $oxDebugUserToken === '') {
-			$this->logger->debug('Attempt to fetch unread count but could not find OX token');
+			$this->logger->debug('[OxBaseService::getOxOptions] could not find OX token in session or the debug one');
 			throw new ServiceException('Could not get ox request options');
 		}
-		$oxToken = $oxDebugUserToken !== '' ? $oxDebugUserToken : $oidcToken->getAccessToken();
+		$oxToken = $oxDebugUserToken !== '' ? $oxDebugUserToken : $oidcToken->getIdToken();
 
 		return [
 			'headers' => [
-				'X-UserToken' => $oxToken,
+				'Authorization' => 'Bearer ' . $oxToken,
 			],
-			'auth' => [ $this->oxAppId, $this->oxAppSecret ],
 		];
 	}
 }

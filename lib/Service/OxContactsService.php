@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 /**
- * @author Anna Larch <anna.larch@nextcloud.com>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @copyright 2021 Annna Larch <anna.larch@nextcloud.com>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * Ox Integration
  *
@@ -55,6 +55,7 @@ class OxContactsService extends OxBaseService {
 			return [];
 		}
 		$searchTerm = '*' . str_replace(' ', '*,*', $searchTerm) . '*';
+		// TODO find OX endpoints
 		$searchUrl = $this->getOxBaseUrl('/rest/contacts/v1') . '/query?filter=or(is(first,any(' .$searchTerm .')),is(last,any('.$searchTerm.')),is(emails.*.email,any('.$searchTerm.')))&fields=take(first,last,emails)';
 		if (isset($options['limit'])) {
 			$searchUrl .= '&count=' . $options['limit'];

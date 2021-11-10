@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 /**
- * @author Anna Larch <anna.larch@nextcloud.com>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @copyright 2021 Annna Larch <anna.larch@nextcloud.com>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * ox Integration
  *
