@@ -96,21 +96,12 @@ class OxAddressBook implements IAddressBook {
 			return [];
 		}
 
-		$contacts = $result['contacts'] ?? null;
-		if (empty($contacts)) {
+		// format results
+		if (!isset($result['data']) || !is_array($result['data'])) {
 			return [];
 		}
-		// form the result set
-		$result = array_merge(...array_map(static function ($contact) {
-			$emails = $contact['emails'] ?? [];
-			$template = ['FN' => ($contact['first'] ?? '') . ' ' . ($contact['last'] ?? '') ];
-			if (empty($emails)) {
-				return [array_merge($template, ['EMAIL' => ''])];
-			}
-			return array_map(static function ($email) use ($template) {
-				return array_merge($template, ['EMAIL' => $email['email']]);
-			}, $emails);
-		}, $contacts));
+
+		file_put_contents('/tmp/a', json_encode($result));
 
 		$this->cache->set($cacheKey, $result,
 			$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_TTL_CONTACTS, Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT)
@@ -123,21 +114,21 @@ class OxAddressBook implements IAddressBook {
 	 * @throws ServiceException
 	 */
 	public function createOrUpdate($properties) {
-		throw new ServiceException("Operation not available", 403);
+		throw new ServiceException('Operation not available', 403);
 	}
 
 	/**
 	 * @throws ServiceException
 	 */
 	public function getPermissions() {
-		throw new ServiceException("Operation not available", 403);
+		throw new ServiceException('Operation not available', 403);
 	}
 
 	/**
 	 * @throws ServiceException
 	 */
 	public function delete($id) {
-		throw new ServiceException("Operation not available", 403);
+		throw new ServiceException('Operation not available', 403);
 	}
 
 	public function isShared(): bool {

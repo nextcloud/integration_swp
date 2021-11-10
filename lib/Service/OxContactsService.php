@@ -54,15 +54,39 @@ class OxContactsService extends OxBaseService {
 		if (!$this->checkSetup()) {
 			return [];
 		}
-		$searchTerm = '*' . str_replace(' ', '*,*', $searchTerm) . '*';
-		// TODO find OX endpoints
-		$searchUrl = $this->getOxBaseUrl('/rest/contacts/v1') . '/query?filter=or(is(first,any(' .$searchTerm .')),is(last,any('.$searchTerm.')),is(emails.*.email,any('.$searchTerm.')))&fields=take(first,last,emails)';
+		//$searchTerm = '*' . str_replace(' ', '*,*', $searchTerm) . '*';
+		$searchTerm = '*' . $searchTerm . '*';
+		// TODO choose between /contacts?action=autocomplete and /contacts?action=search endpoints
+		// documentation: https://documentation.open-xchange.com/components/middleware/http/latest/index.html#!Contacts
+
+		// search (PUT)
+		$searchUrl = $this->getOxBaseUrl('/contacts');
+		$getParams = [
+			'action' => 'search',
+			// object ID, last_modified, display name, email 1, 2 and 3
+			'columns' => '1,5,500,555,556,557',
+			'sort' => '5',
+			'order' => 'desc',
+		];
+		$paramsContent = http_build_query($getParams);
+		$searchUrl .= '?' . $paramsContent;
+		$requestBody = [
+			'orSearch' => true,
+			'pattern' => $searchTerm,
+			'email1' => $searchTerm,
+			'email2' => $searchTerm,
+			'email3' => $searchTerm,
+		];
+
+		//$searchUrl = $this->getOxBaseUrl('/rest/contacts/v1') . '/query?filter=or(is(first,any(' .$searchTerm .')),is(last,any('.$searchTerm.')),is(emails.*.email,any('.$searchTerm.')))&fields=take(first,last,emails)';
 		if (isset($options['limit'])) {
 			$searchUrl .= '&count=' . $options['limit'];
 		}
 		try {
 			$client = $this->clientService->newClient();
-			$response = $client->get($searchUrl, $this->getOxOptions());
+			$requestOptions = $this->getOxOptions();
+			$requestOptions['body'] = $requestBody;
+			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception $e) {
