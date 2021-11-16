@@ -21,8 +21,10 @@
  */
 
 (function() {
-	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'mail-url')
+	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'webmail-url')
 	console.debug('MAIL URL', mailUrl)
+	const oxUrl = OCP.InitialState.loadState('sps_bmi', 'ox-baseurl')
+	console.debug('OX BASE URL', oxUrl)
 	// const count = OCP.InitialState.loadState('sps_bmi', 'unread-counter')
 	const count = 0
 
@@ -54,7 +56,7 @@
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = function(mailtoLink) {
-			return mailUrl + '#mailto=' + encodeURIComponent(mailtoLink)
+			return oxUrl + '#mailto=' + encodeURIComponent(mailtoLink)
 		}
 
 		const getOXClassicMailtoUrl = function(mailtoLink) {

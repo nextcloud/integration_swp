@@ -76,16 +76,16 @@ class Application extends App implements IBootstrap {
 			IConfig $config,
 			$userId
 		) {
-			Util::addScript('sps_bmi', 'sps_bmi');
-			Util::addStyle('sps_bmi', 'sps_bmi');
 			if (!$userId) {
 				return;
 			}
 
 			$token = $tokenService->getToken();
 			if ($token === null) {
+				error_log('NO TOKEN SO APP QUITS');
 				return;
 			}
+			error_log('WE HAVE A TOKEN;;;;;;;;;;');
 
 			$contactsManager->registerAddressBook($oxAddressBook);
 
@@ -97,8 +97,11 @@ class Application extends App implements IBootstrap {
 			//	return $unreadService->getUnreadCounter();
 			//});
 
-			$initialState->provideLazyInitialState('mail-url', function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, 'https://localhost/webmail');;
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');;
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');;
 			});
 
 			Util::addScript('sps_bmi', 'sps_bmi');
