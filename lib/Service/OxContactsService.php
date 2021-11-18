@@ -60,7 +60,7 @@ class OxContactsService extends OxBaseService {
 		// documentation: https://documentation.open-xchange.com/components/middleware/http/latest/index.html#!Contacts
 
 		// search (PUT)
-		$searchUrl = $this->getOxBaseUrl('/contacts');
+		$searchUrl = $this->getOxBaseUrl('/api/contacts');
 		$getParams = [
 			'action' => 'search',
 			// object ID, last_modified, display name, email 1, 2 and 3
@@ -85,9 +85,10 @@ class OxContactsService extends OxBaseService {
 		try {
 			$client = $this->clientService->newClient();
 			$requestOptions = $this->getOxOptions();
-			$requestOptions['body'] = $requestBody;
+			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
+			error_log('CONTACT response '.$responseBody);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception $e) {
 			$this->logger->error('Failed to fetch contacts for user ' . $this->userId, ['exception' => $e]);
