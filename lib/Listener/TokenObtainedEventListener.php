@@ -50,6 +50,7 @@ class TokenObtainedEventListener implements IEventListener {
 	}
 
 	public function handle(Event $event): void {
+		error_log('handle TokenObtainedEvent');
 		if (!$event instanceof TokenObtainedEvent) {
 			return;
 		}
@@ -58,29 +59,35 @@ class TokenObtainedEventListener implements IEventListener {
 		$provider = $event->getProvider();
 		$discovery = $event->getDiscovery();
 
-		$refreshToken = $token['refresh_token'] ?? null;
+		//$refreshToken = $token['refresh_token'] ?? null;
 
-		if (!$refreshToken) {
-			return;
-		}
+		//if (!$refreshToken) {
+		//	error_log('handle TokenObtainedEvent NO REFRESH TOKEN');
+		//	return;
+		//}
 
-		$client = $this->clientService->newClient();
-		$result = $client->post(
-			$discovery['token_endpoint'],
-			[
-				'body' => [
-					'client_id' => $provider->getClientId(),
-					'client_secret' => $provider->getClientSecret(),
-					'grant_type' => 'refresh_token',
-					'refresh_token' => $refreshToken,
-					// TODO check if we need a different scope for this
-					'scope' => $provider->getScope(),
-				],
-			]
-		);
+		//$client = $this->clientService->newClient();
+		//error_log('TokenObtainedEventListener TOKEN REQUEST to '.$discovery['token_endpoint'].' with refresh token='.$refreshToken.' and client id='.$provider->getClientId());
+		//$result = $client->post(
+		//	$discovery['token_endpoint'],
+		//	[
+		//		'body' => [
+		//			'client_id' => $provider->getClientId(),
+		//			'client_secret' => $provider->getClientSecret(),
+		//			'grant_type' => 'refresh_token',
+		//			'refresh_token' => $refreshToken,
+		//			// TODO check if we need a different scope for this
+		//			'scope' => $provider->getScope(),
+		//		],
+		//	]
+		//);
+		//error_log('STATUS CODE:'.$result->getStatusCode());
 
-		$tokenData = json_decode($result->getBody(), true);
+		//$tokenData = json_decode($result->getBody(), true);
 
+		//error_log('store TOKEN: '. $result->getBody());
+		$tokenData = $token;
+		error_log('!!!!store TOKEN: '. json_encode($tokenData));
 		$this->tokenService->storeToken(array_merge($tokenData, ['provider_id' => $provider->getId()]));
 
 		$this->mailService->resetCache();

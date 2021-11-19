@@ -89,6 +89,9 @@
 		const body = document.querySelector('body')
 		body.addEventListener('click', (e) => {
 			console.debug('click on', e.target.tagName)
+			console.debug('click on', e)
+			// check e.path[1]
+			// .getAttribute('href')
 			if (e.target.tagName === 'A') {
 				const link = e.target
 				const href = link.getAttribute('href')
@@ -99,6 +102,7 @@
 				//	+ '&bcc=plopBCC@plop.net,secondBCC@lala.org'
 				if (href.match(/^mailto:/i)) {
 					e.preventDefault()
+					e.stopPropagation()
 					// according to https://projects.univention.de/xwiki/wiki/sps/view/Product%20%26%20Integration/BMI/5%20-%20Send%20email%20using%20OX/
 					window.open(getOXHashMailtoUrl(href), '_blank')
 					//window.open(getOXClassicMailtoUrl(href), '_blank')

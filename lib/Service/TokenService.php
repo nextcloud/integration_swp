@@ -98,6 +98,7 @@ class TokenService {
 		$discovery = $this->obtainDiscovery($oidcProvider->getDiscoveryEndpoint());
 
 		try {
+			$this->logger->warning('Refreshing the token: '.$discovery['token_endpoint']);
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[
@@ -107,17 +108,29 @@ class TokenService {
 						'grant_type' => 'refresh_token',
 						'refresh_token' => $token->getRefreshToken(),
 						// TODO check if we need a different scope for this
-						'scope' => $oidcProvider->getScope(),
+						//'scope' => $oidcProvider->getScope(),
 					],
 				]
 			);
-			$this->logger->warning('Refresh token success');
-			return $this->storeToken(
-				array_merge(
-					json_decode($result->getBody(), true, 512, JSON_THROW_ON_ERROR),
-					['provider_id' => $token->getProviderId()],
-				)
-			);
+			$this->logger->warning('PARAMS: '.json_encode([
+                                                'client_id' => $oidcProvider->getClientId(),
+                                                'client_secret' => $oidcProvider->getClientSecret(),
+                                                'grant_type' => 'refresh_token',
+                                                'refresh_token' => $token->getRefreshToken(),
+                                                // TODO check if we need a different scope for this
+                                                //'scope' => $oidcProvider->getScope(),
+                                        ]));
+			$body = $result->getBody();
+			$bodyArray = json_decode(trim($body), true, 512, JSON_THROW_ON_ERROR);
+			$oldTokenArray = $token->jsonSerialize();
+			$oldTokenArray['access_token'] = $bodyArray['access_token'];
+			$oldTokenArray['expires_in'] = $bodyArray['expires_in'];
+			unset($oldTokenArray['created_at']);
+			$newToken = new Token($oldTokenArray);
+			$newTokenArray = $newToken->jsonSerialize();
+			$this->logger->warning('Refresh token success: "'.trim($body).'"');
+			file_put_contents('./debug_token', json_encode($newTokenArray));
+			return $this->storeToken($newTokenArray);
 		} catch (\Exception $e) {
 			$this->logger->error('Failed to refresh token ', ['exception' => $e]);
 			// Failed to refresh, return old token which will be retried or otherwise timeout if expired

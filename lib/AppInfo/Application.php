@@ -82,7 +82,7 @@ class Application extends App implements IBootstrap {
 
 			$token = $tokenService->getToken();
 			if ($token === null) {
-				error_log('NO TOKEN SO APP QUITS');
+				//error_log('NO TOKEN SO APP QUITS');
 				return;
 			}
 			error_log('WE HAVE A TOKEN;;;;;;;;;;');
