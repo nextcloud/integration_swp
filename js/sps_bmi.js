@@ -88,13 +88,14 @@
 		// override click on mailto: links
 		const body = document.querySelector('body')
 		body.addEventListener('click', (e) => {
-			console.debug('click on', e.target.tagName)
-			console.debug('click on', e)
-			// check e.path[1]
-			// .getAttribute('href')
+			let link
 			if (e.target.tagName === 'A') {
-				const link = e.target
-				const href = link.getAttribute('href')
+				link = e.target
+			} else if (e.path[1]?.tagName === 'A') {
+				link = e.path[1]
+			}
+			if (link) {
+				href = link.getAttribute('href')
 				//const href = 'mailto:plop@plop.net,second@lala.org?'
 				//	+ 'subject=Give%20me%20love'
 				//	+ '&body=the%20body'
