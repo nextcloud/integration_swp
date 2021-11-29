@@ -31,5 +31,6 @@ if (!\OC::$server->getSystemConfig()->getValue('debug', false)) {
 return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'Theming#getStylesheet', 'url' => '/styles', 'verb' => 'GET']
 	],
 ];

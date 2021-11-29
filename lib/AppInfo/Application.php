@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace OCA\SpsBmi\AppInfo;
 
 use OCA\SpsBmi\Listener\TokenObtainedEventListener;
+use OCA\SpsBmi\Listener\BeforeTemplateRenderedListener;
 use OCA\SpsBmi\Service\TokenService;
 use OCA\SpsBmi\Service\OxMailService;
 use OCA\SpsBmi\OxAddressBook;
@@ -34,6 +35,7 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
@@ -61,6 +63,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
