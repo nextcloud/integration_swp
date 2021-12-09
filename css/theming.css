@@ -1,1 +1,22 @@
 header#header { height: 64px !important; }
+body > #content,
+body > #content-vue {
+	padding-top: 64px;
+}
+#app-navigation,
+#app-navigation-vue {
+	top: 64px !important;
+}
+
+/* Hide triangle on active app and dropdown menu */
+#appmenu li a.active::before,
+#appmenu li:hover a::before,
+#appmenu li:hover a.active::before,
+#appmenu li a:focus::before,
+#header .header-left > nav > #navigation:after {
+	display: none !important;
+}
+
+header#header {
+	background-color: white !important;
+}
