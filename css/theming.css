@@ -20,3 +20,20 @@ body > #content-vue {
 header#header {
 	background-color: white !important;
 }
+
+#appmenu > li[tabindex="-1"] {
+	display: none;
+}
+#appmenu > li#more-apps {
+	display: flex !important;
+}
+#apps li {
+	display: list-item !important;
+}
+
+#header .header-left > nav > #navigation {
+	position: fixed;
+	left: 0px;
+	top: 64px;
+	transform: unset;
+}
