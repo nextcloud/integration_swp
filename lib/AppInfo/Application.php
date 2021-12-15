@@ -79,6 +79,9 @@ class Application extends App implements IBootstrap {
 			IConfig $config,
 			$userId
 		) {
+			// TODO move this lower to only register the nav items if there is a token
+			$this->registerNavigationItems();
+			
 			if (!$userId) {
 				return;
 			}
@@ -109,6 +112,21 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript('sps_bmi', 'sps_bmi');
 			Util::addStyle('sps_bmi', 'sps_bmi');
+		});
+	}
+
+	private function registerNavigationItems(): void {
+		$container = $this->getContainer();
+		$container->get(INavigationManager::class)->add(function () use ($container) {
+			$urlGenerator = $container->get(IURLGenerator::class);
+			$l10n = $container->get(IL10N::class);
+			return [
+				'id' => 'ox-mail',
+				'order' => 0,
+				'href' => 'https://nextcloud.com',
+				'icon' => $urlGenerator->imagePath(self::APP_ID, 'grid.svg'),
+				'name' => $l10n->t('OX Mail'),
+			];
 		});
 	}
 }
