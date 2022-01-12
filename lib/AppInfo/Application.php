@@ -63,7 +63,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
-		$context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
+		// $context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -112,6 +112,7 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript('sps_bmi', 'sps_bmi');
 			Util::addStyle('sps_bmi', 'sps_bmi');
+			Util::addStyle('sps_bmi', 'theming');
 		});
 	}
 
