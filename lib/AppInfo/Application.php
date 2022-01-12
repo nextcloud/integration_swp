@@ -81,7 +81,7 @@ class Application extends App implements IBootstrap {
 		) {
 			// TODO move this lower to only register the nav items if there is a token
 			$this->registerNavigationItems();
-			
+
 			if (!$userId) {
 				return;
 			}
