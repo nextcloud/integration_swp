@@ -25,10 +25,14 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Service;
 
+use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Model\Token;
+use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
+use OCP\ICache;
+use OCP\ICacheFactory;
 use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
@@ -36,6 +40,7 @@ use OCP\IUserSession;
 use Psr\Log\LoggerInterface;
 
 class TokenService {
+	private const INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS = 3600;
 	private const SESSION_TOKEN_KEY = 'nmcuser-token';
 
 	/** @var ISession */
@@ -52,19 +57,25 @@ class TokenService {
 	 * @var LoggerInterface
 	 */
 	private $logger;
+	/**
+	 * @var ICache
+	 */
+	private $cache;
 
 	public function __construct(ISession $session,
 								IClientService $client,
 								IURLGenerator $urlGenerator,
 								IUserSession $userSession,
 								LoggerInterface $logger,
-								IRequest $request) {
+								IRequest $request,
+								ICacheFactory $cacheFactory) {
 		$this->session = $session;
 		$this->client = $client->newClient();
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
 		$this->request = $request;
 		$this->logger = $logger;
+		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
 	}
 
 	public function storeToken(array $tokenData): Token {
@@ -95,7 +106,7 @@ class TokenService {
 		/** @var ProviderMapper $providerMapper */
 		$providerMapper = \OC::$server->get(ProviderMapper::class);
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
-		$discovery = $this->obtainDiscovery($oidcProvider->getDiscoveryEndpoint());
+		$discovery = $this->obtainDiscovery($oidcProvider);
 
 		try {
 			$this->logger->warning('Refreshing the token: '.$discovery['token_endpoint']);
@@ -138,9 +149,19 @@ class TokenService {
 		}
 	}
 
-	private function obtainDiscovery(string $url) {
-		$response = $this->client->get($url);
-		return json_decode($response->getBody(), true);
+	public function obtainDiscovery(Provider $provider): array {
+		$cacheKey = 'discovery-' . $provider->getId();
+		$cachedDiscovery = $this->cache->get($cacheKey);
+		if ($cachedDiscovery === null) {
+			$url = $provider->getDiscoveryEndpoint();
+			$this->logger->debug('Obtaining discovery endpoint: ' . $url);
+
+			$response = $this->client->get($url);
+			$cachedDiscovery = $response->getBody();
+			$this->cache->set($cacheKey, $cachedDiscovery, self::INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS);
+		}
+
+		return json_decode($cachedDiscovery, true, 512, JSON_THROW_ON_ERROR);
 	}
 
 	public function reauthenticate() {
