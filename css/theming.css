@@ -8,6 +8,12 @@ body > #content-vue {
 	top: 64px !important;
 }
 
+/* fix dashboard header */
+body.dashboard--inverted:not(.dashboard--dark) #appmenu .icon-more-white,
+body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings) > :first-child {
+	filter: unset !important;
+}
+
 /* Hide triangle on active app and dropdown menu */
 #appmenu li a.active::before,
 #appmenu li:hover a::before,
@@ -35,6 +41,17 @@ header#header {
 }
 #apps li {
 	display: list-item !important;
+}
+
+/* set style of categories and custom items */
+#apps li .category {
+	font-weight: bold;
+	font-size: 16px;
+	/*color: #f1f1f1;*/
+	padding-left: 12px;
+}
+#apps li .icon {
+	margin-right: 10px;
 }
 
 #header .header-left > nav > #navigation {

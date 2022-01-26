@@ -27,6 +27,7 @@ namespace OCA\SpsBmi\AppInfo;
 
 use OCA\SpsBmi\Listener\TokenObtainedEventListener;
 use OCA\SpsBmi\Listener\BeforeTemplateRenderedListener;
+use OCA\SpsBmi\Service\MenuService;
 use OCA\SpsBmi\Service\TokenService;
 use OCA\SpsBmi\Service\OxMailService;
 use OCA\SpsBmi\OxAddressBook;
@@ -70,6 +71,7 @@ class Application extends App implements IBootstrap {
 		$context->injectFn(function (
 			IInitialState $initialState,
 			TokenService $tokenService,
+			MenuService $menuService,
 			INavigationManager $navigationManager,
 			IManager $contactsManager,
 			OxAddressBook $oxAddressBook,
@@ -109,8 +111,12 @@ class Application extends App implements IBootstrap {
 			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');;
 			});
+			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
+				return $menuService->getMenuJson($token);
+			});
 
 			Util::addScript('sps_bmi', 'sps_bmi');
+			Util::addScript('sps_bmi', 'sps_bmi_menu');
 			Util::addStyle('sps_bmi', 'sps_bmi');
 			Util::addStyle('sps_bmi', 'theming');
 		});

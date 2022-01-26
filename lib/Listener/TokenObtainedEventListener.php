@@ -88,6 +88,7 @@ class TokenObtainedEventListener implements IEventListener {
 		//error_log('store TOKEN: '. $result->getBody());
 		$tokenData = $token;
 		error_log('!!!!store TOKEN: '. json_encode($tokenData));
+		file_put_contents('./debug_token', json_encode($tokenData));
 		$this->tokenService->storeToken(array_merge($tokenData, ['provider_id' => $provider->getId()]));
 
 		$this->mailService->resetCache();
