@@ -32,7 +32,7 @@
 		listElement.append(li)
 	}
 
-	const appendEntry = function (listElement, jsonEntry) {
+	const appendEntry = function (listElement, jsonEntry, proxyImage = true) {
 		const a = document.createElement('a');
 		a.setAttribute('href', jsonEntry.link)
 		if (jsonEntry.description) {
@@ -40,8 +40,9 @@
 		}
 		// icon
 		const icon = document.createElement('img');
-		const imgUrl = OC.generateUrl('/apps/sps_bmi/image?') + 'url=' + encodeURIComponent(jsonEntry.icon_url)
-		console.error('URURURURRU', imgUrl)
+		const imgUrl = proxyImage
+			? OC.generateUrl('/apps/sps_bmi/image?') + 'url=' + encodeURIComponent(jsonEntry.icon_url)
+			: jsonEntry.icon_url
 		icon.setAttribute('src', imgUrl)
 		/*
 		const icon = document.createElement('span');
@@ -72,6 +73,16 @@
 		const itemList = document.querySelector('#navigation #apps ul')
 		// clear the menu content
 		itemList.innerHTML = ''
+		// insert the portal entry
+		appendEntry(itemList, {
+			identifier: 'portal',
+			icon_url: OC.generateUrl('/svg/sps_bmi/grid?color=000000'),
+			display_name: 'Portal',
+			link: 'https://duckduckgo.com/one',
+			description: '0-1',
+			keywords: 'kw0'
+		}, false)
+		// insert the json categories
 		menuJson.categories.forEach((cat) => {
 			appendCategory(itemList, cat)
 		})
