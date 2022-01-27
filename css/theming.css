@@ -44,14 +44,23 @@ header#header {
 }
 
 /* set style of categories and custom items */
+#apps > ul {
+	padding: 12px 0 12px 0;
+}
+#apps li.in-header > a {
+	padding: 12px 16px 12px 16px !important;
+}
 #apps li .category {
 	font-weight: bold;
 	font-size: 16px;
 	/*color: #f1f1f1;*/
-	padding-left: 12px;
+	display: inline-flex;
+	padding: 8px 16px 4px 16px;
 }
-#apps li .icon {
-	margin-right: 10px;
+#apps li img {
+	width: 16px !important;
+	height: auto !important;
+	margin-right: 16px !important;
 }
 
 #header .header-left > nav > #navigation {
