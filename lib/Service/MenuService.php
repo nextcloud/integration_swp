@@ -27,31 +27,19 @@ namespace OCA\SpsBmi\Service;
 
 use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Model\Token;
-use OCA\UserOIDC\Db\Provider;
-use OCA\UserOIDC\Db\ProviderMapper;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
-use OCP\IRequest;
-use OCP\ISession;
-use OCP\IURLGenerator;
 use OCP\IUserSession;
+use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
 
 class MenuService {
 	private const INVALIDATE_MENU_CACHE_AFTER_SECONDS = 3600;
 
-	/** @var ISession */
-	private $session;
 	/** @var IClient */
 	private $client;
-	/** @var IURLGenerator */
-	private $urlGenerator;
-	/** @var IUserSession */
-	private $userSession;
-	/** @var IRequest */
-	private $request;
 	/**
 	 * @var LoggerInterface
 	 */
@@ -60,21 +48,25 @@ class MenuService {
 	 * @var ICache
 	 */
 	private $cache;
+	/**
+	 * @var IFactory
+	 */
+	private $l10nFactory;
+	/**
+	 * @var IUserSession
+	 */
+	private $userSession;
 
-	public function __construct(ISession $session,
-								IClientService $client,
-								IURLGenerator $urlGenerator,
+	public function __construct(IClientService $client,
 								IUserSession $userSession,
 								LoggerInterface $logger,
-								IRequest $request,
+								IFactory $l10nFactory,
 								ICacheFactory $cacheFactory) {
-		$this->session = $session;
 		$this->client = $client->newClient();
-		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
-		$this->request = $request;
 		$this->logger = $logger;
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
+		$this->l10nFactory = $l10nFactory;
 	}
 
 	public function getMenuJson(Token $token): ?string {
@@ -86,6 +78,11 @@ class MenuService {
 		if ($cachedMenu === null) {
 			// TODO set menu URL
 			$url = '???';
+			$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
+			$params = [
+				'lang' => $lang,
+			];
+			$url .= '?' . http_build_query($params);
 			$options = [
 				'headers' => [
 					'Authorization'  => 'Bearer ' . $token->getIdToken(),
