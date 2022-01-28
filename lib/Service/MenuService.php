@@ -101,12 +101,12 @@ class MenuService {
   "categories": [
     {
       "identifier": "technical_groupname1",
-      "display_name": "First cat",
+      "display_name": "Collaboration",
       "entries": [
         {
           "identifier": "cat1_item1",
           "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
-          "display_name": "First item",
+          "display_name": "Files",
           "link": "https://duckduckgo.com/one",
           "description": "1-1",
           "keywords": "kw1 kw2"
@@ -114,7 +114,7 @@ class MenuService {
         {
           "identifier": "cat1_item2",
           "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
-          "display_name": "Second item",
+          "display_name": "Chat",
           "link": "https://duckduckgo.com/two",
           "description": "1-2",
           "keywords": "kw3 kw4"
@@ -123,12 +123,12 @@ class MenuService {
     },
     {
       "identifier": "technical_groupname2",
-      "display_name": "Second cat",
+      "display_name": "Groupware",
       "entries": [
         {
           "identifier": "cat2_item1",
           "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
-          "display_name": "First item",
+          "display_name": "Mail",
           "link": "https://duckduckgo.com/three",
           "description": "2-1",
           "keywords": "kw1 kw2"
@@ -136,7 +136,7 @@ class MenuService {
         {
           "identifier": "cat2_item2",
           "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
-          "display_name": "Second item",
+          "display_name": "Calendar",
           "link": "https://duckduckgo.com/four",
           "description": "2-2",
           "keywords": "kw3 kw4"

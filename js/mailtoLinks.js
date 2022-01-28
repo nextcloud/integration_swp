@@ -25,34 +25,6 @@
 	console.debug('MAIL URL', mailUrl)
 	const oxUrl = OCP.InitialState.loadState('sps_bmi', 'ox-baseurl')
 	console.debug('OX BASE URL', oxUrl)
-	// const count = OCP.InitialState.loadState('sps_bmi', 'unread-counter')
-	const count = 0
-
-	var renderHeader = function () {
-		var icon = document.createElement('div');
-		icon.classList = 'icon-mail';
-		var badge = document.createElement('span');
-		var hasUnread = (count > 0);
-		badge.classList = 'unread-badge' + (hasUnread ? ' has-unread' : '');
-		badge.textContent = count;
-
-		var label = document.createElement('div');
-		label.textContent = t('core', 'Email');
-
-		var parentMailWrapper = document.createElement('div');
-		parentMailWrapper.id = "contactsmenu";
-		var mailWrapper = document.createElement('a');
-		mailWrapper.href = mailUrl;
-		mailWrapper.classList = 'sps_bmi_wrapper';
-		mailWrapper.appendChild(icon);
-		mailWrapper.appendChild(badge);
-		mailWrapper.appendChild(label);
-
-		parentMailWrapper.appendChild(mailWrapper);
-		return parentMailWrapper;
-	}
-
-	// document.querySelector('.header-right').insertBefore(renderHeader(), document.getElementById('settings'));
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = function(mailtoLink) {

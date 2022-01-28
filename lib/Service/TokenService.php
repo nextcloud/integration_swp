@@ -110,6 +110,7 @@ class TokenService {
 
 		try {
 			$this->logger->warning('Refreshing the token: '.$discovery['token_endpoint']);
+			error_log('SILENT REFRESH!!!!!!!!');
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[
@@ -141,8 +142,10 @@ class TokenService {
 			$newTokenArray = $newToken->jsonSerialize();
 			$this->logger->warning('Refresh token success: "'.trim($body).'"');
 			file_put_contents('./debug_token', json_encode($newTokenArray));
+			error_log('REFRESH SUCCESS :))))))))))))');
 			return $this->storeToken($newTokenArray);
 		} catch (\Exception $e) {
+			error_log('FAILED TO REFRESH:(((((((((((((');
 			$this->logger->error('Failed to refresh token ', ['exception' => $e]);
 			// Failed to refresh, return old token which will be retried or otherwise timeout if expired
 			return $token;

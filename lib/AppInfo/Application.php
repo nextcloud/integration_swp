@@ -26,7 +26,6 @@ declare(strict_types=1);
 namespace OCA\SpsBmi\AppInfo;
 
 use OCA\SpsBmi\Listener\TokenObtainedEventListener;
-use OCA\SpsBmi\Listener\BeforeTemplateRenderedListener;
 use OCA\SpsBmi\Service\MenuService;
 use OCA\SpsBmi\Service\TokenService;
 use OCA\SpsBmi\Service\OxMailService;
@@ -36,7 +35,6 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
-use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Contacts\IManager;
 use OCP\IConfig;
@@ -64,7 +62,6 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
-		// $context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -81,9 +78,6 @@ class Application extends App implements IBootstrap {
 			IConfig $config,
 			$userId
 		) {
-			// TODO move this lower to only register the nav items if there is a token
-			$this->registerNavigationItems();
-
 			if (!$userId) {
 				return;
 			}
@@ -101,6 +95,9 @@ class Application extends App implements IBootstrap {
 				$tokenService->reauthenticate();
 			}
 
+			// as we get the menu items with a central navigation service, this is not necessary anymore
+			// $this->registerNavigationItems();
+
 			//$initialState->provideLazyInitialState('unread-counter', function () use ($unreadService) {
 			//	return $unreadService->getUnreadCounter();
 			//});
@@ -115,9 +112,8 @@ class Application extends App implements IBootstrap {
 				return $menuService->getMenuJson($token);
 			});
 
-			Util::addScript('sps_bmi', 'sps_bmi');
-			Util::addScript('sps_bmi', 'sps_bmi_menu');
-			Util::addStyle('sps_bmi', 'sps_bmi');
+			Util::addScript('sps_bmi', 'mailtoLinks');
+			Util::addScript('sps_bmi', 'centralMenu');
 			Util::addStyle('sps_bmi', 'theming');
 		});
 	}
