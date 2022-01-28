@@ -82,6 +82,7 @@ class TokenService {
 		$token = new Token($tokenData);
 		$this->session->set(self::SESSION_TOKEN_KEY, json_encode($token, JSON_THROW_ON_ERROR));
 		$this->logger->warning('Store token');
+		file_put_contents('/tmp/stored', json_encode($token->jsonSerialize()));
 		return $token;
 	}
 
@@ -124,7 +125,7 @@ class TokenService {
 					],
 				]
 			);
-			$this->logger->warning('PARAMS: '.json_encode([
+			$this->logger->error('PARAMS: '.json_encode([
                                                 'client_id' => $oidcProvider->getClientId(),
                                                 'client_secret' => $oidcProvider->getClientSecret(),
                                                 'grant_type' => 'refresh_token',
@@ -134,16 +135,15 @@ class TokenService {
                                         ]));
 			$body = $result->getBody();
 			$bodyArray = json_decode(trim($body), true, 512, JSON_THROW_ON_ERROR);
-			$oldTokenArray = $token->jsonSerialize();
-			$oldTokenArray['access_token'] = $bodyArray['access_token'];
-			$oldTokenArray['expires_in'] = $bodyArray['expires_in'];
-			unset($oldTokenArray['created_at']);
-			$newToken = new Token($oldTokenArray);
-			$newTokenArray = $newToken->jsonSerialize();
+			file_put_contents('/tmp/bodyrefresh', $body);
 			$this->logger->warning('Refresh token success: "'.trim($body).'"');
-			file_put_contents('./debug_token', json_encode($newTokenArray));
 			error_log('REFRESH SUCCESS :))))))))))))');
-			return $this->storeToken($newTokenArray);
+			return $this->storeToken(
+				array_merge(
+					$bodyArray,
+					['provider_id' => $token->getProviderId()],
+				)
+			);
 		} catch (\Exception $e) {
 			error_log('FAILED TO REFRESH:(((((((((((((');
 			$this->logger->error('Failed to refresh token ', ['exception' => $e]);
