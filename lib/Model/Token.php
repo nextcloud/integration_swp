@@ -77,9 +77,7 @@ class Token implements JsonSerializable {
 	}
 
 	public function isExpiring(): bool {
-		return time() > ($this->createdAt + 60);
-//		return time() > ($this->createdAt + (int)($this->expiresIn / 2));
-		//return time() > ($this->createdAt + (int)($this->expiresIn / 10));
+		return time() > ($this->createdAt + (int)($this->expiresIn / 2));
 	}
 
 	public function getCreatedAt() {
