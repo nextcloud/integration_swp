@@ -25,6 +25,7 @@ body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings
 
 header#header {
 	background-color: white !important;
+	border-bottom: 1px solid #dddddd;
 }
 
 #appmenu {
