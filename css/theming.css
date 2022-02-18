@@ -27,11 +27,18 @@ header#header {
 	background-color: white !important;
 }
 
+#appmenu {
+	width: 40px;
+	min-width: 40px;
+}
+
 #appmenu > li[tabindex="-1"] {
 	display: none;
 }
 #appmenu > li#more-apps {
 	display: flex !important;
+	width: 40px;
+	padding: 0;
 }
 #appmenu > li#more-apps a div {
 	transform: unset !important;
@@ -84,3 +91,14 @@ to programmatically set the instance logo:
 occ config:app:set --value "image/png" theming logoMime
 and copy the logo file as "data/appdata_INSTANCE_TOKEN/theming/images/logo"
  */
+
+#nextcloud {
+	padding-left: 128px;
+}
+
+#nextcloud .logo {
+	width: 80px;
+	height: 63px;
+	margin: 0 24px 0 24px;
+	left: 0;
+}
