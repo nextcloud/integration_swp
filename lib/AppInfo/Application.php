@@ -50,6 +50,7 @@ class Application extends App implements IBootstrap {
 
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_OX_URL = 'ox-baseurl';
+	public const APP_CONFIG_NAVIGATION_URL = 'navigation-json-url';
 
 	public const APP_CONFIG_CACHE_TTL_MAIL = 'cache-ttl-mail';
 	public const APP_CONFIG_CACHE_TTL_MAIL_DEFAULT = 60;
@@ -103,10 +104,10 @@ class Application extends App implements IBootstrap {
 			//});
 
 			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');;
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
 			});
 			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');;
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');
 			});
 			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
 				return $menuService->getMenuJson($token);

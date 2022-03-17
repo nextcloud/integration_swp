@@ -28,6 +28,10 @@ header#header {
 	border-bottom: 1px solid #dddddd;
 }
 
+header .header-right .icon-contacts {
+	background-image: var(--icon-contacts-000);
+}
+
 #appmenu {
 	width: 40px;
 	min-width: 40px;
@@ -91,6 +95,8 @@ header#header {
 to programmatically set the instance logo:
 occ config:app:set --value "image/png" theming logoMime
 and copy the logo file as "data/appdata_INSTANCE_TOKEN/theming/images/logo"
+Then we need to set the main color
+and also set the app settings, OX url etc...
  */
 
 #nextcloud {

@@ -31,6 +31,7 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
+use OCP\IConfig;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
@@ -56,46 +57,53 @@ class MenuService {
 	 * @var IUserSession
 	 */
 	private $userSession;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,
 								LoggerInterface $logger,
 								IFactory $l10nFactory,
+								IConfig $config,
 								ICacheFactory $cacheFactory) {
 		$this->client = $client->newClient();
 		$this->userSession = $userSession;
 		$this->logger = $logger;
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
 		$this->l10nFactory = $l10nFactory;
+		$this->config = $config;
 	}
 
 	public function getMenuJson(Token $token): ?string {
-		// make the menu request (and cache it)
-		/*
-		$providerId = $token->getProviderId();
-		$cacheKey = 'menuitems-' . $providerId;
-		$cachedMenu = $this->cache->get($cacheKey);
-		if ($cachedMenu === null) {
-			// TODO set menu URL
-			$url = '???';
-			$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
-			$params = [
-				'lang' => $lang,
-			];
-			$url .= '?' . http_build_query($params);
-			$options = [
-				'headers' => [
-					'Authorization'  => 'Bearer ' . $token->getIdToken(),
-				],
-			];
+		$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
+		if ($jsonMenuUrl !== '') {
+			// make the menu request (and cache it)
+			$providerId = $token->getProviderId();
+			$cacheKey = 'menuitems-' . $providerId;
+			$cachedMenu = $this->cache->get($cacheKey);
+			if ($cachedMenu === null) {
+				$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
+				$params = [
+					'lang' => $lang,
+				];
+				$jsonMenuUrl .= '?' . http_build_query($params);
+				$options = [
+					'headers' => [
+						'Authorization' => 'Bearer ' . $token->getIdToken(),
+					],
+				];
 
-			$response = $this->client->get($url, $options);
-			$cachedMenu = $response->getBody();
-			$this->cache->set($cacheKey, $cachedMenu, self::INVALIDATE_MENU_CACHE_AFTER_SECONDS);
+				$response = $this->client->get($jsonMenuUrl, $options);
+				$cachedMenu = $response->getBody();
+				$this->cache->set($cacheKey, $cachedMenu, self::INVALIDATE_MENU_CACHE_AFTER_SECONDS);
+			}
+
+			return $cachedMenu;
 		}
 
-		return $cachedMenu;
-		*/
+		// backup dummy menu value
 		return '
 {
   "categories": [
