@@ -25,9 +25,12 @@
 	const menuJson = JSON.parse(menuJsonRaw)
 	console.debug('menu json', menuJson)
 
-	const appendElement = function (listElement, item) {
+	const appendElement = function (listElement, item, extraClass = null) {
 		const li = document.createElement('li');
 		li.classList.add('in-header')
+		if (extraClass) {
+			li.classList.add(extraClass)
+		}
 		li.append(item)
 		listElement.append(li)
 	}
@@ -54,7 +57,7 @@
 		text.textContent = jsonEntry.display_name
 		a.append(icon)
 		a.append(text)
-		appendElement(listElement, a)
+		appendElement(listElement, a, 'elementcontainer')
 	}
 
 	const appendCategory = function (listElement, jsonCategory) {
@@ -62,7 +65,7 @@
 		const categoryElement = document.createElement('span');
 		categoryElement.classList.add('category')
 		categoryElement.textContent = jsonCategory.display_name
-		appendElement(listElement, categoryElement)
+		appendElement(listElement, categoryElement, 'categorycontainer')
 		// sub items
 		jsonCategory.entries.forEach((entry) => {
 			appendEntry(listElement, entry)

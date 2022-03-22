@@ -66,6 +66,14 @@ header .header-right .icon-contacts {
 	font-size: 15px;
 }
 
+#apps li.elementcontainer *:hover {
+	background: var(--color-primary) !important;
+}
+
+#apps li.elementcontainer *:hover span {
+	color: white !important;
+}
+
 #apps li .category {
 	font-weight: bold;
 	/*color: #f1f1f1;*/
