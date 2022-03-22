@@ -61,10 +61,16 @@ header .header-right .icon-contacts {
 }
 #apps li.in-header > a {
 	padding: 12px 16px 12px 16px !important;
+	min-height: 44px !important;
+	height: unset !important;
 }
 #apps li span {
 	font-size: 15px;
+	line-height: 20px;
 	max-width: unset !important;
+	white-space: pre-wrap !important;
+	overflow: unset !important;
+	text-overflow: unset !important;
 }
 
 #apps li.elementcontainer *:hover {
@@ -83,8 +89,8 @@ header .header-right .icon-contacts {
 	padding: 8px 16px 4px 16px;
 }
 #apps li img {
-	width: 20px !important;
-	height: auto !important;
+	width: auto !important;
+	height: 20px !important;
 	margin-right: 16px !important;
 }
 
@@ -95,7 +101,7 @@ header .header-right .icon-contacts {
 	transform: unset;
 	min-width: 260px;
 	max-width: 420px;
-	width: unset;
+	width: max-content;
 }
 
 .icon-more-white {

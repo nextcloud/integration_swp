@@ -136,7 +136,7 @@ class MenuService {
         {
           "identifier": "cat2_item1",
           "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
-          "display_name": "Mail",
+          "display_name": "Mail is a very long item which should be displayed on multiple lines",
           "link": "https://duckduckgo.com/three",
           "description": "2-1",
           "keywords": "kw1 kw2"
