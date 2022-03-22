@@ -95,4 +95,8 @@ class OxContactsService extends OxBaseService {
 			throw new ServiceException('Could not fetch results');
 		}
 	}
+
+	public function createContact(string $name, string $address) {
+		// TODO
+	}
 }
