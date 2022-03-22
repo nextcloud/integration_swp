@@ -64,6 +64,7 @@ header .header-right .icon-contacts {
 }
 #apps li span {
 	font-size: 15px;
+	max-width: unset !important;
 }
 
 #apps li.elementcontainer *:hover {
@@ -92,6 +93,9 @@ header .header-right .icon-contacts {
 	left: 0px;
 	top: 64px;
 	transform: unset;
+	min-width: 260px;
+	max-width: 420px;
+	width: unset;
 }
 
 .icon-more-white {
