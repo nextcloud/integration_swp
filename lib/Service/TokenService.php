@@ -111,7 +111,7 @@ class TokenService {
 
 		try {
 			$this->logger->warning('Refreshing the token: '.$discovery['token_endpoint']);
-			error_log('SILENT REFRESH!!!!!!!!');
+			error_log('SILENT REFRESH!!!!!!!! REFRESH_TOKEN is '.$token->getRefreshToken());
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[

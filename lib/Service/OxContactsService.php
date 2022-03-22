@@ -96,7 +96,30 @@ class OxContactsService extends OxBaseService {
 		}
 	}
 
-	public function createContact(string $name, string $address) {
-		// TODO
+	public function createContact(string $name, string $emailAddress) {
+		// create (PUT)
+		$createApiUrl = $this->getOxBaseUrl('/api/contacts');
+		$getParams = [
+			'action' => 'new',
+		];
+		$paramsContent = http_build_query($getParams);
+		$createApiUrl .= '?' . $paramsContent;
+		$requestBody = [
+			'display_name' => $name,
+			'email1' => $emailAddress,
+		];
+
+		try {
+			$client = $this->clientService->newClient();
+			$requestOptions = $this->getOxOptions();
+			$requestOptions['body'] = json_encode($requestBody);
+			$response = $client->put($createApiUrl, $requestOptions);
+			$responseBody = $response->getBody();
+			error_log('CONTACT CREATION response ' . $responseBody);
+			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
+		} catch (\Exception | \Throwable $e) {
+			$this->logger->error('Failed to create contact (' . $emailAddress . ') for user ' . $this->userId, ['exception' => $e]);
+			throw new ServiceException('Could not fetch results');
+		}
 	}
 }

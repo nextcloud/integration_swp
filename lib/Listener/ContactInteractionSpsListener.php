@@ -28,6 +28,8 @@ namespace OCA\SpsBmi\Listener;
 use OCA\ContactsInteraction\Db\CardSearchDao;
 use OCA\ContactsInteraction\Db\RecentContact;
 use OCA\ContactsInteraction\Db\RecentContactMapper;
+use OCA\SpsBmi\Exception\ServiceException;
+use OCA\SpsBmi\Service\OxContactsService;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\EventDispatcher\Event;
@@ -59,12 +61,17 @@ class ContactInteractionSpsListener implements IEventListener {
 
 	/** @var LoggerInterface */
 	private $logger;
+	/**
+	 * @var OxContactsService
+	 */
+	private $contactsService;
 
 	public function __construct(RecentContactMapper $mapper,
 								CardSearchDao $cardSearchDao,
 								IUserManager $userManager,
 								ITimeFactory $timeFactory,
 								IL10N $l10nFactory,
+								OxContactsService $contactsService,
 								LoggerInterface $logger) {
 		$this->mapper = $mapper;
 		$this->cardSearchDao = $cardSearchDao;
@@ -72,104 +79,19 @@ class ContactInteractionSpsListener implements IEventListener {
 		$this->timeFactory = $timeFactory;
 		$this->l10n = $l10nFactory;
 		$this->logger = $logger;
+		$this->contactsService = $contactsService;
 	}
 
 	public function handle(Event $event): void {
 		if (!($event instanceof ContactInteractedWithEvent)) {
 			return;
 		}
-		error_log('GOT THE EVENT');
-		return;
-
-		if ($event->getUid() === null && $event->getEmail() === null && $event->getFederatedCloudId() === null) {
-			$this->logger->warning("Contact interaction event has no user identifier set");
-			return;
-		}
-
-		if ($event->getUid() !== null && $event->getUid() === $event->getActor()->getUID()) {
-			$this->logger->info("Ignoring contact interaction with self");
-			return;
-		}
-
-		$existing = $this->mapper->findMatch(
-			$event->getActor(),
-			$event->getUid(),
-			$event->getEmail(),
-			$event->getFederatedCloudId()
-		);
-		if (!empty($existing)) {
-			$now = $this->timeFactory->getTime();
-			foreach ($existing as $c) {
-				$c->setLastContact($now);
-				$this->mapper->update($c);
-			}
-
-			return;
-		}
-
-		$contact = new RecentContact();
-		$contact->setActorUid($event->getActor()->getUID());
-		if ($event->getUid() !== null) {
-			$contact->setUid($event->getUid());
-		}
 		if ($event->getEmail() !== null) {
-			$contact->setEmail($event->getEmail());
-		}
-		if ($event->getFederatedCloudId() !== null) {
-			$contact->setFederatedCloudId($event->getFederatedCloudId());
-		}
-		$contact->setLastContact($this->timeFactory->getTime());
-
-		$copy = $this->cardSearchDao->findExisting(
-			$event->getActor(),
-			$event->getUid(),
-			$event->getEmail(),
-			$event->getFederatedCloudId()
-		);
-		if ($copy !== null) {
 			try {
-				$parsed = Reader::read($copy, Reader::OPTION_FORGIVING);
-				$parsed->CATEGORIES = $this->l10n->t('Recently contacted');
-				$contact->setCard($parsed->serialize());
-			} catch (Throwable $e) {
-				$this->logger->warning(
-					'Could not parse card to add recent category: ' . $e->getMessage(),
-					[
-						'exception' => $e,
-					]);
-				$contact->setCard($copy);
+				$this->contactsService->createContact($event->getEmail(), $event->getEmail());
+			} catch (ServiceException $e) {
+				// silent failure
 			}
-		} else {
-			$contact->setCard($this->generateCard($contact));
 		}
-		$this->mapper->insert($contact);
-	}
-
-	private function getDisplayName(?string $uid): ?string {
-		if ($uid === null) {
-			return null;
-		}
-		if (($user = $this->userManager->get($uid)) === null) {
-			return null;
-		}
-
-		return $user->getDisplayName();
-	}
-
-	private function generateCard(RecentContact $contact): string {
-		$props = [
-			'URI' => UUIDUtil::getUUID(),
-			'FN' => $this->getDisplayName($contact->getUid()) ?? $contact->getEmail() ?? $contact->getFederatedCloudId(),
-			'CATEGORIES' => $this->l10n->t('Recently contacted'),
-		];
-
-		if ($contact->getEmail() !== null) {
-			$props['EMAIL'] = $contact->getEmail();
-		}
-		if ($contact->getFederatedCloudId() !== null) {
-			$props['CLOUD'] = $contact->getFederatedCloudId();
-		}
-
-		return (new VCard($props))->serialize();
 	}
 }
