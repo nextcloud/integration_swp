@@ -50,6 +50,7 @@ class Application extends App implements IBootstrap {
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
+	public const APP_CONFIG_PORTAL_URL = 'portal-url';
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_OX_URL = 'ox-baseurl';
 	public const APP_CONFIG_NAVIGATION_URL = 'navigation-json-url';
@@ -91,7 +92,7 @@ class Application extends App implements IBootstrap {
 				//error_log('NO TOKEN SO APP QUITS');
 				return;
 			}
-			error_log('WE HAVE A TOKEN;;;;;;;;;;');
+//			error_log('WE HAVE A TOKEN;;;;;;;;;;');
 
 			$contactsManager->registerAddressBook($oxAddressBook);
 
@@ -106,6 +107,9 @@ class Application extends App implements IBootstrap {
 			//	return $unreadService->getUnreadCounter();
 			//});
 
+			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
+			});
 			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
 			});

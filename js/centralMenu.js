@@ -21,6 +21,8 @@
  */
 
 (function() {
+	const portalUrl = OCP.InitialState.loadState('sps_bmi', 'portal-url')
+	console.debug('PORTAL URL', portalUrl)
 	const menuJsonRaw = OCP.InitialState.loadState('sps_bmi', 'menu-json')
 	const menuJson = JSON.parse(menuJsonRaw)
 	console.debug('menu json', menuJson)
@@ -76,15 +78,17 @@
 		const itemList = document.querySelector('#navigation #apps ul')
 		// clear the menu content
 		itemList.innerHTML = ''
-		// insert the portal entry
-		appendEntry(itemList, {
-			identifier: 'portal',
-			icon_url: OC.generateUrl('/svg/sps_bmi/grid?color=000000'),
-			display_name: 'Portal',
-			link: 'https://duckduckgo.com/one',
-			description: '0-1',
-			keywords: 'kw0'
-		}, false)
+		if (portalUrl) {
+			// insert the portal entry
+			appendEntry(itemList, {
+				identifier: 'portal',
+				icon_url: OC.generateUrl('/svg/sps_bmi/grid?color=000000'),
+				display_name: 'Portal',
+				link: portalUrl,
+				description: 'Phoenix portal',
+				keywords: 'kw0'
+			}, false)
+		}
 		// insert the json categories
 		menuJson.categories.forEach((cat) => {
 			appendCategory(itemList, cat)
