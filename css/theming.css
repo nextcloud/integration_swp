@@ -73,13 +73,14 @@ header .header-right .icon-contacts {
 	text-overflow: unset !important;
 }
 
-#apps li.elementcontainer *:hover {
-	background: var(--color-primary) !important;
+#apps li.elementcontainer > a:hover {
+	/*background: var(--color-primary) !important;*/
+	background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-#apps li.elementcontainer *:hover span {
+/*#apps li.elementcontainer *:hover span {
 	color: white !important;
-}
+}*/
 
 #apps li .category {
 	font-weight: bold;
@@ -96,26 +97,47 @@ header .header-right .icon-contacts {
 
 #header .header-left > nav > #navigation {
 	position: fixed;
-	left: 0px;
+	left: 12px;
 	top: 64px;
 	transform: unset;
 	min-width: 260px;
 	max-width: 420px;
 	width: max-content;
 }
-
-.icon-more-white {
-	background-image: url('../img/grid.svg') !important;
-	background-size: 16px;
+@media (max-width:600px) {
+	#header .header-left > nav > #navigation {
+		width: 100%;
+		max-width: 600px;
+	}
 }
 
-/*
-to programmatically set the instance logo:
-occ config:app:set --value "image/png" theming logoMime
-and copy the logo file as "data/appdata_INSTANCE_TOKEN/theming/images/logo"
-Then we need to set the main color
-and also set the app settings, OX url etc...
- */
+.icon-more-white {
+	background-color: #1f1f1f;
+	/* background-image: url('../img/grid.svg') !important; */
+	background-image: unset !important;
+	-webkit-mask:  url('../img/grid.svg') no-repeat 50% 50%;
+	mask:  url('../img/grid.svg') no-repeat 50% 50%;
+	background-size: 20px;
+}
+#appmenu li a {
+	opacity: unset;
+	height: 63px;
+}
+#header .header-right > div:hover,
+#appmenu li a:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#header .header-right .notifications .notifications-button {
+	background: url('../../notifications/img/notifications-dark.svg') no-repeat center !important;
+	background-size: 20px !important;
+}
+#header .header-right .notifications .notifications-button img {
+	display: none;
+}
+#header #unified-search svg {
+	fill: black;
+}
 
 #nextcloud {
 	padding-left: 128px;
