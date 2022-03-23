@@ -23,12 +23,10 @@
 (function() {
 	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'webmail-url')
 	console.debug('MAIL URL', mailUrl)
-	const oxUrl = OCP.InitialState.loadState('sps_bmi', 'ox-baseurl')
-	console.debug('OX BASE URL', oxUrl)
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = function(mailtoLink) {
-			return oxUrl + '#mailto=' + encodeURIComponent(mailtoLink)
+			return mailUrl + '#mailto=' + encodeURIComponent(mailtoLink)
 		}
 
 		const getOXClassicMailtoUrl = function(mailtoLink) {
