@@ -101,13 +101,22 @@ class OxAddressBook implements IAddressBook {
 			return [];
 		}
 
-		file_put_contents('/tmp/a', json_encode($result));
+		$formattedResult = array_map(
+			function ($c) {
+				return [
+					//'id' => $c[0],
+					'FN' => $c[2],
+					'EMAIL' => [$c[3]],
+				];
+			},
+			$result['data']
+		);
 
-		$this->cache->set($cacheKey, $result,
+		$this->cache->set($cacheKey, $formattedResult,
 			$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_TTL_CONTACTS, Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT)
 		);
 
-		return $result;
+		return $formattedResult;
 	}
 
 	/**

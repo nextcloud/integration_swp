@@ -88,7 +88,7 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			error_log('CONTACT response '.$responseBody);
+			$this->logger->error('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception $e) {
 			$this->logger->error('Failed to fetch contacts for user ' . $this->userId, ['exception' => $e]);
