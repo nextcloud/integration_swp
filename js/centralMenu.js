@@ -26,6 +26,8 @@
 	const menuJsonRaw = OCP.InitialState.loadState('sps_bmi', 'menu-json')
 	const menuJson = JSON.parse(menuJsonRaw)
 	console.debug('menu json', menuJson)
+	const menuTabnameAttribute = OCP.InitialState.loadState('sps_bmi', 'menu-tabname-attribute')
+	console.debug('menu tabname', menuTabnameAttribute)
 
 	const appendElement = function (listElement, item, extraClass = null) {
 		const li = document.createElement('li');
@@ -42,6 +44,11 @@
 		a.setAttribute('href', jsonEntry.link)
 		if (jsonEntry.description) {
 			a.setAttribute('title', jsonEntry.description)
+		}
+		if (menuTabnameAttribute && jsonEntry[menuTabnameAttribute]) {
+			a.setAttribute('target', jsonEntry[menuTabnameAttribute])
+		} else {
+			a.setAttribute('target', '_blank')
 		}
 		// icon
 		const icon = document.createElement('img');
