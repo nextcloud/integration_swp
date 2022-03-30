@@ -115,7 +115,7 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($createApiUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			error_log('CONTACT CREATION response ' . $responseBody);
+			$this->logger->error('CONTACT CREATION response ' . $responseBody);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception | \Throwable $e) {
 			$this->logger->error('Failed to create contact (' . $emailAddress . ') for user ' . $this->userId, ['exception' => $e]);

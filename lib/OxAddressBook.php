@@ -103,11 +103,14 @@ class OxAddressBook implements IAddressBook {
 
 		$formattedResult = array_map(
 			function ($c) {
-				return [
+				$formattedContact = [
 					//'id' => $c[0],
 					'FN' => $c[2],
-					'EMAIL' => [$c[3]],
 				];
+				if ($c[3]) {
+					$formattedContact['EMAIL'] = [$c[3]];
+				}
+				return $formattedContact;
 			},
 			$result['data']
 		);
