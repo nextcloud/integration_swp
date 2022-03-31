@@ -100,5 +100,8 @@
 		menuJson.categories.forEach((cat) => {
 			appendCategory(itemList, cat)
 		})
+
+		const headerLogo = document.querySelector('#header .header-left .logo-icon')
+		headerLogo.style.backgroundImage = 'url(\'' + OC.imagePath('sps_bmi', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
 	}
 })()
