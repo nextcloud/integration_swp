@@ -58,6 +58,7 @@ header .header-right .icon-contacts {
 /* set style of categories and custom items */
 #apps > ul {
 	padding: 12px 0 12px 0;
+	overflow-y: unset !important;
 }
 #apps li.in-header > a {
 	padding: 12px 16px 12px 16px !important;
