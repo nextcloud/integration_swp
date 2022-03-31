@@ -82,6 +82,10 @@ header .header-right .icon-contacts {
 	color: white !important;
 }*/
 
+#apps li .icon-loading-small {
+	display: none;
+}
+
 #apps li .category {
 	font-weight: bold;
 	/*color: #f1f1f1;*/
