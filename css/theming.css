@@ -30,6 +30,10 @@ header#header {
 
 header .header-right .icon-contacts {
 	background-image: var(--icon-contacts-000);
+	opacity: 1 !important;
+}
+header .header-right #contactsmenu {
+	opacity: .88 !important;
 }
 
 #appmenu {
@@ -136,12 +140,16 @@ header .header-right .icon-contacts {
 #header .header-right .notifications .notifications-button {
 	background: url('../../notifications/img/notifications-dark.svg') no-repeat center !important;
 	background-size: 20px !important;
+	opacity: .865 !important;
 }
 #header .header-right .notifications .notifications-button img {
 	display: none;
 }
+#header #unified-search > a {
+	opacity: 1 !important;
+}
 #header #unified-search svg {
-	fill: black;
+	fill: #1f1f1f;
 }
 
 #nextcloud {
