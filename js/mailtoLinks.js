@@ -22,7 +22,11 @@
 
 (function() {
 	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'webmail-url')
+	const mailTabname = OCP.InitialState.loadState('sps_bmi', 'webmail-tabname')
 	console.debug('MAIL URL', mailUrl)
+	console.debug('MAIL TAB NAME', mailTabname)
+	const target = mailTabname ? mailTabname : '_blank'
+	console.debug('TARGET', target)
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = function(mailtoLink) {
@@ -74,7 +78,7 @@
 					e.preventDefault()
 					e.stopPropagation()
 					// according to https://projects.univention.de/xwiki/wiki/sps/view/Product%20%26%20Integration/BMI/5%20-%20Send%20email%20using%20OX/
-					window.open(getOXHashMailtoUrl(href), '_blank')
+					window.open(getOXHashMailtoUrl(href), target)
 					//window.open(getOXClassicMailtoUrl(href), '_blank')
 				}
 			}
