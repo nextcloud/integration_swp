@@ -76,6 +76,7 @@ header .header-right #contactsmenu {
 	white-space: pre-wrap !important;
 	overflow: unset !important;
 	text-overflow: unset !important;
+	color: #1f1f1f !important;
 }
 
 #apps li.elementcontainer > a:hover {
@@ -99,9 +100,10 @@ header .header-right #contactsmenu {
 	padding: 8px 16px 4px 16px;
 }
 #apps li img {
-	width: auto !important;
+	width: 20px !important;
 	height: 20px !important;
 	margin-right: 16px !important;
+	opacity: 1 !important;
 }
 
 #header .header-left > nav > #navigation {
