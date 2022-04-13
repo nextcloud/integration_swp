@@ -97,6 +97,20 @@ class OxContactsService extends OxBaseService {
 	}
 
 	public function createContact(string $name, string $emailAddress) {
+		$client = $this->clientService->newClient();
+		// get default OX contacts folder ID
+		$getContactFolderUrl = $this->getOxBaseUrl('/api/config/folder/contacts');
+		$requestOptions = $this->getOxOptions();
+		try {
+			$response = $client->get($getContactFolderUrl, $requestOptions);
+			$responseBody = $response->getBody();
+			$this->logger->error('CONTACT DEFAULT FOLDER response ' . $responseBody);
+			$responseArray = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
+			$folderId = $responseArray['data'] ?? null;
+		} catch (\Exception | \Throwable $e) {
+			$this->logger->error('Failed to get default contacts folder ID for user ' . $this->userId, ['exception' => $e]);
+			throw new ServiceException('Could not fetch results');
+		}
 		// create (PUT)
 		$createApiUrl = $this->getOxBaseUrl('/api/contacts');
 		$getParams = [
@@ -107,10 +121,10 @@ class OxContactsService extends OxBaseService {
 		$requestBody = [
 			'display_name' => $name,
 			'email1' => $emailAddress,
+			'folder_id' => $folderId,
 		];
 
 		try {
-			$client = $this->clientService->newClient();
 			$requestOptions = $this->getOxOptions();
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($createApiUrl, $requestOptions);
