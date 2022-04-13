@@ -70,11 +70,13 @@
 	}
 
 	const appendCategory = function (listElement, jsonCategory) {
-		// category item
-		const categoryElement = document.createElement('span');
-		categoryElement.classList.add('category')
-		categoryElement.textContent = jsonCategory.display_name
-		appendElement(listElement, categoryElement, 'categorycontainer')
+		// category item (only if it has a display name)
+		if (jsonCategory.display_name) {
+			const categoryElement = document.createElement('span');
+			categoryElement.classList.add('category')
+			categoryElement.textContent = jsonCategory.display_name
+			appendElement(listElement, categoryElement, 'categorycontainer')
+		}
 		// sub items
 		jsonCategory.entries.forEach((entry) => {
 			appendEntry(listElement, entry)
