@@ -165,3 +165,6 @@ header .header-right #contactsmenu {
 	left: 0;
 	top: 0;
 }
+div[role=tooltip] {
+	top: 50px !important;
+}
