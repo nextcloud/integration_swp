@@ -70,7 +70,6 @@ header .header-right #contactsmenu {
 	height: unset !important;
 }
 #apps li span {
-	font-size: 15px;
 	line-height: 20px;
 	max-width: unset !important;
 	white-space: pre-wrap !important;
@@ -92,8 +91,13 @@ header .header-right #contactsmenu {
 	display: none;
 }
 
+#apps li.elementcontainer {
+	font-size: 15px;
+}
+
 #apps li .category {
 	font-weight: bold;
+	font-size: 17px;
 	/*color: #f1f1f1;*/
 	/*color: #1f1f1f;*/
 	display: inline-flex;
