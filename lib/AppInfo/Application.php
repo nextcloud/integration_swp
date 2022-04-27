@@ -54,7 +54,11 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_WEBMAIL_TABNAME = 'webmail-tabname';
 	public const APP_CONFIG_OX_URL = 'ox-baseurl';
+
 	public const APP_CONFIG_NAVIGATION_URL = 'navigation-json-url';
+	public const APP_CONFIG_NAVIGATION_SHARED_SECRET = 'navigation-json-api-secret';
+	public const APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE = 'navigation-json-username-attribute';
+
 	public const APP_CONFIG_MENU_TABNAME_ATTRIBUTE = 'menu-tabname-attribute';
 
 	public const APP_CONFIG_CACHE_TTL_MAIL = 'cache-ttl-mail';

@@ -10,5 +10,8 @@
     "nextcloud/coding-standard": "^0.5.0",
     "symfony/event-dispatcher": "^4",
     "phpunit/phpunit": "^9.5"
+  },
+  "require": {
+    "firebase/php-jwt": "^5.2"
   }
 }

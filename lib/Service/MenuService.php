@@ -61,12 +61,17 @@ class MenuService {
 	 * @var IConfig
 	 */
 	private $config;
+	/**
+	 * @var TokenService
+	 */
+	private $tokenService;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,
 								LoggerInterface $logger,
 								IFactory $l10nFactory,
 								IConfig $config,
+								TokenService $tokenService,
 								ICacheFactory $cacheFactory) {
 		$this->client = $client->newClient();
 		$this->userSession = $userSession;
@@ -74,6 +79,7 @@ class MenuService {
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
 		$this->l10nFactory = $l10nFactory;
 		$this->config = $config;
+		$this->tokenService = $tokenService;
 	}
 
 	public function getMenuJson(Token $token): ?string {
@@ -90,10 +96,24 @@ class MenuService {
 				];
 				$jsonMenuUrl .= '?' . http_build_query($params);
 				$options = [
-					'headers' => [
-						'Authorization' => 'Bearer ' . $token->getIdToken(),
-					],
+					'headers' => [],
 				];
+
+				// get headers from config
+				$sharedSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_SHARED_SECRET, '');
+				if ($sharedSecret !== '') {
+					$usernameTokenAttribute = $this->config->getAppValue(
+						Application::APP_ID, Application::APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE, ''
+					) ?: 'preferred_username';
+					// get the preferred_username token attribute
+					$decodedToken = $this->tokenService->decodeIdToken($token);
+					$username = $decodedToken[$usernameTokenAttribute] ?? '';
+
+					$options['headers']['Authorization'] = 'Bearer ' . $sharedSecret;
+					$options['headers']['X-Ucs-Username'] = $username;
+					$this->logger->info('Navigation json request: shared secret: "'.$sharedSecret.'"');
+					$this->logger->info('UCSusername "'.$username.'"');
+				}
 
 				$response = $this->client->get($jsonMenuUrl, $options);
 				$cachedMenu = $response->getBody();

@@ -25,10 +25,12 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Service;
 
+use Firebase\JWT\JWT;
 use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Model\Token;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
+use OCA\UserOIDC\Service\DiscoveryService;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
@@ -165,6 +167,19 @@ class TokenService {
 		}
 
 		return json_decode($cachedDiscovery, true, 512, JSON_THROW_ON_ERROR);
+	}
+
+	public function decodeIdToken(Token $token): array {
+		/** @var ProviderMapper */
+		$providerMapper = \OC::$server->get(ProviderMapper::class);
+		/** @var DiscoveryService */
+		$discoveryService = \OC::$server->get(DiscoveryService::class);
+		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
+
+		$jwks = $discoveryService->obtainJWK($oidcProvider);
+		JWT::$leeway = 60;
+		$idTokenObject = JWT::decode($token->getIdToken(), $jwks, array_keys(JWT::$supported_algs));
+		return json_decode(json_encode($idTokenObject), true);
 	}
 
 	public function reauthenticate() {
