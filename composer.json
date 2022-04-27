@@ -1,17 +1,49 @@
 {
   "name": "nextcloud/sps_bmi",
+  "description": "Sps BMI app",
+  "license": "AGPL3",
+  "config": {
+    "optimize-autoloader": true,
+    "classmap-authoritative": true,
+    "allow-plugins": {
+      "bamarni/composer-bin-plugin": true
+    }
+  },
   "scripts": {
     "cs:fix": "php-cs-fixer fix",
     "cs:check": "php-cs-fixer fix --dry-run --diff",
     "lint": "find . -name \\*.php -not -path './vendor/*' -exec php -l \"{}\" \\;",
-    "test:unit": "phpunit -c tests/phpunit.xml"
+    "test:unit": "phpunit -c tests/phpunit.xml",
+    "post-install-cmd": [
+      "@composer bin all install --ansi",
+      "\"vendor/bin/mozart\" compose",
+      "composer dump-autoload"
+    ],
+    "post-update-cmd": [
+      "@composer bin all install --ansi",
+      "\"vendor/bin/mozart\" compose",
+      "composer dump-autoload"
+    ]
+  },
+  "require": {
+    "firebase/php-jwt": "^5.2",
+    "bamarni/composer-bin-plugin": "^1.4"
   },
   "require-dev": {
-    "nextcloud/coding-standard": "^0.5.0",
+    "nextcloud/coding-standard": "^1.0.0",
     "symfony/event-dispatcher": "^4",
     "phpunit/phpunit": "^9.5"
   },
-  "require": {
-    "firebase/php-jwt": "^5.2"
+  "extra": {
+    "mozart": {
+      "dep_namespace": "OCA\\SpsBmi\\Vendor\\",
+      "dep_directory": "/lib/Vendor/",
+      "classmap_directory": "/lib/autoload/",
+      "classmap_prefix": "NEXTCLOUD_SPS_BMI_",
+      "packages": [
+        "firebase/php-jwt"
+      ],
+      "delete_vendor_directories": true
+    }
   }
 }

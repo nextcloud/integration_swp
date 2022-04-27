@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Service;
 
-use Firebase\JWT\JWT;
+use OCA\SpsBmi\Vendor\Firebase\JWT\JWT;
 use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Model\Token;
 use OCA\UserOIDC\Db\Provider;
