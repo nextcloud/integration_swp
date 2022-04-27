@@ -35,6 +35,9 @@ header .header-right .icon-contacts {
 header .header-right #contactsmenu {
 	opacity: .88 !important;
 }
+header .header-right #contactsmenu .content .footer {
+	display: none !important;
+}
 
 #appmenu {
 	width: 40px;
