@@ -80,51 +80,7 @@ class MenuService {
 		$this->l10nFactory = $l10nFactory;
 		$this->config = $config;
 		$this->tokenService = $tokenService;
-	}
-
-	public function getMenuJson(Token $token): ?string {
-		$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
-		if ($jsonMenuUrl !== '') {
-			// make the menu request (and cache it)
-			$providerId = $token->getProviderId();
-			$cacheKey = 'menuitems-' . $providerId;
-			$cachedMenu = $this->cache->get($cacheKey);
-			if ($cachedMenu === null) {
-				$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
-				$params = [
-					'lang' => $lang,
-				];
-				$jsonMenuUrl .= '?' . http_build_query($params);
-				$options = [
-					'headers' => [],
-				];
-
-				// get headers from config
-				$sharedSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_SHARED_SECRET, '');
-				if ($sharedSecret !== '') {
-					$usernameTokenAttribute = $this->config->getAppValue(
-						Application::APP_ID, Application::APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE, ''
-					) ?: 'preferred_username';
-					// get the preferred_username token attribute
-					$decodedToken = $this->tokenService->decodeIdToken($token);
-					$username = $decodedToken[$usernameTokenAttribute] ?? '';
-
-					$options['headers']['Authorization'] = 'Bearer ' . $sharedSecret;
-					$options['headers']['X-Ucs-Username'] = $username;
-					$this->logger->info('Navigation json request: shared secret: "'.$sharedSecret.'"');
-					$this->logger->info('UCSusername "'.$username.'"');
-				}
-
-				$response = $this->client->get($jsonMenuUrl, $options);
-				$cachedMenu = $response->getBody();
-				$this->cache->set($cacheKey, $cachedMenu, self::INVALIDATE_MENU_CACHE_AFTER_SECONDS);
-			}
-
-			return $cachedMenu;
-		}
-
-		// backup dummy menu value
-		return '
+		$this->backupJson = '
 {
   "categories": [
     {
@@ -174,6 +130,55 @@ class MenuService {
   ]
 }
 				';
+	}
+
+	public function getMenuJson(Token $token): ?string {
+		try {
+			$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
+			if ($jsonMenuUrl !== '') {
+				// make the menu request (and cache it)
+				$providerId = $token->getProviderId();
+				$cacheKey = 'menuitems-' . $providerId;
+				$cachedMenu = $this->cache->get($cacheKey);
+				if ($cachedMenu === null) {
+					$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
+					$params = [
+						'lang' => $lang,
+					];
+					$jsonMenuUrl .= '?' . http_build_query($params);
+					$options = [
+						'headers' => [],
+					];
+
+					// get headers from config
+					$sharedSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_SHARED_SECRET, '');
+					if ($sharedSecret !== '') {
+						$usernameTokenAttribute = $this->config->getAppValue(
+							Application::APP_ID, Application::APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE, ''
+						) ?: 'preferred_username';
+						// get the preferred_username token attribute
+						$decodedToken = $this->tokenService->decodeIdToken($token);
+						$username = $decodedToken[$usernameTokenAttribute] ?? '';
+
+						$options['headers']['Authorization'] = 'Bearer ' . $sharedSecret;
+						$options['headers']['X-Ucs-Username'] = $username;
+						$this->logger->info('Navigation json request: shared secret: "' . $sharedSecret . '"');
+						$this->logger->info('UCSusername "' . $username . '"');
+					}
+
+					$response = $this->client->get($jsonMenuUrl, $options);
+					$cachedMenu = $response->getBody();
+					$this->cache->set($cacheKey, $cachedMenu, self::INVALIDATE_MENU_CACHE_AFTER_SECONDS);
+				}
+
+				return $cachedMenu;
+			}
+		} catch (\Exception | \Throwable $e) {
+			$this->logger->info('Error while fetching navigation json content', [ 'exception' => $e ]);
+		}
+
+		// backup dummy menu value
+		return $this->backupJson;
 	}
 
 	public function getImage(string $url): ?array {
