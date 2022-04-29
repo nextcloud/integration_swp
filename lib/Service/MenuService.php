@@ -37,7 +37,6 @@ use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
 
 class MenuService {
-	private const INVALIDATE_MENU_CACHE_AFTER_SECONDS = 3600;
 
 	/** @var IClient */
 	private $client;
@@ -168,7 +167,9 @@ class MenuService {
 
 					$response = $this->client->get($jsonMenuUrl, $options);
 					$cachedMenu = $response->getBody();
-					$this->cache->set($cacheKey, $cachedMenu, self::INVALIDATE_MENU_CACHE_AFTER_SECONDS);
+					$this->cache->set($cacheKey, $cachedMenu,
+						$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_NAVIGATION_JSON, Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT)
+					);
 				}
 
 				return $cachedMenu;

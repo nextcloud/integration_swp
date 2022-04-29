@@ -65,6 +65,8 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_CACHE_TTL_MAIL_DEFAULT = 60;
 	public const APP_CONFIG_CACHE_TTL_CONTACTS = 'cache-ttl-contacts';
 	public const APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT = 600;
+	public const APP_CONFIG_CACHE_NAVIGATION_JSON = 'cache-navigation-json';
+	public const APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT = 3600;
 
 	public function __construct() {
 		parent::__construct(self::APP_ID, []);
