@@ -178,7 +178,7 @@ class MenuService {
 				return $cachedMenu;
 			}
 		} catch (\Exception | \Throwable $e) {
-			$this->logger->info('Error while fetching navigation json content', [ 'exception' => $e ]);
+			$this->logger->error('Error while fetching navigation json content', [ 'exception' => $e ]);
 		}
 
 		// backup dummy menu value
