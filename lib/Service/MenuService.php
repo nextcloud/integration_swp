@@ -167,9 +167,12 @@ class MenuService {
 
 					$response = $this->client->get($jsonMenuUrl, $options);
 					$cachedMenu = $response->getBody();
-					$this->cache->set($cacheKey, $cachedMenu,
-						$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_NAVIGATION_JSON, Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT)
+					$cacheDuration = $this->config->getAppValue(
+						Application::APP_ID,
+						Application::APP_CONFIG_CACHE_NAVIGATION_JSON,
+						Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
 					);
+					$this->cache->set($cacheKey, $cachedMenu, $cacheDuration);
 				}
 
 				return $cachedMenu;
