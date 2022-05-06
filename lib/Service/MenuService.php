@@ -141,6 +141,8 @@ class MenuService {
 				$cachedMenu = $this->cache->get($cacheKey);
 				if ($cachedMenu === null) {
 					$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
+					$lang = preg_replace('/^de$/', 'de_DE', $lang);
+					$lang = preg_replace('/^fr$/', 'fr_FR', $lang);
 					$params = [
 						'lang' => $lang,
 					];
