@@ -43,6 +43,7 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
 use OCP\IURLGenerator;
+use OCP\IUserSession;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
@@ -89,6 +90,7 @@ class Application extends App implements IBootstrap {
 			OxMailService $unreadService,
 			IURLGenerator $urlGenerator,
 			IConfig $config,
+			IUserSession $userSession,
 			$userId
 		) {
 			if (!$userId) {
@@ -97,10 +99,17 @@ class Application extends App implements IBootstrap {
 
 			$token = $tokenService->getToken();
 			if ($token === null) {
+				// if we don't have a token but we had one once,
+				// it means the session (where we store the token) has died
+				// so we need to reauthenticate
+				if ($config->getUserValue($userId, self::APP_ID, 'had_token_once', '0') === '1') {
+					$userSession->logout();
+				}
 				//error_log('NO TOKEN SO APP QUITS');
 				return;
 			}
-//			error_log('WE HAVE A TOKEN;;;;;;;;;;');
+			// remember that this user had a token once
+			$config->setUserValue($userId, self::APP_ID, 'had_token_once', '1');
 
 			$contactsManager->registerAddressBook($oxAddressBook);
 
@@ -110,10 +119,6 @@ class Application extends App implements IBootstrap {
 
 			// as we get the menu items with a central navigation service, this is not necessary anymore
 			// $this->registerNavigationItems();
-
-			//$initialState->provideLazyInitialState('unread-counter', function () use ($unreadService) {
-			//	return $unreadService->getUnreadCounter();
-			//});
 
 			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
