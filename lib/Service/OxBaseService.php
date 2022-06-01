@@ -26,6 +26,7 @@ namespace OCA\SpsBmi\Service;
 use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Exception\ServiceException;
 use OCP\IConfig;
+use Psr\Log\LoggerInterface;
 
 class OxBaseService {
 
@@ -37,8 +38,12 @@ class OxBaseService {
 	private $userId;
 
 	private $oxBaseUrl;
+	private LoggerInterface $logger;
 
-	public function __construct(IConfig $config, TokenService $tokenService, $userId) {
+	public function __construct(IConfig $config,
+								TokenService $tokenService,
+								LoggerInterface $logger,
+								?string $userId = null) {
 		$this->config = $config;
 		$this->tokenService = $tokenService;
 		$this->userId = $userId;
@@ -47,6 +52,7 @@ class OxBaseService {
 		}
 
 		$this->oxBaseUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
+		$this->logger = $logger;
 	}
 
 	public function checkSetup(): bool {
