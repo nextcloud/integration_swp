@@ -1,5 +1,5 @@
-// personal settings
-document.addEventListener('DOMContentLoaded', function() {
+export function disablePersonalSettingsFields() {
+	// personal settings
 	const inputs = document.querySelectorAll('#personal-settings input')
 	inputs.forEach((element) => {
 		element.setAttribute('readonly', 'readonly')
@@ -12,4 +12,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	textareas.forEach((element) => {
 		element.setAttribute('readonly', 'readonly')
 	})
-})
+}

@@ -20,7 +20,7 @@
  *
  */
 
-(function() {
+export function setMailtoLinks() {
 	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'webmail-url')
 	const mailTabname = OCP.InitialState.loadState('sps_bmi', 'webmail-tabname')
 	console.debug('MAIL URL', mailUrl)
@@ -84,4 +84,4 @@
 			}
 		})
 	}
-})()
+}

@@ -139,10 +139,7 @@ class Application extends App implements IBootstrap {
 				return $menuService->getMenuJson($token);
 			});
 
-			Util::addScript('sps_bmi', 'mailtoLinks');
-			Util::addScript('sps_bmi', 'centralMenu');
-			Util::addScript('sps_bmi', 'personalSettings');
-			Util::addStyle('sps_bmi', 'theming');
+			Util::addScript('sps_bmi', 'sps_bmi-main');
 		});
 	}
 

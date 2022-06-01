@@ -20,7 +20,7 @@
  *
  */
 
-(function() {
+export function makeCentralMenu() {
 	const portalUrl = OCP.InitialState.loadState('sps_bmi', 'portal-url')
 	console.debug('PORTAL URL', portalUrl)
 	const menuJsonRaw = OCP.InitialState.loadState('sps_bmi', 'menu-json')
@@ -106,4 +106,4 @@
 		const headerLogo = document.querySelector('#header .header-left .logo-icon')
 		headerLogo.style.backgroundImage = 'url(\'' + OC.imagePath('sps_bmi', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
 	}
-})()
+}
