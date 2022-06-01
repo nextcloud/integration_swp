@@ -20,20 +20,23 @@
  *
  */
 
+import { loadState } from '@nextcloud/initial-state'
+
 export function setMailtoLinks() {
-	const mailUrl = OCP.InitialState.loadState('sps_bmi', 'webmail-url')
-	const mailTabname = OCP.InitialState.loadState('sps_bmi', 'webmail-tabname')
-	console.debug('MAIL URL', mailUrl)
+	const mailUrl = loadState('sps_bmi', 'webmail-url')
+	const mailTabname = loadState('sps_bmi', 'webmail-tabname')
+	console.debug('MAIL URL :-:-:', mailUrl)
 	console.debug('MAIL TAB NAME', mailTabname)
-	const target = mailTabname ? mailTabname : '_blank'
+	const target = mailTabname ? mailTabname + '' : '_blank'
 	console.debug('TARGET', target)
 
 	if (mailUrl) {
-		const getOXHashMailtoUrl = function(mailtoLink) {
+		const getOXHashMailtoUrl = (mailtoLink) => {
 			return mailUrl + '#mailto=' + encodeURIComponent(mailtoLink)
 		}
 
-		const getOXClassicMailtoUrl = function(mailtoLink) {
+		/*
+		const getOXClassicMailtoUrl = (mailtoLink) => {
 			const url = new URL(mailtoLink)
 			const targetMails = url.pathname.split(',')
 			const body = url.searchParams.get('body')
@@ -58,6 +61,7 @@ export function setMailtoLinks() {
 			}
 			return newUrl.href
 		}
+		*/
 
 		// override click on mailto: links
 		const body = document.querySelector('body')
@@ -68,18 +72,20 @@ export function setMailtoLinks() {
 					? e.target.parentElement
 					: null
 			if (link !== null) {
-				href = link.getAttribute('href')
-				//const href = 'mailto:plop@plop.net,second@lala.org?'
-				//	+ 'subject=Give%20me%20love'
-				//	+ '&body=the%20body'
-				//	+ '&cc=plopCC@plop.net,secondCC@lala.org'
-				//	+ '&bcc=plopBCC@plop.net,secondBCC@lala.org'
+				const href = link.getAttribute('href')
+				/*
+				const href = 'mailto:plop@plop.net,second@lala.org?'
+					+ 'subject=Give%20me%20love'
+					+ '&body=the%20body'
+					+ '&cc=plopCC@plop.net,secondCC@lala.org'
+					+ '&bcc=plopBCC@plop.net,secondBCC@lala.org'
+				*/
 				if (href.match(/^mailto:/i)) {
 					e.preventDefault()
 					e.stopPropagation()
 					// according to https://projects.univention.de/xwiki/wiki/sps/view/Product%20%26%20Integration/BMI/5%20-%20Send%20email%20using%20OX/
 					window.open(getOXHashMailtoUrl(href), target)
-					//window.open(getOXClassicMailtoUrl(href), '_blank')
+					// window.open(getOXClassicMailtoUrl(href), '_blank')
 				}
 			}
 		})

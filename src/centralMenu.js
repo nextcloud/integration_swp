@@ -20,17 +20,20 @@
  *
  */
 
+import { loadState } from '@nextcloud/initial-state'
+import { generateUrl, imagePath } from '@nextcloud/router'
+
 export function makeCentralMenu() {
-	const portalUrl = OCP.InitialState.loadState('sps_bmi', 'portal-url')
+	const portalUrl = loadState('sps_bmi', 'portal-url')
 	console.debug('PORTAL URL', portalUrl)
-	const menuJsonRaw = OCP.InitialState.loadState('sps_bmi', 'menu-json')
+	const menuJsonRaw = loadState('sps_bmi', 'menu-json')
 	const menuJson = JSON.parse(menuJsonRaw)
-	console.debug('menu json', menuJson)
-	const menuTabnameAttribute = OCP.InitialState.loadState('sps_bmi', 'menu-tabname-attribute')
+	console.debug('menu json :::', menuJson)
+	const menuTabnameAttribute = loadState('sps_bmi', 'menu-tabname-attribute')
 	console.debug('menu tabname', menuTabnameAttribute)
 
-	const appendElement = function (listElement, item, extraClass = null) {
-		const li = document.createElement('li');
+	const appendElement = (listElement, item, extraClass = null) => {
+		const li = document.createElement('li')
 		li.classList.add('in-header')
 		if (extraClass) {
 			li.classList.add(extraClass)
@@ -39,8 +42,8 @@ export function makeCentralMenu() {
 		listElement.append(li)
 	}
 
-	const appendEntry = function (listElement, jsonEntry, proxyImage = true) {
-		const a = document.createElement('a');
+	const appendEntry = (listElement, jsonEntry, proxyImage = true) => {
+		const a = document.createElement('a')
 		a.setAttribute('href', jsonEntry.link)
 		if (jsonEntry.description) {
 			a.setAttribute('title', jsonEntry.description)
@@ -51,28 +54,28 @@ export function makeCentralMenu() {
 			a.setAttribute('target', '_blank')
 		}
 		// icon
-		const icon = document.createElement('img');
+		const icon = document.createElement('img')
 		const imgUrl = proxyImage
-			? OC.generateUrl('/apps/sps_bmi/image?') + 'url=' + encodeURIComponent(jsonEntry.icon_url)
+			? generateUrl('/apps/sps_bmi/image?') + 'url=' + encodeURIComponent(jsonEntry.icon_url)
 			: jsonEntry.icon_url
 		icon.setAttribute('src', imgUrl)
 		/*
-		const icon = document.createElement('span');
+		const icon = document.createElement('span')
 		icon.classList.add('icon-more')
 		icon.classList.add('icon')
 		*/
 
-		const text = document.createElement('span');
+		const text = document.createElement('span')
 		text.textContent = jsonEntry.display_name
 		a.append(icon)
 		a.append(text)
 		appendElement(listElement, a, 'elementcontainer')
 	}
 
-	const appendCategory = function (listElement, jsonCategory) {
+	const appendCategory = (listElement, jsonCategory) => {
 		// category item (only if it has a display name)
 		if (jsonCategory.display_name) {
-			const categoryElement = document.createElement('span');
+			const categoryElement = document.createElement('span')
 			categoryElement.classList.add('category')
 			categoryElement.textContent = jsonCategory.display_name
 			appendElement(listElement, categoryElement, 'categorycontainer')
@@ -91,11 +94,11 @@ export function makeCentralMenu() {
 			// insert the portal entry
 			appendEntry(itemList, {
 				identifier: 'portal',
-				icon_url: OC.generateUrl('/svg/sps_bmi/grid?color=000000'),
+				icon_url: generateUrl('/svg/sps_bmi/grid?color=000000'),
 				display_name: 'Portal',
 				link: portalUrl,
 				description: 'Phoenix portal',
-				keywords: 'kw0'
+				keywords: 'kw0',
 			}, false)
 		}
 		// insert the json categories
@@ -104,6 +107,6 @@ export function makeCentralMenu() {
 		})
 
 		const headerLogo = document.querySelector('#header .header-left .logo-icon')
-		headerLogo.style.backgroundImage = 'url(\'' + OC.imagePath('sps_bmi', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+		headerLogo.style.backgroundImage = 'url(\'' + imagePath('sps_bmi', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
 	}
 }
