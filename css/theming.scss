@@ -9,123 +9,152 @@ body > #content-vue {
 }
 
 /* fix dashboard header */
-body.dashboard--inverted:not(.dashboard--dark) #appmenu .icon-more-white,
-body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings) > :first-child {
-	filter: unset !important;
-}
-
-/* Hide triangle on active app and dropdown menu */
-#appmenu li a.active::before,
-#appmenu li:hover a::before,
-#appmenu li:hover a.active::before,
-#appmenu li a:focus::before,
-#header .header-left > nav > #navigation:after {
-	display: none !important;
+body.dashboard--inverted:not(.dashboard--dark) {
+	#appmenu .icon-more-white,
+	.header-right > div:not(#settings) > :first-child {
+		filter: unset !important;
+	}
 }
 
 header#header {
 	background-color: white !important;
 	border-bottom: 1px solid #dddddd;
+
+	.header-right {
+		.icon-contacts {
+			background-image: var(--icon-contacts-000);
+			opacity: 1 !important;
+		}
+		#contactsmenu {
+			opacity: .88 !important;
+			.content .footer {
+				display: none !important;
+			}
+		}
+		> div:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		.notifications .notifications-button {
+			background: url('../../notifications/img/notifications-dark.svg') no-repeat center !important;
+			background-size: 20px !important;
+			opacity: .865 !important;
+			img {
+				display: none;
+			}
+		}
+		#unified-search {
+			> a {
+				opacity: 1 !important;
+			}
+			svg {
+				fill: #1f1f1f;
+			}
+		}
+	}
+
+	.header-left > nav > #navigation {
+		position: fixed;
+		left: 12px;
+		top: 64px;
+		transform: unset;
+		min-width: 260px;
+		max-width: 420px;
+		width: max-content;
+		/* Hide triangle on active app and dropdown menu */
+		&:after {
+			display: none !important;
+		}
+	}
 }
 
-header .header-right .icon-contacts {
-	background-image: var(--icon-contacts-000);
-	opacity: 1 !important;
-}
-header .header-right #contactsmenu {
-	opacity: .88 !important;
-}
-header .header-right #contactsmenu .content .footer {
-	display: none !important;
+
+@media (max-width:600px) {
+	#header .header-left > nav > #navigation {
+		width: 100%;
+		max-width: 600px;
+	}
 }
 
 #appmenu {
 	width: 40px;
 	min-width: 40px;
+	> li[tabindex="-1"] {
+		display: none;
+	}
+	> li#more-apps {
+		display: flex !important;
+		width: 40px;
+		padding: 0;
+		a {
+			div {
+				transform: unset !important;
+			}
+			span {
+				display: none !important;
+			}
+		}
+	}
+	li a {
+		opacity: unset;
+		height: 63px;
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	}
+	/* Hide triangle on active app and dropdown menu */
+	li a.active::before,
+	li:hover a::before,
+	li:hover a.active::before,
+	li a:focus::before {
+		display: none !important;
+	}
 }
 
-#appmenu > li[tabindex="-1"] {
-	display: none;
-}
-#appmenu > li#more-apps {
-	display: flex !important;
-	width: 40px;
-	padding: 0;
-}
-#appmenu > li#more-apps a div {
-	transform: unset !important;
-}
-#appmenu > li#more-apps a span {
-	display: none !important;
-}
-#apps li {
-	display: list-item !important;
-}
-
-/* set style of categories and custom items */
-#apps > ul {
-	padding: 12px 0 12px 0;
-	overflow-y: unset !important;
-}
-#apps li.in-header > a {
-	padding: 12px 16px 12px 16px !important;
-	min-height: 44px !important;
-	height: unset !important;
-}
-#apps li span {
-	line-height: 20px;
-	max-width: unset !important;
-	white-space: pre-wrap !important;
-	overflow: unset !important;
-	text-overflow: unset !important;
-	color: #1f1f1f !important;
-}
-
-#apps li.elementcontainer > a:hover {
-	/*background: var(--color-primary) !important;*/
-	background-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-/*#apps li.elementcontainer *:hover span {
-	color: white !important;
-}*/
-
-#apps li .icon-loading-small {
-	display: none;
-}
-
-#apps li.elementcontainer {
-	font-size: 15px;
-}
-
-#apps li .category {
-	font-weight: bold;
-	font-size: 17px;
-	/*color: #f1f1f1;*/
-	/*color: #1f1f1f;*/
-	display: inline-flex;
-	padding: 8px 16px 4px 16px;
-}
-#apps li img {
-	width: 20px !important;
-	height: 20px !important;
-	margin-right: 16px !important;
-	opacity: 1 !important;
-}
-
-#header .header-left > nav > #navigation {
-	position: fixed;
-	left: 12px;
-	top: 64px;
-	transform: unset;
-	min-width: 260px;
-	max-width: 420px;
-	width: max-content;
-}
-@media (max-width:600px) {
-	#header .header-left > nav > #navigation {
-		width: 100%;
-		max-width: 600px;
+#apps {
+	/* set style of categories and custom items */
+	> ul {
+		padding: 12px 0 12px 0;
+		overflow-y: unset !important;
+		li {
+			display: list-item !important;
+			&.in-header > a {
+				padding: 12px 16px 12px 16px !important;
+				min-height: 44px !important;
+				height: unset !important;
+			}
+			&.elementcontainer {
+				font-size: 15px;
+				> a:hover {
+					/*background: var(--color-primary) !important;*/
+					background-color: rgba(0, 0, 0, 0.1) !important;
+				}
+			}
+			span {
+				line-height: 20px;
+				max-width: unset !important;
+				white-space: pre-wrap !important;
+				overflow: unset !important;
+				text-overflow: unset !important;
+				color: #1f1f1f !important;
+			}
+			img {
+				width: 20px !important;
+				height: 20px !important;
+				margin-right: 16px !important;
+				opacity: 1 !important;
+			}
+			.icon-loading-small {
+				display: none;
+			}
+			.category {
+				font-weight: bold;
+				font-size: 17px;
+				/*color: #f1f1f1;*/
+				/*color: #1f1f1f;*/
+				display: inline-flex;
+				padding: 8px 16px 4px 16px;
+			}
+		}
 	}
 }
 
@@ -137,41 +166,18 @@ header .header-right #contactsmenu .content .footer {
 	mask:  url('../img/grid.svg') no-repeat 50% 50%;
 	background-size: 20px;
 }
-#appmenu li a {
-	opacity: unset;
-	height: 63px;
-}
-#header .header-right > div:hover,
-#appmenu li a:hover {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-#header .header-right .notifications .notifications-button {
-	background: url('../../notifications/img/notifications-dark.svg') no-repeat center !important;
-	background-size: 20px !important;
-	opacity: .865 !important;
-}
-#header .header-right .notifications .notifications-button img {
-	display: none;
-}
-#header #unified-search > a {
-	opacity: 1 !important;
-}
-#header #unified-search svg {
-	fill: #1f1f1f;
-}
 
 #nextcloud {
 	padding-left: 128px;
+	.logo {
+		width: 80px;
+		height: 63px;
+		margin: 0 24px 0 24px;
+		left: 0;
+		top: 0;
+	}
 }
 
-#nextcloud .logo {
-	width: 80px;
-	height: 63px;
-	margin: 0 24px 0 24px;
-	left: 0;
-	top: 0;
-}
 div[role=tooltip] {
 	top: 50px !important;
 }
