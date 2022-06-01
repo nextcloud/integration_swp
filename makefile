@@ -80,10 +80,10 @@ build_release: clean
 	--exclude=composer.json \
 	--exclude=composer.lock \
 	--exclude=composer.phar \
-	--exclude=package.json \
-	--exclude=package-lock.json \
-	--exclude=js/node_modules \
-	--exclude=node_modules \
+	--exclude=/package.json \
+	--exclude=/package-lock.json \
+	--exclude=/js/node_modules \
+	--exclude=/node_modules \
 	--exclude=/src \
 	--exclude=translationfiles \
 	--exclude=webpack.* \

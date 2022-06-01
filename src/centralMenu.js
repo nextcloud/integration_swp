@@ -94,7 +94,8 @@ export function makeCentralMenu() {
 			// insert the portal entry
 			appendEntry(itemList, {
 				identifier: 'portal',
-				icon_url: generateUrl('/svg/sps_bmi/grid?color=000000'),
+				// icon_url: generateUrl('/svg/sps_bmi/grid?color=000000'),
+				icon_url: imagePath('sps_bmi', 'grid.svg'),
 				display_name: 'Portal',
 				link: portalUrl,
 				description: 'Phoenix portal',
