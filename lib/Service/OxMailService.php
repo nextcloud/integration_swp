@@ -47,8 +47,13 @@ class OxMailService extends OxBaseService {
 	/** @var string|null */
 	private $userId;
 
-	public function __construct(IConfig $config, IClientService $clientService, LoggerInterface $logger, TokenService $tokenService, ICacheFactory $cacheFactory, $userId) {
-		parent::__construct($config, $tokenService, $userId);
+	public function __construct(IConfig $config,
+								IClientService $clientService,
+								LoggerInterface $logger,
+								TokenService $tokenService,
+								ICacheFactory $cacheFactory,
+								?string $userId = null) {
+		parent::__construct($config, $tokenService, $logger, $userId);
 		$this->config = $config;
 		$this->clientService = $clientService;
 		$this->logger = $logger;

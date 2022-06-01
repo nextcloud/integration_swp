@@ -41,7 +41,7 @@ class OxContactsService extends OxBaseService {
 	private $userId;
 
 	public function __construct(IConfig $config, TokenService $tokenService, IClientService $clientService, LoggerInterface $logger, $userId) {
-		parent::__construct($config, $tokenService, $userId);
+		parent::__construct($config, $tokenService, $logger, $userId);
 		$this->clientService = $clientService;
 		$this->logger = $logger;
 		$this->userId = $userId;
