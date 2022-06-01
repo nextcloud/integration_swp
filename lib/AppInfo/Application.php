@@ -141,6 +141,7 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript('sps_bmi', 'mailtoLinks');
 			Util::addScript('sps_bmi', 'centralMenu');
+			Util::addScript('sps_bmi', 'personalSettings');
 			Util::addStyle('sps_bmi', 'theming');
 		});
 	}
