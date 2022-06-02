@@ -64,7 +64,7 @@ class OxContactsService extends OxBaseService {
 		$getParams = [
 			'action' => 'search',
 			// object ID, last_modified, display name, email 1, 2 and 3
-			'columns' => '1,5,500,555,556,557',
+			'columns' => '1,5,500,555,556,557,524',
 			'sort' => '5',
 			'order' => 'desc',
 		];

@@ -101,6 +101,14 @@ class OxAddressBook implements IAddressBook {
 			return [];
 		}
 
+		// get rid of contacts that come from users (user_id/524 field is 0)
+		$filteredResult = array_filter(
+			$result['data'],
+			function ($c) {
+				return $c[6] === 0;
+			}
+		);
+
 		$formattedResult = array_map(
 			function ($c) {
 				$formattedContact = [
@@ -112,7 +120,7 @@ class OxAddressBook implements IAddressBook {
 				}
 				return $formattedContact;
 			},
-			$result['data']
+			$filteredResult
 		);
 
 		$this->cache->set($cacheKey, $formattedResult,
