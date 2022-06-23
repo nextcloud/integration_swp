@@ -71,7 +71,7 @@ class OxBaseService {
 			$this->logger->debug('[OxBaseService::getOxOptions] could not find OX token in session or the debug one');
 			throw new ServiceException('Could not get ox request options');
 		}
-		$oxToken = $oxDebugUserToken !== '' ? $oxDebugUserToken : $oidcToken->getIdToken();
+		$oxToken = $oxDebugUserToken !== '' ? $oxDebugUserToken : $oidcToken->getAccessToken();
 
 		return [
 			'headers' => [
