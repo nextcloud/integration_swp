@@ -161,8 +161,14 @@ class MenuService {
 						$decodedToken = $this->tokenService->decodeIdToken($token);
 						$username = $decodedToken[$usernameTokenAttribute] ?? '';
 
-						$options['headers']['Authorization'] = 'Bearer ' . $sharedSecret;
-						$options['headers']['X-Ucs-Username'] = $username;
+						$authType = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_AUTH_TYPE, 'basic') ?: 'basic';
+						$useBasicAuth = $authType === 'basic';
+						if ($useBasicAuth) {
+							$options['headers']['Authorization'] = 'Basic ' . base64_encode($username . ':' . $sharedSecret);
+						} else {
+							$options['headers']['Authorization'] = 'Bearer ' . $sharedSecret;
+							$options['headers']['X-Ucs-Username'] = $username;
+						}
 						$this->logger->info('Navigation json request: shared secret: "' . $sharedSecret . '"');
 						$this->logger->info('UCSusername "' . $username . '"');
 					}

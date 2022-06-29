@@ -57,6 +57,7 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_OX_URL = 'ox-baseurl';
 
 	public const APP_CONFIG_NAVIGATION_URL = 'navigation-json-url';
+	public const APP_CONFIG_NAVIGATION_AUTH_TYPE = 'navigation-json-auth-type';
 	public const APP_CONFIG_NAVIGATION_SHARED_SECRET = 'navigation-json-api-secret';
 	public const APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE = 'navigation-json-username-attribute';
 
