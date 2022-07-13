@@ -162,8 +162,8 @@ header#header {
 	background-color: #1f1f1f;
 	/* background-image: url('../img/grid.svg') !important; */
 	background-image: unset !important;
-	-webkit-mask:  url('../img/grid.svg') no-repeat 50% 50%;
-	mask:  url('../img/grid.svg') no-repeat 50% 50%;
+	-webkit-mask: url('../img/grid.svg') no-repeat 50% 50%;
+	mask: url('../img/grid.svg') no-repeat 50% 50%;
 	background-size: 20px;
 }
 

@@ -25,6 +25,8 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\AppInfo;
 
+use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
+use OCA\SpsBmi\Listener\PublicShareTemplateLoader;
 use OCA\SpsBmi\Listener\TokenObtainedEventListener;
 use OCA\SpsBmi\Listener\ContactInteractionSpsListener;
 use OCA\SpsBmi\Service\MenuService;
@@ -77,6 +79,7 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
 		$context->registerEventListener(ContactInteractedWithEvent::class, ContactInteractionSpsListener::class);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, PublicShareTemplateLoader::class);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -140,7 +143,7 @@ class Application extends App implements IBootstrap {
 				return $menuService->getMenuJson($token);
 			});
 
-			Util::addScript('sps_bmi', 'sps_bmi-main');
+			Util::addScript('sps_bmi', self::APP_ID . '-main');
 		});
 	}
 

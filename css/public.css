@@ -1,0 +1,16 @@
+.icon-more-white {
+	background-image: var(--icon-more-000) !important;
+	/* for NC >= 25
+	background-image: var(--icon-more-dark) !important;
+	*/
+	-webkit-mask: unset !important;
+	mask: unset !important;
+	background-size: 20px;
+	opacity: .88 !important;
+}
+
+footer,
+#talk-sidebar,
+#talk-sidebar-trigger {
+	display: none !important;
+}
