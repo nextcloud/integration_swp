@@ -1,6 +1,6 @@
-import { makeCentralMenu } from './centralMenu'
-import { setMailtoLinks } from './mailtoLinks'
-import { disablePersonalSettingsFields } from './personalSettings'
+import { makeCentralMenu } from './centralMenu.js'
+import { setMailtoLinks } from './mailtoLinks.js'
+import { disablePersonalSettingsFields } from './personalSettings.js'
 import '../css/theming.scss'
 
 makeCentralMenu()
