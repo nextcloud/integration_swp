@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
  * @author Julien Veyssier <eneiluj@posteo.net>
@@ -26,13 +26,10 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Controller;
 
-use OCA\SpsBmi\Model\Token;
 use OCA\SpsBmi\Service\MenuService;
-use OCA\SpsBmi\Service\TokenService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;
-use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
 
 class MenuController extends Controller {

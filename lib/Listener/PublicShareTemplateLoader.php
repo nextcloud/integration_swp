@@ -30,7 +30,6 @@ use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
 use OCA\SpsBmi\AppInfo\Application;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\IConfig;
 use OCP\Util;
 
 /**
@@ -38,8 +37,7 @@ use OCP\Util;
  */
 class PublicShareTemplateLoader implements IEventListener {
 
-	public function __construct(IConfig $serverConfig) {
-		$this->serverConfig = $serverConfig;
+	public function __construct() {
 	}
 
 	/**

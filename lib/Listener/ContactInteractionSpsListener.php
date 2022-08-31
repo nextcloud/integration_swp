@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /**
- * @copyright 2020 Christoph Wurst <christoph@winzerhof-wurst.at>
+ * @copyright 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -25,60 +25,20 @@ declare(strict_types=1);
  */
 namespace OCA\SpsBmi\Listener;
 
-use OCA\ContactsInteraction\Db\CardSearchDao;
-use OCA\ContactsInteraction\Db\RecentContact;
-use OCA\ContactsInteraction\Db\RecentContactMapper;
 use OCA\SpsBmi\Exception\ServiceException;
 use OCA\SpsBmi\Service\OxContactsService;
-use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\IL10N;
-use OCP\IUserManager;
-use Psr\Log\LoggerInterface;
-use Sabre\VObject\Component\VCard;
-use Sabre\VObject\Reader;
-use Sabre\VObject\UUIDUtil;
-use Throwable;
 
 class ContactInteractionSpsListener implements IEventListener {
 
-	/** @var RecentContactMapper */
-	private $mapper;
-
-	/** @var CardSearchDao */
-	private $cardSearchDao;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ITimeFactory */
-	private $timeFactory;
-
-	/** @var IL10N */
-	private $l10n;
-
-	/** @var LoggerInterface */
-	private $logger;
 	/**
 	 * @var OxContactsService
 	 */
 	private $contactsService;
 
-	public function __construct(RecentContactMapper $mapper,
-								CardSearchDao $cardSearchDao,
-								IUserManager $userManager,
-								ITimeFactory $timeFactory,
-								IL10N $l10nFactory,
-								OxContactsService $contactsService,
-								LoggerInterface $logger) {
-		$this->mapper = $mapper;
-		$this->cardSearchDao = $cardSearchDao;
-		$this->userManager = $userManager;
-		$this->timeFactory = $timeFactory;
-		$this->l10n = $l10nFactory;
-		$this->logger = $logger;
+	public function __construct(OxContactsService $contactsService) {
 		$this->contactsService = $contactsService;
 	}
 

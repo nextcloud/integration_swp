@@ -83,8 +83,7 @@ class TokenService {
 	public function storeToken(array $tokenData): Token {
 		$token = new Token($tokenData);
 		$this->session->set(self::SESSION_TOKEN_KEY, json_encode($token, JSON_THROW_ON_ERROR));
-		$this->logger->warning('Store token');
-		file_put_contents('/tmp/stored', json_encode($token->jsonSerialize()));
+		$this->logger->info('Store token', ['app' => Application::APP_ID]);
 		return $token;
 	}
 
@@ -112,8 +111,7 @@ class TokenService {
 		$discovery = $this->obtainDiscovery($oidcProvider);
 
 		try {
-			$this->logger->warning('Refreshing the token: '.$discovery['token_endpoint']);
-			error_log('SILENT REFRESH!!!!!!!! REFRESH_TOKEN is '.$token->getRefreshToken());
+			$this->logger->debug('Refreshing the token: '.$discovery['token_endpoint'], ['app' => Application::APP_ID]);
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[
@@ -127,19 +125,17 @@ class TokenService {
 					],
 				]
 			);
-			$this->logger->error('PARAMS: '.json_encode([
-                                                'client_id' => $oidcProvider->getClientId(),
-                                                'client_secret' => $oidcProvider->getClientSecret(),
-                                                'grant_type' => 'refresh_token',
-                                                'refresh_token' => $token->getRefreshToken(),
-                                                // TODO check if we need a different scope for this
-                                                //'scope' => $oidcProvider->getScope(),
-                                        ]));
+			$this->logger->debug('PARAMS: '.json_encode([
+					'client_id' => $oidcProvider->getClientId(),
+					'client_secret' => $oidcProvider->getClientSecret(),
+					'grant_type' => 'refresh_token',
+					'refresh_token' => $token->getRefreshToken(),
+					// TODO check if we need a different scope for this
+					//'scope' => $oidcProvider->getScope(),
+				]), ['app' => Application::APP_ID]);
 			$body = $result->getBody();
 			$bodyArray = json_decode(trim($body), true, 512, JSON_THROW_ON_ERROR);
-			file_put_contents('/tmp/bodyrefresh', $body);
-			$this->logger->warning('Refresh token success: "'.trim($body).'"');
-			error_log('REFRESH SUCCESS :))))))))))))');
+			$this->logger->debug('Refresh token success: "' . trim($body) . '"', ['app' => Application::APP_ID]);
 			return $this->storeToken(
 				array_merge(
 					$bodyArray,
@@ -147,8 +143,7 @@ class TokenService {
 				)
 			);
 		} catch (\Exception $e) {
-			error_log('FAILED TO REFRESH:(((((((((((((');
-			$this->logger->error('Failed to refresh token ', ['exception' => $e]);
+			$this->logger->error('Failed to refresh token ', ['exception' => $e, 'app' => Application::APP_ID]);
 			// Failed to refresh, return old token which will be retried or otherwise timeout if expired
 			return $token;
 		}
@@ -159,7 +154,7 @@ class TokenService {
 		$cachedDiscovery = $this->cache->get($cacheKey);
 		if ($cachedDiscovery === null) {
 			$url = $provider->getDiscoveryEndpoint();
-			$this->logger->debug('Obtaining discovery endpoint: ' . $url);
+			$this->logger->debug('Obtaining discovery endpoint: ' . $url, ['app' => Application::APP_ID]);
 
 			$response = $this->client->get($url);
 			$cachedDiscovery = $response->getBody();
@@ -190,7 +185,7 @@ class TokenService {
 
 		// Logout the user and redirect to the oidc login flow to gather a fresh token
 		$this->userSession->logout();
-		$redirectUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/user_oidc/login/'  . $token->getProviderId()) .
+		$redirectUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/user_oidc/login/' . $token->getProviderId()) .
 			'?redirectUrl=' . urlencode($this->request->getRequestUri());
 		header('Location: ' . $redirectUrl);
 		exit();

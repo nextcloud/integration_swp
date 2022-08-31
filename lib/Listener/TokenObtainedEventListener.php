@@ -25,12 +25,14 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Listener;
 
+use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Service\OxMailService;
 use OCA\SpsBmi\Service\TokenService;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Http\Client\IClientService;
+use Psr\Log\LoggerInterface;
 
 class TokenObtainedEventListener implements IEventListener {
 
@@ -42,15 +44,23 @@ class TokenObtainedEventListener implements IEventListener {
 
 	/** @var OxMailService */
 	private $mailService;
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
 
-	public function __construct(IClientService $clientService, TokenService $tokenService, OxMailService $mailService) {
+	public function __construct(IClientService $clientService,
+								LoggerInterface $logger,
+								TokenService $tokenService,
+								OxMailService $mailService) {
 		$this->clientService = $clientService;
 		$this->tokenService = $tokenService;
 		$this->mailService = $mailService;
+		$this->logger = $logger;
 	}
 
 	public function handle(Event $event): void {
-		error_log('handle TokenObtainedEvent');
+		$this->logger->debug('handling TokenObtainedEvent', ['app' => Application::APP_ID]);
 		if (!$event instanceof TokenObtainedEvent) {
 			return;
 		}
@@ -62,12 +72,12 @@ class TokenObtainedEventListener implements IEventListener {
 		//$refreshToken = $token['refresh_token'] ?? null;
 
 		//if (!$refreshToken) {
-		//	error_log('handle TokenObtainedEvent NO REFRESH TOKEN');
+		//	$this->logger->debug('handle TokenObtainedEvent NO REFRESH TOKEN', ['app' => Application::APP_ID]);
 		//	return;
 		//}
 
 		//$client = $this->clientService->newClient();
-		//error_log('TokenObtainedEventListener TOKEN REQUEST to '.$discovery['token_endpoint'].' with refresh token='.$refreshToken.' and client id='.$provider->getClientId());
+		//$this->logger->debug('TokenObtainedEventListener TOKEN REQUEST to ' . $discovery['token_endpoint'] . ' with refresh token=' . $refreshToken . ' and client id=' . $provider->getClientId(), ['app' => Application::APP_ID]);
 		//$result = $client->post(
 		//	$discovery['token_endpoint'],
 		//	[
@@ -81,14 +91,12 @@ class TokenObtainedEventListener implements IEventListener {
 		//		],
 		//	]
 		//);
-		//error_log('STATUS CODE:'.$result->getStatusCode());
+		//$this->logger->debug('refresh request STATUS CODE:' . $result->getStatusCode(), ['app' => Application::APP_ID]);
 
 		//$tokenData = json_decode($result->getBody(), true);
 
-		//error_log('store TOKEN: '. $result->getBody());
 		$tokenData = $token;
-		error_log('!!!!store TOKEN: '. json_encode($tokenData));
-		file_put_contents('./debug_token', json_encode($tokenData));
+		$this->logger->debug('Storing the token: ' . json_encode($tokenData), ['app' => Application::APP_ID]);
 		$this->tokenService->storeToken(array_merge($tokenData, ['provider_id' => $provider->getId()]));
 
 		$this->mailService->resetCache();

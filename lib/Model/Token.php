@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
  * @author Julien Veyssier <eneiluj@posteo.net>
@@ -77,7 +77,6 @@ class Token implements JsonSerializable {
 	}
 
 	public function isExpiring(): bool {
-//		return time() > ($this->createdAt + 60);
 		return time() > ($this->createdAt + (int)($this->expiresIn / 2));
 	}
 

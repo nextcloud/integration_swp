@@ -24,23 +24,28 @@ declare(strict_types=1);
  */
 namespace OCA\SpsBmi\Service;
 
+use Exception;
+use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Exception\ServiceException;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 class OxContactsService extends OxBaseService {
 
 	/** @var IClientService */
 	private $clientService;
-
 	/** @var LoggerInterface */
 	private $logger;
-
 	/** @var string|null */
 	private $userId;
 
-	public function __construct(IConfig $config, TokenService $tokenService, IClientService $clientService, LoggerInterface $logger, $userId) {
+	public function __construct(IConfig $config,
+								TokenService $tokenService,
+								IClientService $clientService,
+								LoggerInterface $logger,
+								?string $userId) {
 		parent::__construct($config, $tokenService, $logger, $userId);
 		$this->clientService = $clientService;
 		$this->logger = $logger;
@@ -88,14 +93,26 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			$this->logger->error('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody);
+			$this->logger->error('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody, ['app' => Application::APP_ID]);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
-		} catch (\Exception $e) {
-			$this->logger->error('Failed to fetch contacts for user ' . $this->userId, ['exception' => $e]);
+		} catch (Exception $e) {
+			$this->logger->error(
+				'Failed to fetch contacts for user ' . $this->userId,
+				[
+					'exception' => $e,
+					'app' => Application::APP_ID,
+				]
+			);
 			throw new ServiceException('Could not fetch results');
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @param string $emailAddress
+	 * @return mixed
+	 * @throws ServiceException
+	 */
 	public function createContact(string $name, string $emailAddress) {
 		$client = $this->clientService->newClient();
 		// get default OX contacts folder ID
@@ -104,11 +121,17 @@ class OxContactsService extends OxBaseService {
 		try {
 			$response = $client->get($getContactFolderUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			$this->logger->error('CONTACT DEFAULT FOLDER response ' . $responseBody);
+			$this->logger->error('CONTACT DEFAULT FOLDER response ' . $responseBody, ['app' => Application::APP_ID]);
 			$responseArray = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 			$folderId = $responseArray['data'] ?? null;
-		} catch (\Exception | \Throwable $e) {
-			$this->logger->error('Failed to get default contacts folder ID for user ' . $this->userId, ['exception' => $e]);
+		} catch (Exception | Throwable $e) {
+			$this->logger->error(
+				'Failed to get default contacts folder ID for user ' . $this->userId,
+				[
+					'exception' => $e,
+					'app' => Application::APP_ID,
+				]
+			);
 			throw new ServiceException('Could not fetch results');
 		}
 		// create (PUT)
@@ -129,10 +152,16 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($createApiUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			$this->logger->error('CONTACT CREATION response ' . $responseBody);
+			$this->logger->debug('contact creation response ' . $responseBody, ['app' => Application::APP_ID]);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 		} catch (\Exception | \Throwable $e) {
-			$this->logger->error('Failed to create contact (' . $emailAddress . ') for user ' . $this->userId, ['exception' => $e]);
+			$this->logger->error(
+				'Failed to create contact (' . $emailAddress . ') for user ' . $this->userId,
+				[
+					'exception' => $e,
+					'app' => Application::APP_ID,
+				]
+			);
 			throw new ServiceException('Could not fetch results');
 		}
 	}

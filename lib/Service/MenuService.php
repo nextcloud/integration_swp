@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
  * @author Julien Veyssier <eneiluj@posteo.net>
@@ -64,6 +64,10 @@ class MenuService {
 	 * @var TokenService
 	 */
 	private $tokenService;
+	/**
+	 * @var string
+	 */
+	private $backupJson;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,

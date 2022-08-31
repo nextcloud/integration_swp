@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
  * @author Julien Veyssier <eneiluj@posteo.net>
@@ -36,9 +36,14 @@ class OxBaseService {
 	private $tokenService;
 	/** @var string|null */
 	private $userId;
-
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+	/**
+	 * @var string
+	 */
 	private $oxBaseUrl;
-	private LoggerInterface $logger;
 
 	public function __construct(IConfig $config,
 								TokenService $tokenService,

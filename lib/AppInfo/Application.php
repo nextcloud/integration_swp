@@ -109,7 +109,6 @@ class Application extends App implements IBootstrap {
 				if ($config->getUserValue($userId, self::APP_ID, 'had_token_once', '0') === '1') {
 					$userSession->logout();
 				}
-				//error_log('NO TOKEN SO APP QUITS');
 				return;
 			}
 			// remember that this user had a token once
