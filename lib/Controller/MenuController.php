@@ -50,12 +50,12 @@ class MenuController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 */
-	public function getRemoteImage(string $url): DataDisplayResponse {
-		$image = $this->menuService->getImage($url);
-		if ($image === null) {
+	public function getMenuEntryIcon(string $itemId): DataDisplayResponse {
+		$icon = $this->menuService->getMenuEntryIcon($itemId);
+		if ($icon === null) {
 			return new DataDisplayResponse('', Http::STATUS_NOT_FOUND);
 		} else {
-			$response = new DataDisplayResponse($image['body'], Http::STATUS_OK, ['Content-Type' => $image['mimetype']]);
+			$response = new DataDisplayResponse($icon['body'], Http::STATUS_OK, ['Content-Type' => $icon['mimetype']]);
 			$response->cacheFor(60 * 60 * 24);
 			return $response;
 		}

@@ -26,6 +26,6 @@ declare(strict_types=1);
 return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'Menu#getRemoteImage', 'url' => '/image', 'verb' => 'GET'],
+		['name' => 'Menu#getMenuEntryIcon', 'url' => '/icon', 'verb' => 'GET'],
 	],
 ];

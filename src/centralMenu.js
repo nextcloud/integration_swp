@@ -55,10 +55,10 @@ export function makeCentralMenu() {
 		}
 		// icon
 		const icon = document.createElement('img')
-		const imgUrl = proxyImage
-			? generateUrl('/apps/sps_bmi/image?') + 'url=' + encodeURIComponent(jsonEntry.icon_url)
+		const iconUrl = proxyImage
+			? generateUrl('/apps/sps_bmi/icon?') + 'itemId=' + encodeURIComponent(jsonEntry.identifier)
 			: jsonEntry.icon_url
-		icon.setAttribute('src', imgUrl)
+		icon.setAttribute('src', iconUrl)
 		/*
 		const icon = document.createElement('span')
 		icon.classList.add('icon-more')

@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace OCA\SpsBmi\Service;
 
+use Exception;
 use OCA\SpsBmi\AppInfo\Application;
 use OCA\SpsBmi\Model\Token;
 use OCP\Http\Client\IClient;
@@ -35,6 +36,7 @@ use OCP\IConfig;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 class MenuService {
 
@@ -189,15 +191,26 @@ class MenuService {
 
 				return $cachedMenu;
 			}
-		} catch (\Exception | \Throwable $e) {
-			$this->logger->error('Error while fetching navigation json content', [ 'exception' => $e ]);
+		} catch (Exception | Throwable $e) {
+			$this->logger->error('Error while fetching navigation json content', ['exception' => $e]);
 		}
 
 		// backup dummy menu value
 		return $this->backupJson;
 	}
 
-	public function getImage(string $url): ?array {
+	/**
+	 * @param string $itemId
+	 * @return array|null
+	 * @throws \JsonException
+	 */
+	public function getMenuEntryIcon(string $itemId): ?array {
+		$token = $this->tokenService->getToken();
+		$menuJson = $this->getMenuJson($token);
+		$url = $this->findItemIconUrl($menuJson, $itemId);
+		if ($url === null) {
+			return null;
+		}
 		try {
 			$response = $this->client->get($url);
 			$body = $response->getBody();
@@ -206,9 +219,26 @@ class MenuService {
 				'body' => $body,
 				'mimetype' => $mimetype,
 			];
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->logger->error('Failed to get image', ['exception' => $e]);
 			return null;
 		}
+	}
+
+	/**
+	 * @param string $menuJson
+	 * @param string $itemId
+	 * @return string|null
+	 */
+	private function findItemIconUrl(string $menuJson, string $itemId): ?string {
+		$menu = json_decode($menuJson, true);
+		foreach ($menu['categories'] as $category) {
+			foreach ($category['entries'] as $entry) {
+				if (($entry['identifier'] ?? '') === $itemId) {
+					return $entry['icon_url'];
+				}
+			}
+		}
+		return null;
 	}
 }
