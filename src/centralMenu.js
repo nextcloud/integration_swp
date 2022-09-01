@@ -23,14 +23,16 @@
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl, imagePath } from '@nextcloud/router'
 
+const DEBUG = false
+
 export function makeCentralMenu() {
 	const portalUrl = loadState('sps_bmi', 'portal-url')
-	console.debug('PORTAL URL', portalUrl)
+	if (DEBUG) console.debug('PORTAL URL', portalUrl)
 	const menuJsonRaw = loadState('sps_bmi', 'menu-json')
 	const menuJson = JSON.parse(menuJsonRaw)
-	console.debug('menu json :::', menuJson)
+	if (DEBUG) console.debug('menu json :::', menuJson)
 	const menuTabnameAttribute = loadState('sps_bmi', 'menu-tabname-attribute')
-	console.debug('menu tabname', menuTabnameAttribute)
+	if (DEBUG) console.debug('menu tabname', menuTabnameAttribute)
 
 	const appendElement = (listElement, item, extraClass = null) => {
 		const li = document.createElement('li')

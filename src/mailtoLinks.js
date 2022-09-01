@@ -22,13 +22,15 @@
 
 import { loadState } from '@nextcloud/initial-state'
 
+const DEBUG = false
+
 export function setMailtoLinks() {
 	const mailUrl = loadState('sps_bmi', 'webmail-url')
 	const mailTabname = loadState('sps_bmi', 'webmail-tabname')
-	console.debug('MAIL URL :-:-:', mailUrl)
-	console.debug('MAIL TAB NAME', mailTabname)
+	if (DEBUG) console.debug('MAIL URL :-:-:', mailUrl)
+	if (DEBUG) console.debug('MAIL TAB NAME', mailTabname)
 	const target = mailTabname ? mailTabname + '' : '_blank'
-	console.debug('TARGET', target)
+	if (DEBUG) console.debug('TARGET', target)
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = (mailtoLink) => {
