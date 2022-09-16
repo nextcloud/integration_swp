@@ -24,10 +24,10 @@
 declare(strict_types=1);
 
 
-namespace OCA\SpsBmi\Service;
+namespace OCA\Phoenix\Service;
 
 use Exception;
-use OCA\SpsBmi\AppInfo\Application;
+use OCA\Phoenix\AppInfo\Application;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;

@@ -1,5 +1,5 @@
 {
-  "name": "nextcloud/sps_bmi",
+  "name": "nextcloud/integration_phoenix",
   "description": "Sps BMI app",
   "license": "AGPL3",
   "config": {
@@ -36,10 +36,10 @@
   },
   "extra": {
     "mozart": {
-      "dep_namespace": "OCA\\SpsBmi\\Vendor\\",
+      "dep_namespace": "OCA\\Phoenix\\Vendor\\",
       "dep_directory": "/lib/Vendor/",
       "classmap_directory": "/lib/autoload/",
-      "classmap_prefix": "NEXTCLOUD_SPS_BMI_",
+      "classmap_prefix": "NEXTCLOUD_INTEGRATION_PHOENIX_",
       "packages": [
         "firebase/php-jwt"
       ],

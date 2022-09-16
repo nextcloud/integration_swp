@@ -24,9 +24,9 @@
 declare(strict_types=1);
 
 
-namespace OCA\SpsBmi\Controller;
+namespace OCA\Phoenix\Controller;
 
-use OCA\SpsBmi\Service\MenuService;
+use OCA\Phoenix\Service\MenuService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;

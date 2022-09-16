@@ -23,7 +23,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\SpsBmi\Model;
+namespace OCA\Phoenix\Model;
 
 use JsonSerializable;
 

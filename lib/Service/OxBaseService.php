@@ -21,10 +21,10 @@
  *
  */
 
-namespace OCA\SpsBmi\Service;
+namespace OCA\Phoenix\Service;
 
-use OCA\SpsBmi\AppInfo\Application;
-use OCA\SpsBmi\Exception\ServiceException;
+use OCA\Phoenix\AppInfo\Application;
+use OCA\Phoenix\Exception\ServiceException;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 

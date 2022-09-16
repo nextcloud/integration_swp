@@ -26,12 +26,12 @@ import { generateUrl, imagePath } from '@nextcloud/router'
 const DEBUG = false
 
 export function makeCentralMenu() {
-	const portalUrl = loadState('sps_bmi', 'portal-url')
+	const portalUrl = loadState('integration_phoenix', 'portal-url')
 	if (DEBUG) console.debug('PORTAL URL', portalUrl)
-	const menuJsonRaw = loadState('sps_bmi', 'menu-json')
+	const menuJsonRaw = loadState('integration_phoenix', 'menu-json')
 	const menuJson = JSON.parse(menuJsonRaw)
 	if (DEBUG) console.debug('menu json :::', menuJson)
-	const menuTabnameAttribute = loadState('sps_bmi', 'menu-tabname-attribute')
+	const menuTabnameAttribute = loadState('integration_phoenix', 'menu-tabname-attribute')
 	if (DEBUG) console.debug('menu tabname', menuTabnameAttribute)
 
 	const appendElement = (listElement, item, extraClass = null) => {
@@ -58,7 +58,7 @@ export function makeCentralMenu() {
 		// icon
 		const icon = document.createElement('img')
 		const iconUrl = proxyImage
-			? generateUrl('/apps/sps_bmi/icon?') + 'itemId=' + encodeURIComponent(jsonEntry.identifier)
+			? generateUrl('/apps/integration_phoenix/icon?') + 'itemId=' + encodeURIComponent(jsonEntry.identifier)
 			: jsonEntry.icon_url
 		icon.setAttribute('src', iconUrl)
 		/*
@@ -96,8 +96,8 @@ export function makeCentralMenu() {
 			// insert the portal entry
 			appendEntry(itemList, {
 				identifier: 'portal',
-				// icon_url: generateUrl('/svg/sps_bmi/grid?color=000000'),
-				icon_url: imagePath('sps_bmi', 'grid.svg'),
+				// icon_url: generateUrl('/svg/integration_phoenix/grid?color=000000'),
+				icon_url: imagePath('integration_phoenix', 'grid.svg'),
 				display_name: 'Portal',
 				link: portalUrl,
 				description: 'Phoenix portal',
@@ -110,6 +110,6 @@ export function makeCentralMenu() {
 		})
 
 		const headerLogo = document.querySelector('#header .header-left .logo-icon')
-		headerLogo.style.backgroundImage = 'url(\'' + imagePath('sps_bmi', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+		headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
 	}
 }

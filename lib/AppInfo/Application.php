@@ -23,16 +23,16 @@
 
 declare(strict_types=1);
 
-namespace OCA\SpsBmi\AppInfo;
+namespace OCA\Phoenix\AppInfo;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
-use OCA\SpsBmi\Listener\PublicShareTemplateLoader;
-use OCA\SpsBmi\Listener\TokenObtainedEventListener;
-use OCA\SpsBmi\Listener\ContactInteractionSpsListener;
-use OCA\SpsBmi\Service\MenuService;
-use OCA\SpsBmi\Service\TokenService;
-use OCA\SpsBmi\Service\OxMailService;
-use OCA\SpsBmi\OxAddressBook;
+use OCA\Phoenix\Listener\PublicShareTemplateLoader;
+use OCA\Phoenix\Listener\TokenObtainedEventListener;
+use OCA\Phoenix\Listener\ContactInteractionSpsListener;
+use OCA\Phoenix\Service\MenuService;
+use OCA\Phoenix\Service\TokenService;
+use OCA\Phoenix\Service\OxMailService;
+use OCA\Phoenix\OxAddressBook;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -49,7 +49,7 @@ use OCP\IUserSession;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'sps_bmi';
+	public const APP_ID = 'integration_phoenix';
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
@@ -142,7 +142,7 @@ class Application extends App implements IBootstrap {
 				return $menuService->getMenuJson($token);
 			});
 
-			Util::addScript('sps_bmi', self::APP_ID . '-main');
+			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 		});
 	}
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-	<id>sps_bmi</id>
+	<id>integration_phoenix</id>
 	<name>Nextcloud Phoenix integration</name>
-	<summary>Utility app for frontend integration with mail</summary>
-	<description>This utility app supports OpenXChange mail in the front end</description>
-	<version>0.0.1</version>
+	<summary>Utility app for integration purposes in Phoenix</summary>
+	<description>This utility app supports OpenXChange contacts/mailto links, central menu, unified style...</description>
+	<version>1.0.0</version>
 	<licence>agpl</licence>
 	<author>Julien Veyssier</author>
-	<namespace>SpsBmi</namespace>
+	<namespace>Phoenix</namespace>
 	<category>integration</category>
 	<category>social</category>
-	<website>https://github.com/nextcloud-gmbh/sps_bmi</website>
-	<bugs>https://github.com/nextcloud-gmbh/sps_bmi/issues</bugs>
-	<repository>https://github.com/nextcloud-gmbh/sps_bmi</repository>
+	<website>https://github.com/nextcloud-gmbh/integration_phoenix</website>
+	<bugs>https://github.com/nextcloud-gmbh/integration_phoenix/issues</bugs>
+	<repository>https://github.com/nextcloud-gmbh/integration_phoenix</repository>
 	<dependencies>
-		<nextcloud min-version="21" max-version="24"/>
+		<nextcloud min-version="21" max-version="25"/>
 	</dependencies>
 </info>

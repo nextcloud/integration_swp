@@ -22,11 +22,11 @@ declare(strict_types=1);
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\SpsBmi\Service;
+namespace OCA\Phoenix\Service;
 
 use Exception;
-use OCA\SpsBmi\AppInfo\Application;
-use OCA\SpsBmi\Exception\ServiceException;
+use OCA\Phoenix\AppInfo\Application;
+use OCA\Phoenix\Exception\ServiceException;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;

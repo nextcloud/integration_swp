@@ -23,11 +23,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\SpsBmi\Service;
+namespace OCA\Phoenix\Service;
 
-use OCA\SpsBmi\Vendor\Firebase\JWT\JWT;
-use OCA\SpsBmi\AppInfo\Application;
-use OCA\SpsBmi\Model\Token;
+use OCA\Phoenix\Vendor\Firebase\JWT\JWT;
+use OCA\Phoenix\AppInfo\Application;
+use OCA\Phoenix\Model\Token;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;
@@ -43,7 +43,7 @@ use Psr\Log\LoggerInterface;
 
 class TokenService {
 	private const INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS = 3600;
-	private const SESSION_TOKEN_KEY = 'nmcuser-token';
+	private const SESSION_TOKEN_KEY = Application::APP_ID . '-user-token';
 
 	/** @var ISession */
 	private $session;

@@ -21,7 +21,7 @@
  *
  */
 
-namespace OCA\SpsBmi\Exception;
+namespace OCA\Phoenix\Exception;
 
 use Exception;
 

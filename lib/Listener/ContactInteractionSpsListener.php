@@ -23,10 +23,10 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\SpsBmi\Listener;
+namespace OCA\Phoenix\Listener;
 
-use OCA\SpsBmi\Exception\ServiceException;
-use OCA\SpsBmi\Service\OxContactsService;
+use OCA\Phoenix\Exception\ServiceException;
+use OCA\Phoenix\Service\OxContactsService;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;

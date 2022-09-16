@@ -1,5 +1,5 @@
 {
-	"name": "sps_bmi",
+	"name": "integration_phoenix",
 	"version": "0.3.3",
 	"description": "Phoenix SPS BMI",
 	"main": "index.js",
@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/nextcloud-gmbh/sps_bmi"
+		"url": "https://github.com/nextcloud-gmbh/integration_phoenix"
 	},
 	"keywords": [
 		"cospend"
@@ -26,9 +26,9 @@
 	"author": "Julien Veyssier",
 	"license": "AGPL-3.0",
 	"bugs": {
-		"url": "https://github.com/nextcloud-gmbh/sps_bmi/issues"
+		"url": "https://github.com/nextcloud-gmbh/integration_phoenix/issues"
 	},
-	"homepage": "https://github.com/nextcloud-gmbh/sps_bmi",
+	"homepage": "https://github.com/nextcloud-gmbh/integration_phoenix",
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"
 	],

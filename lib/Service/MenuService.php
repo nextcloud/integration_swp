@@ -23,11 +23,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\SpsBmi\Service;
+namespace OCA\Phoenix\Service;
 
 use Exception;
-use OCA\SpsBmi\AppInfo\Application;
-use OCA\SpsBmi\Model\Token;
+use OCA\Phoenix\AppInfo\Application;
+use OCA\Phoenix\Model\Token;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;

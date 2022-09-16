@@ -24,10 +24,10 @@ declare(strict_types=1);
  *
  */
 
-namespace OCA\SpsBmi\Listener;
+namespace OCA\Phoenix\Listener;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
-use OCA\SpsBmi\AppInfo\Application;
+use OCA\Phoenix\AppInfo\Application;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;

@@ -1,4 +1,4 @@
-app_name=sps_bmi
+app_name=integration_phoenix
 #app_version=$(version)
 app_version=$(shell grep -e "<version>[0-9.]\+</version>" appinfo/info.xml -o | sed 's/<\/*version>//g')
 project_dir=.
