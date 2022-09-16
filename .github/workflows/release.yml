@@ -62,7 +62,6 @@ jobs:
           php ~/html/nextcloud/occ maintenance:mode --off
           cd ~/html/nextcloud/apps/${APP_ID}
           echo "###### Build app"
-          composer update
           make
           echo "###### make build_release"
           tag=${{ steps.tag.outputs.currenttag }}

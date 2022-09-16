@@ -1,8 +1,11 @@
 {
   "name": "nextcloud/integration_phoenix",
-  "description": "Sps BMI app",
+  "description": "Phoenix integration app",
   "license": "AGPL3",
   "config": {
+    "platform": {
+      "php": "7.4"
+    },
     "optimize-autoloader": true,
     "classmap-authoritative": true,
     "allow-plugins": {
