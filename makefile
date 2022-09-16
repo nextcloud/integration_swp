@@ -1,6 +1,6 @@
 app_name=integration_phoenix
-#app_version=$(version)
-app_version=$(shell grep -e "<version>[0-9.]\+</version>" appinfo/info.xml -o | sed 's/<\/*version>//g')
+app_version=$(version)
+# app_version=$(shell grep -e "<version>[0-9.]\+</version>" appinfo/info.xml -o | sed 's/<\/*version>//g')
 project_dir=.
 build_dir=/tmp/build
 sign_dir=/tmp/sign

@@ -61,14 +61,13 @@ jobs:
           php ~/html/nextcloud/occ app:enable ${APP_ID}
           php ~/html/nextcloud/occ maintenance:mode --off
           cd ~/html/nextcloud/apps/${APP_ID}
-          echo "###### comoser version"
-          composer --version
           echo "###### Build app"
+          composer update
           make
-          echo "###### make appstore"
+          echo "###### make build_release"
           tag=${{ steps.tag.outputs.currenttag }}
           version=${tag/v/}
-          webserveruser=runner occ_dir=~/html/nextcloud version=$version make appstore
+          webserveruser=runner occ_dir=~/html/nextcloud version=$version make build_release
           echo "##[set-output name=version;]$version"
         #env:
         #  APP_CRT: ${{ secrets.APP_CRT }}
