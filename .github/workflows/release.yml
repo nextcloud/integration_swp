@@ -61,9 +61,8 @@ jobs:
           php ~/html/nextcloud/occ app:enable ${APP_ID}
           php ~/html/nextcloud/occ maintenance:mode --off
           cd ~/html/nextcloud/apps/${APP_ID}
-          echo "###### comoser version"
-          composer --version
           echo "###### Build app"
+          composer update
           make
           echo "###### make appstore"
           tag=${{ steps.tag.outputs.currenttag }}
