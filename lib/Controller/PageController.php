@@ -26,15 +26,44 @@ declare(strict_types=1);
 
 namespace OCA\Phoenix\Controller;
 
+use OC\User\NoUserException;
 use OCA\Phoenix\Model\Token;
 use OCA\Phoenix\Service\TokenService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\Http\RedirectResponse;
+use OCP\Files\InvalidPathException;
+use OCP\Files\IRootFolder;
+use OCP\Files\NotFoundException;
+use OCP\Files\NotPermittedException;
 use OCP\IRequest;
+use OCP\IURLGenerator;
 
 class PageController extends Controller {
-	public function __construct($appName, IRequest $request) {
+	/**
+	 * @var IURLGenerator
+	 */
+	private $urlGenerator;
+	/**
+	 * @var IRootFolder
+	 */
+	private $rootFolder;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
+
+	public function __construct($appName,
+								IURLGenerator $urlGenerator,
+								IRootFolder $rootFolder,
+								IRequest $request,
+								?string $userId) {
 		parent::__construct($appName, $request);
+		$this->urlGenerator = $urlGenerator;
+		$this->rootFolder = $rootFolder;
+		$this->userId = $userId;
 	}
 
 	/**
@@ -52,5 +81,37 @@ class PageController extends Controller {
 			'token' => $token,
 			'expires_in_seconds' => ($token->getCreatedAt() + $token->getExpiresIn()) - time()
 		]);
+	}
+
+	/**
+	 * @NoCSRFRequired
+	 * @param string $format
+	 * @return DataResponse|RedirectResponse
+	 * @throws NoUserException
+	 * @throws NotPermittedException
+	 * @throws InvalidPathException
+	 * @throws NotFoundException
+	 */
+	public function createDocument(string $format) {
+		if (!in_array($format, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp'])) {
+			return new DataResponse('', Http::STATUS_BAD_REQUEST);
+		}
+		$userFolder = $this->rootFolder->getUserFolder($this->userId);
+		$newFileName = 'New document.' . $format;
+		if ($userFolder->nodeExists($newFileName)) {
+			$counter = 1;
+			$newFileName = 'New document (' . $counter . ').' . $format;
+			while ($userFolder->nodeExists($newFileName)) {
+				$counter++;
+				$newFileName = 'New document (' . $counter . ').' . $format;
+			}
+		}
+
+		$newFile = $userFolder->newFile($newFileName);
+
+		$finalUrl = $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->linkToRoute('files.View.showFile', ['fileid' => $newFile->getId()])
+		);
+		return new RedirectResponse($finalUrl);
 	}
 }
