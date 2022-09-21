@@ -26,6 +26,7 @@ declare(strict_types=1);
 return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'page#createDocument', 'url' => '/office-create/{format}', 'verb' => 'GET'],
 		['name' => 'Menu#getMenuEntryIcon', 'url' => '/icon', 'verb' => 'GET'],
 	],
 ];
