@@ -84,6 +84,7 @@ class PageController extends Controller {
 	}
 
 	/**
+	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 * @param string $format
 	 * @return DataResponse|RedirectResponse
