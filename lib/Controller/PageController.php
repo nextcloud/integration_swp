@@ -34,6 +34,7 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
+use OCP\Files\Folder;
 use OCP\Files\InvalidPathException;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
@@ -87,28 +88,46 @@ class PageController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 * @param string $format
+	 * @param string|null $directory
+	 * @param string|null $name
 	 * @return DataResponse|RedirectResponse
-	 * @throws NoUserException
-	 * @throws NotPermittedException
 	 * @throws InvalidPathException
+	 * @throws NoUserException
 	 * @throws NotFoundException
+	 * @throws NotPermittedException
 	 */
-	public function createDocument(string $format) {
-		if (!in_array($format, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp'])) {
-			return new DataResponse('', Http::STATUS_BAD_REQUEST);
-		}
-		$userFolder = $this->rootFolder->getUserFolder($this->userId);
-		$newFileName = 'New document.' . $format;
-		if ($userFolder->nodeExists($newFileName)) {
-			$counter = 1;
-			$newFileName = 'New document (' . $counter . ').' . $format;
-			while ($userFolder->nodeExists($newFileName)) {
-				$counter++;
-				$newFileName = 'New document (' . $counter . ').' . $format;
-			}
+	public function createDocument(string $format, ?string $directory = null, ?string $name = null) {
+		if (!in_array($format, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'odg', 'txt', 'md'])) {
+			return new DataResponse('Unsupported format', Http::STATUS_BAD_REQUEST);
 		}
 
-		$newFile = $userFolder->newFile($newFileName);
+		$userFolder = $this->rootFolder->getUserFolder($this->userId);
+
+		// optionally choose target directory
+		if ($directory !== null && $userFolder->nodeExists($directory)) {
+			$targetDir = $userFolder->get($directory);
+			if (!($targetDir instanceof Folder)) {
+				return new DataResponse('Target directory does not exist', Http::STATUS_BAD_REQUEST);
+			}
+		} else {
+			$targetDir = $userFolder;
+		}
+
+		// optionally choose file name
+		if ($name !== null) {
+			$newFileName = $name . '.' . $format;
+		} else {
+			$newFileName = 'New document.' . $format;
+		}
+
+		$uniqueNewFileName = $newFileName;
+		$counter = 1;
+		while ($targetDir->nodeExists($uniqueNewFileName)) {
+			$uniqueNewFileName = preg_replace('/\.' . $format . '$/', ' (' . $counter . ').' . $format, $newFileName);
+			$counter++;
+		}
+
+		$newFile = $targetDir->newFile($uniqueNewFileName);
 
 		$finalUrl = $this->urlGenerator->getAbsoluteURL(
 			$this->urlGenerator->linkToRoute('files.View.showFile', ['fileid' => $newFile->getId()])
