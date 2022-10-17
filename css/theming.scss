@@ -181,3 +181,8 @@ header#header {
 div[role=tooltip] {
 	top: 50px !important;
 }
+
+/* hide call button in Files sidebar */
+#call_button {
+	display: none;
+}
