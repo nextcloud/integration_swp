@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.1 – 2022-11-10
+### Added
+- endpoint (deep link) to create and open Office/Text documents
+
+### Changed
+- disable profile checkbox in personal settings
+- hide "call" button in Talk's Files sidebar
+
 ## 1.0.0 – 2022-09-16
 ### Added
 * first release
