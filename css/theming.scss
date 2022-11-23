@@ -136,6 +136,9 @@ header#header {
 				overflow: unset !important;
 				text-overflow: unset !important;
 				color: #1f1f1f !important;
+				body.theme--dark & {
+					color: #f1f1f1 !important;
+				}
 			}
 			img {
 				width: 20px !important;
