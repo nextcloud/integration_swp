@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.2 – 2022-11-25
+### Fixed
+- text color in central menu with dark theme
+
 ## 1.0.1 – 2022-11-10
 ### Added
 - endpoint (deep link) to create and open Office/Text documents
