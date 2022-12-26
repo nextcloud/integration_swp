@@ -89,8 +89,16 @@ export function makeCentralMenu() {
 	}
 
 	if (menuJson) {
-		const itemList = document.querySelector('#navigation #apps ul')
+		console.debug(document.querySelector('#header'))
+		console.debug(document.querySelector('#header nav'))
+		console.debug(document.querySelector('#header nav.app-menu ul.app-menu-main'))
+		// const headerLeft = document.querySelector('#header .header-left')
+		const nav = document.querySelector('#header nav')
 		// clear the menu content
+		nav.remove()
+		const itemList = document.createElement('ul')
+		// headerLeft.append(itemList)
+		itemList.setAttribute('id', 'appmenu')
 		itemList.innerHTML = ''
 		if (portalUrl) {
 			// insert the portal entry
@@ -110,6 +118,7 @@ export function makeCentralMenu() {
 		})
 
 		const headerLogo = document.querySelector('#header .header-left .logo-icon')
-		headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+		const imageUrl = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo')
+		headerLogo.setAttribute('src', imageUrl)
 	}
 }

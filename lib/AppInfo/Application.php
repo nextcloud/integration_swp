@@ -50,6 +50,7 @@ use OCP\Util;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'integration_phoenix';
+	public const DEBUG = true;
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 

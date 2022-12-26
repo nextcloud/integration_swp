@@ -53,6 +53,7 @@ class PublicShareTemplateLoader implements IEventListener {
 			return;
 		}
 
+		error_log('Add theming!!!!');
 		Util::addStyle(Application::APP_ID, 'theming');
 		Util::addStyle(Application::APP_ID, 'public');
 	}

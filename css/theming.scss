@@ -1,11 +1,21 @@
-header#header { height: 64px !important; }
+:root {
+  --my-header-height: 64px;
+}
+
+body {
+	background-image: unset !important;
+	background-color: gray !important;
+}
+
+#view-toggle {
+	top: calc(var(--my-header-height) + 10px);
+}
+
 body > #content,
 body > #content-vue {
-	padding-top: 64px;
-}
-#app-navigation,
-#app-navigation-vue {
-	top: 64px !important;
+	margin-top: 74px;
+	margin-top: calc(var(--my-header-height) + 10px);
+	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin));
 }
 
 /* fix dashboard header */
@@ -17,16 +27,31 @@ body.dashboard--inverted:not(.dashboard--dark) {
 }
 
 header#header {
+	height: var(--my-header-height) !important;
 	background-color: white !important;
 	border-bottom: 1px solid #dddddd;
 
 	.header-right {
-		.icon-contacts {
-			background-image: var(--icon-contacts-000);
-			opacity: 1 !important;
+		#settings #expand {
+			height: 100%;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		#unified-search .header-menu__trigger,
+		#notifications .header-menu__trigger,
+		#contactsmenu .menutoggle {
+			margin: 0 !important;
+			height: 100% !important;
 		}
 		#contactsmenu {
-			opacity: .88 !important;
+			.menutoggle {
+				opacity: .88 !important;
+				background: url('../img/contacts-dark.svg') no-repeat center !important;
+				background-size: 20px !important;
+				&::before {
+					background-image: unset !important;
+				}
+			}
 			.content .footer {
 				display: none !important;
 			}
@@ -34,11 +59,11 @@ header#header {
 		> div:hover {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
-		.notifications .notifications-button {
+		#notifications .header-menu__trigger {
 			background: url('../img/notifications-dark.svg') no-repeat center !important;
 			background-size: 20px !important;
 			opacity: .865 !important;
-			img {
+			svg {
 				display: none;
 			}
 		}
@@ -172,6 +197,8 @@ header#header {
 
 #nextcloud {
 	padding-left: 128px;
+	margin: 0;
+	height: 100%;
 	.logo {
 		width: 80px;
 		height: 63px;
