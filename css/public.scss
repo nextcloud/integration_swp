@@ -1,0 +1,18 @@
+#header-actions-toggle {
+	margin: 0 !important;
+	height: 100% !important;
+
+	&.icon-more-white {
+		background-image: var(--icon-more-dark) !important;
+		-webkit-mask: unset !important;
+		mask: unset !important;
+		background-size: 20px;
+		opacity: .88 !important;
+	}
+}
+
+footer,
+#talk-sidebar,
+#talk-sidebar-trigger {
+	display: none !important;
+}
