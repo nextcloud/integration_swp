@@ -14,6 +14,6 @@
 	<bugs>https://github.com/nextcloud-gmbh/integration_phoenix/issues</bugs>
 	<repository>https://github.com/nextcloud-gmbh/integration_phoenix</repository>
 	<dependencies>
-		<nextcloud min-version="21" max-version="24"/>
+		<nextcloud min-version="25" max-version="26"/>
 	</dependencies>
 </info>
