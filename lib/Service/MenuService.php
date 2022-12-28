@@ -67,9 +67,9 @@ class MenuService {
 	 */
 	private $tokenService;
 	/**
-	 * @var string
+	 * @var array
 	 */
-	private $backupJson;
+	private $fallbackMenuEntries;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,
@@ -85,59 +85,57 @@ class MenuService {
 		$this->l10nFactory = $l10nFactory;
 		$this->config = $config;
 		$this->tokenService = $tokenService;
-		$this->backupJson = '
-{
-  "categories": [
-    {
-      "identifier": "technical_groupname1",
-      "display_name": "Collaboration",
-      "entries": [
-        {
-          "identifier": "cat1_item1",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
-          "display_name": "Files",
-          "link": "https://duckduckgo.com/one",
-          "description": "1-1",
-          "keywords": "kw1 kw2"
-        },
-        {
-          "identifier": "cat1_item2",
-          "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
-          "display_name": "Chat",
-          "link": "https://duckduckgo.com/two",
-          "description": "1-2",
-          "keywords": "kw3 kw4"
-        }
-      ]
-    },
-    {
-      "identifier": "technical_groupname2",
-      "display_name": "Groupware",
-      "entries": [
-        {
-          "identifier": "cat2_item1",
-          "icon_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg",
-          "display_name": "Mail is a very long item which should be displayed on multiple lines",
-          "link": "https://duckduckgo.com/three",
-          "description": "2-1",
-          "keywords": "kw1 kw2"
-        },
-        {
-          "identifier": "cat2_item2",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
-          "display_name": "Calendar",
-          "link": "https://duckduckgo.com/four",
-          "description": "2-2",
-          "keywords": "kw3 kw4"
-        }
-      ]
-    }
-  ]
-}
-				';
+		$this->fallbackMenuEntries = [
+			'categories' => [
+				[
+					'identifier' => 'technical_groupname1',
+					'display_name' => 'Collaboration',
+					'entries' => [
+						[
+							'identifier' => 'cat1_item1',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Files',
+							'link' => 'https://duckduckgo.com/one',
+							'description' => '1-1',
+							'keywords' => 'kw1 kw2'
+						],
+						[
+							'identifier' => 'cat1_item2',
+							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
+							'display_name' => 'Chat',
+							'link' => 'https://duckduckgo.com/two',
+							'description' => '1-2',
+							'keywords' => 'kw3 kw4'
+						]
+					]
+				],
+				[
+					'identifier' => 'technical_groupname2',
+					'display_name' => 'Groupware',
+					'entries' => [
+						[
+							'identifier' => 'cat2_item1',
+							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
+							'display_name' => 'Mail is a very long item which should be displayed on multiple lines',
+							'link' => 'https://duckduckgo.com/three',
+							'description' => '2-1',
+							'keywords' => 'kw1 kw2'
+						],
+						[
+							'identifier' => 'cat2_item2',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Calendar',
+							'link' => 'https://duckduckgo.com/four',
+							'description' => '2-2',
+							'keywords' => 'kw3 kw4',
+						]
+					]
+				]
+			]
+		];
 	}
 
-	public function getMenuJson(Token $token): ?string {
+	public function getMenuJson(Token $token): ?array {
 		try {
 			$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
 			if ($jsonMenuUrl !== '') {
@@ -189,14 +187,14 @@ class MenuService {
 					$this->cache->set($cacheKey, $cachedMenu, $cacheDuration);
 				}
 
-				return $cachedMenu;
+				return json_decode($cachedMenu, true);
 			}
 		} catch (Exception | Throwable $e) {
 			$this->logger->error('Error while fetching navigation json content', ['exception' => $e]);
 		}
 
 		// backup dummy menu value
-		return $this->backupJson;
+		return $this->fallbackMenuEntries;
 	}
 
 	/**
@@ -207,6 +205,9 @@ class MenuService {
 	public function getMenuEntryIcon(string $itemId): ?array {
 		$token = $this->tokenService->getToken();
 		$menuJson = $this->getMenuJson($token);
+		if ($menuJson === null) {
+			return null;
+		}
 		$url = $this->findItemIconUrl($menuJson, $itemId);
 		if ($url === null) {
 			return null;
@@ -226,12 +227,11 @@ class MenuService {
 	}
 
 	/**
-	 * @param string $menuJson
+	 * @param array $menu
 	 * @param string $itemId
 	 * @return string|null
 	 */
-	private function findItemIconUrl(string $menuJson, string $itemId): ?string {
-		$menu = json_decode($menuJson, true);
+	private function findItemIconUrl(array $menu, string $itemId): ?string {
 		foreach ($menu['categories'] as $category) {
 			foreach ($category['entries'] as $entry) {
 				if (($entry['identifier'] ?? '') === $itemId) {

@@ -53,7 +53,6 @@ class PublicShareTemplateLoader implements IEventListener {
 			return;
 		}
 
-		error_log('Add script!!!!');
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-public');
 	}
 }
