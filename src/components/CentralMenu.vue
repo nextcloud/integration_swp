@@ -130,6 +130,8 @@ export default {
 
 ::v-deep .app-menu-more .button-vue--vue-tertiary {
 	background-color: transparent !important;
+	height: 64px;
+	border-radius: 0;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.1) !important;
@@ -157,6 +159,12 @@ export default {
 	transform: unset !important;
 	.v-popper__arrow-container {
 		display: none;
+	}
+	.v-popper__inner {
+		padding: 0 !important;
+		ul {
+			padding: 12px 0;
+		}
 	}
 }
 </style>
