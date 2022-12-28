@@ -25,17 +25,10 @@ import { loadState } from '@nextcloud/initial-state'
 import { imagePath } from '@nextcloud/router'
 
 import Vue from 'vue'
-import AppMenu from './components/AppMenu.vue'
-
-const DEBUG = true
+import CentralMenu from './components/CentralMenu.vue'
 
 export function makeCentralMenu() {
-	// const portalUrl = loadState('integration_phoenix', 'portal-url')
-	// if (DEBUG) console.debug('PORTAL URL', portalUrl)
 	const menu = loadState('integration_phoenix', 'menu-json')
-	if (DEBUG) console.debug('menu json :::', menu)
-	// const menuTabnameAttribute = loadState('integration_phoenix', 'menu-tabname-attribute')
-	// if (DEBUG) console.debug('menu tabname', menuTabnameAttribute)
 
 	if (menu !== null) {
 		console.debug(document.querySelector('#header'))
@@ -46,7 +39,7 @@ export function makeCentralMenu() {
 		const el = document.createElement('div')
 		headerLeft.append(el)
 
-		const View = Vue.extend(AppMenu)
+		const View = Vue.extend(CentralMenu)
 		new View({
 			// propsData: { title: widget.title },
 		}).$mount(el)

@@ -27,19 +27,14 @@
 			<template #icon>
 				<GridIcon class="menu-icon" />
 			</template>
-			<NcActionLink v-for="entry in entryList"
+			<MenuEntry v-if="portalEntry"
+				:entry="portalEntry"
+				:proxy-image="false" />
+			<MenuItem
+				v-for="entry in entryList"
 				:key="entry.identifier"
-				:aria-label="entry.displayName"
-				:aria-current="entry.active ? 'page' : false"
-				:href="entry.href"
-				class="app-menu-popover-entry">
-				<template #icon>
-					<div class="app-icon">
-						<img :src="entry.icon" alt="">
-					</div>
-				</template>
-				{{ entry.displayName }}
-			</NcActionLink>
+				:title="entry.description"
+				:entry="entry" />
 		</NcActions>
 	</nav>
 </template>
@@ -47,37 +42,72 @@
 <script>
 import GridIcon from './icons/GridIcon.vue'
 
-import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
-import NcActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import MenuItem from './MenuItem.vue'
+import MenuEntry from './MenuEntry.vue'
 
+import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+
+import { imagePath } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 
+const DEBUG = true
+
 export default {
-	name: 'AppMenu',
+	name: 'CentralMenu',
 	components: {
+		MenuEntry,
 		GridIcon,
 		NcActions,
-		NcActionLink,
+		MenuItem,
 	},
 	data() {
 		return {
 			menuContent: loadState('integration_phoenix', 'menu-json', {}),
 			portalUrl: loadState('integration_phoenix', 'portal-url'),
+			menuTabnameAttribute: loadState('integration_phoenix', 'menu-tabname-attribute'),
 		}
 	},
 	computed: {
+		portalEntry() {
+			if (this.portalUrl) {
+				return {
+					identifier: 'portal',
+					icon_url: imagePath('integration_phoenix', 'grid.svg'),
+					display_name: t('integration_phoenix', 'Portal'),
+					link: this.portalUrl,
+					description: t('integration_phoenix', 'Phoenix portal'),
+					keywords: 'kw0',
+				}
+			}
+			return null
+		},
 		entryList() {
 			const entries = []
 			Object.values(this.menuContent.categories).forEach(c => {
 				entries.push({
 					identifier: c.identifier,
-					displayName: c.display_name,
+					display_name: c.display_name,
+					isCategory: true,
 				})
+				entries.push(...c.entries.map(e => {
+					return {
+						...e,
+						isCategory: false,
+						target: (this.menuTabnameAttribute && e[this.menuTabnameAttribute])
+							? e[this.menuTabnameAttribute]
+							: '_blank',
+					}
+				}))
 			})
 			return entries
 		},
 	},
 	mounted() {
+		if (DEBUG) {
+			console.debug('PORTAL URL', this.portalUrl)
+			console.debug('menu json :::', this.menuContent)
+			console.debug('menu tabname', this.menuTabnameAttribute)
+		}
 	},
 	beforeDestroy() {
 	},
@@ -110,6 +140,12 @@ export default {
 		//outline: none !important;
 	}
 }
+
+/*
+::v-deep .action.entry.active {
+	background-color: unset !important;
+}
+*/
 
 ::v-deep .action-item.action-item--open .action-item__menutoggle {
 	background-color: rgba(0, 0, 0, 0.1) !important;
