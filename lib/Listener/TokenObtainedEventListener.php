@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
  * @author Julien Veyssier <eneiluj@posteo.net>
@@ -36,27 +36,19 @@ use Psr\Log\LoggerInterface;
 
 class TokenObtainedEventListener implements IEventListener {
 
-	/** @var IClientService */
-	private $clientService;
+	private IClientService $clientService;
+	private LoggerInterface $logger;
+	private TokenService $tokenService;
+	private OxMailService $mailService;
 
-	/** @var TokenService */
-	private $tokenService;
-
-	/** @var OxMailService */
-	private $mailService;
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-
-	public function __construct(IClientService $clientService,
+	public function __construct(IClientService  $clientService,
 								LoggerInterface $logger,
-								TokenService $tokenService,
-								OxMailService $mailService) {
+								TokenService    $tokenService,
+								OxMailService   $mailService) {
 		$this->clientService = $clientService;
+		$this->logger = $logger;
 		$this->tokenService = $tokenService;
 		$this->mailService = $mailService;
-		$this->logger = $logger;
 	}
 
 	public function handle(Event $event): void {

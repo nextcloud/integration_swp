@@ -33,10 +33,8 @@ use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IRequest;
 
 class MenuController extends Controller {
-	/**
-	 * @var MenuService
-	 */
-	private $menuService;
+
+	private MenuService $menuService;
 
 	public function __construct($appName,
 								IRequest $request,
@@ -55,7 +53,11 @@ class MenuController extends Controller {
 		if ($icon === null) {
 			return new DataDisplayResponse('', Http::STATUS_NOT_FOUND);
 		} else {
-			$response = new DataDisplayResponse($icon['body'], Http::STATUS_OK, ['Content-Type' => $icon['mimetype']]);
+			$response = new DataDisplayResponse(
+				$icon['body'],
+				Http::STATUS_OK,
+				['Content-Type' => $icon['mimetype']]
+			);
 			$response->cacheFor(60 * 60 * 24);
 			return $response;
 		}

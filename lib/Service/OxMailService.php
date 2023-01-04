@@ -36,16 +36,12 @@ use Psr\Log\LoggerInterface;
 
 class OxMailService extends OxBaseService {
 
-	/** @var IConfig */
-	private $config;
-	/** @var IClientService */
-	private $clientService;
-	/** @var LoggerInterface */
-	private $logger;
 	/** @var ICache */
 	private $cache;
-	/** @var string|null */
-	private $userId;
+	private IConfig $config;
+	private IClientService $clientService;
+	private LoggerInterface $logger;
+	private ?string $userId;
 
 	public function __construct(IConfig $config,
 								IClientService $clientService,
@@ -54,10 +50,10 @@ class OxMailService extends OxBaseService {
 								ICacheFactory $cacheFactory,
 								?string $userId = null) {
 		parent::__construct($config, $tokenService, $logger, $userId);
+		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_unread');
 		$this->config = $config;
 		$this->clientService = $clientService;
 		$this->logger = $logger;
-		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_unread');
 		$this->userId = $userId;
 	}
 

@@ -45,24 +45,15 @@ class TokenService {
 	private const INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS = 3600;
 	private const SESSION_TOKEN_KEY = Application::APP_ID . '-user-token';
 
-	/** @var ISession */
-	private $session;
 	/** @var IClient */
 	private $client;
-	/** @var IURLGenerator */
-	private $urlGenerator;
-	/** @var IUserSession */
-	private $userSession;
-	/** @var IRequest */
-	private $request;
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-	/**
-	 * @var ICache
-	 */
+	/** @var ICache */
 	private $cache;
+	private ISession $session;
+	private IURLGenerator $urlGenerator;
+	private IUserSession $userSession;
+	private LoggerInterface $logger;
+	private IRequest $request;
 
 	public function __construct(ISession $session,
 								IClientService $client,
@@ -71,13 +62,13 @@ class TokenService {
 								LoggerInterface $logger,
 								IRequest $request,
 								ICacheFactory $cacheFactory) {
-		$this->session = $session;
 		$this->client = $client->newClient();
+		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
+		$this->session = $session;
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
-		$this->request = $request;
 		$this->logger = $logger;
-		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
+		$this->request = $request;
 	}
 
 	public function storeToken(array $tokenData): Token {

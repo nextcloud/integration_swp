@@ -43,33 +43,21 @@ class MenuService {
 	/** @var IClient */
 	private $client;
 	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-	/**
 	 * @var ICache
 	 */
 	private $cache;
-	/**
-	 * @var IFactory
-	 */
-	private $l10nFactory;
-	/**
-	 * @var IUserSession
-	 */
-	private $userSession;
 	/**
 	 * @var IConfig
 	 */
 	private $config;
 	/**
-	 * @var TokenService
-	 */
-	private $tokenService;
-	/**
 	 * @var array
 	 */
 	private $fallbackMenuEntries;
+	private IUserSession $userSession;
+	private LoggerInterface $logger;
+	private IFactory $l10nFactory;
+	private TokenService $tokenService;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,
@@ -79,12 +67,7 @@ class MenuService {
 								TokenService $tokenService,
 								ICacheFactory $cacheFactory) {
 		$this->client = $client->newClient();
-		$this->userSession = $userSession;
-		$this->logger = $logger;
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
-		$this->l10nFactory = $l10nFactory;
-		$this->config = $config;
-		$this->tokenService = $tokenService;
 		$this->fallbackMenuEntries = [
 			'categories' => [
 				[
@@ -133,6 +116,11 @@ class MenuService {
 				]
 			]
 		];
+		$this->userSession = $userSession;
+		$this->logger = $logger;
+		$this->l10nFactory = $l10nFactory;
+		$this->config = $config;
+		$this->tokenService = $tokenService;
 	}
 
 	public function getMenuJson(Token $token): ?array {

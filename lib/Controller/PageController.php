@@ -23,7 +23,6 @@
 
 declare(strict_types=1);
 
-
 namespace OCA\Phoenix\Controller;
 
 use OC\User\NoUserException;
@@ -43,23 +42,15 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 
 class PageController extends Controller {
-	/**
-	 * @var IURLGenerator
-	 */
-	private $urlGenerator;
-	/**
-	 * @var IRootFolder
-	 */
-	private $rootFolder;
-	/**
-	 * @var string|null
-	 */
-	private $userId;
+
+	private IURLGenerator $urlGenerator;
+	private IRootFolder $rootFolder;
+	private ?string $userId;
 
 	public function __construct($appName,
+								IRequest $request,
 								IURLGenerator $urlGenerator,
 								IRootFolder $rootFolder,
-								IRequest $request,
 								?string $userId) {
 		parent::__construct($appName, $request);
 		$this->urlGenerator = $urlGenerator;

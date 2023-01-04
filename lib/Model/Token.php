@@ -37,7 +37,6 @@ class Token implements JsonSerializable {
 	private $expiresIn;
 	/** @var string */
 	private $refreshToken;
-
 	/** @var int */
 	private $createdAt;
 	/** @var int|null */

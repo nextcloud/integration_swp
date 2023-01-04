@@ -33,10 +33,7 @@ use OCP\EventDispatcher\IEventListener;
 
 class ContactInteractionSpsListener implements IEventListener {
 
-	/**
-	 * @var OxContactsService
-	 */
-	private $contactsService;
+	private OxContactsService $contactsService;
 
 	public function __construct(OxContactsService $contactsService) {
 		$this->contactsService = $contactsService;
