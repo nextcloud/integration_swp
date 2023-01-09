@@ -18,6 +18,7 @@ body.dashboard--inverted:not(.dashboard--dark) {
 
 header#header {
 	background-color: white !important;
+	background-image: unset !important;
 	border-bottom: 1px solid #dddddd;
 
 	.header-right {
@@ -35,11 +36,12 @@ header#header {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
 		.notifications .notifications-button {
-			background: url('../img/notifications-dark.svg') no-repeat center !important;
-			background-size: 20px !important;
+			//background: url('../img/notifications-dark.svg') no-repeat center !important;
+			//background-size: 20px !important;
 			opacity: .865 !important;
 			img {
-				display: none;
+				//display: none;
+				filter: invert(100%);
 			}
 		}
 		#unified-search {
