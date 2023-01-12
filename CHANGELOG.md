@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.5 – 2023-12-01
+### Fixed
+- generic parsing of Ox contact search response (with or without 'data' prop)
+
 ## 1.0.4 – 2023-12-01
 ### Fixed
 - fix the header notification icon, use the real one (inverted)
