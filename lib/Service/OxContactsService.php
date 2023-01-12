@@ -93,8 +93,18 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			$this->logger->error('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody, ['app' => Application::APP_ID]);
-			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
+			$this->logger->warning('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody, ['app' => Application::APP_ID]);
+			$parsedResponse = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
+			if ($parsedResponse === false) {
+				$this->logger->error('Invalid OX contact API response', ['app' => Application::APP_ID]);
+				return [];
+			}
+			// apparently we can get an object with the contact list in the 'data' prop
+			if (isset($parsedResponse['data']) && is_array($parsedResponse['data'])) {
+				return $parsedResponse['data'];
+			}
+			// if we got a list
+			return $parsedResponse;
 		} catch (Exception $e) {
 			$this->logger->error(
 				'Failed to fetch contacts for user ' . $this->userId,
