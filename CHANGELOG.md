@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.0.3 – 2023-12-01
+## 1.0.4 – 2023-12-01
 ### Fixed
 - fix the header notification icon, use the real one (inverted)
 
