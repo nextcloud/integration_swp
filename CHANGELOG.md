@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.3 – 2023-12-01
+### Fixed
+- fix the header notification icon
+
 ## 1.0.2 – 2022-11-25
 ### Fixed
 - text color in central menu with dark theme
