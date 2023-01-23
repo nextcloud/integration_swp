@@ -144,6 +144,7 @@ class Application extends App implements IBootstrap {
 			});
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
+			Util::addStyle(self::APP_ID, 'theming');
 		});
 	}
 

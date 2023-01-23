@@ -1,0 +1,127 @@
+:root {
+  --my-header-height: 64px;
+}
+
+body {
+  background-image: unset !important;
+  background-color: gray !important;
+}
+
+#view-toggle {
+  top: calc(var(--my-header-height) + 10px);
+}
+
+body > #content,
+body > #content-vue {
+  margin-top: 74px;
+  margin-top: calc(var(--my-header-height) + 10px);
+  height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin));
+}
+
+/* fix dashboard header */
+body.dashboard--inverted:not(.dashboard--dark) #appmenu .icon-more-white,
+body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings) > :first-child {
+  filter: unset !important;
+}
+
+header#header {
+  height: var(--my-header-height) !important;
+  background-color: white !important;
+  border-bottom: 1px solid #dddddd;
+}
+header#header .header-right #settings #expand {
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+header#header .header-right #unified-search .header-menu__trigger,
+header#header .header-right #notifications .header-menu__trigger,
+header#header .header-right #contactsmenu .menutoggle {
+  margin: 0 !important;
+  height: 100% !important;
+}
+header#header .header-right #contactsmenu .menutoggle {
+  opacity: 0.88 !important;
+  background: url("../img/contacts-dark.svg") no-repeat center !important;
+  background-size: 20px !important;
+}
+header#header .header-right #contactsmenu .menutoggle::before {
+  background-image: unset !important;
+}
+header#header .header-right #contactsmenu .content .footer {
+  display: none !important;
+}
+header#header .header-right > div:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+header#header .header-right #notifications .header-menu__trigger {
+  background: url("../img/notifications-dark.svg") no-repeat center !important;
+  background-size: 20px !important;
+  opacity: 0.865 !important;
+}
+header#header .header-right #notifications .header-menu__trigger svg {
+  display: none;
+}
+header#header .header-right #unified-search > a {
+  opacity: 1 !important;
+}
+header#header .header-right #unified-search svg {
+  fill: #1f1f1f;
+}
+header#header .header-left > nav > #navigation {
+  position: fixed;
+  left: 12px;
+  top: 64px;
+  transform: unset;
+  min-width: 260px;
+  max-width: 420px;
+  width: max-content;
+  /* Hide triangle on active app and dropdown menu */
+}
+header#header .header-left > nav > #navigation:after {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  #header .header-left > nav > #navigation {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+nav.app-menu {
+  display: none !important;
+}
+
+.icon-more-white {
+  background-color: #1f1f1f;
+  /* background-image: url('../img/grid.svg') !important; */
+  background-image: unset !important;
+  -webkit-mask: url("../img/grid.svg") no-repeat 50% 50%;
+  mask: url("../img/grid.svg") no-repeat 50% 50%;
+  background-size: 20px;
+}
+
+#nextcloud {
+  padding-left: 128px;
+  margin: 0;
+  height: 100%;
+}
+#nextcloud .logo {
+  width: 80px;
+  height: 63px;
+  margin: 0 24px 0 24px;
+  left: 0;
+  top: 0;
+  background-image: url("../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg");
+}
+
+div[role=tooltip] {
+  top: 50px !important;
+}
+
+/* hide call button in Files sidebar */
+#call_button {
+  display: none;
+}
+
+/*# sourceMappingURL=theming.css.map */
