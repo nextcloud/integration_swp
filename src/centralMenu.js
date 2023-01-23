@@ -22,7 +22,6 @@
 
 import './bootstrap.js'
 import { loadState } from '@nextcloud/initial-state'
-import { imagePath } from '@nextcloud/router'
 
 import Vue from 'vue'
 import CentralMenu from './components/CentralMenu.vue'
@@ -43,9 +42,5 @@ export function makeCentralMenu() {
 		new View({
 			// propsData: { title: widget.title },
 		}).$mount(el)
-
-		const headerLogo = document.querySelector('#header .header-left .logo-icon')
-		const imageUrl = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo')
-		headerLogo.setAttribute('src', imageUrl)
 	}
 }
