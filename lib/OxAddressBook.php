@@ -107,14 +107,14 @@ class OxAddressBook implements IAddressBook {
 		}
 
 		// format results
-		if (!isset($result['data']) || !is_array($result['data'])) {
+		if (!is_array($result)) {
 			return [];
 		}
 
 		// get rid of contacts that come from users (user_id/524 field is 0)
 		$filteredResult = array_filter(
-			$result['data'],
-			function ($c) {
+			$result,
+			static function ($c) {
 				return $c[6] === 0;
 			}
 		);
