@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## 2.0.4 – 2023-01-24
+### Changed
+- more meaningful ox contact api request errors
+
+### Fixed
+- more robust logo style (changes between 25.0.0 and 25.0.4)
+- contact header menu entry style for NC < 25.0.4
+- central menu long category names style
+
 ## 2.0.3 – 2023-01-24
 ### Fixed
 - contact search
