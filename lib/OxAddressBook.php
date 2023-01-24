@@ -104,7 +104,7 @@ class OxAddressBook implements IAddressBook {
 		$filteredResult = array_filter(
 			$result,
 			static function ($c) {
-				return $c[6] === 0;
+				return is_array($c) && isset($c[6]) && $c[6] === 0;
 			}
 		);
 

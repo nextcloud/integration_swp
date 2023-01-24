@@ -90,6 +90,8 @@ class OxContactsService extends OxBaseService {
 			$requestOptions['body'] = json_encode($requestBody);
 			$response = $client->put($searchUrl, $requestOptions);
 			$responseBody = $response->getBody();
+//			$responseBody = '{"error":"An error occurred inside the server which prevented it from fulfilling the request.","error_params":["An error occurred while trying to validate an access token."],"categories":"ERROR","category":8,"code":"OAUTH_PROVIDER-0001","error_id":"-1053588376-32","error_desc":"An error occurred: An error occurred while trying to validate an access token."}';
+//			$responseBody = '{"data":[["159",1674550803641,"hans.muestermann@muell.com","hans.muestermann@muell.com",null,null,0],["158",1674549567864,"Mustermann, Hans","hans.muestermann@muell.com",null,null,0],["21",1673951077455,"Hans F","hans.f@dev.px2.own-data.org","","",22],["83",1673728365633,"Hans F (h.f-admin)","h.f-admin@dev.px2.own-data.org","","",84]],"timestamp":1674547203641}';
 			$this->logger->warning('!!! Fetch contacts for user ' . $this->userId . ', BODY: ' . $responseBody, ['app' => Application::APP_ID]);
 			$parsedResponse = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 			if ($parsedResponse === false) {
@@ -99,6 +101,10 @@ class OxContactsService extends OxBaseService {
 			// apparently we can get an object with the contact list in the 'data' prop
 			if (isset($parsedResponse['data']) && is_array($parsedResponse['data'])) {
 				return $parsedResponse['data'];
+			}
+			if (isset($parsedResponse['error']) || isset($parsedResponse['error_params'])) {
+				$this->logger->error('OX contact API error', ['ox-response' => $parsedResponse, 'app' => Application::APP_ID]);
+				return [];
 			}
 			// if we got a list
 			return $parsedResponse;
