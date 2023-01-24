@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## 2.0.3 – 2023-01-24
+### Fixed
+- contact search
+
 ## 2.0.2 – 2023-01-24
 ### Changed
 - disable cache if system config debug enabled
