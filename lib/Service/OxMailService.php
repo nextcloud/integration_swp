@@ -65,9 +65,10 @@ class OxMailService extends OxBaseService {
 		if (!$this->checkSetup()) {
 			return;
 		}
+		$debug = $this->config->getSystemValueBool('debug', false);
 
 		$cachedUnreadCount = $this->cache->get($this->userId);
-		if ($cachedUnreadCount !== null) {
+		if (!$debug && $cachedUnreadCount !== null) {
 			return;
 		}
 

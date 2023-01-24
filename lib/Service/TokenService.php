@@ -35,6 +35,7 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
+use OCP\IConfig;
 use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
@@ -63,6 +64,10 @@ class TokenService {
 	 * @var ICache
 	 */
 	private $cache;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
 
 	public function __construct(ISession $session,
 								IClientService $client,
@@ -70,6 +75,7 @@ class TokenService {
 								IUserSession $userSession,
 								LoggerInterface $logger,
 								IRequest $request,
+								IConfig $config,
 								ICacheFactory $cacheFactory) {
 		$this->session = $session;
 		$this->client = $client->newClient();
@@ -78,6 +84,7 @@ class TokenService {
 		$this->request = $request;
 		$this->logger = $logger;
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
+		$this->config = $config;
 	}
 
 	public function storeToken(array $tokenData): Token {
@@ -152,7 +159,8 @@ class TokenService {
 	public function obtainDiscovery(Provider $provider): array {
 		$cacheKey = 'discovery-' . $provider->getId();
 		$cachedDiscovery = $this->cache->get($cacheKey);
-		if ($cachedDiscovery === null) {
+		$debug = $this->config->getSystemValueBool('debug', false);
+		if ($debug || $cachedDiscovery === null) {
 			$url = $provider->getDiscoveryEndpoint();
 			$this->logger->debug('Obtaining discovery endpoint: ' . $url, ['app' => Application::APP_ID]);
 

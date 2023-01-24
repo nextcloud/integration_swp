@@ -99,7 +99,7 @@ class TokenObtainedEventListener implements IEventListener {
 		$this->logger->debug('Storing the token: ' . json_encode($tokenData), ['app' => Application::APP_ID]);
 		$this->tokenService->storeToken(array_merge($tokenData, ['provider_id' => $provider->getId()]));
 
-		$this->mailService->resetCache();
-		$this->mailService->fetchUnreadCounter();
+//		$this->mailService->resetCache();
+//		$this->mailService->fetchUnreadCounter();
 	}
 }
