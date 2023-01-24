@@ -15,7 +15,7 @@ body > #content,
 body > #content-vue {
 	margin-top: 74px;
 	margin-top: calc(var(--my-header-height) + 10px);
-	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin));
+	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - 10px);
 }
 
 /* fix dashboard header */
