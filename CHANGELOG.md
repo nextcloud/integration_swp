@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.9 – 2023-12-24
+### Fixed
+- contact search
+
 ## 1.0.8 – 2023-12-24
 ### Changed
 - disable cache if system config debug enabled
