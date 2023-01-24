@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.7 – 2023-12-24
+### Fixed
+- navigation height in Files
+
 ## 1.0.6 – 2023-12-23
 ### Fixed
 - load style earlier
