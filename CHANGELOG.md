@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## 2.0.1 – 2023-01-24
+### Changed
+- disable cache if system config debug enabled
+
+### Fixed
+- header logo image
+- compile scss to css and load it with Util::addStyle instead of importing it in scripts (fixes late style)
+- fix central menu height
+- fix right header menus top margin
+- fix notification/contacts icons
+- fix main content height
+
 ## 2.0.0 – 2023-01-17
 ### Changed
 - compatible with NC 25-26
