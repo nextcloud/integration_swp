@@ -52,6 +52,9 @@ header#header .header-right #contactsmenu .content .footer {
 header#header .header-right > div:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+header#header .header-right #contactsmenu .menutoggle {
+  filter: invert(100%);
+}
 header#header .header-right #contactsmenu .header-menu__trigger,
 header#header .header-right #notifications .header-menu__trigger {
   opacity: 0.865 !important;
