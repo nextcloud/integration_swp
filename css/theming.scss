@@ -118,17 +118,26 @@ nav.app-menu {
 	background-size: 20px;
 }
 
-#nextcloud {
-	padding-left: 128px;
-	margin: 0;
-	height: 100%;
-	.logo {
-		width: 80px;
-		height: 63px;
-		margin: 0 24px 0 24px;
-		left: 0;
-		top: 0;
-		background-image: url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
+header#header {
+	.header-left {
+		#nextcloud {
+			padding-left: 128px;
+			margin: 0;
+			height: 100%;
+			background: center no-repeat url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
+			// don't use the .logo because it was an img and became a div, better hide it an style the link
+			.logo {
+				display: none;
+			}
+			//.logo {
+			//	width: 80px;
+			//	height: 63px;
+			//	margin: 0 24px 0 24px;
+			//	left: 0;
+			//	top: 0;
+			//	background-image: url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
+			//}
+		}
 	}
 }
 

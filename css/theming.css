@@ -104,18 +104,14 @@ nav.app-menu {
   background-size: 20px;
 }
 
-#nextcloud {
+header#header .header-left #nextcloud {
   padding-left: 128px;
   margin: 0;
   height: 100%;
+  background: center no-repeat url("../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg");
 }
-#nextcloud .logo {
-  width: 80px;
-  height: 63px;
-  margin: 0 24px 0 24px;
-  left: 0;
-  top: 0;
-  background-image: url("../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg");
+header#header .header-left #nextcloud .logo {
+  display: none;
 }
 
 div[role=tooltip] {
