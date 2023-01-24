@@ -6,6 +6,7 @@ body > #content-vue {
 #app-navigation,
 #app-navigation-vue {
 	top: 64px !important;
+	height: calc(100% - 64px) !important;
 }
 
 /* fix dashboard header */
