@@ -89,8 +89,8 @@ class MenuService {
 							'link' => 'https://duckduckgo.com/two',
 							'description' => '1-2',
 							'keywords' => 'kw3 kw4'
-						]
-					]
+						],
+					],
 				],
 				[
 					'identifier' => 'technical_groupname2',
@@ -111,9 +111,55 @@ class MenuService {
 							'link' => 'https://duckduckgo.com/four',
 							'description' => '2-2',
 							'keywords' => 'kw3 kw4',
-						]
-					]
-				]
+						],
+					],
+				],
+				[
+					'identifier' => 'technical_groupname3',
+					'display_name' => 'Whatever',
+					'entries' => [
+						[
+							'identifier' => 'cat3_item1',
+							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
+							'display_name' => 'Contacts',
+							'link' => 'https://duckduckgo.com/five',
+							'description' => '3-1',
+							'keywords' => 'kw1 kw2 kw3'
+						],
+						[
+							'identifier' => 'cat3_item2',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Activity',
+							'link' => 'https://duckduckgo.com/six',
+							'description' => '3-2',
+							'keywords' => 'kw3 kw4 kw5',
+						],
+						[
+							'identifier' => 'cat3_item3',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Activity',
+							'link' => 'https://duckduckgo.com/six',
+							'description' => '3-2',
+							'keywords' => 'kw3 kw4 kw5',
+						],
+						[
+							'identifier' => 'cat3_item4',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Activity',
+							'link' => 'https://duckduckgo.com/six',
+							'description' => '3-2',
+							'keywords' => 'kw3 kw4 kw5',
+						],
+						[
+							'identifier' => 'cat3_item5',
+							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
+							'display_name' => 'Activity',
+							'link' => 'https://duckduckgo.com/six',
+							'description' => '3-2',
+							'keywords' => 'kw3 kw4 kw5',
+						],
+					],
+				],
 			]
 		];
 		$this->userSession = $userSession;

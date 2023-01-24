@@ -162,6 +162,7 @@ export default {
 	}
 	.v-popper__inner {
 		padding: 0 !important;
+		max-height: calc(80vh - 16px) !important;
 		ul {
 			padding: 12px 0;
 		}
