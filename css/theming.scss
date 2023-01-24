@@ -37,21 +37,19 @@ header#header {
 			margin-top: 0;
 			margin-bottom: 0;
 		}
+		#settings #expanddiv,
+		#unified-search #header-menu-unified-search,
+		#notifications #header-menu-notifications,
+		#contactsmenu #header-menu-contactsmenu {
+			top: 64px !important;
+		}
 		#unified-search .header-menu__trigger,
 		#notifications .header-menu__trigger,
-		#contactsmenu .menutoggle {
+		#contactsmenu .header-menu__trigger {
 			margin: 0 !important;
 			height: 100% !important;
 		}
 		#contactsmenu {
-			.menutoggle {
-				opacity: .88 !important;
-				background: url('../img/contacts-dark.svg') no-repeat center !important;
-				background-size: 20px !important;
-				&::before {
-					background-image: unset !important;
-				}
-			}
 			.content .footer {
 				display: none !important;
 			}
@@ -59,12 +57,15 @@ header#header {
 		> div:hover {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
+		#contactsmenu .header-menu__trigger,
 		#notifications .header-menu__trigger {
-			background: url('../img/notifications-dark.svg') no-repeat center !important;
-			background-size: 20px !important;
+			//background: url('../img/notifications-dark.svg') no-repeat center !important;
+			//background-size: 20px !important;
 			opacity: .865 !important;
-			svg {
-				display: none;
+			svg,
+			img {
+				//display: none;
+				filter: invert(100%);
 			}
 		}
 		#unified-search {
