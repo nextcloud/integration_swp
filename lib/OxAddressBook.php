@@ -85,7 +85,8 @@ class OxAddressBook implements IAddressBook {
 		], JSON_THROW_ON_ERROR));
 		$hit = $this->cache->get($cacheKey);
 
-		if ($hit !== null) {
+		$debug = $this->config->getSystemValueBool('debug', false);
+		if (!$debug && $hit !== null) {
 			return $hit;
 		}
 		try {

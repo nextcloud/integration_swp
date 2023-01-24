@@ -35,6 +35,7 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
+use OCP\IConfig;
 use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
@@ -45,15 +46,14 @@ class TokenService {
 	private const INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS = 3600;
 	private const SESSION_TOKEN_KEY = Application::APP_ID . '-user-token';
 
-	/** @var IClient */
-	private $client;
-	/** @var ICache */
-	private $cache;
 	private ISession $session;
 	private IURLGenerator $urlGenerator;
 	private IUserSession $userSession;
 	private LoggerInterface $logger;
 	private IRequest $request;
+	private IConfig $config;
+	private IClient $client;
+	private ICache $cache;
 
 	public function __construct(ISession $session,
 								IClientService $client,
@@ -61,6 +61,7 @@ class TokenService {
 								IUserSession $userSession,
 								LoggerInterface $logger,
 								IRequest $request,
+								IConfig $config,
 								ICacheFactory $cacheFactory) {
 		$this->client = $client->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
@@ -69,6 +70,7 @@ class TokenService {
 		$this->userSession = $userSession;
 		$this->logger = $logger;
 		$this->request = $request;
+		$this->config = $config;
 	}
 
 	public function storeToken(array $tokenData): Token {
@@ -143,7 +145,8 @@ class TokenService {
 	public function obtainDiscovery(Provider $provider): array {
 		$cacheKey = 'discovery-' . $provider->getId();
 		$cachedDiscovery = $this->cache->get($cacheKey);
-		if ($cachedDiscovery === null) {
+		$debug = $this->config->getSystemValueBool('debug', false);
+		if ($debug || $cachedDiscovery === null) {
 			$url = $provider->getDiscoveryEndpoint();
 			$this->logger->debug('Obtaining discovery endpoint: ' . $url, ['app' => Application::APP_ID]);
 

@@ -131,7 +131,8 @@ class MenuService {
 				$providerId = $token->getProviderId();
 				$cacheKey = 'menuitems-' . $providerId;
 				$cachedMenu = $this->cache->get($cacheKey);
-				if ($cachedMenu === null) {
+				$debug = $this->config->getSystemValueBool('debug', false);
+				if ($debug || $cachedMenu === null) {
 					$lang = $this->l10nFactory->getUserLanguage($this->userSession->getUser());
 					$lang = preg_replace('/^de$/', 'de-DE', $lang);
 					$lang = preg_replace('/^fr$/', 'fr-FR', $lang);
