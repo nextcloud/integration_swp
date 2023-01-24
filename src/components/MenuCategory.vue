@@ -61,11 +61,12 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .action-text {
 	opacity: 1 !important;
+	&__longtext,
 	&__text {
-		line-height: 20px;
-		font-weight: bold;
-		font-size: 17px;
-		padding: 8px 16px 4px 16px;
+		line-height: 20px !important;
+		font-weight: bold !important;
+		font-size: 17px !important;
+		padding: 8px 16px 4px 16px !important;
 	}
 }
 </style>

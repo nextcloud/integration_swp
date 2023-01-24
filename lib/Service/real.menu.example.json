@@ -1,0 +1,116 @@
+{
+  "categories": [
+    {
+      "identifier": "swp.groupware",
+      "display_name": "Groupware",
+      "entries": [
+        {
+          "identifier": "swp.groupware_mail",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.groupware_mail.svg",
+          "display_name": "Email",
+          "link": "https://webmail.nightly.develop.souvap-univention.de/appsuite/#app=io.ox/mail",
+          "target": "tab_groupware",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.groupware_calendar",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.groupware_calendar.svg",
+          "display_name": "Kalender",
+          "link": "https://webmail.nightly.develop.souvap-univention.de/appsuite/#app=io.ox/calendar",
+          "target": "tab_groupware",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.groupware_contacts",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.groupware_contacts.svg",
+          "display_name": "Kontakte",
+          "link": "https://webmail.nightly.develop.souvap-univention.de/appsuite/#app=io.ox/contacts",
+          "target": "tab_groupware",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.groupware_tasks",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.groupware_tasks.svg",
+          "display_name": "Aufgaben",
+          "link": "https://webmail.nightly.develop.souvap-univention.de/appsuite/#app=io.ox/tasks",
+          "target": "tab_groupware",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.groupware_mail_as8",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.groupware_mail_as8.svg",
+          "display_name": "AppSuite8 Preview",
+          "link": "https://webmail8.nightly.develop.souvap-univention.de",
+          "target": "tab_preview_as8",
+          "keywords": {}
+        }
+      ]
+    },
+    {
+      "identifier": "swp.fileshare",
+      "display_name": "Fileshare",
+      "entries": [
+        {
+          "identifier": "swp.fileshare_files",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.fileshare_files.svg",
+          "display_name": "Dateien",
+          "link": "https://fs.nightly.develop.souvap-univention.de/apps/files",
+          "target": "tab_fileshare",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.fileshare_activity",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.fileshare_activity.svg",
+          "display_name": "Aktivitäten",
+          "link": "https://fs.nightly.develop.souvap-univention.de/apps/activity",
+          "target": "tab_fileshare",
+          "keywords": {}
+        }
+      ]
+    },
+    {
+      "identifier": "swp.management",
+      "display_name": "Management",
+      "entries": [
+        {
+          "identifier": "swp.management_project",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.management_project.svg",
+          "display_name": "Projekte",
+          "link": "https://project.nightly.develop.souvap-univention.de/auth/keycloak",
+          "target": "tab_projectmanagement",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.management_knowledge",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.management_knowledge.svg",
+          "display_name": "Wissen",
+          "link": "https://wiki.nightly.develop.souvap-univention.de",
+          "target": "tab_knowledgemanagement",
+          "keywords": {}
+        },
+        {
+          "identifier": "swp.management_learn",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.management_learn.svg",
+          "display_name": "Lernen",
+          "link": "https://learn.nightly.develop.souvap-univention.de",
+          "target": "tab_learnmanagement",
+          "keywords": {}
+        }
+      ]
+    },
+    {
+      "identifier": "swp.realtime",
+      "display_name": "Echtzeit-Kommunikation but actually much longer",
+      "entries": [
+        {
+          "identifier": "swp.realtime_collaboration",
+          "icon_url": "https://portal.nightly.develop.souvap-univention.de/univention/portal/icons/entries/swp.realtime_collaboration.svg",
+          "display_name": "Kollaboration",
+          "link": "https://ucc.nightly.develop.souvap-univention.de",
+          "target": "tab_realtime_collaboration",
+          "keywords": {}
+        }
+      ]
+    }
+  ]
+}

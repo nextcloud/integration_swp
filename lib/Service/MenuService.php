@@ -40,24 +40,13 @@ use Throwable;
 
 class MenuService {
 
-	/** @var IClient */
-	private $client;
-	/**
-	 * @var ICache
-	 */
-	private $cache;
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var array
-	 */
-	private $fallbackMenuEntries;
 	private IUserSession $userSession;
 	private LoggerInterface $logger;
 	private IFactory $l10nFactory;
 	private TokenService $tokenService;
+	private IConfig $config;
+	private IClient $client;
+	private ICache $cache;
 
 	public function __construct(IClientService $client,
 								IUserSession $userSession,
@@ -68,105 +57,11 @@ class MenuService {
 								ICacheFactory $cacheFactory) {
 		$this->client = $client->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
-		$this->fallbackMenuEntries = [
-			'categories' => [
-				[
-					'identifier' => 'technical_groupname1',
-					'display_name' => 'Collaboration',
-					'entries' => [
-						[
-							'identifier' => 'cat1_item1',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Files',
-							'link' => 'https://duckduckgo.com/one',
-							'description' => '1-1',
-							'keywords' => 'kw1 kw2'
-						],
-						[
-							'identifier' => 'cat1_item2',
-							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
-							'display_name' => 'Chat',
-							'link' => 'https://duckduckgo.com/two',
-							'description' => '1-2',
-							'keywords' => 'kw3 kw4'
-						],
-					],
-				],
-				[
-					'identifier' => 'technical_groupname2',
-					'display_name' => 'Groupware',
-					'entries' => [
-						[
-							'identifier' => 'cat2_item1',
-							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
-							'display_name' => 'Mail is a very long item which should be displayed on multiple lines',
-							'link' => 'https://duckduckgo.com/three',
-							'description' => '2-1',
-							'keywords' => 'kw1 kw2'
-						],
-						[
-							'identifier' => 'cat2_item2',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Calendar',
-							'link' => 'https://duckduckgo.com/four',
-							'description' => '2-2',
-							'keywords' => 'kw3 kw4',
-						],
-					],
-				],
-				[
-					'identifier' => 'technical_groupname3',
-					'display_name' => 'Whatever',
-					'entries' => [
-						[
-							'identifier' => 'cat3_item1',
-							'icon_url' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
-							'display_name' => 'Contacts',
-							'link' => 'https://duckduckgo.com/five',
-							'description' => '3-1',
-							'keywords' => 'kw1 kw2 kw3'
-						],
-						[
-							'identifier' => 'cat3_item2',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Activity',
-							'link' => 'https://duckduckgo.com/six',
-							'description' => '3-2',
-							'keywords' => 'kw3 kw4 kw5',
-						],
-						[
-							'identifier' => 'cat3_item3',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Activity',
-							'link' => 'https://duckduckgo.com/six',
-							'description' => '3-2',
-							'keywords' => 'kw3 kw4 kw5',
-						],
-						[
-							'identifier' => 'cat3_item4',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Activity',
-							'link' => 'https://duckduckgo.com/six',
-							'description' => '3-2',
-							'keywords' => 'kw3 kw4 kw5',
-						],
-						[
-							'identifier' => 'cat3_item5',
-							'icon_url' => 'https://www.downloadclipart.net/svg/31379-logo-vector.svg',
-							'display_name' => 'Activity',
-							'link' => 'https://duckduckgo.com/six',
-							'description' => '3-2',
-							'keywords' => 'kw3 kw4 kw5',
-						],
-					],
-				],
-			]
-		];
 		$this->userSession = $userSession;
 		$this->logger = $logger;
 		$this->l10nFactory = $l10nFactory;
-		$this->config = $config;
 		$this->tokenService = $tokenService;
+		$this->config = $config;
 	}
 
 	public function getMenuJson(Token $token): ?array {
@@ -229,7 +124,19 @@ class MenuService {
 		}
 
 		// backup dummy menu value
-		return $this->fallbackMenuEntries;
+		return $this->getFromFile('fake.menu.example.json');
+	}
+
+	/**
+	 * @param string $fileName
+	 * @return array|null
+	 */
+	private function getFromFile(string $fileName): ?array {
+		$filePath = __DIR__ . '/' . $fileName;
+		if (file_exists($filePath)) {
+			return json_decode(file_get_contents($filePath), true);
+		}
+		return null;
 	}
 
 	/**
