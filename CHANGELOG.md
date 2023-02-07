@@ -6,27 +6,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.0.9 – 2023-12-24
+## 1.0.10 – 2023-02-07
+### Fixed
+- Collabora branding for tablets
+
+## 1.0.9 – 2023-01-24
 ### Fixed
 - contact search
 
-## 1.0.8 – 2023-12-24
+## 1.0.8 – 2023-01-24
 ### Changed
 - disable cache if system config debug enabled
 
 ### Fixed
 - navigation height in Files
 
-## 1.0.6 – 2023-12-23
+## 1.0.6 – 2023-01-23
 ### Fixed
 - load style earlier
 - fix tooltip position
 
-## 1.0.5 – 2023-12-01
+## 1.0.5 – 2023-01-12
 ### Fixed
 - generic parsing of Ox contact search response (with or without 'data' prop)
 
-## 1.0.4 – 2023-12-01
+## 1.0.4 – 2023-01-12
 ### Fixed
 - fix the header notification icon, use the real one (inverted)
 

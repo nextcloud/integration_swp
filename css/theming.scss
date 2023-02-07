@@ -192,3 +192,9 @@ div[role=tooltip] {
 #call_button {
 	display: none;
 }
+
+/* Override Collabora branding */
+#mobile-edit-button {
+	background-color: var(--color-primary-element) !important;
+	bottom: 76px !important;
+}
