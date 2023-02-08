@@ -194,7 +194,6 @@ div[role=tooltip] {
 }
 
 /* Override Collabora branding */
-#mobile-edit-button {
-	background-color: var(--color-primary-element) !important;
-	bottom: 76px !important;
+.viewer #richdocuments-wrapper {
+	height: 100dvh !important;
 }
