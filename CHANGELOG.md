@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.12 – 2023-02-17
+### Fixed
+- duplicates when creating recent contacts in OX
+
 ## 1.0.11 – 2023-02-08
 ### Fixed
 - Collabora branding for tablets
