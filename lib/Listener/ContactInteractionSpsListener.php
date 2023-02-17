@@ -25,11 +25,15 @@ declare(strict_types=1);
  */
 namespace OCA\Phoenix\Listener;
 
+use OCA\Phoenix\AppInfo\Application;
 use OCA\Phoenix\Exception\ServiceException;
+use OCA\Phoenix\OxAddressBook;
 use OCA\Phoenix\Service\OxContactsService;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
+use OCP\ICacheFactory;
+use Psr\Log\LoggerInterface;
 
 class ContactInteractionSpsListener implements IEventListener {
 
@@ -37,9 +41,33 @@ class ContactInteractionSpsListener implements IEventListener {
 	 * @var OxContactsService
 	 */
 	private $contactsService;
+	/**
+	 * @var OxAddressBook
+	 */
+	private $oxAddressBook;
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+	/**
+	 * @var ICacheFactory
+	 */
+	private $cacheFactory;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
 
-	public function __construct(OxContactsService $contactsService) {
+	public function __construct(OxContactsService $contactsService,
+								OxAddressBook $oxAddressBook,
+								ICacheFactory $cacheFactory,
+								LoggerInterface $logger,
+								?string $userId) {
 		$this->contactsService = $contactsService;
+		$this->oxAddressBook = $oxAddressBook;
+		$this->logger = $logger;
+		$this->cacheFactory = $cacheFactory;
+		$this->userId = $userId;
 	}
 
 	public function handle(Event $event): void {
@@ -48,9 +76,32 @@ class ContactInteractionSpsListener implements IEventListener {
 		}
 		if ($event->getEmail() !== null) {
 			try {
-				$this->contactsService->createContact($event->getEmail(), $event->getEmail());
+				$email = $event->getEmail();
+				$cache = $this->cacheFactory->createDistributed(Application::APP_ID . '_contacts');
+
+				// make sure we don't get outdated cached search results
+				$cacheKey = md5(json_encode([
+					$this->userId, $email, [], []
+				], JSON_THROW_ON_ERROR));
+				$cache->remove($cacheKey);
+
+				// if the contact already exists in the OX addr book, we don't create it again
+				$searchResults = $this->oxAddressBook->search($email, [], []);
+				foreach ($searchResults as $contact) {
+					$cEmail = $contact['EMAIL'][0] ?? null;
+					if ($cEmail === $email) {
+						return;
+					}
+				}
+
+				$this->contactsService->createContact($email, $email);
+				// clear the entire cache (because we can't know exactly which cache keys to clear)
+				$cache->clear();
 			} catch (ServiceException $e) {
-				// silent failure
+				$this->logger->debug('Recent contact creation in OX contact failed', [
+					'app' => Application::APP_ID,
+					'exception' => $e,
+				]);
 			}
 		}
 	}
