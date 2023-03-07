@@ -40,6 +40,7 @@ header#header .header-right #notifications #header-menu-notifications,
 header#header .header-right #contactsmenu #header-menu-contactsmenu {
   top: 64px !important;
 }
+header#header .header-right #user-menu .header-menu__trigger,
 header#header .header-right #unified-search .header-menu__trigger,
 header#header .header-right #notifications .header-menu__trigger,
 header#header .header-right #contactsmenu .header-menu__trigger {
