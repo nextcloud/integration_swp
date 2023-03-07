@@ -22,6 +22,10 @@
 
 import './bootstrap.js'
 import { loadState } from '@nextcloud/initial-state'
+import {
+	generateUrl,
+	// imagePath,
+} from '@nextcloud/router'
 
 import Vue from 'vue'
 import CentralMenu from './components/CentralMenu.vue'
@@ -43,4 +47,16 @@ export function makeCentralMenu() {
 			// propsData: { title: widget.title },
 		}).$mount(el)
 	}
+}
+
+export function setHeaderLogoUrl() {
+	const logo = document.querySelector('#header #nextcloud')
+	const img = document.createElement('img')
+	console.debug('setHeaderLogoUrl', logo)
+	console.debug('setHeaderLogoUrl', logo.style)
+	// const src = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg')
+	const src = generateUrl('/apps/integration_phoenix/logo')
+	img.setAttribute('src', src)
+	img.classList.add('custom-logo')
+	logo.append(img)
 }

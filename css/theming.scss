@@ -122,13 +122,22 @@ nav.app-menu {
 header#header {
 	.header-left {
 		#nextcloud {
-			padding-left: 128px;
+			width: 138px;
+			padding: 0;
 			margin: 0;
 			height: 100%;
-			background: center no-repeat url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
+			align-items: center;
+			justify-content: center;
+			//background: center no-repeat url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
 			// don't use the .logo because it was an img and became a div, better hide it an style the link
+			.custom-logo {
+				height: 100%;
+				width: auto;
+			}
 			.logo {
 				display: none;
+				//width: 100%;
+				//background-image: url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
 			}
 			//.logo {
 			//	width: 80px;

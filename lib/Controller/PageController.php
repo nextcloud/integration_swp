@@ -25,11 +25,14 @@ declare(strict_types=1);
 
 namespace OCA\Phoenix\Controller;
 
+use Exception;
 use OC\User\NoUserException;
+use OCA\Phoenix\AppInfo\Application;
 use OCA\Phoenix\Model\Token;
 use OCA\Phoenix\Service\TokenService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\RedirectResponse;
@@ -38,24 +41,37 @@ use OCP\Files\InvalidPathException;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\Files\NotPermittedException;
+use OCP\Http\Client\IClientService;
+use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IURLGenerator;
+use Psr\Log\LoggerInterface;
+use Throwable;
 
 class PageController extends Controller {
 
 	private IURLGenerator $urlGenerator;
 	private IRootFolder $rootFolder;
 	private ?string $userId;
+	private IConfig $config;
+	private IClientService $clientService;
+	private LoggerInterface $logger;
 
 	public function __construct($appName,
 								IRequest $request,
 								IURLGenerator $urlGenerator,
 								IRootFolder $rootFolder,
+								IConfig $config,
+								IClientService $clientService,
+								LoggerInterface $logger,
 								?string $userId) {
 		parent::__construct($appName, $request);
 		$this->urlGenerator = $urlGenerator;
 		$this->rootFolder = $rootFolder;
 		$this->userId = $userId;
+		$this->config = $config;
+		$this->clientService = $clientService;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -73,6 +89,38 @@ class PageController extends Controller {
 			'token' => $token,
 			'expires_in_seconds' => ($token->getCreatedAt() + $token->getExpiresIn()) - time()
 		]);
+	}
+
+
+	/**
+	 * @PublicPage
+	 * @NoCSRFRequired
+	 * @return DataDisplayResponse
+	 */
+	public function getLogo(): DataDisplayResponse {
+		$logoUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_LOGO_URL);
+		if ($logoUrl) {
+			$client = $this->clientService->newClient();
+			try {
+				$logoResponse = $client->get($logoUrl);
+				$fileContent = $logoResponse->getBody();
+				$mimeType = $logoResponse->getHeader('Content-Type');
+				if (is_array($mimeType) && count($mimeType) > 0) {
+					$mimeType = $mimeType[0];
+				}
+				$response = new DataDisplayResponse($fileContent, Http::STATUS_OK, ['Content-Type' => $mimeType]);
+				$response->cacheFor(60 * 60);
+				return $response;
+			} catch (Exception | Throwable $e) {
+				$this->logger->error('Failed to get logo at ' . $logoUrl, ['exception' => $e]);
+			}
+		}
+
+		// fallback to local logo
+		$fileContent = file_get_contents(__DIR__ . '/../../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
+		$response = new DataDisplayResponse($fileContent, Http::STATUS_OK, ['Content-Type' => 'image/svg+xml']);
+		$response->cacheFor(60 * 60);
+		return $response;
 	}
 
 	/**
