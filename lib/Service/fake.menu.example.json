@@ -6,7 +6,7 @@
       "entries": [
         {
           "identifier": "cat1_item1",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Files",
           "link": "https://duckduckgo.com/one",
           "description": "1-1",
@@ -36,7 +36,7 @@
         },
         {
           "identifier": "cat2_item2",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Calendar",
           "link": "https://duckduckgo.com/four",
           "description": "2-2",
@@ -58,7 +58,7 @@
         },
         {
           "identifier": "cat3_item2",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Activity",
           "link": "https://duckduckgo.com/six",
           "description": "3-2",
@@ -66,7 +66,7 @@
         },
         {
           "identifier": "cat3_item3",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Activity",
           "link": "https://duckduckgo.com/six",
           "description": "3-2",
@@ -74,7 +74,7 @@
         },
         {
           "identifier": "cat3_item4",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Activity",
           "link": "https://duckduckgo.com/six",
           "description": "3-2",
@@ -82,7 +82,7 @@
         },
         {
           "identifier": "cat3_item5",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Activity",
           "link": "https://duckduckgo.com/six",
           "description": "3-2",
