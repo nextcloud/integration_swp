@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.7 – 2023-03-07
+### Added
+- make logo url configurable with app config 'logo-url', fallback to phoenix one
+
 ## 2.0.6 – 2023-03-07
 ### Fixed
 - avoid recent contact creation (from email share) if it already exists in the OX address book
