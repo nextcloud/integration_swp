@@ -4,7 +4,7 @@
 	<name>Nextcloud Phoenix integration</name>
 	<summary>Utility app for integration purposes in Phoenix</summary>
 	<description>This utility app supports OpenXChange contacts/mailto links, central menu, unified style...</description>
-	<version>2.0.4</version>
+	<version>3.0.0</version>
 	<licence>agpl</licence>
 	<author>Julien Veyssier</author>
 	<namespace>Phoenix</namespace>
@@ -14,6 +14,6 @@
 	<bugs>https://github.com/nextcloud-gmbh/integration_phoenix/issues</bugs>
 	<repository>https://github.com/nextcloud-gmbh/integration_phoenix</repository>
 	<dependencies>
-		<nextcloud min-version="25" max-version="26"/>
+		<nextcloud min-version="26" max-version="27"/>
 	</dependencies>
 </info>
