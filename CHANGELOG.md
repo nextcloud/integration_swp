@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## 2.0.5 – 2023-03-07
+### Fixed
+- avoid recent contact creation (from email share) if it already exists in the OX address book
+- fix user menu trigger height
+- fix fallback menu icon urls
+
 ## 2.0.4 – 2023-01-24
 ### Changed
 - more meaningful ox contact api request errors
