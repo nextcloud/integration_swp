@@ -91,7 +91,6 @@ class PageController extends Controller {
 		]);
 	}
 
-
 	/**
 	 * @PublicPage
 	 * @NoCSRFRequired
