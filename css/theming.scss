@@ -159,3 +159,10 @@ div[role=tooltip] {
 #call_button {
 	display: none;
 }
+
+/* hide some activity navigation items */
+main#content.app-activity a[data-navigation=contacts],
+main#content.app-activity a[data-navigation=calendar],
+main#content.app-activity a[data-navigation=calendar_todo] {
+	display: none;
+}
