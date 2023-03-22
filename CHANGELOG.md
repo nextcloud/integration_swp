@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.8 – 2023-03-22
+### Added
+- hide contacts, calendar and calendar_todo activity navigation items
+
 ## 2.0.7 – 2023-03-07
 ### Added
 - make logo url configurable with app config 'logo-url', fallback to phoenix one
