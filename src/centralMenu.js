@@ -109,7 +109,10 @@ export function makeCentralMenu() {
 			appendCategory(itemList, cat)
 		})
 
-		const headerLogo = document.querySelector('#header .header-left .logo-icon')
-		headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+		const useCustomLogo = loadState('integration_phoenix', 'use-custom-logo')
+		if (useCustomLogo) {
+			const headerLogo = document.querySelector('#header .header-left .logo-icon')
+			headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+		}
 	}
 }

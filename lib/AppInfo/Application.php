@@ -53,6 +53,7 @@ class Application extends App implements IBootstrap {
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
+	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_WEBMAIL_TABNAME = 'webmail-tabname';
@@ -123,6 +124,9 @@ class Application extends App implements IBootstrap {
 			// as we get the menu items with a central navigation service, this is not necessary anymore
 			// $this->registerNavigationItems();
 
+			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
+			});
 			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
 			});
