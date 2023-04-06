@@ -135,8 +135,9 @@ header#header {
 				width: auto;
 			}
 			.logo {
-				&.hidden {
-					display: none;
+				display: none;
+				&.enabled {
+					display: inline-flex;
 				}
 				width: 100%;
 				left: unset;
