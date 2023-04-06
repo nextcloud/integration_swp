@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.14 – 2023-04-06
+### Added
+- backport custom logo URL feature (make custom logo url configurable with app config 'logo-url', fallback to phoenix one)
+
+### Changed
+- avoid showing theming logo before replacing it with custom logo
+
 ## 1.0.13 – 2023-04-06
 ### Added
 - app setting to toggle phoenix logo, theming one is used if disabled
