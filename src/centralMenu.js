@@ -50,13 +50,20 @@ export function makeCentralMenu() {
 }
 
 export function setHeaderLogoUrl() {
-	const logo = document.querySelector('#header #nextcloud')
-	const img = document.createElement('img')
-	console.debug('setHeaderLogoUrl', logo)
-	console.debug('setHeaderLogoUrl', logo.style)
-	// const src = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg')
-	const src = generateUrl('/apps/integration_phoenix/logo')
-	img.setAttribute('src', src)
-	img.classList.add('custom-logo')
-	logo.append(img)
+	const useCustomLogo = loadState('integration_phoenix', 'use-custom-logo')
+	if (useCustomLogo) {
+		const logo = document.querySelector('#header #nextcloud')
+		// hide theming logo
+		const themingLogo = logo.querySelector('.logo')
+		themingLogo.classList.add('hidden')
+		// add the custom one
+		const img = document.createElement('img')
+		console.debug('setHeaderLogoUrl', logo)
+		console.debug('setHeaderLogoUrl', logo.style)
+		// const src = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg')
+		const src = generateUrl('/apps/integration_phoenix/logo')
+		img.setAttribute('src', src)
+		img.classList.add('custom-logo')
+		logo.append(img)
+	}
 }

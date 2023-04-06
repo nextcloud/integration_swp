@@ -118,6 +118,10 @@ header#header .header-left #nextcloud .custom-logo {
   width: auto;
 }
 header#header .header-left #nextcloud .logo {
+  width: 100%;
+  left: unset;
+}
+header#header .header-left #nextcloud .logo.hidden {
   display: none;
 }
 
