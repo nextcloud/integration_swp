@@ -118,11 +118,12 @@ header#header .header-left #nextcloud .custom-logo {
   width: auto;
 }
 header#header .header-left #nextcloud .logo {
+  display: none;
   width: 100%;
   left: unset;
 }
-header#header .header-left #nextcloud .logo.hidden {
-  display: none;
+header#header .header-left #nextcloud .logo.enabled {
+  display: inline-flex;
 }
 
 div[role=tooltip] {

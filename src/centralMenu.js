@@ -51,11 +51,8 @@ export function makeCentralMenu() {
 
 export function setHeaderLogoUrl() {
 	const useCustomLogo = loadState('integration_phoenix', 'use-custom-logo')
+	const logo = document.querySelector('#header #nextcloud')
 	if (useCustomLogo) {
-		const logo = document.querySelector('#header #nextcloud')
-		// hide theming logo
-		const themingLogo = logo.querySelector('.logo')
-		themingLogo.classList.add('hidden')
 		// add the custom one
 		const img = document.createElement('img')
 		console.debug('setHeaderLogoUrl', logo)
@@ -65,5 +62,9 @@ export function setHeaderLogoUrl() {
 		img.setAttribute('src', src)
 		img.classList.add('custom-logo')
 		logo.append(img)
+	} else {
+		// hide theming logo
+		const themingLogo = logo.querySelector('.logo')
+		themingLogo.classList.add('enabled')
 	}
 }
