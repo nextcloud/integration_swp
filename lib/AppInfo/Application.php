@@ -54,6 +54,7 @@ class Application extends App implements IBootstrap {
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
+	public const APP_CONFIG_LOGO_URL = 'logo-url';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_WEBMAIL_TABNAME = 'webmail-tabname';

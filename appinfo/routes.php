@@ -27,6 +27,7 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'page#createDocument', 'url' => '/office-create/{format}', 'verb' => 'GET'],
+		['name' => 'page#getLogo', 'url' => '/logo', 'verb' => 'GET'],
 		['name' => 'Menu#getMenuEntryIcon', 'url' => '/icon', 'verb' => 'GET'],
 	],
 ];

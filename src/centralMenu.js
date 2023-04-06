@@ -112,7 +112,8 @@ export function makeCentralMenu() {
 		const useCustomLogo = loadState('integration_phoenix', 'use-custom-logo')
 		const headerLogo = document.querySelector('#header .header-left .logo-icon')
 		if (useCustomLogo) {
-			headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+			// headerLogo.style.backgroundImage = 'url(\'' + imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo') + '\')'
+			headerLogo.style.backgroundImage = 'url(\'' + generateUrl('/apps/integration_phoenix/logo') + '\')'
 		}
 		headerLogo.classList.add('enabled')
 	}
