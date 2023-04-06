@@ -176,6 +176,10 @@ header#header {
 #nextcloud {
 	padding-left: 128px;
 	.logo {
+		display: none;
+		&.enabled {
+			display: inline-flex;
+		}
 		width: 80px;
 		height: 63px;
 		margin: 0 24px 0 24px;
