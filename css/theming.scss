@@ -135,8 +135,11 @@ header#header {
 				width: auto;
 			}
 			.logo {
-				display: none;
-				//width: 100%;
+				&.hidden {
+					display: none;
+				}
+				width: 100%;
+				left: unset;
 				//background-image: url('../img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg');
 			}
 			//.logo {
