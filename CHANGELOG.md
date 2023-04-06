@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.13 – 2023-04-06
+### Added
+- app setting to toggle phoenix logo, theming one is used if disabled
+
 ## 1.0.12 – 2023-02-17
 ### Fixed
 - duplicates when creating recent contacts in OX
