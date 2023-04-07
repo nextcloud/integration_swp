@@ -1,8 +1,8 @@
 <?php
 /*
- * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
- * @author Julien Veyssier <eneiluj@posteo.net>
+ * @author Julien Veyssier <julien-nc@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -44,6 +44,7 @@ use OCP\Contacts\IManager;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
+use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Util;
@@ -98,6 +99,7 @@ class Application extends App implements IBootstrap {
 			IURLGenerator $urlGenerator,
 			IConfig $config,
 			IUserSession $userSession,
+			IRequest $request,
 			$userId
 		) {
 			if (!$userId) {
@@ -150,6 +152,10 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 			Util::addStyle(self::APP_ID, 'theming');
+
+			if ($request->getPathInfo() === '/apps/activity/') {
+				Util::addScript(self::APP_ID, self::APP_ID . '-activity');
+			}
 		});
 	}
 
