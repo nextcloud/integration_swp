@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.10 – 2023-04-17
+### Added
+- 'hidden-activities' app config to choose which activity category to hide
+
 ## 2.0.9 – 2023-04-07
 ### Added
 - hide some items in the activity app
