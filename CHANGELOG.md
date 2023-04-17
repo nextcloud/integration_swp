@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.3 – 2023-04-17
+### Added
+- 'hidden-activities' app config to choose which activity category to hide
+
 ## 3.0.2 – 2023-03-23
 ### Added
 - hide contacts, calendar and calendar_todo activity navigation items
