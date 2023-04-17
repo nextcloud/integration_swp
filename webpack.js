@@ -17,6 +17,7 @@ const appId = 'integration_phoenix'
 webpackConfig.entry = {
 	main: { import: path.join(__dirname, 'src', 'main.js'), filename: appId + '-main.js' },
 	public: { import: path.join(__dirname, 'src', 'public.js'), filename: appId + '-public.js' },
+	activity: { import: path.join(__dirname, 'src', 'activity.js'), filename: appId + '-activity.js' },
 }
 
 webpackConfig.plugins.push(

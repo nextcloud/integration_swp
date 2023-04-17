@@ -44,6 +44,7 @@ use OCP\Contacts\IManager;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
+use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Util;
@@ -60,6 +61,9 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_WEBMAIL_TABNAME = 'webmail-tabname';
 	public const APP_CONFIG_OX_URL = 'ox-baseurl';
+
+	public const APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST = 'hidden-activities';
+	public const APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT = 'contacts,calendar,calendar_todo';
 
 	public const APP_CONFIG_NAVIGATION_URL = 'navigation-json-url';
 	public const APP_CONFIG_NAVIGATION_AUTH_TYPE = 'navigation-json-auth-type';
@@ -98,6 +102,7 @@ class Application extends App implements IBootstrap {
 			IURLGenerator $urlGenerator,
 			IConfig $config,
 			IUserSession $userSession,
+			IRequest $request,
 			$userId
 		) {
 			if (!$userId) {
@@ -150,6 +155,21 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 			Util::addStyle(self::APP_ID, 'theming');
+
+			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {
+				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config) {
+					$activitiesString = $config->getAppValue(
+						self::APP_ID,
+						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST,
+						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT) ?: self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT;
+					if ($activitiesString) {
+						return explode(',', $activitiesString);
+					} else {
+						return [];
+					}
+				});
+				Util::addScript(self::APP_ID, self::APP_ID . '-activity');
+			}
 		});
 	}
 
