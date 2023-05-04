@@ -55,6 +55,7 @@ class Application extends App implements IBootstrap {
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
+	public const APP_CONFIG_SQUARE_CORNERS = 'square-corners';
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_LOGO_URL = 'logo-url';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
@@ -155,6 +156,9 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 			Util::addStyle(self::APP_ID, 'theming');
+			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS) === '1') {
+				Util::addStyle(self::APP_ID, 'square-corners');
+			}
 
 			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {
 				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config) {
