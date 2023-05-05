@@ -23,6 +23,10 @@ Setting a webmail url:
 
 	occ config:app:set integration_phoenix webmail-url --value="https://my.ox.instance/webmail"
 
+Set the main content style to square corners and remove the margins:
+
+	occ config:app:set integration_phoenix square-corners --value="1"
+
 ## Local testing
 
 Even without using Phoenix Login, this app can be tested by manually providing a valid OIDC ID token through app config:

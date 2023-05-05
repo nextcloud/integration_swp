@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.4 – 2023-05-05
+### Added
+- App config to set square corners on the main content
+
 ## 3.0.3 – 2023-04-17
 ### Added
 - 'hidden-activities' app config to choose which activity category to hide
