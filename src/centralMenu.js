@@ -67,4 +67,11 @@ export function setHeaderLogoUrl() {
 		const themingLogo = logo.querySelector('.logo')
 		themingLogo.classList.add('enabled')
 	}
+
+	// set logo link target
+	const portalUrl = loadState('integration_phoenix', 'portal-url')
+	if (portalUrl) {
+		logo.setAttribute('href', portalUrl)
+		logo.setAttribute('target', '_blank')
+	}
 }
