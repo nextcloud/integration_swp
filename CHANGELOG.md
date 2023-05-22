@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.5 – 2023-05-22
+
+### Changed
+
+- logo link target URL is now the portal-url app config, target is _blank
+- remove rounded corners for #content-vue and central menu dropdown
+- bump max NC version to 28
+
 ## 3.0.4 – 2023-05-05
 ### Added
 - App config to set square corners on the main content
