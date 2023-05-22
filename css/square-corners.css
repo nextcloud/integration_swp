@@ -1,3 +1,4 @@
+#content-vue,
 #content {
 	border-radius: unset !important;
 	margin: 0 !important;
@@ -5,4 +6,10 @@
 	width: 100%;
 	/*height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - 10px);*/
 	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height)) !important;
+}
+
+#central-app-menu .v-popper__popper,
+#central-app-menu .v-popper__wrapper,
+#central-app-menu .v-popper__wrapper .v-popper__inner {
+	border-radius: 0 !important;
 }
