@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.6 – 2023-05-22
+
+### Changed
+
+- rename the app to integration_swp
+
 ## 3.0.5 – 2023-05-22
 
 ### Changed
