@@ -23,11 +23,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\Service;
+namespace OCA\Swp\Service;
 
 use Exception;
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Model\Token;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Model\Token;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;

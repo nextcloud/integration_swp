@@ -24,10 +24,10 @@
 declare(strict_types=1);
 
 
-namespace OCA\Phoenix\Service;
+namespace OCA\Swp\Service;
 
 use Exception;
-use OCA\Phoenix\AppInfo\Application;
+use OCA\Swp\AppInfo\Application;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;

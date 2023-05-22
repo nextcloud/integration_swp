@@ -1,10 +1,10 @@
 {
-  "name": "nextcloud/integration_phoenix",
-  "description": "Phoenix integration app",
+  "name": "nextcloud/integration_swp",
+  "description": "Sovereign Workplace integration app",
   "license": "AGPL3",
   "config": {
     "platform": {
-      "php": "7.4"
+      "php": "8.0"
     },
     "optimize-autoloader": true,
     "classmap-authoritative": true,
@@ -35,14 +35,15 @@
   "require-dev": {
     "nextcloud/coding-standard": "^1.0.0",
     "symfony/event-dispatcher": "^4",
-    "phpunit/phpunit": "^9.5"
+    "phpunit/phpunit": "^9.5",
+    "coenjacobs/mozart": "^0.7.1"
   },
   "extra": {
     "mozart": {
-      "dep_namespace": "OCA\\Phoenix\\Vendor\\",
+      "dep_namespace": "OCA\\Swp\\Vendor\\",
       "dep_directory": "/lib/Vendor/",
       "classmap_directory": "/lib/autoload/",
-      "classmap_prefix": "NEXTCLOUD_INTEGRATION_PHOENIX_",
+      "classmap_prefix": "NEXTCLOUD_INTEGRATION_SWP_",
       "packages": [
         "firebase/php-jwt"
       ],

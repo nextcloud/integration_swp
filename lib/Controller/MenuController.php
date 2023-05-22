@@ -24,9 +24,9 @@
 declare(strict_types=1);
 
 
-namespace OCA\Phoenix\Controller;
+namespace OCA\Swp\Controller;
 
-use OCA\Phoenix\Service\MenuService;
+use OCA\Swp\Service\MenuService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;

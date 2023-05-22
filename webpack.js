@@ -13,7 +13,7 @@ webpackConfig.stats = {
 	modules: false,
 }
 
-const appId = 'integration_phoenix'
+const appId = 'integration_swp'
 webpackConfig.entry = {
 	main: { import: path.join(__dirname, 'src', 'main.js'), filename: appId + '-main.js' },
 	public: { import: path.join(__dirname, 'src', 'public.js'), filename: appId + '-public.js' },

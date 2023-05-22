@@ -23,16 +23,16 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\AppInfo;
+namespace OCA\Swp\AppInfo;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
-use OCA\Phoenix\Listener\PublicShareTemplateLoader;
-use OCA\Phoenix\Listener\TokenObtainedEventListener;
-use OCA\Phoenix\Listener\ContactInteractionSpsListener;
-use OCA\Phoenix\Service\MenuService;
-use OCA\Phoenix\Service\TokenService;
-use OCA\Phoenix\Service\OxMailService;
-use OCA\Phoenix\OxAddressBook;
+use OCA\Swp\Listener\PublicShareTemplateLoader;
+use OCA\Swp\Listener\TokenObtainedEventListener;
+use OCA\Swp\Listener\ContactInteractionSpsListener;
+use OCA\Swp\Service\MenuService;
+use OCA\Swp\Service\TokenService;
+use OCA\Swp\Service\OxMailService;
+use OCA\Swp\OxAddressBook;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -50,7 +50,7 @@ use OCP\IUserSession;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'integration_phoenix';
+	public const APP_ID = 'integration_swp';
 	public const DEBUG = true;
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';

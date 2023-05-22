@@ -25,8 +25,8 @@ import { loadState } from '@nextcloud/initial-state'
 const DEBUG = false
 
 export function setMailtoLinks() {
-	const mailUrl = loadState('integration_phoenix', 'webmail-url')
-	const mailTabname = loadState('integration_phoenix', 'webmail-tabname')
+	const mailUrl = loadState('integration_swp', 'webmail-url')
+	const mailTabname = loadState('integration_swp', 'webmail-tabname')
 	if (DEBUG) console.debug('MAIL URL :-:-:', mailUrl)
 	if (DEBUG) console.debug('MAIL TAB NAME', mailTabname)
 	const target = mailTabname ? mailTabname + '' : '_blank'

@@ -1,4 +1,4 @@
-# Nextcloud Phoenix integration
+# Nextcloud Sovereign Workplace (Phoenix) integration
 
 ## Implemented features:
 - Unread email counter
@@ -11,24 +11,24 @@
 
 ## OIDC token handling
 
-During login the access_token and refresh token are passed by the user_oidc app to the integration_phoenix app through a dispatched event. integration_phoenix will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
+During login the access_token and refresh token are passed by the user_oidc app to the integration_swp app through a dispatched event. integration_swp will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
 
 ## Configuration:
 
 Configure OX API endpoint:
 
-	occ config:app:set integration_phoenix ox-baseurl --value="https://my.ox.instance"
+	occ config:app:set integration_swp ox-baseurl --value="https://my.ox.instance"
 
 Setting a webmail url:
 
-	occ config:app:set integration_phoenix webmail-url --value="https://my.ox.instance/webmail"
+	occ config:app:set integration_swp webmail-url --value="https://my.ox.instance/webmail"
 
 Set the main content style to square corners and remove the margins:
 
-	occ config:app:set integration_phoenix square-corners --value="1"
+	occ config:app:set integration_swp square-corners --value="1"
 
 ## Local testing
 
-Even without using Phoenix Login, this app can be tested by manually providing a valid OIDC ID token through app config:
+Even without using SWP Login, this app can be tested by manually providing a valid OIDC ID token through app config:
 
-	occ config:app:set integration_phoenix ox-usertoken --value="$OIDC_ID_TOKEN"
+	occ config:app:set integration_swp ox-usertoken --value="$OIDC_ID_TOKEN"

@@ -61,7 +61,7 @@ export default {
 	computed: {
 		iconUrl() {
 			return this.proxyImage
-				? generateUrl('/apps/integration_phoenix/icon?itemId={itemId}', { itemId: this.entry.identifier })
+				? generateUrl('/apps/integration_swp/icon?itemId={itemId}', { itemId: this.entry.identifier })
 				: this.entry.icon_url
 		},
 	},

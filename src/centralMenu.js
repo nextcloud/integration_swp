@@ -31,7 +31,7 @@ import Vue from 'vue'
 import CentralMenu from './components/CentralMenu.vue'
 
 export function makeCentralMenu() {
-	const menu = loadState('integration_phoenix', 'menu-json')
+	const menu = loadState('integration_swp', 'menu-json')
 
 	if (menu !== null) {
 		console.debug(document.querySelector('#header'))
@@ -50,15 +50,15 @@ export function makeCentralMenu() {
 }
 
 export function setHeaderLogoUrl() {
-	const useCustomLogo = loadState('integration_phoenix', 'use-custom-logo')
+	const useCustomLogo = loadState('integration_swp', 'use-custom-logo')
 	const logo = document.querySelector('#header #nextcloud')
 	if (useCustomLogo) {
 		// add the custom one
 		const img = document.createElement('img')
 		console.debug('setHeaderLogoUrl', logo)
 		console.debug('setHeaderLogoUrl', logo.style)
-		// const src = imagePath('integration_phoenix', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg')
-		const src = generateUrl('/apps/integration_phoenix/logo')
+		// const src = imagePath('integration_swp', 'phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg')
+		const src = generateUrl('/apps/integration_swp/logo')
 		img.setAttribute('src', src)
 		img.classList.add('custom-logo')
 		logo.append(img)
@@ -69,7 +69,7 @@ export function setHeaderLogoUrl() {
 	}
 
 	// set logo link target
-	const portalUrl = loadState('integration_phoenix', 'portal-url')
+	const portalUrl = loadState('integration_swp', 'portal-url')
 	if (portalUrl) {
 		logo.setAttribute('href', portalUrl)
 		logo.setAttribute('target', '_blank')

@@ -1,7 +1,7 @@
 import { imagePath } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 
-const navCategoriesToDelete = loadState('integration_phoenix', 'hidden-activities')
+const navCategoriesToDelete = loadState('integration_swp', 'hidden-activities')
 
 const urlStart = window.location.protocol + '//' + window.location.host
 const categoryToIconUrl = {

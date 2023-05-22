@@ -21,7 +21,7 @@
  *
  */
 
-namespace OCA\Phoenix\Exception;
+namespace OCA\Swp\Exception;
 
 use Exception;
 

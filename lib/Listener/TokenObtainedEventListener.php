@@ -23,11 +23,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\Listener;
+namespace OCA\Swp\Listener;
 
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Service\OxMailService;
-use OCA\Phoenix\Service\TokenService;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Service\OxMailService;
+use OCA\Swp\Service\TokenService;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;

@@ -8,7 +8,7 @@ jobs:
   build:
     name: Build and upload release in GitHub
     env:
-      APP_ID: integration_phoenix
+      APP_ID: integration_swp
     runs-on: ubuntu-latest
     steps:
       - name: Use Node 16

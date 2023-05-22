@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
-	<id>integration_phoenix</id>
-	<name>Nextcloud Phoenix integration</name>
-	<summary>Utility app for integration purposes in Phoenix</summary>
+	<id>integration_swp</id>
+	<name>Nextcloud SWP integration</name>
+	<summary>Utility app for integration purposes in The Sovereign Worplace</summary>
 	<description>This utility app supports OpenXChange contacts/mailto links, central menu, unified style...</description>
 	<version>3.0.5</version>
 	<licence>agpl</licence>
 	<author>Julien Veyssier</author>
-	<namespace>Phoenix</namespace>
+	<namespace>Swp</namespace>
 	<category>integration</category>
 	<category>social</category>
-	<website>https://github.com/nextcloud-gmbh/integration_phoenix</website>
-	<bugs>https://github.com/nextcloud-gmbh/integration_phoenix/issues</bugs>
-	<repository>https://github.com/nextcloud-gmbh/integration_phoenix</repository>
+	<website>https://github.com/nextcloud-gmbh/integration_swp</website>
+	<bugs>https://github.com/nextcloud-gmbh/integration_swp/issues</bugs>
+	<repository>https://github.com/nextcloud-gmbh/integration_swp</repository>
 	<dependencies>
 		<nextcloud min-version="26" max-version="28"/>
 	</dependencies>

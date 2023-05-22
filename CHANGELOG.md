@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.0.1 – 2023-03-20
 ### Added
-- make logo url configurable with app config 'logo-url', fallback to phoenix one
+- make logo url configurable with app config 'logo-url', fallback to SWP one
 
 ## 3.0.0 – 2023-03-07
 ### Fixed

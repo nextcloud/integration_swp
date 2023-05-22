@@ -24,10 +24,10 @@ declare(strict_types=1);
  *
  */
 
-namespace OCA\Phoenix\Listener;
+namespace OCA\Swp\Listener;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
-use OCA\Phoenix\AppInfo\Application;
+use OCA\Swp\AppInfo\Application;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;

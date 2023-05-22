@@ -23,13 +23,13 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\Controller;
+namespace OCA\Swp\Controller;
 
 use Exception;
 use OC\User\NoUserException;
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Model\Token;
-use OCA\Phoenix\Service\TokenService;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Model\Token;
+use OCA\Swp\Service\TokenService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;

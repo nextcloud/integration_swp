@@ -22,11 +22,11 @@ declare(strict_types=1);
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\Phoenix;
+namespace OCA\Swp;
 
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Exception\ServiceException;
-use OCA\Phoenix\Service\OxContactsService;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Exception\ServiceException;
+use OCA\Swp\Service\OxContactsService;
 use OCP\IAddressBook;
 use OCP\ICache;
 use OCP\ICacheFactory;

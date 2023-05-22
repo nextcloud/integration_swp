@@ -23,7 +23,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\Model;
+namespace OCA\Swp\Model;
 
 use JsonSerializable;
 

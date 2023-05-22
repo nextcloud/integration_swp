@@ -23,12 +23,12 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\Phoenix\Listener;
+namespace OCA\Swp\Listener;
 
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Exception\ServiceException;
-use OCA\Phoenix\OxAddressBook;
-use OCA\Phoenix\Service\OxContactsService;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Exception\ServiceException;
+use OCA\Swp\OxAddressBook;
+use OCA\Swp\Service\OxContactsService;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;

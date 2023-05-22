@@ -23,11 +23,11 @@
 
 declare(strict_types=1);
 
-namespace OCA\Phoenix\Service;
+namespace OCA\Swp\Service;
 
-use OCA\Phoenix\Vendor\Firebase\JWT\JWT;
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Model\Token;
+use OCA\Swp\Vendor\Firebase\JWT\JWT;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Model\Token;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;

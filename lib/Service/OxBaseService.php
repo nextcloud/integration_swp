@@ -21,10 +21,10 @@
  *
  */
 
-namespace OCA\Phoenix\Service;
+namespace OCA\Swp\Service;
 
-use OCA\Phoenix\AppInfo\Application;
-use OCA\Phoenix\Exception\ServiceException;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Exception\ServiceException;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 

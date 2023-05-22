@@ -23,7 +23,7 @@
 	<nav id="central-app-menu">
 		<NcActions class="app-menu-more"
 			:container="'#central-app-menu'"
-			:aria-label="t('integration_phoenix', 'More apps')">
+			:aria-label="t('integration_swp', 'More apps')">
 			<template #icon>
 				<GridIcon class="menu-icon" />
 			</template>
@@ -62,9 +62,9 @@ export default {
 	},
 	data() {
 		return {
-			menuContent: loadState('integration_phoenix', 'menu-json', {}),
-			portalUrl: loadState('integration_phoenix', 'portal-url'),
-			menuTabnameAttribute: loadState('integration_phoenix', 'menu-tabname-attribute'),
+			menuContent: loadState('integration_swp', 'menu-json', {}),
+			portalUrl: loadState('integration_swp', 'portal-url'),
+			menuTabnameAttribute: loadState('integration_swp', 'menu-tabname-attribute'),
 		}
 	},
 	computed: {
@@ -72,10 +72,10 @@ export default {
 			if (this.portalUrl) {
 				return {
 					identifier: 'portal',
-					icon_url: imagePath('integration_phoenix', 'grid.svg'),
-					display_name: t('integration_phoenix', 'Portal'),
+					icon_url: imagePath('integration_swp', 'grid.svg'),
+					display_name: t('integration_swp', 'Portal'),
 					link: this.portalUrl,
-					description: t('integration_phoenix', 'Phoenix portal'),
+					description: t('integration_swp', 'Sovereign Workplace portal'),
 					keywords: 'kw0',
 				}
 			}
