@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.7 – 2023-05-25
+
+### Added
+
+- app config to choose the user default theme
+
 ## 3.0.6 – 2023-05-22
 
 ### Changed
