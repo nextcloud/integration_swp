@@ -27,6 +27,12 @@ Set the main content style to square corners and remove the margins:
 
 	occ config:app:set integration_swp square-corners --value="1"
 
+Set the default user theme (but still allow the users to change it), default value is "light":
+
+	occ config:app:set integration_swp default-user-theme --value="THEME"
+
+THEME can be `light`, `dark`, `light-highcontrast` or `dark-highcontrast`.
+
 ## Local testing
 
 Even without using SWP Login, this app can be tested by manually providing a valid OIDC ID token through app config:

@@ -55,6 +55,8 @@ class Application extends App implements IBootstrap {
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
+	public const APP_CONFIG_DEFAULT_USER_THEME = 'default-user-theme';
+	public const APP_CONFIG_DEFAULT_USER_THEME_DEFAULT = 'light';
 	public const APP_CONFIG_SQUARE_CORNERS = 'square-corners';
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_LOGO_URL = 'logo-url';
@@ -122,6 +124,13 @@ class Application extends App implements IBootstrap {
 			}
 			// remember that this user had a token once
 			$config->setUserValue($userId, self::APP_ID, 'had_token_once', '1');
+
+			// set the theme to light once (make it the default one but allow users to change it)
+			if ($config->getUserValue($userId, self::APP_ID, 'theme_set', '0') !== '1') {
+				$defaultUserTheme = $config->getUserValue($userId, self::APP_ID, self::APP_CONFIG_DEFAULT_USER_THEME, self::APP_CONFIG_DEFAULT_USER_THEME_DEFAULT);
+				$config->setUserValue($userId, 'theming', 'enabled-themes', '["' . $defaultUserTheme . '"]');
+				$config->setUserValue($userId, self::APP_ID, 'theme_set', '1');
+			}
 
 			$contactsManager->registerAddressBook($oxAddressBook);
 
