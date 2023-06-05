@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.8 – 2023-06-05
+
+### Added
+
+- New `logo-width`, `logo-height`, `logo-link-url`, `logo-link-target` and `logo-link-title` app configs
+- Documentation for all app configs in README.md
+
+### Changed
+
+- Renamed `logo-url` app config key to `logo-image-url`
+- Update npm pkgs
+- Use some Php 8 new syntax (class attribute declaration in constructor)
+
 ## 3.0.7 – 2023-05-25
 
 ### Added
