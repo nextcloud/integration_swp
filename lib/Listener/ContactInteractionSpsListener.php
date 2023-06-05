@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /**
- * @copyright 2021 Julien Veyssier <eneiluj@posteo.net>
+ * @copyright 2021 Julien Veyssier <julien-nc@posteo.net>
  *
- * @author Julien Veyssier <eneiluj@posteo.net>
+ * @author Julien Veyssier <julien-nc@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
