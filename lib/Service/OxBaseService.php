@@ -30,27 +30,18 @@ use Psr\Log\LoggerInterface;
 
 class OxBaseService {
 
-	/**
-	 * @var string
-	 */
-	private $oxBaseUrl;
-	private IConfig $config;
-	private TokenService $tokenService;
-	private LoggerInterface $logger;
-	private ?string $userId;
+	private string $oxBaseUrl;
 
-	public function __construct(IConfig $config,
-								TokenService $tokenService,
-								LoggerInterface $logger,
-								?string $userId = null) {
+	public function __construct(
+		private IConfig $config,
+		private TokenService $tokenService,
+		private LoggerInterface $logger,
+		private ?string $userId = null
+	) {
 		if ($userId === null) {
 			return;
 		}
 		$this->oxBaseUrl = $config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
-		$this->config = $config;
-		$this->tokenService = $tokenService;
-		$this->logger = $logger;
-		$this->userId = $userId;
 	}
 
 	public function checkSetup(): bool {

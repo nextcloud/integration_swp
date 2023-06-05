@@ -50,28 +50,17 @@ use Throwable;
 
 class PageController extends Controller {
 
-	private IURLGenerator $urlGenerator;
-	private IRootFolder $rootFolder;
-	private ?string $userId;
-	private IConfig $config;
-	private IClientService $clientService;
-	private LoggerInterface $logger;
-
-	public function __construct($appName,
-								IRequest $request,
-								IURLGenerator $urlGenerator,
-								IRootFolder $rootFolder,
-								IConfig $config,
-								IClientService $clientService,
-								LoggerInterface $logger,
-								?string $userId) {
+	public function __construct(
+		$appName,
+		IRequest $request,
+		private IURLGenerator $urlGenerator,
+		private IRootFolder $rootFolder,
+		private IConfig $config,
+		private IClientService $clientService,
+		private LoggerInterface $logger,
+		private ?string $userId
+	) {
 		parent::__construct($appName, $request);
-		$this->urlGenerator = $urlGenerator;
-		$this->rootFolder = $rootFolder;
-		$this->userId = $userId;
-		$this->config = $config;
-		$this->clientService = $clientService;
-		$this->logger = $logger;
 	}
 
 	/**

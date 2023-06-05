@@ -40,28 +40,20 @@ use Throwable;
 
 class MenuService {
 
-	private IUserSession $userSession;
-	private LoggerInterface $logger;
-	private IFactory $l10nFactory;
-	private TokenService $tokenService;
-	private IConfig $config;
 	private IClient $client;
 	private ICache $cache;
 
-	public function __construct(IClientService $client,
-								IUserSession $userSession,
-								LoggerInterface $logger,
-								IFactory $l10nFactory,
-								IConfig $config,
-								TokenService $tokenService,
-								ICacheFactory $cacheFactory) {
-		$this->client = $client->newClient();
+	public function __construct(
+		IClientService  $clientService,
+		ICacheFactory $cacheFactory,
+		private IUserSession $userSession,
+		private LoggerInterface $logger,
+		private IFactory $l10nFactory,
+		private IConfig $config,
+		private TokenService $tokenService,
+	) {
+		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
-		$this->userSession = $userSession;
-		$this->logger = $logger;
-		$this->l10nFactory = $l10nFactory;
-		$this->tokenService = $tokenService;
-		$this->config = $config;
 	}
 
 	public function getMenuJson(Token $token): ?array {

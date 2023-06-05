@@ -43,34 +43,25 @@ use OCP\IUserSession;
 use Psr\Log\LoggerInterface;
 
 class TokenService {
+
 	private const INVALIDATE_DISCOVERY_CACHE_AFTER_SECONDS = 3600;
 	private const SESSION_TOKEN_KEY = Application::APP_ID . '-user-token';
 
-	private ISession $session;
-	private IURLGenerator $urlGenerator;
-	private IUserSession $userSession;
-	private LoggerInterface $logger;
-	private IRequest $request;
-	private IConfig $config;
 	private IClient $client;
 	private ICache $cache;
 
-	public function __construct(ISession $session,
-								IClientService $client,
-								IURLGenerator $urlGenerator,
-								IUserSession $userSession,
-								LoggerInterface $logger,
-								IRequest $request,
-								IConfig $config,
-								ICacheFactory $cacheFactory) {
-		$this->client = $client->newClient();
+	public function __construct(
+		ICacheFactory $cacheFactory,
+		IClientService $clientService,
+		private ISession $session,
+		private IURLGenerator $urlGenerator,
+		private IUserSession $userSession,
+		private LoggerInterface $logger,
+		private IRequest $request,
+		private IConfig $config,
+	) {
+		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
-		$this->session = $session;
-		$this->urlGenerator = $urlGenerator;
-		$this->userSession = $userSession;
-		$this->logger = $logger;
-		$this->request = $request;
-		$this->config = $config;
 	}
 
 	public function storeToken(array $tokenData): Token {

@@ -26,29 +26,22 @@ declare(strict_types=1);
 namespace OCA\Swp\Listener;
 
 use OCA\Swp\AppInfo\Application;
-use OCA\Swp\Service\OxMailService;
+//use OCA\Swp\Service\OxMailService;
 use OCA\Swp\Service\TokenService;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\Http\Client\IClientService;
+//use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class TokenObtainedEventListener implements IEventListener {
 
-	private IClientService $clientService;
-	private LoggerInterface $logger;
-	private TokenService $tokenService;
-	private OxMailService $mailService;
-
-	public function __construct(IClientService  $clientService,
-								LoggerInterface $logger,
-								TokenService    $tokenService,
-								OxMailService   $mailService) {
-		$this->clientService = $clientService;
-		$this->logger = $logger;
-		$this->tokenService = $tokenService;
-		$this->mailService = $mailService;
+	public function __construct(
+		// private IClientService $clientService,
+		// private OxMailService $mailService,
+		private LoggerInterface $logger,
+		private TokenService $tokenService,
+	) {
 	}
 
 	public function handle(Event $event): void {

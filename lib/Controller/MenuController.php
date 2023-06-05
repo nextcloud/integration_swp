@@ -34,14 +34,12 @@ use OCP\IRequest;
 
 class MenuController extends Controller {
 
-	private MenuService $menuService;
-
-	public function __construct($appName,
-								IRequest $request,
-								MenuService $menuService,
-								?string $userId) {
+	public function __construct(
+		$appName,
+		IRequest $request,
+		private MenuService $menuService,
+	) {
 		parent::__construct($appName, $request);
-		$this->menuService = $menuService;
 	}
 
 	/**

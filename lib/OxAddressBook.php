@@ -34,20 +34,15 @@ use OCP\IConfig;
 
 class OxAddressBook implements IAddressBook {
 
-	/** @var ICache */
-	private $cache;
-	private IConfig $config;
-	private OxContactsService $oxContactsService;
-	private ?string $userId;
+	private ICache $cache;
 
-	public function __construct(IConfig $config,
-								ICacheFactory $cacheFactory,
-								OxContactsService $oxContactsService,
-								?string $userId) {
+	public function __construct(
+		ICacheFactory $cacheFactory,
+		private IConfig $config,
+		private OxContactsService $oxContactsService,
+		private ?string $userId
+	) {
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_contacts');
-		$this->config = $config;
-		$this->oxContactsService = $oxContactsService;
-		$this->userId = $userId;
 	}
 
 	public function getKey() {

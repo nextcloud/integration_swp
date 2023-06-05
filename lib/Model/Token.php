@@ -29,18 +29,12 @@ use JsonSerializable;
 
 class Token implements JsonSerializable {
 
-	/** @var string */
-	private $idToken;
-	/** @var string */
-	private $accessToken;
-	/** @var int */
-	private $expiresIn;
-	/** @var string */
-	private $refreshToken;
-	/** @var int */
-	private $createdAt;
-	/** @var int|null */
-	private $providerId;
+	private string $idToken;
+	private string $accessToken;
+	private int $expiresIn;
+	private string $refreshToken;
+	private int $createdAt;
+	private ?int $providerId;
 
 	public function __construct(array $tokenData) {
 		$this->idToken = $tokenData['id_token'];

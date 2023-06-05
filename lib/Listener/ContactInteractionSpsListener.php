@@ -37,22 +37,13 @@ use Psr\Log\LoggerInterface;
 
 class ContactInteractionSpsListener implements IEventListener {
 
-	private OxContactsService $contactsService;
-	private OxAddressBook $oxAddressBook;
-	private ICacheFactory $cacheFactory;
-	private LoggerInterface $logger;
-	private ?string $userId;
-
-	public function __construct(OxContactsService $contactsService,
-								OxAddressBook $oxAddressBook,
-								ICacheFactory $cacheFactory,
-								LoggerInterface $logger,
-								?string $userId) {
-		$this->contactsService = $contactsService;
-		$this->oxAddressBook = $oxAddressBook;
-		$this->cacheFactory = $cacheFactory;
-		$this->logger = $logger;
-		$this->userId = $userId;
+	public function __construct(
+		private OxContactsService $contactsService,
+		private OxAddressBook $oxAddressBook,
+		private ICacheFactory $cacheFactory,
+		private LoggerInterface $logger,
+		private ?string $userId
+	) {
 	}
 
 	public function handle(Event $event): void {

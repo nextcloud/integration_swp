@@ -34,19 +34,14 @@ use Throwable;
 
 class OxContactsService extends OxBaseService {
 
-	private IClientService $clientService;
-	private LoggerInterface $logger;
-	private ?string $userId;
-
-	public function __construct(IConfig         $config,
-								TokenService    $tokenService,
-								IClientService  $clientService,
-								LoggerInterface $logger,
-								?string         $userId) {
+	public function __construct(
+		IConfig $config,
+		TokenService $tokenService,
+		private IClientService $clientService,
+		private LoggerInterface $logger,
+		private ?string $userId
+	) {
 		parent::__construct($config, $tokenService, $logger, $userId);
-		$this->clientService = $clientService;
-		$this->logger = $logger;
-		$this->userId = $userId;
 	}
 
 	/**
