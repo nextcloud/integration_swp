@@ -15,13 +15,61 @@ During login the access_token and refresh token are passed by the user_oidc app 
 
 ## Configuration:
 
-Configure OX API endpoint:
+### OpenXChange
+
+Configure OpenXChange base URL (to contact its API):
 
 	occ config:app:set integration_swp ox-baseurl --value="https://my.ox.instance"
 
-Setting a webmail url:
+Set a webmail url (will override the mailto: links click and open them in a new tab):
 
 	occ config:app:set integration_swp webmail-url --value="https://my.ox.instance/webmail"
+
+Set the webmail tab name (target):
+
+	occ config:app:set integration_swp webmail-tabname --value="swp-webmail"
+
+Set the cache duration for OX contact search requests (default: 600, 10 minutes):
+
+	occ config:app:set integration_swp cache-ttl-contacts --value="12"
+
+### Central menu
+
+Set the portal URL (will add an entry in the central menu):
+
+	occ config:app:set integration_swp portal-url --value="https://portal.org"
+
+Set the central menu Json content URL:
+
+	occ config:app:set integration_swp navigation-json-url --value="https://my.central/menu.json"
+
+Set the authentication type when requesting the menu json content (basic or bearer, default: basic)
+
+	occ config:app:set integration_swp navigation-json-auth-type --value="basic"
+
+Set the shared secret to access the central menu json endpoint.
+Will be used as a password if basic auth type is "basic".
+Will be used as bearer token if auth type is "bearer".
+
+	occ config:app:set integration_swp navigation-json-api-secret --value="abc123456"
+
+Set the OIDC token attribute which value should be used as username when requesting the central menu json endpoint.
+(default: "preferred_username")
+Will be used as username if auth type is basic.
+Will be used in the X-Ucs-Username HTTP header is auth type is bearer.
+
+	occ config:app:set integration_swp navigation-json-username-attribute --value="preferred_username"
+
+Choose which central menu item attribute should be used as target when opening entries.
+(default: undefined, target will be "_blank")
+
+	occ config:app:set integration_swp menu-tabname-attribute --value="myAttr"
+
+Set the menu json content cache duration in seconds (default: 3600, one hour):
+
+	occ config:app:set integration_swp cache-navigation-json --value="10"
+
+### Unified style
 
 Set the main content style to square corners and remove the margins:
 
@@ -48,6 +96,10 @@ Set the top-left logo:
 	occ config:app:set integration_swp logo-link-target --value="_blank"
 	# title of the logo link
 	occ config:app:set integration_swp logo-link-title --value="SWP portal"
+
+Configure which activity types should be hidden (comma separated, default is "contacts,calendar,calendar_todo"):
+
+	occ config:app:set integration_swp hidden-activities --value="contacts,calendar,calendar_todo"
 
 ## Local testing
 

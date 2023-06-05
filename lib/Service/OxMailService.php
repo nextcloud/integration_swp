@@ -36,8 +36,7 @@ use Psr\Log\LoggerInterface;
 
 class OxMailService extends OxBaseService {
 
-	/** @var ICache */
-	private $cache;
+	private ICache $cache;
 	private IConfig $config;
 	private IClientService $clientService;
 	private LoggerInterface $logger;
