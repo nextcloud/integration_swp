@@ -97,11 +97,11 @@ class PageController extends Controller {
 	 * @return DataDisplayResponse
 	 */
 	public function getLogo(): DataDisplayResponse {
-		$logoUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_LOGO_URL);
-		if ($logoUrl) {
+		$logoImageUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_LOGO_IMAGE_URL);
+		if ($logoImageUrl) {
 			$client = $this->clientService->newClient();
 			try {
-				$logoResponse = $client->get($logoUrl);
+				$logoResponse = $client->get($logoImageUrl);
 				$fileContent = $logoResponse->getBody();
 				$mimeType = $logoResponse->getHeader('Content-Type');
 				if (is_array($mimeType) && count($mimeType) > 0) {
@@ -111,7 +111,7 @@ class PageController extends Controller {
 				$response->cacheFor(60 * 60);
 				return $response;
 			} catch (Exception | Throwable $e) {
-				$this->logger->error('Failed to get logo at ' . $logoUrl, ['exception' => $e]);
+				$this->logger->error('Failed to get logo at ' . $logoImageUrl, ['exception' => $e]);
 			}
 		}
 

@@ -59,7 +59,12 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_DEFAULT_USER_THEME_DEFAULT = 'light';
 	public const APP_CONFIG_SQUARE_CORNERS = 'square-corners';
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
-	public const APP_CONFIG_LOGO_URL = 'logo-url';
+	public const APP_CONFIG_LOGO_IMAGE_URL = 'logo-image-url';
+	public const APP_CONFIG_LOGO_WIDTH = 'logo-width';
+	public const APP_CONFIG_LOGO_HEIGHT = 'logo-height';
+	public const APP_CONFIG_LOGO_LINK_URL = 'logo-link-url';
+	public const APP_CONFIG_LOGO_LINK_TARGET = 'logo-link-target';
+	public const APP_CONFIG_LOGO_LINK_TITLE = 'logo-link-title';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
 	public const APP_CONFIG_WEBMAIL_URL = 'webmail-url';
 	public const APP_CONFIG_WEBMAIL_TABNAME = 'webmail-tabname';
@@ -143,6 +148,21 @@ class Application extends App implements IBootstrap {
 
 			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TARGET, '_blank') ?: '_blank';
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_URL);
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TITLE);
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_WIDTH);
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_HEIGHT);
 			});
 			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');

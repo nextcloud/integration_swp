@@ -33,6 +33,22 @@ Set the default user theme (but still allow the users to change it), default val
 
 THEME can be `light`, `dark`, `light-highcontrast` or `dark-highcontrast`.
 
+Set the top-left logo:
+
+	# Do we want to use a custom logo? (1 or 0) Use the theming one if 0.
+	occ config:app:set integration_swp use-custom-logo --value="1"
+	# The custom logo image URL (default is the local /img/phoenix_suite_logo-Assets/SVG/phoenix_suite_logo.svg file)
+	occ config:app:set integration_swp logo-image-url --value="https://logos.org/my/logo.svg"
+	# CSS properties for the logo image
+	occ config:app:set integration_swp logo-width --value="63%"
+	occ config:app:set integration_swp logo-height --value="auto"
+	# href of the logo link
+	occ config:app:set integration_swp logo-link-url --value="https://swp.org"
+	# target of the logo link
+	occ config:app:set integration_swp logo-link-target --value="_blank"
+	# title of the logo link
+	occ config:app:set integration_swp logo-link-title --value="SWP portal"
+
 ## Local testing
 
 Even without using SWP Login, this app can be tested by manually providing a valid OIDC ID token through app config:

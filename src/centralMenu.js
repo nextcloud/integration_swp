@@ -61,17 +61,32 @@ export function setHeaderLogoUrl() {
 		const src = generateUrl('/apps/integration_swp/logo')
 		img.setAttribute('src', src)
 		img.classList.add('custom-logo')
+		// custom logo size
+		const customLogoWidth = loadState('integration_swp', 'logo-width')
+		const customLogoHeight = loadState('integration_swp', 'logo-height')
+		if (customLogoWidth || customLogoHeight) {
+			const width = customLogoWidth ? `width: ${customLogoWidth};` : ''
+			const height = customLogoHeight ? `height: ${customLogoHeight};` : ''
+			img.setAttribute('style', width + height)
+		}
 		logo.append(img)
 	} else {
-		// hide theming logo
+		// show theming logo
 		const themingLogo = logo.querySelector('.logo')
 		themingLogo.classList.add('enabled')
 	}
 
 	// set logo link target
-	const portalUrl = loadState('integration_swp', 'portal-url')
-	if (portalUrl) {
-		logo.setAttribute('href', portalUrl)
-		logo.setAttribute('target', '_blank')
+	const logoLinkUrl = loadState('integration_swp', 'logo-link-url')
+	if (logoLinkUrl) {
+		logo.setAttribute('href', logoLinkUrl)
+	}
+	const logoLinkTarget = loadState('integration_swp', 'logo-link-target')
+	if (logoLinkTarget) {
+		logo.setAttribute('target', logoLinkTarget)
+	}
+	const logoLinkTitle = loadState('integration_swp', 'logo-link-title')
+	if (logoLinkTitle) {
+		logo.setAttribute('title', logoLinkTitle)
 	}
 }
