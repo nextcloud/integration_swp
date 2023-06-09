@@ -1,17 +1,19 @@
 # Nextcloud Sovereign Workplace (Phoenix) integration
 
-## Implemented features:
-- Unread email counter
+## Implemented features
+
 - Address book search
 - Central navigation
-- Unified design
+- Unified style
 
 ## Requirements
+
 - Required OIDC connection with user_oidc to be setup
 
 ## OIDC token handling
 
-During login the access_token and refresh token are passed by the user_oidc app to the integration_swp app through a dispatched event. integration_swp will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
+During login the access_token and refresh token are passed by the user_oidc app to the integration_swp app through a dispatched event.
+integration_swp will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
 
 ## Configuration:
 
@@ -103,6 +105,10 @@ Configure which activity types should be hidden (comma separated, default is "co
 
 ## Local testing
 
-Even without using SWP Login, this app can be tested by manually providing a valid OIDC ID token through app config:
+You can get the current OIDC token information on this page:
+
+	https://my.nextcloud.org/index.php/apps/integration_swp
+
+Even without using SWP Login, the integration with OpenXChange can be tested by manually providing a valid OIDC ID token through app config:
 
 	occ config:app:set integration_swp ox-usertoken --value="$OIDC_ID_TOKEN"
