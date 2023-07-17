@@ -1,8 +1,8 @@
-on:
-  push:
-    branches: [release]
-
 name: Create release archive
+
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
