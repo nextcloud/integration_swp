@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.11 – 2023-08-02
+
+### Added
+
+- Add debug_mode app config flag to avoid having to authenticate via user_oidc
+
 ## 3.0.10 – 2023-07-17
 
 ### Changed
