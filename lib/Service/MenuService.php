@@ -56,7 +56,10 @@ class MenuService {
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
 	}
 
-	public function getMenuJson(Token $token): ?array {
+	public function getMenuJson(?Token $token): ?array {
+		if ($token === null) {
+			return $this->getFromFile('fake.menu.example.json');
+		}
 		try {
 			$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
 			if ($jsonMenuUrl !== '') {
