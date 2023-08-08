@@ -1,21 +1,17 @@
 :root {
-  --my-header-height: 64px;
-}
-
-body {
-	background-image: unset !important;
-	background-color: gray !important;
+	--my-header-height: 64px;
+	--my-header-bottom-margin: 0px;
 }
 
 #view-toggle {
-	top: calc(var(--my-header-height) + 10px);
+	top: calc(var(--my-header-height) + var(--my-header-bottom-margin));
 }
 
 body > #content,
 body > #content-vue {
 	margin-top: 74px;
-	margin-top: calc(var(--my-header-height) + 10px);
-	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - 10px);
+	margin-top: calc(var(--my-header-height) + var(--my-header-bottom-margin));
+	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - var(--my-header-bottom-margin));
 }
 
 /* fix dashboard header */
@@ -26,10 +22,13 @@ body.dashboard--inverted:not(.dashboard--dark) {
 	}
 }
 
+// header right icons hover
+.header-right > div:hover {
+	background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
 header#header {
 	height: var(--my-header-height) !important;
-	background-color: white !important;
-	border-bottom: 1px solid #dddddd;
 
 	.header-right {
 		#settings #expand {
@@ -53,32 +52,6 @@ header#header {
 		#contactsmenu {
 			.content .footer {
 				display: none !important;
-			}
-		}
-		> div:hover {
-			background-color: rgba(0, 0, 0, 0.1);
-		}
-		// for NC between 25.0.0 and 25.0.2
-		#contactsmenu .menutoggle {
-			filter: invert(100%);
-		}
-		#contactsmenu .header-menu__trigger,
-		#notifications .header-menu__trigger {
-			//background: url('../img/notifications-dark.svg') no-repeat center !important;
-			//background-size: 20px !important;
-			opacity: .865 !important;
-			svg,
-			img {
-				//display: none;
-				filter: invert(100%);
-			}
-		}
-		#unified-search {
-			> a {
-				opacity: 1 !important;
-			}
-			svg {
-				fill: #1f1f1f;
 			}
 		}
 	}
@@ -110,14 +83,16 @@ nav.app-menu {
 	display: none !important;
 }
 
+/*
 .icon-more-white {
 	background-color: #1f1f1f;
-	/* background-image: url('../img/grid.svg') !important; */
+	// background-image: url('../img/grid.svg') !important;
 	background-image: unset !important;
 	-webkit-mask: url('../img/grid.svg') no-repeat 50% 50%;
 	mask: url('../img/grid.svg') no-repeat 50% 50%;
 	background-size: 20px;
 }
+*/
 
 header#header {
 	.header-left {

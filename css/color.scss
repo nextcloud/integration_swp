@@ -1,0 +1,37 @@
+:root {
+	--my-header-bottom-margin: 10px !important;
+}
+
+body {
+	background-image: unset !important;
+	background-color: gray !important;
+}
+
+header#header {
+	background-color: white !important;
+	border-bottom: 1px solid #dddddd;
+}
+
+#contactsmenu .header-menu__trigger,
+#notifications .header-menu__trigger {
+	opacity: .865 !important;
+	svg,
+	img {
+		filter: invert(100%);
+	}
+}
+#unified-search {
+	> a {
+		opacity: 1 !important;
+	}
+	svg {
+		fill: #1f1f1f;
+	}
+}
+
+// central menu
+#central-app-menu {
+	.menu-icon {
+		color: #1f1f1f !important;
+	}
+}

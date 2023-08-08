@@ -124,7 +124,7 @@ export default {
 	flex-wrap: wrap;
 
 	.menu-icon {
-		color: #1f1f1f;
+		color: var(--color-primary-text);
 	}
 }
 

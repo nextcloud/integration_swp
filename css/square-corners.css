@@ -4,7 +4,6 @@
 	margin: 0 !important;
 	margin-top: var(--my-header-height) !important;
 	width: 100%;
-	/*height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - 10px);*/
 	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height)) !important;
 }
 
