@@ -193,7 +193,7 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 			Util::addStyle(self::APP_ID, 'theming');
-			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS) === '1') {
+			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS, '1') === '1') {
 				Util::addStyle(self::APP_ID, 'square-corners');
 			}
 			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {

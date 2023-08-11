@@ -73,7 +73,12 @@ Set the menu json content cache duration in seconds (default: 3600, one hour):
 
 ### Unified style
 
-Set the main content style to square corners and remove the margins:
+Override the header menu background color to white and  the page background color to gray
+(independently from the accent color set in theming admin settings). This is enabled by default:
+
+	occ config:app:set integration_swp override-header-color --value="1"
+
+Set the main content style to square corners and remove the margins. This is enabled by default:
 
 	occ config:app:set integration_swp square-corners --value="1"
 
@@ -104,6 +109,10 @@ Configure which activity types should be hidden (comma separated, default is "co
 	occ config:app:set integration_swp hidden-activities --value="contacts,calendar,calendar_todo"
 
 ## Local testing
+
+Enable the apps features (theming, central menu, logo override...) even if the user is not connected via user_oidc:
+
+	occ config:app:set integration_swp debug_mode --value="1"
 
 You can get the current OIDC token information on this page:
 
