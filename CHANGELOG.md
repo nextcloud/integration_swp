@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.0 – 2023-08-11
+
+### Added
+
+- New app config to toggle header menu color override
+
 ## 3.0.11 – 2023-08-02
 
 ### Added
