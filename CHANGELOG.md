@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.0.15 – 2023-08-31
+## 1.0.16 – 2023-08-31
 ### Added
 - option to toggle header menu overriding
 
