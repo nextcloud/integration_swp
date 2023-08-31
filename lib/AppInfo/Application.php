@@ -53,6 +53,8 @@ class Application extends App implements IBootstrap {
 
 	public const USER_CONFIG_KEY_UNREAD_COUNT = 'unread-count';
 
+	public const APP_CONFIG_DEBUG_MODE = 'debug_mode';
+
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_LOGO_URL = 'logo-url';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
@@ -103,8 +105,10 @@ class Application extends App implements IBootstrap {
 				return;
 			}
 
+			$debugModeEnabled = $config->getAppValue(self::APP_ID, self::APP_CONFIG_DEBUG_MODE, '0') === '1';
+
 			$token = $tokenService->getToken();
-			if ($token === null) {
+			if (!$debugModeEnabled && $token === null) {
 				// if we don't have a token but we had one once,
 				// it means the session (where we store the token) has died
 				// so we need to reauthenticate
@@ -113,12 +117,15 @@ class Application extends App implements IBootstrap {
 				}
 				return;
 			}
-			// remember that this user had a token once
-			$config->setUserValue($userId, self::APP_ID, 'had_token_once', '1');
+
+			if (!$debugModeEnabled) {
+				// remember that this user had a token once
+				$config->setUserValue($userId, self::APP_ID, 'had_token_once', '1');
+			}
 
 			$contactsManager->registerAddressBook($oxAddressBook);
 
-			if ($token->isExpired()) {
+			if (!$debugModeEnabled && $token->isExpired()) {
 				$tokenService->reauthenticate();
 			}
 

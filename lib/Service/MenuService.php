@@ -94,7 +94,7 @@ class MenuService {
       "entries": [
         {
           "identifier": "cat1_item1",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Files",
           "link": "https://duckduckgo.com/one",
           "description": "1-1",
@@ -124,7 +124,7 @@ class MenuService {
         },
         {
           "identifier": "cat2_item2",
-          "icon_url": "https://www.downloadclipart.net/svg/31379-logo-vector.svg",
+          "icon_url": "https://en.wikipedia.org/static/images/icons/wikipedia.png",
           "display_name": "Calendar",
           "link": "https://duckduckgo.com/four",
           "description": "2-2",
@@ -137,7 +137,10 @@ class MenuService {
 				';
 	}
 
-	public function getMenuJson(Token $token): ?string {
+	public function getMenuJson(?Token $token): ?string {
+		if ($token === null) {
+			return $this->backupJson;
+		}
 		try {
 			$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
 			if ($jsonMenuUrl !== '') {
