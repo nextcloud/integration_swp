@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.15 – 2023-08-31
+### Added
+- option to toggle header menu overriding
+
 ## 1.0.14 – 2023-04-06
 ### Added
 - backport custom logo URL feature (make custom logo url configurable with app config 'logo-url', fallback to phoenix one)
