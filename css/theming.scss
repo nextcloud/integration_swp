@@ -18,40 +18,13 @@ body.dashboard--inverted:not(.dashboard--dark) {
 }
 
 header#header {
-	background-color: white !important;
-	background-image: unset !important;
-	border-bottom: 1px solid #dddddd;
 
 	.header-right {
-		.icon-contacts {
-			background-image: var(--icon-contacts-000);
-			opacity: 1 !important;
-		}
-		#contactsmenu {
-			opacity: .88 !important;
-			.content .footer {
-				display: none !important;
-			}
-		}
 		> div:hover {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
-		.notifications .notifications-button {
-			//background: url('../img/notifications-dark.svg') no-repeat center !important;
-			//background-size: 20px !important;
-			opacity: .865 !important;
-			img {
-				//display: none;
-				filter: invert(100%);
-			}
-		}
-		#unified-search {
-			> a {
-				opacity: 1 !important;
-			}
-			svg {
-				fill: #1f1f1f;
-			}
+		#settings #expand::before {
+			display: none !important;
 		}
 	}
 
@@ -165,7 +138,7 @@ header#header {
 }
 
 .icon-more-white {
-	background-color: #1f1f1f;
+	background-color: var(--color-primary-text);
 	/* background-image: url('../img/grid.svg') !important; */
 	background-image: unset !important;
 	-webkit-mask: url('../img/grid.svg') no-repeat 50% 50%;

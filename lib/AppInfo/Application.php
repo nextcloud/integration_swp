@@ -55,6 +55,7 @@ class Application extends App implements IBootstrap {
 
 	public const APP_CONFIG_DEBUG_MODE = 'debug_mode';
 
+	public const APP_CONFIG_OVERRIDE_HEADER_COLOR = 'override-header-color';
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_LOGO_URL = 'logo-url';
 	public const APP_CONFIG_PORTAL_URL = 'portal-url';
@@ -156,6 +157,9 @@ class Application extends App implements IBootstrap {
 
 			Util::addScript(self::APP_ID, self::APP_ID . '-main');
 			Util::addStyle(self::APP_ID, 'theming');
+			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
+				Util::addStyle(self::APP_ID, 'color');
+			}
 		});
 	}
 

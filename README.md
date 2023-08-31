@@ -23,6 +23,11 @@ Setting a webmail url:
 
 	occ config:app:set integration_phoenix webmail-url --value="https://my.ox.instance/webmail"
 
+Override the header menu background color to white
+(independently from the accent color set in theming admin settings). This is enabled by default:
+
+	occ config:app:set integration_swp override-header-color --value="1"
+
 ## Local testing
 
 Even without using Phoenix Login, this app can be tested by manually providing a valid OIDC ID token through app config:
