@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.11 – 2023-10-02
+
+### Fixed
+- add support for encrypted oidc provider secret (user_oidc >= 1.3.3)
+
 ## 2.0.10 – 2023-04-17
 ### Added
 - 'hidden-activities' app config to choose which activity category to hide
