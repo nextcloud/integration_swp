@@ -31,6 +31,7 @@ use OCA\Swp\Model\Token;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;
+use OCP\App\IAppManager;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
@@ -40,6 +41,7 @@ use OCP\IRequest;
 use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
+use OCP\Security\ICrypto;
 use Psr\Log\LoggerInterface;
 
 class TokenService {
@@ -59,6 +61,8 @@ class TokenService {
 		private LoggerInterface $logger,
 		private IRequest $request,
 		private IConfig $config,
+		private ICrypto $crypto,
+		private IAppManager $appManager,
 	) {
 		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
@@ -95,13 +99,24 @@ class TokenService {
 		$discovery = $this->obtainDiscovery($oidcProvider);
 
 		try {
+			$clientSecret = $oidcProvider->getClientSecret();
+			$userOidcVersion = $this->appManager->getAppVersion('user_oidc');
+			// oidc provider secret encryption was introduced in v1.3.3
+			if (version_compare($userOidcVersion, '1.3.3', '>=')) {
+				// attempt to decrypt the oidc provider secret
+				try {
+					$clientSecret = $this->crypto->decrypt($oidcProvider->getClientSecret());
+				} catch (\Exception $e) {
+					$this->logger->error('Failed to decrypt oidc client secret', ['app' => Application::APP_ID]);
+				}
+			}
 			$this->logger->debug('Refreshing the token: '.$discovery['token_endpoint'], ['app' => Application::APP_ID]);
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[
 					'body' => [
 						'client_id' => $oidcProvider->getClientId(),
-						'client_secret' => $oidcProvider->getClientSecret(),
+						'client_secret' => $clientSecret,
 						'grant_type' => 'refresh_token',
 						'refresh_token' => $token->getRefreshToken(),
 						// TODO check if we need a different scope for this
@@ -111,7 +126,7 @@ class TokenService {
 			);
 			$this->logger->debug('PARAMS: '.json_encode([
 					'client_id' => $oidcProvider->getClientId(),
-					'client_secret' => $oidcProvider->getClientSecret(),
+					'client_secret' => $clientSecret,
 					'grant_type' => 'refresh_token',
 					'refresh_token' => $token->getRefreshToken(),
 					// TODO check if we need a different scope for this
