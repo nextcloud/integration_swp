@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.17 – 2023-10-02
+
+### Fixed
+- add support for encrypted oidc provider secret (user_oidc >= 1.3.3)
+
 ## 1.0.16 – 2023-08-31
 ### Added
 - option to toggle header menu overriding
