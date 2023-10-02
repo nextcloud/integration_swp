@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.1 – 2023-10-02
+
+### Changed
+
+- Update makefile to keep packaging files
+- Update property-information npm pkg
+
+### Fixed
+
+- Add support for encrypted oidc provider secret (user_oidc >= 1.3.3)
+
 ## 3.1.0 – 2023-08-11
 
 ### Added
