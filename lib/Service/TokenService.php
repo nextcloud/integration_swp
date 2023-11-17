@@ -173,7 +173,7 @@ class TokenService {
 
 		$jwks = $discoveryService->obtainJWK($oidcProvider);
 		JWT::$leeway = 60;
-		$idTokenObject = JWT::decode($token->getIdToken(), $jwks, array_keys(JWT::$supported_algs));
+		$idTokenObject = JWT::decode($token->getIdToken(), $jwks);
 		return json_decode(json_encode($idTokenObject), true);
 	}
 
