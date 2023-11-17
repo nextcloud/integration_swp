@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.2 – 2023-11-17
+
+### Fixed
+
+- update firebase/php-jwt to 6.9.0 to make it work with latest user_oidc
+
 ## 3.1.1 – 2023-10-02
 
 ### Changed
