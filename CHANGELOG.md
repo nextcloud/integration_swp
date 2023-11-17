@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.3 – 2023-11-17
+
+### Fixed
+
+- fix type issue when decoding JWT token (keys are obtained with a different type in user_oidc)
+
 ## 3.1.2 – 2023-11-17
 
 ### Fixed
