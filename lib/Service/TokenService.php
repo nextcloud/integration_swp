@@ -25,9 +25,10 @@ declare(strict_types=1);
 
 namespace OCA\Swp\Service;
 
-use OCA\Swp\Vendor\Firebase\JWT\JWT;
 use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Model\Token;
+use OCA\Swp\Vendor\Firebase\JWT\JWT;
+use OCA\Swp\Vendor\Firebase\JWT\Key;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;
@@ -171,9 +172,19 @@ class TokenService {
 		$discoveryService = \OC::$server->get(DiscoveryService::class);
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
 
+		// converting \OCA\UserOIDC\Vendor\Firebase\JWT\Key[] to \OCA\Swp\Vendor\Firebase\JWT\Key[]
+		// because OCA\Swp\Vendor\Firebase\JWT\JWT::decode checks the types
+		// this issue can also be solved by just importing OCA\UserOIDC\Vendor\Firebase\JWT\JWT instead of OCA\Swp\Vendor\Firebase\JWT\JWT
+		/** @var \OCA\UserOIDC\Vendor\Firebase\JWT\Key[] $jwks */
 		$jwks = $discoveryService->obtainJWK($oidcProvider);
+		$myJwks = [];
+		foreach ($jwks as $kid => $jwk) {
+			$material = $jwk->getKeyMaterial();
+			$alg = $jwk->getAlgorithm();
+			$myJwks[$kid] =  new Key($material, $alg);
+		}
 		JWT::$leeway = 60;
-		$idTokenObject = JWT::decode($token->getIdToken(), $jwks);
+		$idTokenObject = JWT::decode($token->getIdToken(), $myJwks);
 		return json_decode(json_encode($idTokenObject), true);
 	}
 
