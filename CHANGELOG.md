@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.12 – 2023-11-21
+
+### Changed
+
+- update php-jwt and make adjustments
+
 ## 2.0.11 – 2023-10-02
 
 ### Fixed
