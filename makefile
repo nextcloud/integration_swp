@@ -6,7 +6,7 @@ build_dir=/tmp/build
 sign_dir=/tmp/sign
 cert_dir=$(HOME)/.nextcloud/certificates
 webserveruser ?= www-data
-occ_dir ?= /var/www/html/dev/server22
+occ_dir ?= /var/www/html/dev/server
 
 GITHUB_TOKEN := $(shell cat ~/.nextcloud/secrets/GITHUB_TOKEN | tr -d '\n')
 GITHUB_REPO=
@@ -105,7 +105,9 @@ build_release: clean
 	$(project_dir) $(sign_dir)/$(app_name)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		sudo chown $(webserveruser) $(sign_dir)/$(app_name)/appinfo ;\
-		sudo -u $(webserveruser) php $(occ_dir)/occ integrity:sign-app --privateKey=$(cert_dir)/$(app_name).key --certificate=$(cert_dir)/$(app_name).crt --path=$(sign_dir)/$(app_name)/ ;\
+		cp $(cert_dir)/$(app_name).key $(sign_dir)/ ;\
+		cp $(cert_dir)/$(app_name).crt $(sign_dir)/ ;\
+		sudo -u $(webserveruser) php $(occ_dir)/occ integrity:sign-app --privateKey=$(sign_dir)/$(app_name).key --certificate=$(sign_dir)/$(app_name).crt --path=$(sign_dir)/$(app_name)/ ;\
 		sudo chown -R $(USER) $(sign_dir)/$(app_name)/appinfo ;\
 	else \
 		echo "!!! WARNING signature key not found" ;\
@@ -114,5 +116,5 @@ build_release: clean
 		-C $(sign_dir) $(app_name)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		echo NEXTCLOUD------------------------------------------ ;\
-		openssl dgst -sha512 -sign $(cert_dir)/$(app_name).key $(build_dir)/$(app_name)-$(app_version).tar.gz | openssl base64 | tee $(build_dir)/sign.txt ;\
+		openssl dgst -sha512 -sign $(sign_dir)/$(app_name).key $(build_dir)/$(app_name)-$(app_version).tar.gz | openssl base64 | tee $(build_dir)/sign.txt ;\
 	fi
