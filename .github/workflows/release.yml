@@ -71,7 +71,7 @@ jobs:
           echo "##[set-output name=version;]$version"
         env:
           APP_KEY: ${{ secrets.APP_KEY }}
-        #  APP_CRT: ${{ secrets.APP_CRT }}
+          #  APP_CRT: ${{ secrets.APP_CRT }}
 
       - name: Attach tarball to github release
         uses: svenstaro/upload-release-action@2b9d2847a97b04d02ad5c3df2d3a27baa97ce689 # v2
