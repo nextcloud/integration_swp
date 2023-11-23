@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     name: Build and upload release in GitHub
+    environment: release
     env:
       APP_ID: integration_swp
     runs-on: ubuntu-latest
