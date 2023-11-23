@@ -107,6 +107,7 @@ build_release: clean
 		sudo chown $(webserveruser) $(sign_dir)/$(app_name)/appinfo ;\
 		cp $(cert_dir)/$(app_name).key $(sign_dir)/ ;\
 		cp $(cert_dir)/$(app_name).crt $(sign_dir)/ ;\
+		sudo chown $(webserveruser): $(sign_dir)/$(app_name).key $(sign_dir)/$(app_name).crt ;\
 		sudo -u $(webserveruser) php $(occ_dir)/occ integrity:sign-app --privateKey=$(sign_dir)/$(app_name).key --certificate=$(sign_dir)/$(app_name).crt --path=$(sign_dir)/$(app_name)/ ;\
 		sudo chown -R $(USER) $(sign_dir)/$(app_name)/appinfo ;\
 	else \
