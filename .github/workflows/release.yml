@@ -7,6 +7,7 @@ name: Create release archive
 jobs:
   build:
     name: Build and upload release in GitHub
+    environment: release
     env:
       APP_ID: integration_phoenix
     runs-on: ubuntu-latest
@@ -46,8 +47,8 @@ jobs:
           echo "##[set-output name=app_id;]$APP_ID"
           echo "###### copy certificate"
           mkdir -p ~/.nextcloud/certificates
-          # echo "$APP_CRT" > ~/.nextcloud/certificates/${APP_ID}.crt
-          # echo "$APP_KEY" > ~/.nextcloud/certificates/${APP_ID}.key
+          wget --quiet "https://github.com/nextcloud/app-certificate-requests/raw/master/${APP_ID}/${APP_ID}.crt" -O ~/.nextcloud/certificates/${APP_ID}.crt
+          echo "$APP_PRIVATE_KEY" > ~/.nextcloud/certificates/${APP_ID}.key
           echo "###### install dependencies"
           export DEBIAN_FRONTEND=noninteractive
           sudo apt update -y
@@ -68,9 +69,8 @@ jobs:
           version=${tag/v/}
           webserveruser=runner occ_dir=~/html/nextcloud version=$version make build_release
           echo "##[set-output name=version;]$version"
-        #env:
-        #  APP_CRT: ${{ secrets.APP_CRT }}
-        #  APP_KEY: ${{ secrets.APP_KEY }}
+        env:
+          APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Create Release
         if: ${{ startsWith( steps.tag.outputs.currenttag , 'v' ) }}
