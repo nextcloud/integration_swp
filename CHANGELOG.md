@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.19 – 2023-11-24
+
+### Changed
+
+- adjust the release action
+
 ## 1.0.18 – 2023-11-21
 
 ### Changed
