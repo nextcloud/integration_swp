@@ -6,11 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 2.0.14 – 2023-11-23
+## 2.0.16 – 2023-11-24
 
 ### Changed
 
-- sign the app files
+- adjust the release action
 
 ## 2.0.12 – 2023-11-21
 
