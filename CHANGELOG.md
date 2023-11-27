@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.11 – 2023-11-27
+
+### Fixed
+
+- Adjustments to work with user_oidc v1.3.5
+
 ## 3.1.10 – 2023-11-23
 
 ### Changed
