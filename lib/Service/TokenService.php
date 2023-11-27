@@ -191,7 +191,7 @@ class TokenService {
 		// because OCA\Swp\Vendor\Firebase\JWT\JWT::decode checks the types
 		// this issue can also be solved by just importing OCA\UserOIDC\Vendor\Firebase\JWT\JWT instead of OCA\Swp\Vendor\Firebase\JWT\JWT
 		/** @var \OCA\UserOIDC\Vendor\Firebase\JWT\Key[] $jwks */
-		$jwks = $discoveryService->obtainJWK($oidcProvider);
+		$jwks = $discoveryService->obtainJWK($oidcProvider, $token->getIdToken());
 		$myJwks = [];
 		foreach ($jwks as $kid => $jwk) {
 			$material = $jwk->getKeyMaterial();
