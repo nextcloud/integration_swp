@@ -64,12 +64,14 @@ class TokenService {
 		private IConfig $config,
 		private ICrypto $crypto,
 		private IAppManager $appManager,
+		private UserOidcService $userOidcService,
 	) {
 		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
 	}
 
 	public function storeToken(array $tokenData): Token {
+		file_put_contents('/tmp/qqq-tokendata', json_encode($tokenData));
 		$token = new Token($tokenData);
 		$this->session->set(self::SESSION_TOKEN_KEY, json_encode($token, JSON_THROW_ON_ERROR));
 		$this->logger->info('Store token', ['app' => Application::APP_ID]);
@@ -94,8 +96,7 @@ class TokenService {
 	}
 
 	public function refresh(Token $token) {
-		/** @var ProviderMapper $providerMapper */
-		$providerMapper = \OC::$server->get(ProviderMapper::class);
+		$providerMapper = $this->userOidcService->getUserOidcProviderMapper();
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
 		$discovery = $this->obtainDiscovery($oidcProvider);
 
@@ -166,10 +167,8 @@ class TokenService {
 	}
 
 	public function decodeIdToken(Token $token): array {
-		/** @var ProviderMapper */
-		$providerMapper = \OC::$server->get(ProviderMapper::class);
-		/** @var DiscoveryService */
-		$discoveryService = \OC::$server->get(DiscoveryService::class);
+		$providerMapper = $this->userOidcService->getUserOidcProviderMapper();
+		$discoveryService = $this->userOidcService->getUserOidcDiscoveryService();
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
 
 		// converting \OCA\UserOIDC\Vendor\Firebase\JWT\Key[] to \OCA\Swp\Vendor\Firebase\JWT\Key[]
@@ -185,6 +184,7 @@ class TokenService {
 		}
 		JWT::$leeway = 60;
 		$idTokenObject = JWT::decode($token->getIdToken(), $myJwks);
+		file_put_contents('/tmp/qqq-decoded-id-token', json_encode($idTokenObject));
 		return json_decode(json_encode($idTokenObject), true);
 	}
 
