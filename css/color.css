@@ -16,11 +16,13 @@ header#header {
 #notifications .header-menu__trigger {
   opacity: 0.865 !important;
 }
-#contactsmenu .header-menu__trigger svg,
 #contactsmenu .header-menu__trigger img,
-#notifications .header-menu__trigger svg,
 #notifications .header-menu__trigger img {
   filter: invert(100%);
+}
+
+#header .header-right svg {
+  fill: #1f1f1f;
 }
 
 #unified-search > a {
