@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.12 – 2023-12-15
+
+### Added
+
+- custom style in public share pages (optional, default: enabled)
+
 ## 3.1.11 – 2023-11-27
 
 ### Fixed
