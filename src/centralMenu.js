@@ -52,6 +52,10 @@ export function makeCentralMenu() {
 export function setHeaderLogoUrl() {
 	const useCustomLogo = loadState('integration_swp', 'use-custom-logo')
 	const logo = document.querySelector('#header #nextcloud')
+	const logoWrapper = document.createElement('div')
+	logoWrapper.classList.add('logo-wrapper')
+	logo.prepend(logoWrapper)
+
 	if (useCustomLogo) {
 		// add the custom one
 		const img = document.createElement('img')
@@ -69,11 +73,13 @@ export function setHeaderLogoUrl() {
 			const height = customLogoHeight ? `height: ${customLogoHeight};` : ''
 			img.setAttribute('style', width + height)
 		}
-		logo.append(img)
+		logoWrapper.prepend(img)
+
 	} else {
 		// show theming logo
 		const themingLogo = logo.querySelector('.logo')
 		themingLogo.classList.add('enabled')
+		logoWrapper.append(themingLogo)
 	}
 
 	// set logo link target

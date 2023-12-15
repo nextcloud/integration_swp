@@ -57,6 +57,7 @@ class Application extends App implements IBootstrap {
 
 	public const APP_CONFIG_DEBUG_MODE = 'debug_mode';
 
+	public const APP_CONFIG_CUSTOM_STYLE_PUBLIC_PAGES = 'public-style';
 	public const APP_CONFIG_DEFAULT_USER_THEME = 'default-user-theme';
 	public const APP_CONFIG_DEFAULT_USER_THEME_DEFAULT = 'light';
 	public const APP_CONFIG_OVERRIDE_HEADER_COLOR = 'override-header-color';
@@ -98,6 +99,8 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
 		$context->registerEventListener(ContactInteractedWithEvent::class, ContactInteractionSpsListener::class);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, PublicShareTemplateLoader::class);
+		// maybe it's worth moving all the boot stuff in a listener so it runs once on each page load instead of many times for each request
+		// $context->registerEventListener(\OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -154,50 +157,53 @@ class Application extends App implements IBootstrap {
 			// as we get the menu items with a central navigation service, this is not necessary anymore
 			// $this->registerNavigationItems();
 
-			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TARGET, '_blank') ?: '_blank';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_URL);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TITLE);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_WIDTH);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_HEIGHT);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_TABNAME, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function() use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');
 			});
-			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
+			$initialState->provideLazyInitialState('menu-json', function() use ($menuService, $token) {
 				return $menuService->getMenuJson($token);
 			});
 
-			Util::addScript(self::APP_ID, self::APP_ID . '-main');
-			Util::addStyle(self::APP_ID, 'theming');
-			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS, '1') === '1') {
-				Util::addStyle(self::APP_ID, 'square-corners');
-			}
-			if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
-				Util::addStyle(self::APP_ID, 'color');
+			// don't load on public share pages
+			if (!str_starts_with($request->getPathInfo(), '/s/')) {
+				Util::addScript(self::APP_ID, self::APP_ID . '-main');
+				Util::addStyle(self::APP_ID, 'theming');
+				if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS, '1') === '1') {
+					Util::addStyle(self::APP_ID, 'square-corners');
+				}
+				if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
+					Util::addStyle(self::APP_ID, 'color');
+				}
 			}
 
 			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {

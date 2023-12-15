@@ -1,2 +1,3 @@
-// import '../css/theming.scss'
-// import '../css/public.scss'
+import { setHeaderLogoUrl } from './centralMenu.js'
+
+setHeaderLogoUrl()

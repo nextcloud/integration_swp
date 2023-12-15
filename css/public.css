@@ -16,4 +16,9 @@ footer,
   display: none !important;
 }
 
+#header #nextcloud {
+  color: #1f1f1f;
+  justify-content: start !important;
+}
+
 /*# sourceMappingURL=public.css.map */

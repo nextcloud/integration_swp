@@ -102,6 +102,15 @@ header#header .header-left #nextcloud .logo {
 header#header .header-left #nextcloud .logo.enabled {
   display: inline-flex;
 }
+header#header .header-left #nextcloud .logo-wrapper {
+  display: flex;
+  width: 138px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
 div[role=tooltip] {
   top: 50px !important;
