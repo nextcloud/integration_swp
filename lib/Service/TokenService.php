@@ -25,10 +25,10 @@ declare(strict_types=1);
 
 namespace OCA\Swp\Service;
 
-use OCA\Swp\AppInfo\Application;
-use OCA\Swp\Model\Token;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use OCA\Swp\AppInfo\Application;
+use OCA\Swp\Model\Token;
 use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;
