@@ -34,6 +34,9 @@ use OCP\EventDispatcher\IEventListener;
 //use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @implements IEventListener<Event>
+ */
 class TokenObtainedEventListener implements IEventListener {
 
 	public function __construct(

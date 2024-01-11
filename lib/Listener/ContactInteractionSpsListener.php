@@ -35,6 +35,9 @@ use OCP\EventDispatcher\IEventListener;
 use OCP\ICacheFactory;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @implements IEventListener<Event>
+ */
 class ContactInteractionSpsListener implements IEventListener {
 
 	public function __construct(

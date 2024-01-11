@@ -35,6 +35,7 @@ use OCP\IConfig;
 use OCP\Util;
 
 /**
+ * @implements IEventListener<Event>
  * Helper class to extend the "publicshare" template from the server.
  */
 class PublicShareTemplateLoader implements IEventListener {

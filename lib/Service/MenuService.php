@@ -107,9 +107,9 @@ class MenuService {
 					$cacheDuration = $this->config->getAppValue(
 						Application::APP_ID,
 						Application::APP_CONFIG_CACHE_NAVIGATION_JSON,
-						Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
-					);
-					$this->cache->set($cacheKey, $cachedMenu, $cacheDuration);
+						(string) Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
+					) ?: Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT;
+					$this->cache->set($cacheKey, $cachedMenu, (int) $cacheDuration);
 				}
 
 				return json_decode($cachedMenu, true);

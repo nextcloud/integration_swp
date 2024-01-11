@@ -207,16 +207,12 @@ class Application extends App implements IBootstrap {
 			}
 
 			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {
-				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config) {
+				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config): array {
 					$activitiesString = $config->getAppValue(
 						self::APP_ID,
 						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST,
 						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT) ?: self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT;
-					if ($activitiesString) {
-						return explode(',', $activitiesString);
-					} else {
-						return [];
-					}
+					return explode(',', $activitiesString);
 				});
 				Util::addScript(self::APP_ID, self::APP_ID . '-activity');
 			}

@@ -61,7 +61,7 @@ class Token implements JsonSerializable {
 		return $this->refreshToken;
 	}
 
-	public function getProviderId(): int {
+	public function getProviderId(): ?int {
 		return $this->providerId;
 	}
 

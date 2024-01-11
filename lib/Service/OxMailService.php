@@ -85,9 +85,13 @@ class OxMailService extends OxBaseService {
 	}
 
 	public function setUnreadCounter(int $counter): void {
-		$this->cache->set($this->userId, $counter,
-			$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_TTL_MAIL, Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT)
-		);
+		$cacheTtl = $this->config->getAppValue(
+			Application::APP_ID,
+			Application::APP_CONFIG_CACHE_TTL_MAIL,
+			(string) Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT
+		) ?: Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT;
+		$this->cache->set($this->userId, $counter, (int) $cacheTtl);
+
 		$this->config->setUserValue($this->userId, Application::APP_ID, Application::USER_CONFIG_KEY_UNREAD_COUNT, (string)$counter);
 	}
 

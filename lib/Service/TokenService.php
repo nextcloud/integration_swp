@@ -168,9 +168,9 @@ class TokenService {
 	}
 
 	public function decodeIdToken(Token $token): array {
-		/** @var ProviderMapper */
+		/** @var ProviderMapper $providerMapper */
 		$providerMapper = \OC::$server->get(ProviderMapper::class);
-		/** @var DiscoveryService */
+		/** @var DiscoveryService $discoveryService */
 		$discoveryService = \OC::$server->get(DiscoveryService::class);
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
 

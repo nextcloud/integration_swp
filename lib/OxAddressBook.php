@@ -69,7 +69,7 @@ class OxAddressBook implements IAddressBook {
 	 * @param $pattern
 	 * @param $searchProperties
 	 * @param $options
-	 * @return array|array[]|mixed
+	 * @return array
 	 * @throws \JsonException
 	 * @since 5.0.0
 	 */
@@ -117,9 +117,12 @@ class OxAddressBook implements IAddressBook {
 			$filteredResult
 		);
 
-		$this->cache->set($cacheKey, $formattedResult,
-			$this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_CACHE_TTL_CONTACTS, Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT)
-		);
+		$cacheTtl = $this->config->getAppValue(
+			Application::APP_ID,
+			Application::APP_CONFIG_CACHE_TTL_CONTACTS,
+			(string) Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT
+		) ?: Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT;
+		$this->cache->set($cacheKey, $formattedResult, (int) $cacheTtl);
 
 		return $formattedResult;
 	}
