@@ -126,13 +126,13 @@ class TokenService {
 				]
 			);
 			$this->logger->debug('PARAMS: '.json_encode([
-					'client_id' => $oidcProvider->getClientId(),
-					'client_secret' => $clientSecret,
-					'grant_type' => 'refresh_token',
-					'refresh_token' => $token->getRefreshToken(),
-					// TODO check if we need a different scope for this
-					//'scope' => $oidcProvider->getScope(),
-				]), ['app' => Application::APP_ID]);
+				'client_id' => $oidcProvider->getClientId(),
+				'client_secret' => $clientSecret,
+				'grant_type' => 'refresh_token',
+				'refresh_token' => $token->getRefreshToken(),
+				// TODO check if we need a different scope for this
+				//'scope' => $oidcProvider->getScope(),
+			]), ['app' => Application::APP_ID]);
 			$body = $result->getBody();
 			$bodyArray = json_decode(trim($body), true, 512, JSON_THROW_ON_ERROR);
 			$this->logger->debug('Refresh token success: "' . trim($body) . '"', ['app' => Application::APP_ID]);
@@ -181,7 +181,7 @@ class TokenService {
 		foreach ($jwks as $kid => $jwk) {
 			$material = $jwk->getKeyMaterial();
 			$alg = $jwk->getAlgorithm();
-			$myJwks[$kid] =  new Key($material, $alg);
+			$myJwks[$kid] = new Key($material, $alg);
 		}
 		JWT::$leeway = 60;
 		$idTokenObject = JWT::decode($token->getIdToken(), $myJwks);

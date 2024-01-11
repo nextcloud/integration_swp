@@ -26,13 +26,13 @@ declare(strict_types=1);
 namespace OCA\Swp\AppInfo;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
+use OCA\Swp\Listener\ContactInteractionSpsListener;
 use OCA\Swp\Listener\PublicShareTemplateLoader;
 use OCA\Swp\Listener\TokenObtainedEventListener;
-use OCA\Swp\Listener\ContactInteractionSpsListener;
-use OCA\Swp\Service\MenuService;
-use OCA\Swp\Service\TokenService;
-use OCA\Swp\Service\OxMailService;
 use OCA\Swp\OxAddressBook;
+use OCA\Swp\Service\MenuService;
+use OCA\Swp\Service\OxMailService;
+use OCA\Swp\Service\TokenService;
 use OCA\UserOIDC\Event\TokenObtainedEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -157,40 +157,40 @@ class Application extends App implements IBootstrap {
 			// as we get the menu items with a central navigation service, this is not necessary anymore
 			// $this->registerNavigationItems();
 
-			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TARGET, '_blank') ?: '_blank';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_URL);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TITLE);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_WIDTH);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_HEIGHT);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_TABNAME, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function() use ($config) {
+			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');
 			});
-			$initialState->provideLazyInitialState('menu-json', function() use ($menuService, $token) {
+			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
 				return $menuService->getMenuJson($token);
 			});
 
