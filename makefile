@@ -102,6 +102,13 @@ build_release: clean
 	--exclude=tests \
 	--exclude=ci \
 	--exclude=vendor/bin \
+	--exclude=/vendor-bin \
+	--exclude=/vendor \
+	--exclude=/.php* \
+	--exclude=/composer.* \
+	--exclude=/package-lock* \
+	--exclude=/package.* \
+	--exclude=/psalm.xml \
 	$(project_dir) $(sign_dir)/$(app_name)
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		sudo chown $(webserveruser) $(sign_dir)/$(app_name)/appinfo ;\
