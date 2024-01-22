@@ -25,6 +25,11 @@ header#header {
 		fill: #1f1f1f;
 	}
 }
+// for NC >= 29
+#header .header-right > .header-menu:not(.user-menu) {
+	filter: unset !important;
+}
+
 #unified-search {
 	> a {
 		opacity: 1 !important;
