@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.13 – 2024-01-22
+
+### Changed
+
+- add php-cs and psalm checks, fix all related errors
+
 ## 3.1.12 – 2023-12-15
 
 ### Added
