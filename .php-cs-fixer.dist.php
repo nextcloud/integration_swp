@@ -13,5 +13,6 @@ $config
 	->notPath('src')
 	->notPath('node_modules')
 	->notPath('vendor')
+	->notPath('lib/Vendor')
 	->in(__DIR__);
 return $config;
