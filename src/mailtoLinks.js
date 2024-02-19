@@ -68,12 +68,19 @@ export function setMailtoLinks() {
 		// override click on mailto: links
 		const body = document.querySelector('body')
 		body.addEventListener('click', (e) => {
-			const link = (e.target.tagName === 'A')
-				? e.target
-				: (e.target.parentElement.tagName === 'A')
-					? e.target.parentElement
-					: null
+			let link = null
+			if (e.target.tagName === 'A') {
+				link = e.target
+			} else if (e.target.parentElement.tagName === 'A') {
+				link = e.target.parentElement
+			} else if (e.target.parentElement.parentElement.tagName === 'A') {
+				link = e.target.parentElement.parentElement
+			} else if (e.target.parentElement.parentElement.parentElement.tagName === 'A') {
+				link = e.target.parentElement.parentElement.parentElement
+			}
+			if (DEBUG) console.debug('CLICK on anything', e.target)
 			if (link !== null) {
+				if (DEBUG) console.debug('CLICK on link', link)
 				const href = link.getAttribute('href')
 				/*
 				const href = 'mailto:plop@plop.net,second@lala.org?'
