@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.15 – 2024-02-23
+
+### Changed
+
+- update npm pkgs
+
+### Fixed
+
+- fix header-right items color, remove filter introduced in NC 29
+- fix mailto link click override in NC >= 28
+
 ## 3.1.14 – 2024-01-22
 
 ### Changed
