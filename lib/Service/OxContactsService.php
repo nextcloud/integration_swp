@@ -124,14 +124,13 @@ class OxContactsService extends OxBaseService {
 	public function createContact(string $name, string $emailAddress) {
 		$client = $this->clientService->newClient();
 		// get default OX contacts folder ID
-		$getContactFolderUrl = $this->getOxBaseUrl('/api/config/folder/contacts');
+		$getMailContactCollectUrl = $this->getOxBaseUrl('/api/config/modules/mail');
 		$requestOptions = $this->getOxOptions();
 		try {
-			$response = $client->get($getContactFolderUrl, $requestOptions);
+			$response = $client->get($getMailContactCollectUrl, $requestOptions);
 			$responseBody = $response->getBody();
-			$this->logger->error('CONTACT DEFAULT FOLDER response ' . $responseBody, ['app' => Application::APP_ID]);
+			$this->logger->debug('CONTACT DEFAULT FOLDER response ' . $responseBody, ['app' => Application::APP_ID]);
 			$responseArray = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
-			$folderId = $responseArray['data'] ?? null;
 		} catch (Exception | Throwable $e) {
 			$this->logger->error(
 				'Failed to get default contacts folder ID for user ' . $this->userId,
@@ -141,6 +140,23 @@ class OxContactsService extends OxBaseService {
 				]
 			);
 			throw new ServiceException('Could not fetch results');
+		}
+		if (!isset($responseArray['data'])) {
+			$this->logger->error('Invalid OX/api/config/modules/mail response', ['response' => $responseArray, 'app' => Application::APP_ID]);
+			throw new ServiceException('Invalid OX/api/config/modules/mail response');
+		}
+		$data = $responseArray['data'];
+		if (!isset($data['contactCollectEnabled'], $data['contactCollectFolder'])) {
+			$this->logger->error('Invalid OX/api/config/modules/mail response', ['response_data' => $data, 'app' => Application::APP_ID]);
+			throw new ServiceException('Invalid OX/api/config/modules/mail response');
+		}
+		$collectEnabled = $data['contactCollectEnabled'];
+		// $collectOnMailAccessEnabled = $data['contactCollectOnMailAccess'] ?? null;
+		// $collectOnMailTransportEnabled = $data['contactCollectOnMailTransport'] ?? null;
+		$contactCollectFolderId = $data['contactCollectFolder'];
+		if ($collectEnabled !== true) {
+			$this->logger->error('contactCollectEnabled from OX/api/config/modules/mail is false', ['app' => Application::APP_ID]);
+			throw new ServiceException('contactCollect is disabled in OX');
 		}
 		// create (PUT)
 		$createApiUrl = $this->getOxBaseUrl('/api/contacts');
@@ -152,7 +168,7 @@ class OxContactsService extends OxBaseService {
 		$requestBody = [
 			'display_name' => $name,
 			'email1' => $emailAddress,
-			'folder_id' => $folderId,
+			'folder_id' => $contactCollectFolderId,
 		];
 
 		try {
