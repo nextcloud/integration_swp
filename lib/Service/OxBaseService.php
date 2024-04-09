@@ -38,9 +38,13 @@ class OxBaseService {
 		private LoggerInterface $logger,
 		private ?string $userId = null
 	) {
+		// TODO check if everything works fine without userId during curl request creating share to email for example
+		// POST /ocs/v2.php/apps/files_sharing/api/v1/shares?path=%2FREADME.md&shareType=4&shareWith=blabla%40supermail.org&can_edit=0&can_delete=0
+		/*
 		if ($userId === null) {
 			return;
 		}
+		*/
 		$this->oxBaseUrl = $config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
 	}
 

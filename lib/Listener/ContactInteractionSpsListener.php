@@ -56,6 +56,9 @@ class ContactInteractionSpsListener implements IEventListener {
 		if ($event->getEmail() !== null) {
 			try {
 				$email = $event->getEmail();
+				$actor = $event->getActor();
+				$actorId = $actor->getUID();
+				$this->logger->debug('ContactInteractionSpsListener EMAIL:' . $email . ' UID:' . $actorId);
 				$cache = $this->cacheFactory->createDistributed(Application::APP_ID . '_contacts');
 
 				// make sure we don't get outdated cached search results

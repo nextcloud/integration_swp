@@ -125,6 +125,7 @@ class OxContactsService extends OxBaseService {
 		$client = $this->clientService->newClient();
 		// get default OX contacts folder ID
 		$getContactFolderUrl = $this->getOxBaseUrl('/api/config/folder/contacts');
+		$this->logger->info('in OXContactService createContact [' . $this->userId . '] URL [[' . $getContactFolderUrl . ']]');
 		$requestOptions = $this->getOxOptions();
 		try {
 			$response = $client->get($getContactFolderUrl, $requestOptions);
