@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.16 – 2024-04-11
+
+### Changed
+
+- Support NC 30
+
+### Fixed
+
+- fix out-of-browser api request to create email share
+
 ## 3.1.15 – 2024-02-23
 
 ### Changed
