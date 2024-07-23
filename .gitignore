@@ -9,4 +9,4 @@ node_modules/
 tests/.phpunit.result.cache
 /vendor-bin/mozart/vendor
 .php*.cache
-/composer.lock
+*.swp
