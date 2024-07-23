@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.17 – 2024-07-23
+
+### Changed
+
+- Update npm pkgs, use nc/vue 8.15.0
+
 ## 3.1.16 – 2024-04-11
 
 ### Changed
