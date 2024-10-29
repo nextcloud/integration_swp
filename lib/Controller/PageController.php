@@ -43,6 +43,7 @@ use OCP\Files\NotFoundException;
 use OCP\Files\NotPermittedException;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
+use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use Psr\Log\LoggerInterface;
@@ -58,6 +59,7 @@ class PageController extends Controller {
 		private IConfig $config,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
+		private IL10N $l10n,
 		private ?string $userId
 	) {
 		parent::__construct($appName, $request);
@@ -144,7 +146,7 @@ class PageController extends Controller {
 		if ($name !== null) {
 			$newFileName = $name . '.' . $format;
 		} else {
-			$newFileName = 'New document.' . $format;
+			$newFileName = $this->l10n->t('New document') . '.' . $format;
 		}
 
 		$uniqueNewFileName = $newFileName;
