@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_swp",
     {
-    "OX Mail" : "Email OX",
+    "OX Mail" : "Courriel OX",
     "New document" : "Nouveau document",
     "Nextcloud SWP integration" : "Intégration Nextcloud SWP",
     "More apps" : "Plus d’applications",
