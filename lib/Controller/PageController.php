@@ -116,7 +116,7 @@ class PageController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
-	 * @param string $format
+	 * @param string $ext
 	 * @param string|null $directory
 	 * @param string|null $name
 	 * @return DataResponse|RedirectResponse
@@ -125,8 +125,8 @@ class PageController extends Controller {
 	 * @throws NotFoundException
 	 * @throws NotPermittedException
 	 */
-	public function createDocument(string $format, ?string $directory = null, ?string $name = null) {
-		if (!in_array($format, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'odg', 'txt', 'md'])) {
+	public function createDocument(string $ext, ?string $directory = null, ?string $name = null) {
+		if (!in_array($ext, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'odg', 'txt', 'md'])) {
 			return new DataResponse('Unsupported format', Http::STATUS_BAD_REQUEST);
 		}
 
@@ -144,15 +144,15 @@ class PageController extends Controller {
 
 		// optionally choose file name
 		if ($name !== null) {
-			$newFileName = $name . '.' . $format;
+			$newFileName = $name . '.' . $ext;
 		} else {
-			$newFileName = $this->l10n->t('New document') . '.' . $format;
+			$newFileName = $this->l10n->t('New document') . '.' . $ext;
 		}
 
 		$uniqueNewFileName = $newFileName;
 		$counter = 1;
 		while ($targetDir->nodeExists($uniqueNewFileName)) {
-			$uniqueNewFileName = preg_replace('/\.' . $format . '$/', ' (' . $counter . ').' . $format, $newFileName);
+			$uniqueNewFileName = preg_replace('/\.' . $ext . '$/', ' (' . $counter . ').' . $ext, $newFileName);
 			$counter++;
 		}
 
