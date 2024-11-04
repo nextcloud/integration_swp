@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.18 – 2024-11-04
+
+### Added
+
+- Translations
+
+### Changed
+
+- Bump max NC version to 31
+
 ## 3.1.17 – 2024-07-23
 
 ### Changed
