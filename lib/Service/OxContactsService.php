@@ -39,7 +39,7 @@ class OxContactsService extends OxBaseService {
 		TokenService $tokenService,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
-		private ?string $userId
+		private ?string $userId,
 	) {
 		parent::__construct($config, $tokenService, $logger, $userId);
 	}
@@ -133,7 +133,7 @@ class OxContactsService extends OxBaseService {
 			$this->logger->error('CONTACT DEFAULT FOLDER response ' . $responseBody, ['app' => Application::APP_ID]);
 			$responseArray = json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
 			$folderId = $responseArray['data'] ?? null;
-		} catch (Exception | Throwable $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->error(
 				'Failed to get default contacts folder ID for user ' . $this->userId,
 				[
@@ -163,7 +163,7 @@ class OxContactsService extends OxBaseService {
 			$responseBody = $response->getBody();
 			$this->logger->debug('contact creation response ' . $responseBody, ['app' => Application::APP_ID]);
 			return json_decode($responseBody, true, 512, JSON_THROW_ON_ERROR);
-		} catch (\Exception | \Throwable $e) {
+		} catch (\Exception|\Throwable $e) {
 			$this->logger->error(
 				'Failed to create contact (' . $emailAddress . ') for user ' . $this->userId,
 				[

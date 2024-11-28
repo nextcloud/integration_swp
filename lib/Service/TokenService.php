@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -111,7 +112,7 @@ class TokenService {
 					$this->logger->error('Failed to decrypt oidc client secret', ['app' => Application::APP_ID]);
 				}
 			}
-			$this->logger->debug('Refreshing the token: '.$discovery['token_endpoint'], ['app' => Application::APP_ID]);
+			$this->logger->debug('Refreshing the token: ' . $discovery['token_endpoint'], ['app' => Application::APP_ID]);
 			$result = $this->client->post(
 				$discovery['token_endpoint'],
 				[
@@ -125,7 +126,7 @@ class TokenService {
 					],
 				]
 			);
-			$this->logger->debug('PARAMS: '.json_encode([
+			$this->logger->debug('PARAMS: ' . json_encode([
 				'client_id' => $oidcProvider->getClientId(),
 				'client_secret' => $clientSecret,
 				'grant_type' => 'refresh_token',

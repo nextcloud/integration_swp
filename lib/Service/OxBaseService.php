@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -36,7 +37,7 @@ class OxBaseService {
 		private IConfig $config,
 		private TokenService $tokenService,
 		private LoggerInterface $logger,
-		private ?string $userId = null
+		private ?string $userId = null,
 	) {
 		// TODO check if everything works fine without userId during curl request creating share to email for example
 		// POST /ocs/v2.php/apps/files_sharing/api/v1/shares?path=%2FREADME.md&shareType=4&shareWith=blabla%40supermail.org&can_edit=0&can_delete=0

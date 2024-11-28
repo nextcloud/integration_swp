@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -44,7 +45,7 @@ class OxMailService extends OxBaseService {
 		private IConfig $config,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
-		private ?string $userId = null
+		private ?string $userId = null,
 	) {
 		parent::__construct($config, $tokenService, $logger, $userId);
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_unread');
@@ -88,9 +89,9 @@ class OxMailService extends OxBaseService {
 		$cacheTtl = $this->config->getAppValue(
 			Application::APP_ID,
 			Application::APP_CONFIG_CACHE_TTL_MAIL,
-			(string) Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT
+			(string)Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT
 		) ?: Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT;
-		$this->cache->set($this->userId, $counter, (int) $cacheTtl);
+		$this->cache->set($this->userId, $counter, (int)$cacheTtl);
 
 		$this->config->setUserValue($this->userId, Application::APP_ID, Application::USER_CONFIG_KEY_UNREAD_COUNT, (string)$counter);
 	}

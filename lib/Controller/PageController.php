@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -60,7 +61,7 @@ class PageController extends Controller {
 		private IClientService $clientService,
 		private LoggerInterface $logger,
 		private IL10N $l10n,
-		private ?string $userId
+		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -101,7 +102,7 @@ class PageController extends Controller {
 				$response = new DataDisplayResponse($fileContent, Http::STATUS_OK, ['Content-Type' => $mimeType]);
 				$response->cacheFor(60 * 60);
 				return $response;
-			} catch (Exception | Throwable $e) {
+			} catch (Exception|Throwable $e) {
 				$this->logger->error('Failed to get logo at ' . $logoImageUrl, ['exception' => $e]);
 			}
 		}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -117,7 +118,7 @@ class Application extends App implements IBootstrap {
 			IConfig $config,
 			IUserSession $userSession,
 			IRequest $request,
-			$userId
+			$userId,
 		) {
 			if (!$userId) {
 				return;

@@ -45,7 +45,7 @@ class ContactInteractionSpsListener implements IEventListener {
 		private OxAddressBook $oxAddressBook,
 		private ICacheFactory $cacheFactory,
 		private LoggerInterface $logger,
-		private ?string $userId
+		private ?string $userId,
 	) {
 	}
 

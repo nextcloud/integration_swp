@@ -40,7 +40,7 @@ class OxAddressBook implements IAddressBook {
 		ICacheFactory $cacheFactory,
 		private IConfig $config,
 		private OxContactsService $oxContactsService,
-		private ?string $userId
+		private ?string $userId,
 	) {
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_contacts');
 	}
@@ -120,9 +120,9 @@ class OxAddressBook implements IAddressBook {
 		$cacheTtl = $this->config->getAppValue(
 			Application::APP_ID,
 			Application::APP_CONFIG_CACHE_TTL_CONTACTS,
-			(string) Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT
+			(string)Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT
 		) ?: Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT;
-		$this->cache->set($cacheKey, $formattedResult, (int) $cacheTtl);
+		$this->cache->set($cacheKey, $formattedResult, (int)$cacheTtl);
 
 		return $formattedResult;
 	}

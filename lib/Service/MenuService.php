@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2021 Julien Veyssier <julien-nc@posteo.net>
  *
@@ -45,7 +46,7 @@ class MenuService {
 	private ICache $cache;
 
 	public function __construct(
-		IClientService  $clientService,
+		IClientService $clientService,
 		ICacheFactory $cacheFactory,
 		private IUserSession $userSession,
 		private LoggerInterface $logger,
@@ -109,14 +110,14 @@ class MenuService {
 					$cacheDuration = $this->config->getAppValue(
 						Application::APP_ID,
 						Application::APP_CONFIG_CACHE_NAVIGATION_JSON,
-						(string) Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
+						(string)Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
 					) ?: Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT;
-					$this->cache->set($cacheKey, $cachedMenu, (int) $cacheDuration);
+					$this->cache->set($cacheKey, $cachedMenu, (int)$cacheDuration);
 				}
 
 				return json_decode($cachedMenu, true);
 			}
-		} catch (Exception | Throwable $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->error('Error while fetching navigation json content', ['exception' => $e]);
 		}
 
