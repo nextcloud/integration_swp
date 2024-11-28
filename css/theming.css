@@ -16,18 +16,21 @@ body > #content-vue {
 
 /* fix dashboard header */
 body.dashboard--inverted:not(.dashboard--dark) #appmenu .icon-more-white,
-body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings) > :first-child {
+body.dashboard--inverted:not(.dashboard--dark) .header-right > div:not(#settings) > :first-child,
+body.dashboard--inverted:not(.dashboard--dark) .header-end > div:not(#settings) > :first-child {
   filter: unset !important;
 }
 
-.header-right > div:hover {
+.header-right > div:hover,
+.header-end > div:hover {
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 header#header {
   height: var(--my-header-height) !important;
 }
-header#header .header-right #settings #expand {
+header#header .header-right #settings #expand,
+header#header .header-end #settings #expand {
   height: 100%;
   margin-top: 0;
   margin-bottom: 0;
@@ -35,17 +38,26 @@ header#header .header-right #settings #expand {
 header#header .header-right #settings #expanddiv,
 header#header .header-right #unified-search #header-menu-unified-search,
 header#header .header-right #notifications #header-menu-notifications,
-header#header .header-right #contactsmenu #header-menu-contactsmenu {
+header#header .header-right #contactsmenu #header-menu-contactsmenu,
+header#header .header-end #settings #expanddiv,
+header#header .header-end #unified-search #header-menu-unified-search,
+header#header .header-end #notifications #header-menu-notifications,
+header#header .header-end #contactsmenu #header-menu-contactsmenu {
   top: 64px !important;
 }
 header#header .header-right #user-menu .header-menu__trigger,
 header#header .header-right #unified-search .header-menu__trigger,
 header#header .header-right #notifications .header-menu__trigger,
-header#header .header-right #contactsmenu .header-menu__trigger {
+header#header .header-right #contactsmenu .header-menu__trigger,
+header#header .header-end #user-menu .header-menu__trigger,
+header#header .header-end #unified-search .header-menu__trigger,
+header#header .header-end #notifications .header-menu__trigger,
+header#header .header-end #contactsmenu .header-menu__trigger {
   margin: 0 !important;
   height: 100% !important;
 }
-header#header .header-right #contactsmenu .content .footer {
+header#header .header-right #contactsmenu .content .footer,
+header#header .header-end #contactsmenu .content .footer {
   display: none !important;
 }
 header#header .header-left > nav > #navigation {

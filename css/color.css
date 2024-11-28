@@ -21,11 +21,13 @@ header#header {
   filter: invert(100%);
 }
 
-#header .header-right svg {
+#header .header-right svg,
+#header .header-end svg {
   fill: #1f1f1f;
 }
 
-#header .header-right > .header-menu:not(.user-menu) {
+#header .header-right > .header-menu:not(.user-menu),
+#header .header-end > .header-menu:not(.user-menu) {
   filter: unset !important;
 }
 

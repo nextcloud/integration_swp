@@ -20,13 +20,17 @@ header#header {
 	}
 }
 // for NC >= 28
-#header .header-right {
+#header .header-right,
+// for NC >= 31
+#header .header-end {
 	svg {
 		fill: #1f1f1f;
 	}
 }
 // for NC >= 29
-#header .header-right > .header-menu:not(.user-menu) {
+#header .header-right > .header-menu:not(.user-menu),
+// for NC >= 31
+#header .header-end > .header-menu:not(.user-menu) {
 	filter: unset !important;
 }
 

@@ -17,20 +17,23 @@ body > #content-vue {
 /* fix dashboard header */
 body.dashboard--inverted:not(.dashboard--dark) {
 	#appmenu .icon-more-white,
-	.header-right > div:not(#settings) > :first-child {
+	.header-right > div:not(#settings) > :first-child,
+	.header-end > div:not(#settings) > :first-child {
 		filter: unset !important;
 	}
 }
 
 // header right icons hover
-.header-right > div:hover {
+.header-right > div:hover,
+.header-end > div:hover {
 	background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 header#header {
 	height: var(--my-header-height) !important;
 
-	.header-right {
+	.header-right,
+	.header-end {
 		#settings #expand {
 			height: 100%;
 			margin-top: 0;

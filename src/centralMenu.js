@@ -38,7 +38,7 @@ export function makeCentralMenu() {
 		console.debug(document.querySelector('#header nav'))
 		console.debug(document.querySelector('#header nav.app-menu ul.app-menu-main'))
 
-		const headerLeft = document.querySelector('#header .header-left')
+		const headerLeft = document.querySelector('#header .header-left') ?? document.querySelector('#header .header-start')
 		const el = document.createElement('div')
 		headerLeft.append(el)
 
