@@ -10,6 +10,7 @@
           "display_name": "Files",
           "link": "https://duckduckgo.com/one",
           "description": "1-1",
+          "target": "tab_nextcloud",
           "keywords": "kw1 kw2"
         },
         {

@@ -33,6 +33,7 @@ use OCP\Http\Client\IClientService;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
+use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
@@ -51,6 +52,7 @@ class MenuService {
 		private IFactory $l10nFactory,
 		private IConfig $config,
 		private TokenService $tokenService,
+		private IURLGenerator $urlGenerator,
 	) {
 		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
@@ -119,7 +121,9 @@ class MenuService {
 		}
 
 		// backup dummy menu value
-		return $this->getFromFile('fake.menu.example.json');
+		$dummyValue = $this->getFromFile('fake.menu.example.json');
+		$dummyValue['categories'][0]['entries'][0]['link'] = $this->urlGenerator->linkToRouteAbsolute('files.view.index');
+		return $dummyValue;
 	}
 
 	/**

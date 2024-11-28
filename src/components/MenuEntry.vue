@@ -23,7 +23,7 @@
 	<NcActionLink
 		:aria-label="entry.display_name"
 		:href="entry.link"
-		:target="entry.target"
+		:target="target"
 		class="entry">
 		<template #icon>
 			<div class="app-icon">
@@ -56,6 +56,7 @@ export default {
 	},
 	data() {
 		return {
+			dummyUrl: window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_swp').replace('/apps/integration_swp', ''),
 		}
 	},
 	computed: {
@@ -63,6 +64,13 @@ export default {
 			return this.proxyImage
 				? generateUrl('/apps/integration_swp/icon?itemId={itemId}', { itemId: this.entry.identifier })
 				: this.entry.icon_url
+		},
+		target() {
+			// no target if the link points to NC
+			if (this.entry.link?.startsWith(this.dummyUrl)) {
+				return null
+			}
+			return this.entry.target
 		},
 	},
 	mounted() {
