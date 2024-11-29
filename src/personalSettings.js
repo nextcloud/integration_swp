@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 export function disablePersonalSettingsFields() {
 	// personal settings
 	const inputs = document.querySelectorAll('#personal-settings input')
