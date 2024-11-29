@@ -24,13 +24,13 @@ SPDX-FileCopyrightText = "2021 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["package.json", "package-lock.json", "vendor-bin/mozart/composer.json", "vendor-bin/mozart/composer.lock"]
+path = ["package.json", "package-lock.json", "css/public.css.map", "css/theming.css.map", "vendor-bin/mozart/composer.json", "vendor-bin/mozart/composer.lock"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2022 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["lib/Service/fake.menu.example.json", "lib/Service/real.menu.example.json"]
+path = ["css/color.css.map", "lib/Service/fake.menu.example.json", "lib/Service/real.menu.example.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2023 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
