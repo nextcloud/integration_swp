@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
 app_name=integration_swp
 app_version=$(version)
 # app_version=$(shell grep -e "<version>[0-9.]\+</version>" appinfo/info.xml -o | sed 's/<\/*version>//g')
