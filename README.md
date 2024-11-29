@@ -4,6 +4,8 @@
 -->
 # Nextcloud Sovereign Workplace (Phoenix) integration
 
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/integration_swp)](https://api.reuse.software/info/github.com/nextcloud/integration_swp)
+
 ## Implemented features
 
 - Address book search
