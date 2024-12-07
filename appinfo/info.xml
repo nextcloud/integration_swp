@@ -6,7 +6,7 @@
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>integration_swp</id>
 	<name>Nextcloud SWP integration</name>
-	<summary>Utility app for integration purposes in The Sovereign Worplace</summary>
+	<summary>Utility app for integration purposes in The Sovereign Workplace</summary>
 	<description>This utility app supports OpenXChange contacts/mailto links, central menu, unified style...</description>
 	<version>3.1.18</version>
 	<licence>agpl</licence>
