@@ -114,6 +114,10 @@ Configure which activity types should be hidden (comma separated, default is "co
 
 	occ config:app:set integration_swp hidden-activities --value="contacts,calendar,calendar_todo"
 
+Hide the contacts top-right menu entry (default=0):
+
+	occ config:app:set integration_swp hide-contacts-menu --value="1"
+
 ## Local testing
 
 Enable the apps features (theming, central menu, logo override...) even if the user is not connected via user_oidc:

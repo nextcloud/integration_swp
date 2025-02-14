@@ -9,7 +9,8 @@ declare(strict_types=1);
 
 namespace OCA\Swp\AppInfo;
 
-use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
+use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent as FileSharingBeforeTemplateRenderedEvent;
+use OCA\Swp\Listener\BeforeTemplateRenderedListener;
 use OCA\Swp\Listener\ContactInteractionSpsListener;
 use OCA\Swp\Listener\PublicShareTemplateLoader;
 use OCA\Swp\Listener\TokenObtainedEventListener;
@@ -22,6 +23,7 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\Contacts\IManager;
@@ -41,6 +43,7 @@ class Application extends App implements IBootstrap {
 
 	public const APP_CONFIG_DEBUG_MODE = 'debug_mode';
 
+	public const APP_CONFIG_HIDE_CONTACTS_MENU = 'hide-contacts-menu';
 	public const APP_CONFIG_CUSTOM_STYLE_PUBLIC_PAGES = 'public-style';
 	public const APP_CONFIG_DEFAULT_USER_THEME = 'default-user-theme';
 	public const APP_CONFIG_DEFAULT_USER_THEME_DEFAULT = 'light';
@@ -82,7 +85,8 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(TokenObtainedEvent::class, TokenObtainedEventListener::class);
 		$context->registerEventListener(ContactInteractedWithEvent::class, ContactInteractionSpsListener::class);
-		$context->registerEventListener(BeforeTemplateRenderedEvent::class, PublicShareTemplateLoader::class);
+		$context->registerEventListener(FileSharingBeforeTemplateRenderedEvent::class, PublicShareTemplateLoader::class);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 		// maybe it's worth moving all the boot stuff in a listener so it runs once on each page load instead of many times for each request
 		// $context->registerEventListener(\OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent::class, BeforeTemplateRenderedListener::class);
 	}
