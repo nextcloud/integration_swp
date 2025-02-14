@@ -18,6 +18,6 @@
 	<bugs>https://github.com/nextcloud-gmbh/integration_swp/issues</bugs>
 	<repository>https://github.com/nextcloud-gmbh/integration_swp</repository>
 	<dependencies>
-		<nextcloud min-version="26" max-version="31"/>
+		<nextcloud min-version="26" max-version="32"/>
 	</dependencies>
 </info>
