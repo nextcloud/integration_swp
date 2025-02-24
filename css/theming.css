@@ -77,9 +77,21 @@ header#header .header-left > nav > #navigation {
 header#header .header-left > nav > #navigation:after {
   display: none !important;
 }
+header#header .unified-search-menu.central-menu-search-hidden, header#header .unified-search__button.central-menu-search-hidden {
+  display: none !important;
+}
+header#header .header-left, header#header .header-start {
+  flex: none;
+}
+header#header .header-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1;
+}
 
 @media (max-width: 600px) {
-  #header .header-left > nav > #navigation {
+  #header .header-left > nav > #navigation, #header .header-start > nav > #navigation {
     width: 100%;
     max-width: 600px;
   }
@@ -98,7 +110,7 @@ nav.app-menu {
 	background-size: 20px;
 }
 */
-header#header .header-left #nextcloud {
+header#header .header-left #nextcloud, header#header .header-start #nextcloud {
   width: 138px;
   padding: 0;
   margin: 0;
@@ -106,19 +118,19 @@ header#header .header-left #nextcloud {
   align-items: center;
   justify-content: center;
 }
-header#header .header-left #nextcloud .custom-logo {
+header#header .header-left #nextcloud .custom-logo, header#header .header-start #nextcloud .custom-logo {
   height: 100%;
   width: auto;
 }
-header#header .header-left #nextcloud .logo {
+header#header .header-left #nextcloud .logo, header#header .header-start #nextcloud .logo {
   display: none;
   width: 100%;
   left: unset;
 }
-header#header .header-left #nextcloud .logo.enabled {
+header#header .header-left #nextcloud .logo.enabled, header#header .header-start #nextcloud .logo.enabled {
   display: inline-flex;
 }
-header#header .header-left #nextcloud .logo-wrapper {
+header#header .header-left #nextcloud .logo-wrapper, header#header .header-start #nextcloud .logo-wrapper {
   display: flex;
   width: 138px;
   padding: 0;
