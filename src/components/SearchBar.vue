@@ -11,11 +11,9 @@
 			:aria-label="t('integration_swp', 'Search')"
 			@click="openOriginalUnifiedSearchModal">
 			<template #icon>
-				<Magnify class="central-search-button__icon" :size="18" />
+				<Magnify :size="18" fill-color="#3c3c3c" />
 			</template>
-			<span class="central-search-button__text">
-				{{ t('integration_swp', 'Search') }}
-			</span>
+			{{ t('integration_swp', 'Search') }}
 		</NcButton>
 	</div>
 </template>
@@ -98,6 +96,7 @@ export default {
 
 			& > .button-vue__text {
 				font-weight: 400;
+				color: #3c3c3c !important;
 			}
 		}
 	}

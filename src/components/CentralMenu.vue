@@ -169,4 +169,9 @@ export default {
 	left: unset !important;
 	right: 12px !important;
 }
+
+::v-deep(.app-menu-more--right .button-vue--vue-tertiary) {
+	width: 100%;
+	max-width: 50px;
+}
 </style>
