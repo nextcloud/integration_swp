@@ -70,6 +70,7 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE = 'navigation-json-username-attribute';
 
 	public const APP_CONFIG_MENU_TABNAME_ATTRIBUTE = 'menu-tabname-attribute';
+	public const APP_CONFIG_MENU_HEADER_LOCATION = 'menu-header-location';
 
 	public const APP_CONFIG_CACHE_TTL_MAIL = 'cache-ttl-mail';
 	public const APP_CONFIG_CACHE_TTL_MAIL_DEFAULT = 60;
@@ -177,6 +178,9 @@ class Application extends App implements IBootstrap {
 			});
 			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');
+			});
+			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_HEADER_LOCATION, function () use ($config) {
+				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_HEADER_LOCATION, 'left');
 			});
 			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
 				return $menuService->getMenuJson($token);
