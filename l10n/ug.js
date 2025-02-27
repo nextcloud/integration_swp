@@ -5,8 +5,8 @@ OC.L10N.register(
     "New document" : "يېڭى ھۆججەت",
     "Nextcloud SWP integration" : "Nextcloud SWP بىرلەشتۈرۈش",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "بۇ قوللىنىشچان دېتال OpenXChange ئالاقىلىشىش / خەت ساندۇقى ، مەركىزى تىزىملىك ، بىرلىككە كەلگەن ئۇسلۇب ...",
-    "More apps" : "تېخىمۇ كۆپ ئەپلەر",
     "Portal" : "Portal",
-    "Sovereign Workplace portal" : "ئىگىلىك ھوقۇق خىزمەت پونكىتى"
+    "Sovereign Workplace portal" : "ئىگىلىك ھوقۇق خىزمەت پونكىتى",
+    "More apps" : "تېخىمۇ كۆپ ئەپلەر"
 },
 "nplurals=2; plural=(n != 1);");
