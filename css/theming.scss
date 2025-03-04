@@ -76,11 +76,26 @@ header#header {
 			display: none !important;
 		}
 	}
+
+	.unified-search-menu.central-menu-search-hidden, .unified-search__button.central-menu-search-hidden {
+		display: none !important;
+	}
+
+	.header-left, .header-start {
+		flex: none;
+	}
+
+	.header-middle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1 1;
+	}
 }
 
 
 @media (max-width:600px) {
-	#header .header-left > nav > #navigation {
+	#header .header-left > nav > #navigation, #header .header-start > nav > #navigation {
 		width: 100%;
 		max-width: 600px;
 	}
@@ -102,7 +117,7 @@ nav.app-menu {
 */
 
 header#header {
-	.header-left {
+	.header-left, .header-start {
 		#nextcloud {
 			width: 138px;
 			padding: 0;

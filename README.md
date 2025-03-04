@@ -77,6 +77,10 @@ Set the menu json content cache duration in seconds (default: 3600, one hour):
 
 	occ config:app:set integration_swp cache-navigation-json --value="10"
 
+Set the menu location in header: `left` (default) or `right`:
+
+	occ config:app:set integration_swp menu-header-location --value="right"
+
 ### Unified style
 
 Override the header menu background color to white and  the page background color to gray

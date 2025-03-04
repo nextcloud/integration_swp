@@ -4,9 +4,10 @@
 -->
 
 <template>
-	<nav id="central-app-menu">
+	<nav id="central-app-menu" :class="{ 'central-app-menu--right': location === 'right' }">
 		<NcActions class="app-menu-more"
 			:container="'#central-app-menu'"
+			:class="{ 'app-menu-more--right': location === 'right', 'app-menu-more--left': location === 'left' }"
 			:aria-label="t('integration_swp', 'More apps')">
 			<template #icon>
 				<GridIcon class="menu-icon" />
@@ -43,6 +44,13 @@ export default {
 		GridIcon,
 		NcActions,
 		MenuItem,
+	},
+	props: {
+		location: {
+			type: String,
+			required: false,
+			default: () => 'left',
+		},
 	},
 	data() {
 		return {
@@ -112,6 +120,10 @@ export default {
 	}
 }
 
+.central-app-menu--right {
+	width: unset !important;
+}
+
 ::v-deep .app-menu-more .button-vue--vue-tertiary {
 	background-color: transparent !important;
 	height: 64px;
@@ -150,6 +162,19 @@ export default {
 		ul {
 			padding: 12px 0;
 		}
+	}
+}
+
+::v-deep(.app-menu-more--right ~ .v-popper__popper) {
+	left: unset !important;
+	right: 12px !important;
+}
+
+::v-deep.app-menu-more--right {
+	width: 50px;
+	.button-vue--vue-tertiary {
+		width: 100% !important;
+		max-width: 50px;
 	}
 }
 </style>

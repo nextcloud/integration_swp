@@ -38,9 +38,6 @@ header#header {
 #unified-search > a {
   opacity: 1 !important;
 }
-#unified-search svg {
-  fill: #1f1f1f;
-}
 
 #central-app-menu .menu-icon {
   color: #1f1f1f !important;
