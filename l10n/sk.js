@@ -8,6 +8,7 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Táto utilita podporuje OpenXChange kontakty/mailto odkazy, centrálne menu, unifikovaný vzhľad...",
     "Portal" : "Portál",
     "Sovereign Workplace portal" : "Portál Sovereign Workplace",
-    "More apps" : "Viac aplikácií"
+    "More apps" : "Viac aplikácií",
+    "Search" : "Hľadať"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

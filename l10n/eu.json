@@ -1,6 +1,7 @@
 { "translations": {
     "New document" : "Dokumentu berria",
     "Portal" : "Portala",
-    "More apps" : "Aplikazio gehiago"
+    "More apps" : "Aplikazio gehiago",
+    "Search" : "Bilatu"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

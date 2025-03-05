@@ -1,5 +1,6 @@
 { "translations": {
     "New document" : "Uusi dokumentti",
-    "More apps" : "Lisää sovelluksia"
+    "More apps" : "Lisää sovelluksia",
+    "Search" : "Etsi"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

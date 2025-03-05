@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "New document" : "Dokumentu berria",
     "Portal" : "Portala",
-    "More apps" : "Aplikazio gehiago"
+    "More apps" : "Aplikazio gehiago",
+    "Search" : "Bilatu"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,5 +1,6 @@
 { "translations": {
     "New document" : "Új dokumentum",
-    "More apps" : "További alkalmazások"
+    "More apps" : "További alkalmazások",
+    "Search" : "Keresés"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

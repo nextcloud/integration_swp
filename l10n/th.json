@@ -1,5 +1,6 @@
 { "translations": {
     "New document" : "สร้างเอกสาร odt ใหม่",
-    "More apps" : "แอปเพิ่มเติม"
+    "More apps" : "แอปเพิ่มเติม",
+    "Search" : "ค้นหา"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

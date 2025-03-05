@@ -1,5 +1,6 @@
 { "translations": {
     "New document" : "新文档",
-    "More apps" : "更多的应用程序"
+    "More apps" : "更多的应用程序",
+    "Search" : "搜索"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
