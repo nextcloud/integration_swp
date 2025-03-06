@@ -1,7 +1,6 @@
 OC.L10N.register(
     "integration_swp",
     {
-    "More apps" : "Meer toeps",
-    "Search" : "Soek"
+    "Search" : "தேடுதல்"
 },
 "nplurals=2; plural=(n != 1);");

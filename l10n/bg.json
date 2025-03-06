@@ -1,5 +1,6 @@
 { "translations": {
     "New document" : "Нов документ",
-    "More apps" : "Още приложения"
+    "More apps" : "Още приложения",
+    "Search" : "Търсене"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
