@@ -10,6 +10,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.2.0 – 2025-03-21
+
+### Added
+
+- Add SPDX header and REUSE check
+- Add config to hide contacts menu
+
+### Changed
+
+- Central menu: no link target if pointing to NC
+- Bump max nc version to 32
+- Top bar redesign
+
+### Fixed
+
+- Fix style for NC >= 31
+
 ## 3.1.18 – 2024-11-04
 
 ### Added
