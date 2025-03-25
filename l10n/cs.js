@@ -8,6 +8,7 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Tento nástroj podporuje OpenXChange odkazy na kontakty / odesílání zpráv na, centrální nabídku, jednotný styl…",
     "Portal" : "Portál",
     "Sovereign Workplace portal" : "Portál nezávislého pracoviště",
-    "More apps" : "Více aplikací"
+    "More apps" : "Více aplikací",
+    "Search" : "Hledat"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
