@@ -46,11 +46,6 @@
 				<referencedClass name="OCA\UserOIDC\Service\DiscoveryService" />
 			</errorLevel>
 		</UndefinedDocblockClass>
-		<InvalidThrow>
-			<errorLevel type="suppress">
-				<referencedClass name="Doctrine\DBAL\Exception\UniqueConstraintViolationException" />
-			</errorLevel>
-		</InvalidThrow>
 	</issueHandlers>
 	<stubs>
 		<file name="tests/stubs/oc_hooks_emitter.php" />
