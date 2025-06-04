@@ -9,6 +9,7 @@
 	findUnusedBaselineEntry="true"
 	findUnusedCode="false"
 	resolveFromConfigFile="true"
+	ensureOverrideAttribute="false"
 	phpVersion="8.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="https://getpsalm.org/schema/config"
@@ -46,11 +47,6 @@
 				<referencedClass name="OCA\UserOIDC\Service\DiscoveryService" />
 			</errorLevel>
 		</UndefinedDocblockClass>
-		<InvalidThrow>
-			<errorLevel type="suppress">
-				<referencedClass name="Doctrine\DBAL\Exception\UniqueConstraintViolationException" />
-			</errorLevel>
-		</InvalidThrow>
 	</issueHandlers>
 	<stubs>
 		<file name="tests/stubs/oc_hooks_emitter.php" />

@@ -51,7 +51,7 @@ class MenuService {
 			if ($jsonMenuUrl !== '') {
 				// make the menu request (and cache it)
 				$providerId = $token->getProviderId();
-				$cacheKey = 'menuitems-' . $providerId;
+				$cacheKey = 'menuitems-' . strval($providerId);
 				$cachedMenu = $this->cache->get($cacheKey);
 				$debug = $this->config->getSystemValueBool('debug', false);
 				if ($debug || $cachedMenu === null) {

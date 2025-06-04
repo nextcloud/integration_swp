@@ -136,7 +136,7 @@ class PageController extends Controller {
 		$uniqueNewFileName = $newFileName;
 		$counter = 1;
 		while ($targetDir->nodeExists($uniqueNewFileName)) {
-			$uniqueNewFileName = preg_replace('/\.' . $ext . '$/', ' (' . $counter . ').' . $ext, $newFileName);
+			$uniqueNewFileName = preg_replace('/\.' . $ext . '$/', ' (' . strval($counter) . ').' . $ext, $newFileName);
 			$counter++;
 		}
 
