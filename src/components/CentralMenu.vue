@@ -110,7 +110,6 @@ export default {
 
 <style lang="scss" scoped>
 #central-app-menu {
-	width: 100%;
 	display: flex;
 	flex-shrink: 1;
 	flex-wrap: wrap;
