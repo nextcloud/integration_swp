@@ -182,6 +182,7 @@ class Application extends App implements IBootstrap {
 			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_HEADER_LOCATION, function () use ($config) {
 				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_HEADER_LOCATION, 'left');
 			});
+			/** @psalm-suppress InvalidArgument */
 			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
 				return $menuService->getMenuJson($token);
 			});
@@ -199,6 +200,7 @@ class Application extends App implements IBootstrap {
 			}
 
 			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {
+				/** @psalm-suppress InvalidArgument */
 				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config): array {
 					$activitiesString = $config->getAppValue(
 						self::APP_ID,

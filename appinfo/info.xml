@@ -8,7 +8,7 @@
 	<name>Nextcloud SWP integration</name>
 	<summary>Utility app for integration purposes in The Sovereign Workplace</summary>
 	<description>This utility app supports OpenXChange contacts/mailto links, central menu, unified style...</description>
-	<version>3.2.0</version>
+	<version>4.0.0</version>
 	<licence>agpl</licence>
 	<author>Julien Veyssier</author>
 	<namespace>Swp</namespace>
@@ -18,6 +18,6 @@
 	<bugs>https://github.com/nextcloud-gmbh/integration_swp/issues</bugs>
 	<repository>https://github.com/nextcloud-gmbh/integration_swp</repository>
 	<dependencies>
-		<nextcloud min-version="26" max-version="32"/>
+		<nextcloud min-version="30" max-version="32"/>
 	</dependencies>
 </info>
