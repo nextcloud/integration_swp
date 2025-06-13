@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.0.0 – 2025-06-13
+
+### Changed
+
+- Use Psalm 6
+
+### Fixed
+
+- Fix header, let the logo expand by not expanding the central menu icon #25
+
 ## 3.2.0 – 2025-03-21
 
 ### Added
