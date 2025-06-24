@@ -149,4 +149,8 @@ div[role=tooltip] {
   display: none;
 }
 
+.mp-swp-search-bar {
+  width: 100%;
+}
+
 /*# sourceMappingURL=theming.css.map */

@@ -23,6 +23,7 @@ export function makeCentralMenu() {
 
 		const headerLeft = document.querySelector('#header .header-left') ?? document.querySelector('#header .header-start')
 		const el = document.createElement('div')
+		el.classList.add('mp-central-app-menu')
 		const centralMenuLocation = loadState('integration_swp', 'menu-header-location', 'left')
 
 		if (centralMenuLocation === 'left') {
@@ -46,6 +47,7 @@ export function makeCentralMenu() {
 		header.insertBefore(headerMiddle, headerLeft.nextSibling)
 
 		const searchEl = document.createElement('div')
+		searchEl.classList.add('mp-swp-search-bar')
 		headerMiddle.append(searchEl)
 		const app = createApp(SearchBar)
 		app.mixin({ methods: { t, n } })
