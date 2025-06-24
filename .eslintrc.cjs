@@ -1,5 +1,5 @@
 /**
- * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
@@ -17,6 +17,8 @@ module.exports = {
 		'jsdoc/require-jsdoc': 'off',
 		'jsdoc/tag-lines': 'off',
 		'vue/first-attribute-linebreak': 'off',
-		'import/extensions': 'off'
+		'import/extensions': 'off',
+		'import/no-unresolved': ['error', { 'ignore': ["\\?raw"] }],
+		'vue/no-v-model-argument': 'off'
 	}
 }

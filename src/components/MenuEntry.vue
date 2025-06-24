@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import NcActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import NcActionLink from '@nextcloud/vue/components/NcActionLink'
 
 import { generateUrl } from '@nextcloud/router'
 

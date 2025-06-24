@@ -3,14 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import './bootstrap.js'
 import { loadState } from '@nextcloud/initial-state'
 import {
 	generateUrl,
 	// imagePath,
 } from '@nextcloud/router'
 
-import Vue from 'vue'
+import { createApp } from 'vue'
 import CentralMenu from './components/CentralMenu.vue'
 import SearchBar from './components/SearchBar.vue'
 
@@ -28,8 +27,9 @@ export function makeCentralMenu() {
 
 		if (centralMenuLocation === 'left') {
 			headerLeft.append(el)
-			const View = Vue.extend(CentralMenu)
-			new View().$mount(el)
+			const app = createApp(CentralMenu)
+			app.mixin({ methods: { t, n } })
+			app.mount(el)
 		} else {
 			document.addEventListener('DOMContentLoaded', () => {
 				addCentralMenuBeforeUserMenu(el)
@@ -47,8 +47,9 @@ export function makeCentralMenu() {
 
 		const searchEl = document.createElement('div')
 		headerMiddle.append(searchEl)
-		const Search = Vue.extend(SearchBar)
-		new Search().$mount(searchEl)
+		const app = createApp(SearchBar)
+		app.mixin({ methods: { t, n } })
+		app.mount(searchEl)
 	}
 }
 
@@ -63,10 +64,11 @@ function addCentralMenuBeforeUserMenu(el, attempt = 0) {
 		if (userMenu) {
 			const headerRight = document.querySelector('#header .header-right') ?? document.querySelector('#header .header-end')
 			headerRight.insertBefore(el, userMenu)
-			const View = Vue.extend(CentralMenu)
-			new View({
-				propsData: { location: 'right' },
-			}).$mount(el)
+			const app = createApp(CentralMenu, {
+				location: 'right',
+			})
+			app.mixin({ methods: { t, n } })
+			app.mount(el)
 		} else if (attempt < 5) {
 			addCentralMenuBeforeUserMenu(el, attempt + 1) // try again in 500ms
 		} else {

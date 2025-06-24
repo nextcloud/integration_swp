@@ -30,7 +30,7 @@ import GridIcon from './icons/GridIcon.vue'
 import MenuItem from './MenuItem.vue'
 import MenuEntry from './MenuEntry.vue'
 
-import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+import NcActions from '@nextcloud/vue/components/NcActions'
 
 import { imagePath } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'

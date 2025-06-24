@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import NcActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcActionText from '@nextcloud/vue/components/NcActionText'
 
 export default {
 	name: 'MenuCategory',

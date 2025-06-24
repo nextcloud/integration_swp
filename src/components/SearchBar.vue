@@ -7,7 +7,7 @@
 	<div class="swp-search-bar">
 		<NcButton v-if="!supportsLocalSearch"
 			class="central-search-button"
-			type="secondary"
+			variant="secondary"
 			:aria-label="t('integration_swp', 'Search')"
 			@click="openOriginalUnifiedSearchModal">
 			<template #icon>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
 import Magnify from 'vue-material-design-icons/Magnify.vue'
 
 export default {
