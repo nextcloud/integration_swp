@@ -12,10 +12,10 @@
 			<template #icon>
 				<GridIcon class="menu-icon" />
 			</template>
-			<MenuEntry v-if="portalEntry"
+			<NcActionCentralMenuEntry v-if="portalEntry"
 				:entry="portalEntry"
 				:proxy-image="false" />
-			<MenuItem
+			<NcActionCentralMenuItem
 				v-for="entry in entryList"
 				:key="entry.identifier"
 				:title="entry.description"
@@ -27,10 +27,10 @@
 <script>
 import GridIcon from './icons/GridIcon.vue'
 
-import MenuItem from './MenuItem.vue'
-import MenuEntry from './MenuEntry.vue'
+import NcActionCentralMenuItem from './NcActionCentralMenuItem.vue'
+import NcActionCentralMenuEntry from './NcActionCentralMenuEntry.vue'
 
-import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+import NcActions from '@nextcloud/vue/components/NcActions'
 
 import { imagePath } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
@@ -40,10 +40,10 @@ const DEBUG = true
 export default {
 	name: 'CentralMenu',
 	components: {
-		MenuEntry,
+		NcActionCentralMenuEntry,
+		NcActionCentralMenuItem,
 		GridIcon,
 		NcActions,
-		MenuItem,
 	},
 	props: {
 		location: {
@@ -123,7 +123,7 @@ export default {
 	width: unset !important;
 }
 
-::v-deep .app-menu-more .button-vue--vue-tertiary {
+:deep(.app-menu-more .button-vue--tertiary) {
 	background-color: transparent !important;
 	height: 64px;
 	border-radius: 0;
@@ -139,16 +139,16 @@ export default {
 }
 
 /*
-::v-deep .action.entry.active {
+:deep(.action.entry.active) {
 	background-color: unset !important;
 }
 */
 
-::v-deep .action-item.action-item--open .action-item__menutoggle {
+:deep(.action-item.action-item--open .action-item__menutoggle) {
 	background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-::v-deep .v-popper__popper {
+:deep(.v-popper__popper) {
 	top: 64px !important;
 	left: 12px !important;
 	transform: unset !important;
@@ -164,12 +164,12 @@ export default {
 	}
 }
 
-::v-deep(.app-menu-more--right ~ .v-popper__popper) {
+:deep(.app-menu-more--right ~ .v-popper__popper) {
 	left: unset !important;
 	right: 12px !important;
 }
 
-::v-deep.app-menu-more--right {
+:deep(.app-menu-more--right) {
 	width: 50px;
 	.button-vue--vue-tertiary {
 		width: 100% !important;

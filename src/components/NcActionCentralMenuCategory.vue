@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import NcActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcActionText from '@nextcloud/vue/components/NcActionText'
 
 export default {
-	name: 'MenuCategory',
+	name: 'NcActionCentralMenuCategory',
 	components: {
 		NcActionText,
 	},
@@ -43,14 +43,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .action-text {
+:deep(.action-text) {
 	opacity: 1 !important;
-	&__longtext,
-	&__text {
+	.action-text__longtext,
+	.action-text__text {
 		line-height: 20px !important;
 		font-weight: bold !important;
 		font-size: 17px !important;
 		padding: 8px 16px 4px 16px !important;
+		max-width: 400px;
 	}
 }
 </style>
