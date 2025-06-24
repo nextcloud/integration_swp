@@ -67,15 +67,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .action-link {
+:deep(.action-link) {
 	opacity: 1 !important;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.1);
 	}
 
-	&__text,
-	&__longtext {
+	.action-link__text,
+	.action-link__longtext {
 		max-width: 352px !important;
 		line-height: 20px !important;
 		align-self: center;

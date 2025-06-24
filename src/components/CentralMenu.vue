@@ -139,7 +139,7 @@ export default {
 }
 
 /*
-::v-deep .action.entry.active {
+:deep(.action.entry.active) {
 	background-color: unset !important;
 }
 */

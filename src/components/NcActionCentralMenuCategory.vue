@@ -43,10 +43,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .action-text {
+:deep(.action-text) {
 	opacity: 1 !important;
-	&__longtext,
-	&__text {
+	.action-text__longtext,
+	.action-text__text {
 		line-height: 20px !important;
 		font-weight: bold !important;
 		font-size: 17px !important;
