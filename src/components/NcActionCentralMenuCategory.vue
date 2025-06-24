@@ -17,7 +17,7 @@
 import NcActionText from '@nextcloud/vue/components/NcActionText'
 
 export default {
-	name: 'MenuCategory',
+	name: 'NcActionCentralMenuCategory',
 	components: {
 		NcActionText,
 	},
@@ -51,6 +51,7 @@ export default {
 		font-weight: bold !important;
 		font-size: 17px !important;
 		padding: 8px 16px 4px 16px !important;
+		max-width: 400px;
 	}
 }
 </style>

@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import MenuCategory from './MenuCategory.vue'
-import MenuEntry from './MenuEntry.vue'
+import NcActionCentralMenuEntry from './NcActionCentralMenuEntry.vue'
+import NcActionCentralMenuCategory from './NcActionCentralMenuCategory.vue'
 
 export default {
-	name: 'MenuItem',
+	name: 'NcActionCentralMenuItem',
 	components: {
-		MenuEntry,
-		MenuCategory,
+		NcActionCentralMenuEntry,
+		NcActionCentralMenuCategory,
 	},
 	props: {
 		entry: {
@@ -31,7 +31,7 @@ export default {
 	},
 	computed: {
 		myComponent() {
-			return this.entry.isCategory ? MenuCategory : MenuEntry
+			return this.entry.isCategory ? NcActionCentralMenuCategory : NcActionCentralMenuEntry
 		},
 	},
 	mounted() {

@@ -24,7 +24,7 @@ import NcActionLink from '@nextcloud/vue/components/NcActionLink'
 import { generateUrl } from '@nextcloud/router'
 
 export default {
-	name: 'MenuEntry',
+	name: 'NcActionCentralMenuEntry',
 	components: {
 		NcActionLink,
 	},
