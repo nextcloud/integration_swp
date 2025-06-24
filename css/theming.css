@@ -49,10 +49,12 @@ header#header .header-end #notifications #header-menu-notifications,
 header#header .header-end #contactsmenu #header-menu-contactsmenu {
   top: 64px !important;
 }
+header#header .header-right #assistant .header-menu,
 header#header .header-right #user-menu .header-menu__trigger,
 header#header .header-right #unified-search .header-menu__trigger,
 header#header .header-right #notifications .header-menu__trigger,
 header#header .header-right #contactsmenu .header-menu__trigger,
+header#header .header-end #assistant .header-menu,
 header#header .header-end #user-menu .header-menu__trigger,
 header#header .header-end #unified-search .header-menu__trigger,
 header#header .header-end #notifications .header-menu__trigger,
