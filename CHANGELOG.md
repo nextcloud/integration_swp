@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.1.0 – 2025-06-25
+
+### Changed
+
+- Migrate to Vue 3 and nextcloud/vue 9 @julien-nc [#28](https://github.com/nextcloud/integration_swp/pull/28)
+
+### Fixed
+
+- Nexcloud desktop client couldn't sync for users with groupfolders @raynay-r [#23](https://github.com/nextcloud/integration_swp/pull/23)
+
 ## 4.0.1 – 2025-06-13
 
 ### Changed
