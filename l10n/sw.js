@@ -1,7 +1,14 @@
 OC.L10N.register(
     "integration_swp",
     {
-    "More apps" : "Apps zaidi",
+    "OX Mail" : "Maili ya OX",
+    "New document" : "Waraka mpya",
+    "Nextcloud SWP integration" : "Muunganisho wa Nextcloud SWP",
+    "Utility app for integration purposes in The Sovereign Workplace" : "Programu ya matumizi kwa madhumuni ya ujumuishaji katika Mahali pa Kazi Kuu",
+    "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Programu hii ya matumizi inaauni anwani za OpenXChange/mailto, menyu kuu, mtindo uliounganishwa...",
+    "Portal" : " Lango",
+    "Sovereign Workplace portal" : "Lango kuu la mahali pa kazi",
+    "More apps" : "Programu zaidi",
     "Search" : "Tafuta"
 },
 "nplurals=2; plural=(n != 1);");
