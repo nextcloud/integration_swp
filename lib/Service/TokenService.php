@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Swp\Service;
 
+use OC\Authentication\Token\IProvider;
 use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Model\Token;
 use OCA\Swp\Vendor\Firebase\JWT\JWT;
@@ -17,6 +18,10 @@ use OCA\UserOIDC\Db\Provider;
 use OCA\UserOIDC\Db\ProviderMapper;
 use OCA\UserOIDC\Service\DiscoveryService;
 use OCP\App\IAppManager;
+use OCP\Authentication\Exceptions\ExpiredTokenException;
+use OCP\Authentication\Exceptions\InvalidTokenException;
+use OCP\Authentication\Exceptions\WipeTokenException;
+use OCP\Authentication\Token\IToken;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\ICache;
@@ -27,6 +32,7 @@ use OCP\ISession;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
+use OCP\Session\Exceptions\SessionNotAvailableException;
 use Psr\Log\LoggerInterface;
 
 class TokenService {
@@ -43,6 +49,7 @@ class TokenService {
 		private ISession $session,
 		private IURLGenerator $urlGenerator,
 		private IUserSession $userSession,
+		private IProvider $tokenProvider,
 		private LoggerInterface $logger,
 		private IRequest $request,
 		private IConfig $config,
@@ -51,6 +58,26 @@ class TokenService {
 	) {
 		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
+	}
+
+	public function isUserOidcSession(): bool {
+		// Do not check the OIDC login token when not logged in via user_oidc (app password or direct login for example)
+		// Inspired from https://github.com/nextcloud/server/pull/43942/files#diff-c5cef03f925f97933ff9b3eb10217d21ef6516342e5628762756f1ba0469ac84R81-R92
+		try {
+			$sessionId = $this->session->getId();
+			$sessionAuthToken = $this->tokenProvider->getToken($sessionId);
+		} catch (SessionNotAvailableException|InvalidTokenException|WipeTokenException|ExpiredTokenException $e) {
+			// States we do not deal with here.
+			$this->logger->debug('[isUserOidcSession] error getting the session auth token', ['exception' => $e]);
+			return false;
+		}
+		$scope = $sessionAuthToken->getScopeAsArray();
+		if (!isset($scope[IToken::SCOPE_SKIP_PASSWORD_VALIDATION]) || $scope[IToken::SCOPE_SKIP_PASSWORD_VALIDATION] === false) {
+			$this->logger->debug('[isUserOidcSession] most likely not using user_oidc, the session auth token does not have the "skip pwd validation" scope');
+			return false;
+		}
+		$this->logger->debug('[isUserOidcSession] it seems like it is');
+		return true;
 	}
 
 	public function storeToken(array $tokenData): Token {

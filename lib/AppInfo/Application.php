@@ -112,11 +112,11 @@ class Application extends App implements IBootstrap {
 				return;
 			}
 
-			if (str_contains($request->getPathInfo(), 'groupfolders')) {
+			$debugModeEnabled = $config->getAppValue(self::APP_ID, self::APP_CONFIG_DEBUG_MODE, '0') === '1';
+
+			if (!$debugModeEnabled && !$tokenService->isUserOidcSession()) {
 				return;
 			}
-
-			$debugModeEnabled = $config->getAppValue(self::APP_ID, self::APP_CONFIG_DEBUG_MODE, '0') === '1';
 
 			$token = $tokenService->getToken();
 			if (!$debugModeEnabled && $token === null) {
