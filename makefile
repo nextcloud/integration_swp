@@ -92,6 +92,10 @@ build_release: clean
 	--exclude=crowdin.yml \
 	--exclude=tools \
 	--exclude=l10n/.tx \
+	--exclude=/.tx \
+	--exclude=/.eslint* \
+	--exclude=/.l10n* \
+	--exclude=/stylelint* \
 	--exclude=l10n/l10n.pl \
 	--exclude=l10n/templates \
 	--exclude=l10n/*.sh \
