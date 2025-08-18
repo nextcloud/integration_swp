@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.1.1 – 2025-08-18
+
+### Changed
+
+- Add warning logs when logging out because there is no login token in the session or because it's expired
+
 ## 4.1.0 – 2025-06-25
 
 ### Changed
