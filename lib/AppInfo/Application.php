@@ -34,6 +34,7 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Util;
+use Psr\Log\LoggerInterface;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'integration_swp';
@@ -106,6 +107,7 @@ class Application extends App implements IBootstrap {
 			IConfig $config,
 			IUserSession $userSession,
 			IRequest $request,
+			LoggerInterface $logger,
 			$userId,
 		) {
 			if (!$userId) {
@@ -124,6 +126,7 @@ class Application extends App implements IBootstrap {
 				// it means the session (where we store the token) has died
 				// so we need to reauthenticate
 				if ($config->getUserValue($userId, self::APP_ID, 'had_token_once', '0') === '1') {
+					$logger->warning('[TokenCheck] Log out because we had a token at least once before and we can\'t find it in the Php session now');
 					$userSession->logout();
 				}
 				return;
@@ -144,6 +147,7 @@ class Application extends App implements IBootstrap {
 			$contactsManager->registerAddressBook($oxAddressBook);
 
 			if (!$debugModeEnabled && $token->isExpired()) {
+				$logger->warning('[TokenCheck] Log out because the Oidc login token has expired');
 				$tokenService->reauthenticate();
 			}
 
