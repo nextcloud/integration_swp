@@ -33,6 +33,10 @@ body.dashboard--inverted:not(.dashboard--dark) .header-end > div:not(#settings) 
 header#header {
   height: var(--my-header-height) !important;
 }
+header#header .header-right #notifications,
+header#header .header-end #notifications {
+  height: var(--my-header-height) !important;
+}
 header#header .header-right #settings #expand,
 header#header .header-end #settings #expand {
   height: 100%;
@@ -47,7 +51,7 @@ header#header .header-end #settings #expanddiv,
 header#header .header-end #unified-search #header-menu-unified-search,
 header#header .header-end #notifications #header-menu-notifications,
 header#header .header-end #contactsmenu #header-menu-contactsmenu {
-  top: 64px !important;
+  top: var(--my-header-height) !important;
 }
 header#header .header-right #assistant .header-menu,
 header#header .header-right #user-menu .header-menu__trigger,
@@ -69,7 +73,7 @@ header#header .header-end #contactsmenu .content .footer {
 header#header .header-left > nav > #navigation {
   position: fixed;
   left: 12px;
-  top: 64px;
+  top: var(--my-header-height);
   transform: unset;
   min-width: 260px;
   max-width: 420px;

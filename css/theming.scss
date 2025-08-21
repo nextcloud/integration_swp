@@ -38,6 +38,9 @@ header#header {
 
 	.header-right,
 	.header-end {
+		#notifications {
+			height: var(--my-header-height) !important;
+		}
 		#settings #expand {
 			height: 100%;
 			margin-top: 0;
@@ -47,7 +50,7 @@ header#header {
 		#unified-search #header-menu-unified-search,
 		#notifications #header-menu-notifications,
 		#contactsmenu #header-menu-contactsmenu {
-			top: 64px !important;
+			top: var(--my-header-height) !important;
 		}
 		#assistant .header-menu,
 		#user-menu .header-menu__trigger,
@@ -67,7 +70,7 @@ header#header {
 	.header-left > nav > #navigation {
 		position: fixed;
 		left: 12px;
-		top: 64px;
+		top: var(--my-header-height);
 		transform: unset;
 		min-width: 260px;
 		max-width: 420px;
