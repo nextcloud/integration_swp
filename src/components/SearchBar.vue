@@ -41,7 +41,8 @@ export default {
 	},
 	methods: {
 		openOriginalUnifiedSearchModal() {
-			const searchBtn = document.querySelector('#header .unified-search-menu > button') ?? document.querySelector('#header .unified-search__button')
+			console.debug('aaaaaaaaa OpenOriginalUnifiedSearchModal')
+			const searchBtn = document.querySelector('#header .unified-search-menu button') ?? document.querySelector('#header .unified-search__button')
 			if (searchBtn) {
 				searchBtn.click()
 				if (this.supportsLocalSearch) {
