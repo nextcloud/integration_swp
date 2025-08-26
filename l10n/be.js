@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "New document" : "Новы дакумент",
     "More apps" : "Болей праграм",
     "Search" : "Пошук"
 },
