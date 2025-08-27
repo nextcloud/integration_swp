@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.2.0 – 2025-08-27
+
+### Fixed
+
+- Style issue with notification icon in header
+- Custom unified search click handling, find the correct hidden element to click on
+- Do not check oidc token if we know user_oidc was not used to log in @julien-nc [#33](https://github.com/nextcloud/integration_swp/pull/33)
+
 ## 4.1.1 – 2025-08-18
 
 ### Changed
