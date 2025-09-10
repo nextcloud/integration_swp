@@ -13,6 +13,7 @@ use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Exception\ServiceException;
 use OCA\Swp\Service\OxContactsService;
 use OCP\IAddressBook;
+use OCP\IAppConfig;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
@@ -24,6 +25,7 @@ class OxAddressBook implements IAddressBook {
 	public function __construct(
 		ICacheFactory $cacheFactory,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private OxContactsService $oxContactsService,
 		private ?string $userId,
 	) {
@@ -102,7 +104,7 @@ class OxAddressBook implements IAddressBook {
 			$filteredResult
 		);
 
-		$cacheTtl = $this->config->getAppValue(
+		$cacheTtl = $this->appConfig->getValueString(
 			Application::APP_ID,
 			Application::APP_CONFIG_CACHE_TTL_CONTACTS,
 			(string)Application::APP_CONFIG_CACHE_TTL_CONTACTS_DEFAULT
