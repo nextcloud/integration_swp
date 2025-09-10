@@ -109,7 +109,7 @@ class TokenService {
 		if ($refresh && $token->isExpiring()) {
 			$token = $this->refresh($token);
 		}
-		$this->logger->warning('[SWPTokenService] Obtained a token from our own session storage that expires in ' . $token->getExpiresInFromNow());
+		$this->logger->debug('[SWPTokenService] Obtained a token from our own session storage that expires in ' . $token->getExpiresInFromNow());
 		return $token;
 	}
 
@@ -130,7 +130,7 @@ class TokenService {
 			$this->logger->debug('There was no token found in the session');
 			return null;
 		} else {
-			$this->logger->warning('[SWPTokenService] Obtained a token from user_oidc that expires in ' . $userOidcToken->getExpiresInFromNow());
+			$this->logger->debug('[SWPTokenService] Obtained a token from user_oidc that expires in ' . $userOidcToken->getExpiresInFromNow());
 			return new Token([
 				'id_token' => $userOidcToken->getIdToken(),
 				'access_token' => $userOidcToken->getAccessToken(),
