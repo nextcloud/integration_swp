@@ -14,6 +14,7 @@ use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Model\Token;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
+use OCP\IAppConfig;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
@@ -35,6 +36,7 @@ class MenuService {
 		private LoggerInterface $logger,
 		private IFactory $l10nFactory,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private TokenService $tokenService,
 		private IURLGenerator $urlGenerator,
 	) {
@@ -47,7 +49,7 @@ class MenuService {
 			return $this->getFromFile('fake.menu.example.json');
 		}
 		try {
-			$jsonMenuUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
+			$jsonMenuUrl = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_URL, '');
 			if ($jsonMenuUrl !== '') {
 				// make the menu request (and cache it)
 				$providerId = $token->getProviderId();
@@ -67,16 +69,16 @@ class MenuService {
 					];
 
 					// get headers from config
-					$sharedSecret = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_SHARED_SECRET, '');
+					$sharedSecret = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_SHARED_SECRET, '');
 					if ($sharedSecret !== '') {
-						$usernameTokenAttribute = $this->config->getAppValue(
+						$usernameTokenAttribute = $this->appConfig->getValueString(
 							Application::APP_ID, Application::APP_CONFIG_NAVIGATION_USERNAME_ATTRIBUTE, ''
 						) ?: 'preferred_username';
 						// get the preferred_username token attribute
 						$decodedToken = $this->tokenService->decodeIdToken($token);
 						$username = $decodedToken[$usernameTokenAttribute] ?? '';
 
-						$authType = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_AUTH_TYPE, 'basic') ?: 'basic';
+						$authType = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_NAVIGATION_AUTH_TYPE, 'basic') ?: 'basic';
 						$useBasicAuth = $authType === 'basic';
 						if ($useBasicAuth) {
 							$options['headers']['Authorization'] = 'Basic ' . base64_encode($username . ':' . $sharedSecret);
@@ -90,7 +92,7 @@ class MenuService {
 
 					$response = $this->client->get($jsonMenuUrl, $options);
 					$cachedMenu = $response->getBody();
-					$cacheDuration = $this->config->getAppValue(
+					$cacheDuration = $this->appConfig->getValueString(
 						Application::APP_ID,
 						Application::APP_CONFIG_CACHE_NAVIGATION_JSON,
 						(string)Application::APP_CONFIG_CACHE_NAVIGATION_JSON_DEFAULT
