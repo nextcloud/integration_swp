@@ -56,7 +56,7 @@ class PageController extends Controller {
 	#[PublicPage]
 	#[NoCSRFRequired]
 	#[UseSession]
-	public function index() {
+	public function index(): JSONResponse {
 		/** @var Token $token */
 		$token = \OC::$server->get(TokenService::class)->getToken(true);
 		if ($token === null) {
