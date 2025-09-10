@@ -22,8 +22,10 @@ use OCP\Authentication\Exceptions\ExpiredTokenException;
 use OCP\Authentication\Exceptions\InvalidTokenException;
 use OCP\Authentication\Exceptions\WipeTokenException;
 use OCP\Authentication\Token\IToken;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
+use OCP\IAppConfig;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
@@ -53,8 +55,10 @@ class TokenService {
 		private LoggerInterface $logger,
 		private IRequest $request,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private ICrypto $crypto,
 		private IAppManager $appManager,
+		private IEventDispatcher $eventDispatcher,
 	) {
 		$this->client = $clientService->newClient();
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID);
@@ -88,6 +92,10 @@ class TokenService {
 	}
 
 	public function getToken(bool $refresh = true): ?Token {
+		$isUserOidcStoringTokens = $this->appConfig->getValueString(\OCA\UserOIDC\AppInfo\Application::APP_ID, 'store_login_token', '0') === '1';
+		if ($isUserOidcStoringTokens) {
+			return $this->getTokenFromUserOidc();
+		}
 		$sessionData = $this->session->get(self::SESSION_TOKEN_KEY);
 		if (!$sessionData) {
 			return null;
@@ -101,10 +109,51 @@ class TokenService {
 		if ($refresh && $token->isExpiring()) {
 			$token = $this->refresh($token);
 		}
+		$this->logger->warning('[SWPTokenService] Obtained a token from our own session storage that expires in ' . $token->getExpiresInFromNow());
 		return $token;
 	}
 
-	public function refresh(Token $token) {
+	private function getTokenFromUserOidc(): ?Token {
+		$event = new \OCA\UserOIDC\Event\ExternalTokenRequestedEvent();
+		try {
+			$this->eventDispatcher->dispatchTyped($event);
+		} catch (\OCA\UserOIDC\Exception\GetExternalTokenFailedException $e) {
+			$this->logger->debug('Failed to get external token: ' . $e->getMessage());
+			$error = $e->getError();
+			$errorDescription = $e->getErrorDescription();
+			if ($error && $errorDescription) {
+				$this->logger->debug('Token obtention error: ' . $error . ' (' . $errorDescription . ')');
+			}
+		}
+		$userOidcToken = $event->getToken();
+		if ($userOidcToken === null) {
+			$this->logger->debug('There was no token found in the session');
+			return null;
+		} else {
+			$this->logger->warning('[SWPTokenService] Obtained a token from user_oidc that expires in ' . $userOidcToken->getExpiresInFromNow());
+			return new Token([
+				'id_token' => $userOidcToken->getIdToken(),
+				'access_token' => $userOidcToken->getAccessToken(),
+				'expires_in' => $userOidcToken->getExpiresIn(),
+				'refresh_token' => $userOidcToken->getRefreshToken(),
+				'created_at' => $userOidcToken->getCreatedAt(),
+				'provider_id' => $userOidcToken->getProviderId(),
+			]);
+		}
+	}
+
+	/**
+	 * Refresh the token we stored ourselves if user_oidc does not store its tokens and we didn't use the events
+	 *
+	 * @param Token $token
+	 * @return Token
+	 * @throws \JsonException
+	 * @throws \OCP\AppFramework\Db\DoesNotExistException
+	 * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
+	 * @throws \Psr\Container\ContainerExceptionInterface
+	 * @throws \Psr\Container\NotFoundExceptionInterface
+	 */
+	public function refresh(Token $token): Token {
 		/** @var ProviderMapper $providerMapper */
 		$providerMapper = \OC::$server->get(ProviderMapper::class);
 		$oidcProvider = $providerMapper->getProvider($token->getProviderId());
