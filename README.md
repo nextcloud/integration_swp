@@ -18,6 +18,12 @@
 
 ## OIDC token handling
 
+This app needs a valid OIDC token to get the central menu content and contact OpenXChange. We get this token from the user_oidc app.
+Depending on how user_oidc is configured, we either store and refresh the login token ourselves or rely on user_oidc to do so.
+
+If "Store login tokens" is enabled in user_oidc's admin settings, we know we can use the `OCA\UserOIDC\Event\ExternalTokenRequestedEvent`
+to ask user_oidc to provide the login token (or a refreshed one) instead of storing this token ourselves (and refreshing it).
+
 During login the access_token and refresh token are passed by the user_oidc app to the integration_swp app through a dispatched event.
 integration_swp will request a fresh token and regularly refresh it with the refresh token that was initially provided by the OpenID Connect login.
 

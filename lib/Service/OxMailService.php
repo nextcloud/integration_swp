@@ -26,7 +26,6 @@ class OxMailService extends OxBaseService {
 	public function __construct(
 		ICacheFactory $cacheFactory,
 		TokenService $tokenService,
-		private IAppConfig $appConfig,
 		private IConfig $config,
 		private IAppConfig $appConfig,
 		private IClientService $clientService,
