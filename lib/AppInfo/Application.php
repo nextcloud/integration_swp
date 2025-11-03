@@ -27,6 +27,7 @@ use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Contacts\Events\ContactInteractedWithEvent;
 use OCP\Contacts\IManager;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
@@ -105,6 +106,7 @@ class Application extends App implements IBootstrap {
 			OxMailService $unreadService,
 			IURLGenerator $urlGenerator,
 			IConfig $config,
+			IAppConfig $appConfig,
 			IUserSession $userSession,
 			IRequest $request,
 			LoggerInterface $logger,
@@ -114,7 +116,7 @@ class Application extends App implements IBootstrap {
 				return;
 			}
 
-			$debugModeEnabled = $config->getAppValue(self::APP_ID, self::APP_CONFIG_DEBUG_MODE, '0') === '1';
+			$debugModeEnabled = $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_DEBUG_MODE, '0') === '1';
 
 			if (!$debugModeEnabled && !$tokenService->isUserOidcSession()) {
 				return;
@@ -154,41 +156,41 @@ class Application extends App implements IBootstrap {
 			// as we get the menu items with a central navigation service, this is not necessary anymore
 			// $this->registerNavigationItems();
 
-			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
+			$initialState->provideLazyInitialState(self::APP_CONFIG_USE_CUSTOM_LOGO, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_USE_CUSTOM_LOGO, '1') === '1';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TARGET, '_blank') ?: '_blank';
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TARGET, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TARGET, '_blank') ?: '_blank';
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_URL);
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_URL, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_LOGO_LINK_URL);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TITLE);
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_LINK_TITLE, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_LOGO_LINK_TITLE);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_WIDTH);
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_WIDTH, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_LOGO_WIDTH);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_LOGO_HEIGHT);
+			$initialState->provideLazyInitialState(self::APP_CONFIG_LOGO_HEIGHT, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_LOGO_HEIGHT);
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_PORTAL_URL, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_PORTAL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, '');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_MENU_TABNAME_ATTRIBUTE, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_TABNAME, '');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_TABNAME, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_WEBMAIL_TABNAME, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_WEBMAIL_URL, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_WEBMAIL_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_OX_URL, '');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_OX_URL, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_OX_URL, '');
 			});
-			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_HEADER_LOCATION, function () use ($config) {
-				return $config->getAppValue(self::APP_ID, self::APP_CONFIG_MENU_HEADER_LOCATION, 'left');
+			$initialState->provideLazyInitialState(self::APP_CONFIG_MENU_HEADER_LOCATION, function () use ($appConfig) {
+				return $appConfig->getValueString(self::APP_ID, self::APP_CONFIG_MENU_HEADER_LOCATION, 'left');
 			});
 			/** @psalm-suppress InvalidArgument */
 			$initialState->provideLazyInitialState('menu-json', function () use ($menuService, $token) {
@@ -199,18 +201,18 @@ class Application extends App implements IBootstrap {
 			if (!str_starts_with($request->getPathInfo(), '/s/')) {
 				Util::addScript(self::APP_ID, self::APP_ID . '-main');
 				Util::addStyle(self::APP_ID, 'theming');
-				if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS, '1') === '1') {
+				if ($appConfig->getValueString(self::APP_ID, self::APP_CONFIG_SQUARE_CORNERS, '1') === '1') {
 					Util::addStyle(self::APP_ID, 'square-corners');
 				}
-				if ($config->getAppValue(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
+				if ($appConfig->getValueString(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
 					Util::addStyle(self::APP_ID, 'color');
 				}
 			}
 
 			if ($request->getPathInfo() === '/apps/activity/' || $request->getPathInfo() === '/apps/activity') {
 				/** @psalm-suppress InvalidArgument */
-				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($config): array {
-					$activitiesString = $config->getAppValue(
+				$initialState->provideLazyInitialState(self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST, function () use ($appConfig): array {
+					$activitiesString = $appConfig->getValueString(
 						self::APP_ID,
 						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST,
 						self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT) ?: self::APP_CONFIG_ACTIVITY_CATEGORY_BLACKLIST_DEFAULT;
