@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.3.0 – 2025-11-03
+
+### Added
+
+- Support NC 33
+
+### Fixed
+
+- Fix assistant header menu button height
+
 ## 4.2.0 – 2025-08-27
 
 ### Fixed
