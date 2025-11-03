@@ -42,7 +42,7 @@
 		"symfony/event-dispatcher": "^4",
 		"phpunit/phpunit": "^9.5",
 		"nextcloud/ocp": "dev-master",
-		"psalm/phar": "6.7.x"
+		"psalm/phar": "^6"
 	},
 	"extra": {
 		"mozart": {
