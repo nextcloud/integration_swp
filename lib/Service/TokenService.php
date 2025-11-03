@@ -207,8 +207,8 @@ class TokenService {
 
 		// Logout the user and redirect to the oidc login flow to gather a fresh token
 		$this->userSession->logout();
-		$redirectUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/user_oidc/login/' . strval($token->getProviderId())) .
-			'?redirectUrl=' . urlencode($this->request->getRequestUri());
+		$redirectUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/user_oidc/login/' . strval($token->getProviderId()))
+			. '?redirectUrl=' . urlencode($this->request->getRequestUri());
 		header('Location: ' . $redirectUrl);
 		exit();
 	}
