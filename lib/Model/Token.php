@@ -41,6 +41,11 @@ class Token implements JsonSerializable {
 		return $this->expiresIn;
 	}
 
+	public function getExpiresInFromNow(): int {
+		$expiresAt = $this->createdAt + $this->expiresIn;
+		return $expiresAt - time();
+	}
+
 	public function getRefreshToken(): string {
 		return $this->refreshToken;
 	}
