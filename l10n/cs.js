@@ -5,7 +5,7 @@ OC.L10N.register(
     "New document" : "Nový dokument",
     "Nextcloud SWP integration" : "Napojení na Nextcloud SWP",
     "Utility app for integration purposes in The Sovereign Workplace" : "Nástroj pro účely napojení v Nezávislém pracovišti",
-    "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Tento nástroj podporuje OpenXChange odkazy na kontakty / odesílání zpráv na, centrální nabídku, jednotný styl…",
+    "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Tento nástroj podporuje OpenXChange odkazy na kontakty / odesílání zpráv na, centrální nabídku, jednotný styl …",
     "Portal" : "Portál",
     "Sovereign Workplace portal" : "Portál nezávislého pracoviště",
     "More apps" : "Více aplikací",
