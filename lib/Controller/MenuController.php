@@ -13,6 +13,8 @@ namespace OCA\Swp\Controller;
 use OCA\Swp\Service\MenuService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IRequest;
 
@@ -26,10 +28,8 @@ class MenuController extends Controller {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoadminRequired]
+	#[NoCSRFRequired]
 	public function getMenuEntryIcon(string $itemId): DataDisplayResponse {
 		$icon = $this->menuService->getMenuEntryIcon($itemId);
 		if ($icon === null) {

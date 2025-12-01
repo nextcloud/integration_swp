@@ -16,6 +16,10 @@ use OCA\Swp\Model\Token;
 use OCA\Swp\Service\TokenService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
+use OCP\AppFramework\Http\Attribute\UseSession;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
@@ -49,11 +53,9 @@ class PageController extends Controller {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @PublicPage
-	 * @NoCSRFRequired
-	 * @UseSession
-	 */
+	#[PublicPage]
+	#[NoCSRFRequired]
+	#[UseSession]
 	public function index() {
 		/** @var Token $token */
 		$token = \OC::$server->get(TokenService::class)->getToken(true);
@@ -66,11 +68,8 @@ class PageController extends Controller {
 		]);
 	}
 
-	/**
-	 * @PublicPage
-	 * @NoCSRFRequired
-	 * @return DataDisplayResponse
-	 */
+	#[PublicPage]
+	#[NoCSRFRequired]
 	public function getLogo(): DataDisplayResponse {
 		$logoImageUrl = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_LOGO_IMAGE_URL);
 		if ($logoImageUrl) {
@@ -98,8 +97,6 @@ class PageController extends Controller {
 	}
 
 	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 * @param string $ext
 	 * @param string|null $directory
 	 * @param string|null $name
@@ -109,6 +106,8 @@ class PageController extends Controller {
 	 * @throws NotFoundException
 	 * @throws NotPermittedException
 	 */
+	#[NoadminRequired]
+	#[NoCSRFRequired]
 	public function createDocument(string $ext, ?string $directory = null, ?string $name = null) {
 		if (!in_array($ext, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'odg', 'txt', 'md'])) {
 			return new DataResponse('Unsupported format', Http::STATUS_BAD_REQUEST);
