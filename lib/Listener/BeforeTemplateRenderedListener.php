@@ -13,7 +13,7 @@ use OCA\Swp\AppInfo\Application;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use OCP\Util;
 
 /**
@@ -22,7 +22,7 @@ use OCP\Util;
 class BeforeTemplateRenderedListener implements IEventListener {
 
 	public function __construct(
-		private IConfig $config,
+		private IAppConfig $appConfig,
 	) {
 	}
 
@@ -34,7 +34,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 			return;
 		}
 
-		if ($this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_HIDE_CONTACTS_MENU, '0') === '1') {
+		if ($this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_HIDE_CONTACTS_MENU, '0') === '1') {
 			Util::addStyle(Application::APP_ID, 'hide-contactsmenu');
 		}
 	}

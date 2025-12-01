@@ -13,20 +13,20 @@ use Exception;
 use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Exception\ServiceException;
 use OCP\Http\Client\IClientService;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class OxContactsService extends OxBaseService {
 
 	public function __construct(
-		IConfig $config,
+		IAppConfig $appConfig,
 		TokenService $tokenService,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
 		private ?string $userId,
 	) {
-		parent::__construct($config, $tokenService, $logger, $userId);
+		parent::__construct($appConfig, $tokenService, $logger, $userId);
 	}
 
 	/**

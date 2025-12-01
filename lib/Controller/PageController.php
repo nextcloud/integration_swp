@@ -26,7 +26,7 @@ use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
 use OCP\Files\NotPermittedException;
 use OCP\Http\Client\IClientService;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -40,7 +40,7 @@ class PageController extends Controller {
 		IRequest $request,
 		private IURLGenerator $urlGenerator,
 		private IRootFolder $rootFolder,
-		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
 		private IL10N $l10n,
@@ -72,7 +72,7 @@ class PageController extends Controller {
 	 * @return DataDisplayResponse
 	 */
 	public function getLogo(): DataDisplayResponse {
-		$logoImageUrl = $this->config->getAppValue(Application::APP_ID, Application::APP_CONFIG_LOGO_IMAGE_URL);
+		$logoImageUrl = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_LOGO_IMAGE_URL);
 		if ($logoImageUrl) {
 			$client = $this->clientService->newClient();
 			try {
