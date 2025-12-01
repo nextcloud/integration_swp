@@ -9,7 +9,7 @@ namespace OCA\Swp\Service;
 
 use OCA\Swp\AppInfo\Application;
 use OCA\Swp\Exception\ServiceException;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use Psr\Log\LoggerInterface;
 
 class OxBaseService {
@@ -17,7 +17,7 @@ class OxBaseService {
 	private string $oxBaseUrl;
 
 	public function __construct(
-		private IConfig $config,
+		private IAppConfig $appConfig,
 		private TokenService $tokenService,
 		private LoggerInterface $logger,
 		private ?string $userId = null,
@@ -29,7 +29,7 @@ class OxBaseService {
 			return;
 		}
 		*/
-		$this->oxBaseUrl = $config->getAppValue(Application::APP_ID, Application::APP_CONFIG_OX_URL);
+		$this->oxBaseUrl = $this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_OX_URL);
 	}
 
 	public function checkSetup(): bool {
@@ -41,7 +41,7 @@ class OxBaseService {
 	}
 
 	protected function getOxOptions(): array {
-		$oxDebugUserToken = $this->config->getAppValue(Application::APP_ID, 'ox-usertoken');
+		$oxDebugUserToken = $this->appConfig->getValueString(Application::APP_ID, 'ox-usertoken');
 
 		$oidcToken = $this->tokenService->getToken();
 		if (!$oidcToken && $oxDebugUserToken === '') {

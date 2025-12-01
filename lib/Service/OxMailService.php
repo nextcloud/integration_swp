@@ -13,6 +13,7 @@ namespace OCA\Swp\Service;
 use Exception;
 use OCA\Swp\AppInfo\Application;
 use OCP\Http\Client\IClientService;
+use OCP\IAppConfig;
 use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
@@ -26,11 +27,12 @@ class OxMailService extends OxBaseService {
 		ICacheFactory $cacheFactory,
 		TokenService $tokenService,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IClientService $clientService,
 		private LoggerInterface $logger,
 		private ?string $userId = null,
 	) {
-		parent::__construct($config, $tokenService, $logger, $userId);
+		parent::__construct($appConfig, $tokenService, $logger, $userId);
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_unread');
 	}
 
@@ -69,7 +71,7 @@ class OxMailService extends OxBaseService {
 	}
 
 	public function setUnreadCounter(int $counter): void {
-		$cacheTtl = $this->config->getAppValue(
+		$cacheTtl = $this->appConfig->getValueString(
 			Application::APP_ID,
 			Application::APP_CONFIG_CACHE_TTL_MAIL,
 			(string)Application::APP_CONFIG_CACHE_TTL_MAIL_DEFAULT
