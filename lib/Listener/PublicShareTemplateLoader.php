@@ -18,7 +18,7 @@ use OCP\IAppConfig;
 use OCP\Util;
 
 /**
- * @implements IEventListener<Event>
+ * @implements IEventListener<BeforeTemplateRenderedEvent>
  * Helper class to extend the "publicshare" template from the server.
  */
 class PublicShareTemplateLoader implements IEventListener {
