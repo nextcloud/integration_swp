@@ -129,7 +129,19 @@ class PageController extends Controller {
 		if ($name !== null) {
 			$newFileName = $name . '.' . $ext;
 		} else {
-			$newFileName = $this->l10n->t('New document') . '.' . $ext;
+			$docNames = [
+				'odt' => $this->l10n->t('New document'),
+				'docx' => $this->l10n->t('New document'),
+				'ods' => $this->l10n->t('New spreadsheet'),
+				'xlsx' => $this->l10n->t('New spreadsheet'),
+				'odp' => $this->l10n->t('New presentation'),
+				'pptx' => $this->l10n->t('New presentation'),
+				'odg' => $this->l10n->t('New diagram'),
+				'txt' => $this->l10n->t('New text file'),
+				'md' => $this->l10n->t('New text file'),
+			];
+			$newFileName = ($docNames[$ext] ?? $this->l10n->t('New document'))
+				. '.' . $ext;
 		}
 
 		$uniqueNewFileName = $newFileName;
