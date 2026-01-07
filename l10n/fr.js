@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "OX Mail" : "E-mail OX",
     "New document" : "Nouveau document",
+    "New spreadsheet" : "Nouvelle feuille de calcul",
+    "New presentation" : "Nouvelle présentation",
+    "New diagram" : "Nouveau diagramme",
+    "New text file" : "Nouveau fichier texte",
     "Nextcloud SWP integration" : "Intégration Nextcloud SWP",
     "Portal" : "Portail",
     "More apps" : "Plus d’applications",

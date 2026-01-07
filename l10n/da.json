@@ -1,5 +1,9 @@
 { "translations": {
     "New document" : "Nyt dokument",
+    "New spreadsheet" : "Nyt regneark",
+    "New presentation" : "Ny præsentation",
+    "New diagram" : "Nyt diagram",
+    "New text file" : "Ny tekstfil",
     "More apps" : "Flere apps",
     "Search" : "Søg"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

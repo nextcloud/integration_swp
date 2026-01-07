@@ -2,6 +2,10 @@ OC.L10N.register(
     "integration_swp",
     {
     "New document" : "Nuevo documento",
+    "New spreadsheet" : "Nueva hoja de cálculo",
+    "New presentation" : "Nueva presentación",
+    "New diagram" : "Nuevo diagrama",
+    "New text file" : "Nuevo archivo de texto",
     "More apps" : "Más aplicaciones",
     "Search" : "Buscar"
 },

@@ -1,6 +1,10 @@
 { "translations": {
     "OX Mail" : "OX Mail",
     "New document" : "Nový dokument",
+    "New spreadsheet" : "Nová tabuľka",
+    "New presentation" : "Nová prezentácia",
+    "New diagram" : "Nový diagram",
+    "New text file" : "Nový textový súbor",
     "Nextcloud SWP integration" : "Integrácia Nextcloud SWP",
     "Utility app for integration purposes in The Sovereign Workplace" : "Utilita na účely integrácie v The Sovereign Workplace",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Táto utilita podporuje OpenXChange kontakty/mailto odkazy, centrálne menu, unifikovaný vzhľad...",

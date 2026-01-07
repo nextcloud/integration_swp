@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "New text file" : "Nuevo archivo de texto",
     "More apps" : "Más aplicaciones",
     "Search" : "Buscar"
 },

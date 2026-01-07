@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "OX Mail" : "OX Mail",
     "New document" : "Nový dokument",
+    "New spreadsheet" : "Nová tabulka",
+    "New presentation" : "Nová prezentace",
+    "New diagram" : "Nový diagram",
+    "New text file" : "Nový textový soubor",
     "Nextcloud SWP integration" : "Napojení na Nextcloud SWP",
     "Utility app for integration purposes in The Sovereign Workplace" : "Nástroj pro účely napojení v Nezávislém pracovišti",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Tento nástroj podporuje OpenXChange odkazy na kontakty / odesílání zpráv na, centrální nabídku, jednotný styl …",

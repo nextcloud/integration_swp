@@ -2,6 +2,8 @@ OC.L10N.register(
     "integration_swp",
     {
     "New document" : "Teul nevez",
+    "New spreadsheet" : "Taolenner nevez",
+    "New presentation" : "Kinnig nevez",
     "More apps" : "Muioc'h a veziantoù",
     "Search" : "Klask"
 },

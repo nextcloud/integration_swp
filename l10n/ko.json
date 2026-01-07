@@ -1,6 +1,10 @@
 { "translations": {
     "OX Mail" : "OX 메일",
     "New document" : "새 문서",
+    "New spreadsheet" : "새 스프레드시트",
+    "New presentation" : "새 프레젠테이션",
+    "New diagram" : "새 도표",
+    "New text file" : "새 텍스트 파일",
     "Nextcloud SWP integration" : "Nextcloud SWP 통합",
     "Utility app for integration purposes in The Sovereign Workplace" : "Sovereign Workplace에 통합하기 위한 유틸리티 앱",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "이 유틸리티 앱은 OpenXChange의 contacts/mailto 링크와 중앙 메뉴, 통일된 스타일을 지원합니다...",

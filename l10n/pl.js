@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "OX Mail" : "OX Mail",
     "New document" : "Nowy dokument",
+    "New spreadsheet" : "Nowy arkusz kalkulacyjny",
+    "New presentation" : "Nowa prezentacja",
+    "New diagram" : "Nowy diagram",
+    "New text file" : "Nowy plik tekstowy",
     "Nextcloud SWP integration" : "Integracja Nextcloud SWP",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Ta aplikacja narzędziowa obsługuje kontakty/odnośniki mailto OpenXChange, menu centralne, ujednolicony styl...",
     "Portal" : "Portal",

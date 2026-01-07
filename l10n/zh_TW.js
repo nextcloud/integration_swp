@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "OX Mail" : "OX Mail",
     "New document" : "新增文件",
+    "New spreadsheet" : "新增試算表",
+    "New presentation" : "新增投影片",
+    "New diagram" : "新圖表",
+    "New text file" : "新文字檔",
     "Nextcloud SWP integration" : "Nextcloud SWP 整合",
     "Utility app for integration purposes in The Sovereign Workplace" : "用來在 The Sovereign Workplace 中整合的應用程式",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "此工具程式支援 OpenXChange 聯絡人/郵件連結、中央選單、統一樣式……",

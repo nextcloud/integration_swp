@@ -1,6 +1,10 @@
 { "translations": {
     "OX Mail" : "OX Mail",
     "New document" : "Nytt dokument",
+    "New spreadsheet" : "Nytt kalkylblad",
+    "New presentation" : "Ny presentation",
+    "New diagram" : "Nytt diagram",
+    "New text file" : "Ny textfil",
     "Nextcloud SWP integration" : "Nextcloud SWP-integration",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Denna verktygsapp stöder OpenXChange-kontakter/mailto-länkar, centralmeny, enhetlig stil...",
     "Portal" : "Portal",

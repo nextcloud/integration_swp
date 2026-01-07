@@ -2,6 +2,9 @@ OC.L10N.register(
     "integration_swp",
     {
     "New document" : "Naujas dokumentas",
+    "New spreadsheet" : "Nauja skaičiuoklė",
+    "New presentation" : "Nauja pateiktis",
+    "New text file" : "Naujas tekstinis failas",
     "More apps" : "Daugiau programėlių",
     "Search" : "Paieška"
 },

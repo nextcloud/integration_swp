@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "OX Mail" : "OX Post",
     "New document" : "Doiciméad nua",
+    "New spreadsheet" : "Scarbhileog nua",
+    "New presentation" : "Cur i láthair nua",
+    "New diagram" : "Léaráid nua",
+    "New text file" : "Comhad téacs nua",
     "Nextcloud SWP integration" : "Comhtháthú SWP Nextcloud",
     "Utility app for integration purposes in The Sovereign Workplace" : "Aip fóntais chun críocha comhtháthaithe san Ionad Oibre Sovereign",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Tacaíonn an aip fóntais seo le teagmhálacha OpenXChange/naisc mailto, roghchlár lárnach, stíl aontaithe ...",

@@ -2,6 +2,9 @@ OC.L10N.register(
     "integration_swp",
     {
     "New document" : "Novi dokument",
+    "New spreadsheet" : "Nova proračunska tablica",
+    "New presentation" : "Nova prezentacija",
+    "New text file" : "Nova tekstna datoteka",
     "More apps" : "Više aplikacija",
     "Search" : "Traži"
 },

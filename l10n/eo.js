@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "New text file" : "Nova tekstodosiero",
     "More apps" : "Pli da aplikaĵoj",
     "Search" : "Serĉi"
 },
