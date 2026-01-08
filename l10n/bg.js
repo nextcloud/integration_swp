@@ -4,6 +4,8 @@ OC.L10N.register(
     "New document" : "Нов документ",
     "New spreadsheet" : "Нова електронна таблица",
     "New presentation" : "Нова презентация",
+    "New diagram" : "Нова диаграма",
+    "New text file" : "Нов текстов файл",
     "More apps" : "Още приложения",
     "Search" : "Търсене"
 },
