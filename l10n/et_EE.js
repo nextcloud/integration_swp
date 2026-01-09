@@ -1,11 +1,17 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "OX Mail" : "OX Mail (Open-Xchange'i e-post)",
     "New document" : "Uus dokument",
     "New spreadsheet" : "Uus arvutustabel",
     "New presentation" : "Uus esitlus",
     "New diagram" : "Uus skeem",
     "New text file" : "Uus tekstifail",
+    "Nextcloud SWP integration" : "Nextcloudi Suveräänse töökoha (Sovereign Workplace) lõiming",
+    "Utility app for integration purposes in The Sovereign Workplace" : "Tarvik lõimimiseks Suveräänse töökohaga (Sovereign Workplace)",
+    "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "See rakendus toetab OpenXChange'i kontakte ja mailto: linke, keskset menüüd, ühist välimust jne...",
+    "Portal" : "Portaal",
+    "Sovereign Workplace portal" : "Suveräänse töökoha (Sovereign Workplace) portaal",
     "More apps" : "Veel rakendusi",
     "Search" : "Otsi"
 },
