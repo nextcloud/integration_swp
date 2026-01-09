@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.5.0 – 2026-01-09
+
+### Changed
+
+- Use default document name depending on file type
+
 ## 4.4.0 – 2025-11-03
 
 ### Added
