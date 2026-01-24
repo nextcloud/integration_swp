@@ -1,11 +1,17 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "OX Mail" : "OX Mail",
     "New document" : "Dokumen baru",
     "New spreadsheet" : "Spreadsheet baru",
     "New presentation" : "Presentasi baru",
     "New diagram" : "Diagram baru",
-    "New text file" : "Berkas teks baru",
+    "New text file" : "File teks baru",
+    "Nextcloud SWP integration" : "Integrasi Nextcloud SWP",
+    "Utility app for integration purposes in The Sovereign Workplace" : "Aplikasi utilitas untuk keperluan integrasi di The Sovereign Workplace",
+    "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Aplikasi utilitas ini mendukung tautan kontak/mailto OpenXChange, menu pusat, gaya terpadu...",
+    "Portal" : "Portal",
+    "Sovereign Workplace portal" : "Portal Sovereign Workplace",
     "More apps" : "Aplikasi lainnya",
     "Search" : "Cari"
 },
