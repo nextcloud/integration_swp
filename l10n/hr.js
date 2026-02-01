@@ -4,6 +4,7 @@ OC.L10N.register(
     "New document" : "Novi dokument",
     "New spreadsheet" : "Nova proračunska tablica",
     "New presentation" : "Nova prezentacija",
+    "New diagram" : "Novi dijagram",
     "New text file" : "Nova tekstna datoteka",
     "More apps" : "Više aplikacija",
     "Search" : "Traži"
