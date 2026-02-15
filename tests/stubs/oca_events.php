@@ -16,19 +16,3 @@ namespace OCA\Files_Sharing\Event {
 		}
 	}
 }
-
-namespace OCA\UserOIDC\Event {
-
-	use OCP\EventDispatcher\Event;
-
-	class TokenObtainedEvent extends Event {
-		public function getToken(): array {
-		}
-
-		public function getProvider(): \OCA\UserOIDC\Db\Provider {
-		}
-
-		public function getDiscovery(): array {
-		}
-	}
-}
