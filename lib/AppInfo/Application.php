@@ -149,7 +149,7 @@ class Application extends App implements IBootstrap {
 			$contactsManager->registerAddressBook($oxAddressBook);
 
 			if (!$debugModeEnabled && $token->isExpired()) {
-				$logger->warning('[TokenCheck] Log out because the Oidc login token has expired');
+				$logger->warning('[TokenCheck] Log out because the Oidc login token is still expired after we tried to refresh it');
 				$tokenService->reauthenticate();
 			}
 
