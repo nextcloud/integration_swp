@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 4.6.0 – 2026-02-20
+
+### Added
+
+- Support NC 34
+
+### Fixed
+
+- fix(refresh): accept to refresh the token if it's expired and the refresh token is still valid @julien-nc [#60](https://github.com/nextcloud/integration_swp/pull/60)
+
 ## 4.5.0 – 2026-01-09
 
 ### Changed
