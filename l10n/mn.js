@@ -1,11 +1,16 @@
 OC.L10N.register(
     "integration_swp",
     {
+    "OX Mail" : "OX Mail",
     "New document" : "Шинэ баримт бичиг",
     "New spreadsheet" : "Шинэ хүснэгт",
     "New presentation" : "Шинэ презентаци",
     "New diagram" : "Шинэ диаграм",
     "New text file" : "Шинэ текст файл",
+    "Nextcloud SWP integration" : "Nextcloud SWP нэгтгэл",
+    "Utility app for integration purposes in The Sovereign Workplace" : "The Sovereign Workplace-д нэгтгэх зорилгоор хэрэглүүрийн програм",
+    "Portal" : "Портал",
+    "Sovereign Workplace portal" : "Sovereign Workplace портал",
     "More apps" : "Бусад аппууд",
     "Search" : "Хайх"
 },
