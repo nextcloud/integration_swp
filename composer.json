@@ -37,7 +37,7 @@
 	},
 	"require": {
 		"php": "^8.0",
-		"firebase/php-jwt": "^6.8.1",
+		"firebase/php-jwt": "^7.0.4",
 		"bamarni/composer-bin-plugin": "^1.4"
 	},
 	"require-dev": {
