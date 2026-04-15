@@ -4,6 +4,7 @@ OC.L10N.register(
     "New document" : "Naujas dokumentas",
     "New spreadsheet" : "Nauja skaičiuoklė",
     "New presentation" : "Nauja pateiktis",
+    "New diagram" : "Nauja schema",
     "New text file" : "Naujas tekstinis failas",
     "More apps" : "Daugiau programėlių",
     "Search" : "Paieška"
