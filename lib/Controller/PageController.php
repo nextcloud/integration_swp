@@ -151,7 +151,13 @@ class PageController extends Controller {
 			$counter++;
 		}
 
+		// create file
 		$newFile = $targetDir->newFile($uniqueNewFileName);
+		// for Office files, we copy the empty templates (got them from richdocuments)
+		if (in_array($ext, ['docx', 'xlsx', 'pptx', 'odt', 'ods', 'odp', 'odg'])) {
+			$newFile->putContent(file_get_contents(__DIR__ . '/../../emptyTemplates/template.' . $ext));
+			$this->logger->debug('[SWP page controller] Copied empty template');
+		}
 
 		$finalUrl = $this->urlGenerator->getAbsoluteURL(
 			$this->urlGenerator->linkToRoute('files.View.showFile', ['fileid' => $newFile->getId()])
