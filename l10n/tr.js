@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "OX Mail" : "OX Mail",
     "New document" : "Yeni belge",
-    "New spreadsheet" : "Yeni çalışma sayfası",
+    "New spreadsheet" : "Yeni elektronik tablo",
     "New presentation" : "Yeni sunum",
     "New diagram" : "Yeni şema",
     "New text file" : "Yeni yazı dosyası",
