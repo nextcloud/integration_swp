@@ -8,11 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 4.8.0 – 2026-06-01
+## 4.8.1 – 2026-06-01
 
 ### Changed
 
-- make sure app-content-vue has no rounded corners
+- Make sure app-content-vue has no rounded corners
+- Support NC 35
 
 ## 4.7.0 – 2026-04-30
 
