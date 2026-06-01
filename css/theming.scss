@@ -18,6 +18,10 @@ body > #content-vue {
 	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height) - var(--body-container-margin) - var(--my-header-bottom-margin));
 }
 
+#app-content-vue {
+	border-radius: unset;
+}
+
 /* fix dashboard header */
 body.dashboard--inverted:not(.dashboard--dark) {
 	#appmenu .icon-more-white,
