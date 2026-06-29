@@ -2,7 +2,9 @@
     "New document" : "Novo documento",
     "New spreadsheet" : "Nova folha de calculo",
     "New presentation" : "Nova apresentação",
+    "New diagram" : "Novo diagrama",
     "New text file" : "Novo ficheiro de texto",
+    "Sovereign Workplace portal" : "Portal Sovereign Workplace",
     "More apps" : "Mais apps",
     "Search" : "Pesquisa sobre"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"

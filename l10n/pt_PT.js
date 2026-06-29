@@ -4,7 +4,9 @@ OC.L10N.register(
     "New document" : "Novo documento",
     "New spreadsheet" : "Nova folha de calculo",
     "New presentation" : "Nova apresentação",
+    "New diagram" : "Novo diagrama",
     "New text file" : "Novo ficheiro de texto",
+    "Sovereign Workplace portal" : "Portal Sovereign Workplace",
     "More apps" : "Mais apps",
     "Search" : "Pesquisa sobre"
 },
