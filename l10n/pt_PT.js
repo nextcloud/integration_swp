@@ -6,6 +6,7 @@ OC.L10N.register(
     "New presentation" : "Nova apresentação",
     "New diagram" : "Novo diagrama",
     "New text file" : "Novo ficheiro de texto",
+    "Nextcloud SWP integration" : "Integração SWP para Nextcloud",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Esse aplicativo utilitário oferece suporte a links de contatos/mailto, menu central, estilo unificado, etc. do OpenXChange",
     "Sovereign Workplace portal" : "Portal Sovereign Workplace",
     "More apps" : "Mais apps",
