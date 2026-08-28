@@ -212,10 +212,34 @@ class TokenService {
 			return;
 		}
 
+		$accept = $this->request->getHeader('Accept');
+		$xRequestedWith = $this->request->getHeader('X-Requested-With');
+		$secFetchMode = $this->request->getHeader('Sec-Fetch-Mode');
+		$secFetchDest = $this->request->getHeader('Sec-Fetch-Dest');
+		if (!RequestClassificationService::isTopLevelHtmlNavigation($this->request)) {
+			$this->userSession->logout();
+			$this->logger->debug('[TokenService] reauthenticate skipped: request is not a top-level HTML navigation', [
+				'request_uri' => $this->request->getRequestUri(),
+				'accept' => $accept,
+				'x_requested_with' => $xRequestedWith,
+				'sec_fetch_mode' => $secFetchMode,
+				'sec_fetch_dest' => $secFetchDest,
+			]);
+			return;
+		}
+
 		// Logout the user and redirect to the oidc login flow to gather a fresh token
 		$this->userSession->logout();
 		$redirectUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/user_oidc/login/' . strval($token->getProviderId()))
 			. '?redirectUrl=' . urlencode($this->request->getRequestUri());
+		$this->logger->debug('[TokenService] reauthenticate redirect', [
+			'redirect_url' => $redirectUrl,
+			'request_uri' => $this->request->getRequestUri(),
+			'accept' => $accept,
+			'x_requested_with' => $xRequestedWith,
+			'sec_fetch_mode' => $secFetchMode,
+			'sec_fetch_dest' => $secFetchDest,
+		]);
 		header('Location: ' . $redirectUrl);
 		exit();
 	}
