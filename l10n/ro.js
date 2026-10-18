@@ -5,6 +5,7 @@ OC.L10N.register(
     "New document" : "Document nou",
     "New spreadsheet" : "Foaie de calcul nouă",
     "New presentation" : "Prezentare nouă",
+    "New text file" : "Fișier text nou",
     "Nextcloud SWP integration" : "Integrare Nextcloud SWP",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Această aplicație utilitară acceptă contacte OpenXChange/linkuri mailto, meniu central, stil unificat...",
     "Portal" : "Portal",
