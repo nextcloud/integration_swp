@@ -8,6 +8,7 @@ OC.L10N.register(
     "New diagram" : "Diagramă nouă",
     "New text file" : "Fișier text nou",
     "Nextcloud SWP integration" : "Integrare Nextcloud SWP",
+    "Utility app for integration purposes in The Sovereign Workplace" : "Aplicație utilitară pentru integrare în The Sovereign Workplace",
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Această aplicație utilitară acceptă contacte OpenXChange/linkuri mailto, meniu central, stil unificat...",
     "Portal" : "Portal",
     "Sovereign Workplace portal" : "Portal Sovereign Workplace",
