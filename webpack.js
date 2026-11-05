@@ -27,6 +27,7 @@ webpackConfig.entry = {
 
 webpackConfig.plugins.push(
 	new ESLintPlugin({
+		extensions: ['js', 'vue'],
 		files: 'src',
 		failOnError: !isDev,
 	})
