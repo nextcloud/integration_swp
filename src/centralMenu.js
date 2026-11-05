@@ -11,7 +11,6 @@ import {
 
 import { createApp } from 'vue'
 import CentralMenu from './components/CentralMenu.vue'
-import SearchBar from './components/SearchBar.vue'
 
 export function makeCentralMenu() {
 	const menu = loadState('integration_swp', 'menu-json')
@@ -36,36 +35,16 @@ export function makeCentralMenu() {
 				addCentralMenuBeforeUserMenu(el)
 			})
 		}
-
-		const header = document.querySelector('#header')
-		const unifiedSearchMenu = document.querySelector('#header .unified-search-menu') ?? document.querySelector('#header .unified-search__button')
-		if (supportsLocalSearch() === false) {
-			unifiedSearchMenu.classList.add('central-menu-search-hidden')
-		}
-		const headerMiddle = document.createElement('div')
-		headerMiddle.classList.add('header-middle')
-		header.insertBefore(headerMiddle, headerLeft.nextSibling)
-
-		const searchEl = document.createElement('div')
-		searchEl.classList.add('mp-swp-search-bar')
-		headerMiddle.append(searchEl)
-		const app = createApp(SearchBar)
-		app.mixin({ methods: { t, n } })
-		app.mount(searchEl)
 	}
-}
-
-function supportsLocalSearch() {
-	const providerPaths = ['/settings/users', '/apps/deck', '/settings/apps']
-	return providerPaths.some((path) => window.location.pathname.includes(path))
 }
 
 function addCentralMenuBeforeUserMenu(el, attempt = 0) {
 	setTimeout(() => {
 		const userMenu = document.querySelector('#header #user-menu')
 		if (userMenu) {
-			const headerRight = document.querySelector('#header .header-right') ?? document.querySelector('#header .header-end')
-			headerRight.insertBefore(el, userMenu)
+			// NC 35: user-menu's parent is the .header-end container itself
+			// NC 36+: it is the li.header-end__item wrapping the user menu
+			userMenu.parentElement.insertBefore(el, userMenu)
 			const app = createApp(CentralMenu, {
 				location: 'right',
 			})
@@ -104,7 +83,6 @@ export function setHeaderLogoUrl() {
 			img.setAttribute('style', width + height)
 		}
 		logoWrapper.prepend(img)
-
 	} else {
 		// show theming logo
 		const themingLogo = logo.querySelector('.logo')

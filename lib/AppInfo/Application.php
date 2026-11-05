@@ -50,6 +50,7 @@ class Application extends App implements IBootstrap {
 	public const APP_CONFIG_DEFAULT_USER_THEME = 'default-user-theme';
 	public const APP_CONFIG_DEFAULT_USER_THEME_DEFAULT = 'light';
 	public const APP_CONFIG_OVERRIDE_HEADER_COLOR = 'override-header-color';
+	public const APP_CONFIG_FOLLOW_THEME = 'follow-theme';
 	public const APP_CONFIG_SQUARE_CORNERS = 'square-corners';
 	public const APP_CONFIG_USE_CUSTOM_LOGO = 'use-custom-logo';
 	public const APP_CONFIG_LOGO_IMAGE_URL = 'logo-image-url';
@@ -206,6 +207,9 @@ class Application extends App implements IBootstrap {
 				}
 				if ($appConfig->getValueString(self::APP_ID, self::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
 					Util::addStyle(self::APP_ID, 'color');
+					if ($appConfig->getValueString(self::APP_ID, self::APP_CONFIG_FOLLOW_THEME, '0') === '1') {
+						Util::addStyle(self::APP_ID, 'color-theme-follow');
+					}
 				}
 			}
 

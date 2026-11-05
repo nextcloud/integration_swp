@@ -14,18 +14,18 @@ jobs:
       APP_ID: integration_swp
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node 20
+      - name: Use Node
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Set up npm
-        run: npm i -g npm@^9.0.0
+        run: npm i -g npm@^12.0.0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # v2.36.0
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: mbstring, intl, sqlite3
           ini-values: post_max_size=256M, max_execution_time=180
           coverage: xdebug
