@@ -30,7 +30,7 @@ SPDX-FileCopyrightText = "2022 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["css/color.css.map", "lib/Service/fake.menu.example.json", "lib/Service/real.menu.example.json"]
+path = ["css/color.css.map", "css/color-theme-follow.css.map", "lib/Service/fake.menu.example.json", "lib/Service/real.menu.example.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2023 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"

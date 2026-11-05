@@ -1,0 +1,69 @@
+/*!
+ * SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+// Extra skin adjustments when the follow-theme flag is enabled: the styled
+// parts of the header follow the user theme instead of staying light.
+// Loaded after color.css so these dark overrides win.
+
+// The dark theme is active in two ways: explicitly (body[data-theme-*]) or
+// through prefers-color-scheme when the user keeps the system default theme.
+@mixin follow-theme-dark() {
+	header#header {
+		background-color: var(--color-main-background) !important;
+		border-bottom: 1px solid var(--color-border);
+
+		.unified-search-input__field {
+			--resting-background: rgba(255, 255, 255, 0.08);
+			--resting-background-hover: rgba(255, 255, 255, 0.14);
+		}
+		.unified-search-input__resting {
+			color: var(--color-text-maxcontrast);
+		}
+
+		// restore the NC-native focused field (color.scss forces it light)
+		.unified-search-input__field--active {
+			background-color: var(--color-main-background);
+		}
+		.unified-search-input__input {
+			color: var(--color-main-text);
+		}
+		.unified-search-input__filter,
+		.unified-search-input__clear {
+			color: var(--color-main-text);
+		}
+	}
+
+	// for NC >= 28
+	#header .header-right,
+	// for NC >= 31
+	#header .header-end {
+		svg {
+			fill: var(--color-main-text);
+		}
+	}
+
+	#contactsmenu .header-menu__trigger img,
+	#notifications .header-menu__trigger img {
+		// bitmaps are designed for dark backgrounds in dark mode
+		filter: none;
+	}
+
+	// central menu
+	#central-app-menu .menu-icon {
+		color: var(--color-main-text) !important;
+	}
+}
+
+body[data-theme-dark],
+body[data-theme-dark-highcontrast] {
+	@include follow-theme-dark;
+}
+
+// System default theme: core activates dark via prefers-color-scheme on
+// the plain=0 theme stylesheets, without setting data-theme-dark.
+@media (prefers-color-scheme: dark) {
+	body[data-themes="default"] {
+		@include follow-theme-dark;
+	}
+}

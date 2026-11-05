@@ -14,6 +14,67 @@ body {
 header#header {
 	background-color: white !important;
 	border-bottom: 1px solid #dddddd;
+
+	// The unified search input is designed for a themed (colored) header: its
+	// resting look is a dark overlay with the --color-background-plain-* palette.
+	// On this neutral header, remap it to the content palette so it stays
+	// readable even when the user picked a dark theme.
+	.unified-search-input__field {
+		--resting-background: rgba(0, 0, 0, 0.06);
+		--resting-background-hover: rgba(0, 0, 0, 0.1);
+	}
+	.unified-search-input__resting {
+		color: var(--color-text-maxcontrast);
+	}
+
+	// Core leaves the center block right-aligned and limited to its content
+	// width; grow it and centre the real search input.
+	.header-center {
+		flex: 1 1;
+		justify-content: center;
+	}
+}
+
+// Keep the search field light even when the NC content is dark: the header
+// stays white under this skin, so the focused field must not take the dark
+// --color-main-background, and its ink must stay readable on the white surface.
+@mixin keep-search-light-for-dark-modes() {
+	header#header {
+		.unified-search-input__field--active {
+			background-color: white;
+			box-shadow: none;
+		}
+		.unified-search-input__input {
+			color: #1f1f1f;
+		}
+		.unified-search-input__resting {
+			color: #6b6b6b;
+		}
+		.unified-search-input__filter,
+		.unified-search-input__clear {
+			color: #1f1f1f;
+		}
+	}
+}
+
+body[data-theme-dark],
+body[data-theme-dark-highcontrast] {
+	@include keep-search-light-for-dark-modes;
+}
+
+// System default theme: core activates dark via prefers-color-scheme on
+// the plain=0 theme stylesheets, without setting data-theme-dark.
+@media (prefers-color-scheme: dark) {
+	body[data-themes="default"] {
+		@include keep-search-light-for-dark-modes;
+	}
+}
+
+// Core grows the end cluster on user/settings pages (flex: 1 0), which would
+// drag the now centred search input to the left; keep it at its content width.
+#body-user #header .header-end,
+#body-settings #header .header-end {
+	flex: 0 0 auto;
 }
 
 #contactsmenu .header-menu__trigger,
@@ -23,6 +84,7 @@ header#header {
 		filter: invert(100%);
 	}
 }
+
 // for NC >= 28
 #header .header-right,
 // for NC >= 31
@@ -36,12 +98,6 @@ header#header {
 // for NC >= 31
 #header .header-end > .header-menu:not(.user-menu) {
 	filter: unset !important;
-}
-
-#unified-search {
-	> a {
-		opacity: 1 !important;
-	}
 }
 
 // central menu

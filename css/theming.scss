@@ -86,19 +86,8 @@ header#header {
 		}
 	}
 
-	.unified-search-menu.central-menu-search-hidden, .unified-search__button.central-menu-search-hidden {
-		display: none !important;
-	}
-
 	.header-left, .header-start {
 		flex: none;
-	}
-
-	.header-middle {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex: 1 1;
 	}
 }
 
@@ -179,6 +168,3 @@ div[role=tooltip] {
 	display: none;
 }
 
-.mp-swp-search-bar {
-	width: 100%;
-}

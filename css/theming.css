@@ -89,17 +89,8 @@ header#header .header-left > nav > #navigation {
 header#header .header-left > nav > #navigation:after {
   display: none !important;
 }
-header#header .unified-search-menu.central-menu-search-hidden, header#header .unified-search__button.central-menu-search-hidden {
-  display: none !important;
-}
 header#header .header-left, header#header .header-start {
   flex: none;
-}
-header#header .header-middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1;
 }
 
 @media (max-width: 600px) {
@@ -163,8 +154,4 @@ div[role=tooltip] {
   display: none;
 }
 
-.mp-swp-search-bar {
-  width: 100%;
-}
-
-/*# sourceMappingURL=theming.css.map */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22theming.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAIA;EACC;EACA;;;AAGD;EACC;;;AAGD;AAAA;EAEC;EACA;EACA;;;AAGD;EACC;;;AAGD;AAEC;AAAA;AAAA;EAGC;;;AAKF;AAAA;EAEC;;;AAGD;EACC;;AAIC;AAAA;EACC;;AAED;AAAA;EACC;EACA;EACA;;AAED;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;EAIC;;AAED;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;EAMC;EACA;;AAGA;AAAA;EACC;;AAKH;EACC;EACA;EACA;EACA;EACA;EACA;EACA;AACA;;AACA;EACC;;AAIF;EACC;;;AAKF;EACC;IACC;IACA;;;AAIF;EACC;;;AAGD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAaE;EACC;EACA;EACA;EACA;EACA;EACA;;AAGA;EACC;EACA;;AAED;EACC;;AACA;EACC;;AAHF;EAKC;EACA;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;;;AAcJ;EACC;;;AAGD;AACA;EACC%22,%22file%22:%22theming.css%22%7D */

@@ -54,6 +54,9 @@ class PublicShareTemplateLoader implements IEventListener {
 			}
 			if ($this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_OVERRIDE_HEADER_COLOR, '1') === '1') {
 				Util::addStyle(Application::APP_ID, 'color');
+				if ($this->appConfig->getValueString(Application::APP_ID, Application::APP_CONFIG_FOLLOW_THEME, '0') === '1') {
+					Util::addStyle(Application::APP_ID, 'color-theme-follow');
+				}
 			}
 
 			$appConfig = $this->appConfig;

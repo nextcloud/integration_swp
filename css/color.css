@@ -15,6 +15,58 @@ header#header {
   background-color: white !important;
   border-bottom: 1px solid #dddddd;
 }
+header#header .unified-search-input__field {
+  --resting-background: rgba(0, 0, 0, 0.06);
+  --resting-background-hover: rgba(0, 0, 0, 0.1);
+}
+header#header .unified-search-input__resting {
+  color: var(--color-text-maxcontrast);
+}
+header#header .header-center {
+  flex: 1 1;
+  justify-content: center;
+}
+
+body[data-theme-dark] header#header .unified-search-input__field--active,
+body[data-theme-dark-highcontrast] header#header .unified-search-input__field--active {
+  background-color: white;
+  box-shadow: none;
+}
+body[data-theme-dark] header#header .unified-search-input__input,
+body[data-theme-dark-highcontrast] header#header .unified-search-input__input {
+  color: #1f1f1f;
+}
+body[data-theme-dark] header#header .unified-search-input__resting,
+body[data-theme-dark-highcontrast] header#header .unified-search-input__resting {
+  color: #6b6b6b;
+}
+body[data-theme-dark] header#header .unified-search-input__filter,
+body[data-theme-dark] header#header .unified-search-input__clear,
+body[data-theme-dark-highcontrast] header#header .unified-search-input__filter,
+body[data-theme-dark-highcontrast] header#header .unified-search-input__clear {
+  color: #1f1f1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  body[data-themes=default] header#header .unified-search-input__field--active {
+    background-color: white;
+    box-shadow: none;
+  }
+  body[data-themes=default] header#header .unified-search-input__input {
+    color: #1f1f1f;
+  }
+  body[data-themes=default] header#header .unified-search-input__resting {
+    color: #6b6b6b;
+  }
+  body[data-themes=default] header#header .unified-search-input__filter,
+  body[data-themes=default] header#header .unified-search-input__clear {
+    color: #1f1f1f;
+  }
+}
+#body-user #header .header-end,
+#body-settings #header .header-end {
+  flex: 0 0 auto;
+}
 
 #contactsmenu .header-menu__trigger,
 #notifications .header-menu__trigger {
@@ -35,12 +87,8 @@ header#header {
   filter: unset !important;
 }
 
-#unified-search > a {
-  opacity: 1 !important;
-}
-
 #central-app-menu .menu-icon {
   color: #1f1f1f !important;
 }
 
-/*# sourceMappingURL=color.css.map */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22color.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAIA;EACC;;;AAGD;EACC;EACA;;;AAGD;EACC;EACA;;AAMA;EACC;EACA;;AAED;EACC;;AAKD;EACC;EACA;;;AASA;AAAA;EACC;EACA;;AAED;AAAA;EACC;;AAED;AAAA;EACC;;AAED;AAAA;AAAA;AAAA;EAEC;;;AAYH;EAxBE;IACC;IACA;;EAED;IACC;;EAED;IACC;;EAED;AAAA;IAEC;;;AAoBH;AAAA;EAEC;;;AAGD;AAAA;EAEC;;AACA;AAAA;EACC;;;AAQD;AAAA;EACC;;;AAIF;AAAA;EAGC;;;AAKA;EACC%22,%22file%22:%22color.css%22%7D */
