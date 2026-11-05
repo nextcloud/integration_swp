@@ -42,8 +42,9 @@ function addCentralMenuBeforeUserMenu(el, attempt = 0) {
 	setTimeout(() => {
 		const userMenu = document.querySelector('#header #user-menu')
 		if (userMenu) {
-			const headerRight = document.querySelector('#header .header-right') ?? document.querySelector('#header .header-end')
-			headerRight.insertBefore(el, userMenu)
+			// NC 35: user-menu's parent is the .header-end container itself
+			// NC 36+: it is the li.header-end__item wrapping the user menu
+			userMenu.parentElement.insertBefore(el, userMenu)
 			const app = createApp(CentralMenu, {
 				location: 'right',
 			})
