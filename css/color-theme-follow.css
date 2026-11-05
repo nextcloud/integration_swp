@@ -30,6 +30,14 @@ body[data-theme-dark-highcontrast] header#header .unified-search-input__filter,
 body[data-theme-dark-highcontrast] header#header .unified-search-input__clear {
   color: var(--color-main-text);
 }
+body[data-theme-dark] header#header .unified-search-input--mobile .button-vue,
+body[data-theme-dark-highcontrast] header#header .unified-search-input--mobile .button-vue {
+  color: var(--color-main-text) !important;
+}
+body[data-theme-dark] header#header .unified-search-input--mobile .button-vue:focus-visible,
+body[data-theme-dark-highcontrast] header#header .unified-search-input--mobile .button-vue:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--color-main-text) !important;
+}
 body[data-theme-dark] #header .header-right svg,
 body[data-theme-dark] #header .header-end svg,
 body[data-theme-dark-highcontrast] #header .header-right svg,
@@ -68,6 +76,12 @@ body[data-theme-dark-highcontrast] #central-app-menu .menu-icon {
   body[data-theme-default] header#header .unified-search-input__filter,
   body[data-theme-default] header#header .unified-search-input__clear {
     color: var(--color-main-text);
+  }
+  body[data-theme-default] header#header .unified-search-input--mobile .button-vue {
+    color: var(--color-main-text) !important;
+  }
+  body[data-theme-default] header#header .unified-search-input--mobile .button-vue:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--color-main-text) !important;
   }
   body[data-theme-default] #header .header-right svg,
   body[data-theme-default] #header .header-end svg {

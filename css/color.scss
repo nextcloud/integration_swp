@@ -11,29 +11,41 @@ body {
 	background-color: gray !important;
 }
 
-header#header {
-	background-color: white !important;
-	border-bottom: 1px solid #dddddd;
+	header#header {
+		background-color: white !important;
+		border-bottom: 1px solid #dddddd;
 
-	// The unified search input is designed for a themed (colored) header: its
-	// resting look is a dark overlay with the --color-background-plain-* palette.
-	// On this neutral header, remap it to the content palette so it stays
-	// readable even when the user picked a dark theme.
-	.unified-search-input__field {
-		--resting-background: rgba(0, 0, 0, 0.06);
-		--resting-background-hover: rgba(0, 0, 0, 0.1);
-	}
-	.unified-search-input__resting {
-		color: var(--color-text-maxcontrast);
-	}
+		// The unified search input is designed for a themed (colored) header: its
+		// resting look is a dark overlay with the --color-background-plain-* palette.
+		// On this neutral header, remap it to the content palette so it stays
+		// readable even when the user picked a dark theme.
+		.unified-search-input__field {
+			--resting-background: rgba(0, 0, 0, 0.06);
+			--resting-background-hover: rgba(0, 0, 0, 0.1);
+		}
+		.unified-search-input__resting {
+			color: var(--color-text-maxcontrast);
+		}
 
-	// Core leaves the center block right-aligned and limited to its content
-	// width; grow it and centre the real search input.
-	.header-center {
-		flex: 1 1;
-		justify-content: center;
+		// On small screens the search is a plain header button instead of the
+		// field, inked with --color-background-plain-text for the colored
+		// header (white with the stock theme). Keep dark ink on this header.
+		// NcHeaderButton forces its own color with !important, so match it.
+		.unified-search-input--mobile .button-vue {
+			color: #1f1f1f !important;
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 2px #1f1f1f !important;
+			}
+		}
+
+		// Core leaves the center block right-aligned and limited to its content
+		// width; grow it and centre the real search input.
+		.header-center {
+			flex: 1 1;
+			justify-content: center;
+		}
 	}
-}
 
 // Keep the search field light even when the NC content is dark: the header
 // stays white under this skin, so the focused field must not take the dark

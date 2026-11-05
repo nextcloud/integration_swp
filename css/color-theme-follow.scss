@@ -32,6 +32,16 @@
 		.unified-search-input__clear {
 			color: var(--color-main-text);
 		}
+
+		// restore the mobile trigger ink on the now dark header
+		// (color.scss forces it dark for the light header)
+		.unified-search-input--mobile .button-vue {
+			color: var(--color-main-text) !important;
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 2px var(--color-main-text) !important;
+			}
+		}
 	}
 
 	// for NC >= 28
