@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// delete entries when changing category
 	const navLinks = document.querySelectorAll('#app-navigation > ul > li > a')
 	navLinks.forEach(elem => {
-		elem.addEventListener('click', (e) => {
+		elem.addEventListener('click', () => {
 			scheduleDeleteEntries()
 		})
 	})

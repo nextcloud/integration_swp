@@ -6,7 +6,7 @@
 <template>
 	<nav id="central-app-menu" :class="{ 'central-app-menu--right': location === 'right' }">
 		<NcActions class="app-menu-more"
-			:container="'#central-app-menu'"
+			container="#central-app-menu"
 			:class="{ 'app-menu-more--right': location === 'right', 'app-menu-more--left': location === 'left' }"
 			:aria-label="t('integration_swp', 'More apps')">
 			<template #icon>
@@ -101,7 +101,7 @@ export default {
 			console.debug('menu tabname', this.menuTabnameAttribute)
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 	},
 	methods: {
 	},

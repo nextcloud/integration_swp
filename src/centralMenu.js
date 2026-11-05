@@ -104,7 +104,6 @@ export function setHeaderLogoUrl() {
 			img.setAttribute('style', width + height)
 		}
 		logoWrapper.prepend(img)
-
 	} else {
 		// show theming logo
 		const themingLogo = logo.querySelector('.logo')

@@ -10,10 +10,10 @@ const DEBUG = false
 export function setMailtoLinks() {
 	const mailUrl = loadState('integration_swp', 'webmail-url')
 	const mailTabname = loadState('integration_swp', 'webmail-tabname')
-	if (DEBUG) console.debug('MAIL URL :-:-:', mailUrl)
-	if (DEBUG) console.debug('MAIL TAB NAME', mailTabname)
+	if (DEBUG) { console.debug('MAIL URL :-:-:', mailUrl) }
+	if (DEBUG) { console.debug('MAIL TAB NAME', mailTabname) }
 	const target = mailTabname ? mailTabname + '' : '_blank'
-	if (DEBUG) console.debug('TARGET', target)
+	if (DEBUG) { console.debug('TARGET', target) }
 
 	if (mailUrl) {
 		const getOXHashMailtoUrl = (mailtoLink) => {
@@ -61,9 +61,9 @@ export function setMailtoLinks() {
 			} else if (e.target.parentElement.parentElement.parentElement.tagName === 'A') {
 				link = e.target.parentElement.parentElement.parentElement
 			}
-			if (DEBUG) console.debug('CLICK on anything', e.target)
+			if (DEBUG) { console.debug('CLICK on anything', e.target) }
 			if (link !== null) {
-				if (DEBUG) console.debug('CLICK on link', link)
+				if (DEBUG) { console.debug('CLICK on link', link) }
 				const href = link.getAttribute('href')
 				/*
 				const href = 'mailto:plop@plop.net,second@lala.org?'
