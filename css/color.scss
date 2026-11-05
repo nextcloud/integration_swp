@@ -64,8 +64,10 @@ body[data-theme-dark-highcontrast] {
 
 // System default theme: core activates dark via prefers-color-scheme on
 // the plain=0 theme stylesheets, without setting data-theme-dark.
+// Supplementary themes (e.g. OpenDyslexic) append to the data-themes list,
+// so match the per-theme data-theme-default attribute instead.
 @media (prefers-color-scheme: dark) {
-	body[data-themes="default"] {
+	body[data-theme-default] {
 		@include keep-search-light-for-dark-modes;
 	}
 }

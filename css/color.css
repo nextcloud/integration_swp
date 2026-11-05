@@ -48,18 +48,18 @@ body[data-theme-dark-highcontrast] header#header .unified-search-input__clear {
 }
 
 @media (prefers-color-scheme: dark) {
-  body[data-themes=default] header#header .unified-search-input__field--active {
+  body[data-theme-default] header#header .unified-search-input__field--active {
     background-color: white;
     box-shadow: none;
   }
-  body[data-themes=default] header#header .unified-search-input__input {
+  body[data-theme-default] header#header .unified-search-input__input {
     color: #1f1f1f;
   }
-  body[data-themes=default] header#header .unified-search-input__resting {
+  body[data-theme-default] header#header .unified-search-input__resting {
     color: #6b6b6b;
   }
-  body[data-themes=default] header#header .unified-search-input__filter,
-  body[data-themes=default] header#header .unified-search-input__clear {
+  body[data-theme-default] header#header .unified-search-input__filter,
+  body[data-theme-default] header#header .unified-search-input__clear {
     color: #1f1f1f;
   }
 }
@@ -91,4 +91,4 @@ body[data-theme-dark-highcontrast] header#header .unified-search-input__clear {
   color: #1f1f1f !important;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22color.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAIA;EACC;;;AAGD;EACC;EACA;;;AAGD;EACC;EACA;;AAMA;EACC;EACA;;AAED;EACC;;AAKD;EACC;EACA;;;AASA;AAAA;EACC;EACA;;AAED;AAAA;EACC;;AAED;AAAA;EACC;;AAED;AAAA;AAAA;AAAA;EAEC;;;AAYH;EAxBE;IACC;IACA;;EAED;IACC;;EAED;IACC;;EAED;AAAA;IAEC;;;AAoBH;AAAA;EAEC;;;AAGD;AAAA;EAEC;;AACA;AAAA;EACC;;;AAQD;AAAA;EACC;;;AAIF;AAAA;EAGC;;;AAKA;EACC%22,%22file%22:%22color.css%22%7D */
+/*# sourceMappingURL=color.css.map */

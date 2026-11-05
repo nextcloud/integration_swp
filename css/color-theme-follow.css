@@ -48,38 +48,38 @@ body[data-theme-dark-highcontrast] #central-app-menu .menu-icon {
 }
 
 @media (prefers-color-scheme: dark) {
-  body[data-themes=default] header#header {
+  body[data-theme-default] header#header {
     background-color: var(--color-main-background) !important;
     border-bottom: 1px solid var(--color-border);
   }
-  body[data-themes=default] header#header .unified-search-input__field {
+  body[data-theme-default] header#header .unified-search-input__field {
     --resting-background: rgba(255, 255, 255, 0.08);
     --resting-background-hover: rgba(255, 255, 255, 0.14);
   }
-  body[data-themes=default] header#header .unified-search-input__resting {
+  body[data-theme-default] header#header .unified-search-input__resting {
     color: var(--color-text-maxcontrast);
   }
-  body[data-themes=default] header#header .unified-search-input__field--active {
+  body[data-theme-default] header#header .unified-search-input__field--active {
     background-color: var(--color-main-background);
   }
-  body[data-themes=default] header#header .unified-search-input__input {
+  body[data-theme-default] header#header .unified-search-input__input {
     color: var(--color-main-text);
   }
-  body[data-themes=default] header#header .unified-search-input__filter,
-  body[data-themes=default] header#header .unified-search-input__clear {
+  body[data-theme-default] header#header .unified-search-input__filter,
+  body[data-theme-default] header#header .unified-search-input__clear {
     color: var(--color-main-text);
   }
-  body[data-themes=default] #header .header-right svg,
-  body[data-themes=default] #header .header-end svg {
+  body[data-theme-default] #header .header-right svg,
+  body[data-theme-default] #header .header-end svg {
     fill: var(--color-main-text);
   }
-  body[data-themes=default] #contactsmenu .header-menu__trigger img,
-  body[data-themes=default] #notifications .header-menu__trigger img {
+  body[data-theme-default] #contactsmenu .header-menu__trigger img,
+  body[data-theme-default] #notifications .header-menu__trigger img {
     filter: none;
   }
-  body[data-themes=default] #central-app-menu .menu-icon {
+  body[data-theme-default] #central-app-menu .menu-icon {
     color: var(--color-main-text) !important;
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22color-theme-follow.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;AAAA;AAAA;AAAA;AAWC;AAAA;EACC;EACA;;AAEA;AAAA;EACC;EACA;;AAED;AAAA;EACC;;AAID;AAAA;EACC;;AAED;AAAA;EACC;;AAED;AAAA;AAAA;AAAA;EAEC;;AAQD;AAAA;AAAA;AAAA;EACC;;AAIF;AAAA;AAAA;AAAA;EAGC;;AAID;AAAA;EACC;;;AAWF;EArDC;IACC;IACA;;EAEA;IACC;IACA;;EAED;IACC;;EAID;IACC;;EAED;IACC;;EAED;AAAA;IAEC;;EAQD;AAAA;IACC;;EAIF;AAAA;IAGC;;EAID;IACC%22,%22file%22:%22color-theme-follow.css%22%7D */
+/*# sourceMappingURL=color-theme-follow.css.map */
