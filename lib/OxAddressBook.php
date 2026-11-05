@@ -32,7 +32,7 @@ class OxAddressBook implements IAddressBook {
 		$this->cache = $cacheFactory->createDistributed(Application::APP_ID . '_contacts');
 	}
 
-	public function getKey() {
+	public function getKey(): string {
 		return 'oxAddressBook'; // I don't think we can provide this
 	}
 
