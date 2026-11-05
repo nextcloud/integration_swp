@@ -11,6 +11,13 @@
 	height: calc(100% - env(safe-area-inset-bottom) - var(--my-header-height)) !important;
 }
 
+/* In the NC >= 33 layout, #content-vue is nested inside #content: applying the
+ * header offset to both doubles the margin and leaves a gap below the header. */
+#content #content-vue {
+	margin-top: 0 !important;
+}
+
+
 #central-app-menu .v-popper__popper,
 #central-app-menu .v-popper__wrapper,
 #central-app-menu .v-popper__wrapper .v-popper__inner {
