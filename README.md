@@ -88,6 +88,10 @@ Override the header menu background color to white and  the page background colo
 
 	occ config:app:set integration_swp override-header-color --value="1"
 
+Make the header follow the user theme (dark variant included) instead of staying light. Only relevant when `override-header-color` is enabled (default is 0):
+
+	occ config:app:set integration_swp follow-theme --value="1"
+
 Set the main content style to square corners and remove the margins. This is enabled by default:
 
 	occ config:app:set integration_swp square-corners --value="1"
