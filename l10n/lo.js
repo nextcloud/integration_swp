@@ -6,7 +6,6 @@ OC.L10N.register(
     "New presentation" : "New presentation",
     "New diagram" : "New diagram",
     "New text file" : "ໄຟລ໌ຂໍ້ຄວາມໃໝ່",
-    "More apps" : "ແອັບພລິເຄຊັນເພີ່ມເຕີມ",
-    "Search" : "ຄົ້ນຫາ"
+    "More apps" : "ແອັບພລິເຄຊັນເພີ່ມເຕີມ"
 },
 "nplurals=1; plural=0;");

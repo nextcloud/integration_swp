@@ -8,7 +8,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Ushbu yordamchi dastur OpenXChange kontaktlari/mailto havolalarini, markaziy menyuni, yagona uslubni...",
     "Portal" : "Portal",
     "Sovereign Workplace portal" : "Suveren ish joyi portali",
-    "More apps" : "Boshqa ilovalar",
-    "Search" : "Qidirish"
+    "More apps" : "Boshqa ilovalar"
 },
 "nplurals=1; plural=0;");

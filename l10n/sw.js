@@ -11,7 +11,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Programu hii ya matumizi inaauni anwani za OpenXChange/mailto, menyu kuu, mtindo uliounganishwa...",
     "Portal" : " Lango",
     "Sovereign Workplace portal" : "Lango kuu la mahali pa kazi",
-    "More apps" : "Programu zaidi",
-    "Search" : "Tafuta"
+    "More apps" : "Programu zaidi"
 },
 "nplurals=2; plural=(n != 1);");

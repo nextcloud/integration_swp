@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Энэ хэрэгслийн апп нь OpenXChange харилцагчид/mailto холбоос, төв цэс, нэгдсэн загварыг дэмждэг...",
     "Portal" : "Портал",
     "Sovereign Workplace portal" : "Sovereign Workplace портал",
-    "More apps" : "Бусад аппууд",
-    "Search" : "Хайх"
+    "More apps" : "Бусад аппууд"
 },
 "nplurals=2; plural=(n != 1);");

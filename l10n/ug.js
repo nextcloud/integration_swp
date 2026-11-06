@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "بۇ قوللىنىشچان دېتال OpenXChange ئالاقىلىشىش / خەت ساندۇقى ، مەركىزى تىزىملىك ، بىرلىككە كەلگەن ئۇسلۇب ...",
     "Portal" : "Portal",
     "Sovereign Workplace portal" : "ئىگىلىك ھوقۇق خىزمەت پونكىتى",
-    "More apps" : "تېخىمۇ كۆپ ئەپلەر",
-    "Search" : "ئىزدەش"
+    "More apps" : "تېخىمۇ كۆپ ئەپلەر"
 },
 "nplurals=2; plural=(n != 1);");

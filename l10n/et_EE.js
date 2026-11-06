@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "See rakendus toetab OpenXChange'i kontakte ja mailto: linke, keskset menüüd, ühist välimust jne...",
     "Portal" : "Portaal",
     "Sovereign Workplace portal" : "Suveräänse töökoha (Sovereign Workplace) portaal",
-    "More apps" : "Veel rakendusi",
-    "Search" : "Otsi"
+    "More apps" : "Veel rakendusi"
 },
 "nplurals=2; plural=(n != 1);");

@@ -7,7 +7,6 @@ OC.L10N.register(
     "New diagram" : "新規ダイアグラム",
     "New text file" : "新規のテキストファイル",
     "Portal" : "ポータル",
-    "More apps" : "さらにアプリ",
-    "Search" : "検索"
+    "More apps" : "さらにアプリ"
 },
 "nplurals=1; plural=0;");

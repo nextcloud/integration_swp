@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Ця утиліта підтримує контакти/посилання OpenXChange, центральне меню, уніфікований стиль...",
     "Portal" : "Портал",
     "Sovereign Workplace portal" : "Портал \"Суверенне робоче місце",
-    "More apps" : "Більше застосунків",
-    "Search" : "Пошук"
+    "More apps" : "Більше застосунків"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

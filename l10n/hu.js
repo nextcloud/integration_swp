@@ -6,7 +6,6 @@ OC.L10N.register(
     "New presentation" : "Új bemutató",
     "New diagram" : "Új diagram",
     "New text file" : "Új szöveges fájl",
-    "More apps" : "További alkalmazások",
-    "Search" : "Keresés"
+    "More apps" : "További alkalmazások"
 },
 "nplurals=2; plural=(n != 1);");

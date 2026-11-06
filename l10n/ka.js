@@ -6,7 +6,6 @@ OC.L10N.register(
     "New presentation" : "New presentation",
     "New diagram" : "New diagram",
     "New text file" : "New text file",
-    "More apps" : "More apps",
-    "Search" : "Search"
+    "More apps" : "More apps"
 },
 "nplurals=2; plural=(n!=1);");

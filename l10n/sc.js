@@ -6,7 +6,6 @@ OC.L10N.register(
     "New presentation" : "Presentatzione noa",
     "New diagram" : "Diagramma nou",
     "New text file" : "Archìviu de testu nou",
-    "More apps" : "Àteras aplicatziones",
-    "Search" : "Chirca"
+    "More apps" : "Àteras aplicatziones"
 },
 "nplurals=2; plural=(n != 1);");

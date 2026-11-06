@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Cette application utilitaire prend en charge les contacts/liens mailto d'OpenXChange, menu centralisé, style unifié…",
     "Portal" : "Portail",
     "Sovereign Workplace portal" : "Portail de l'espace de travail souverain",
-    "More apps" : "Plus d’applis",
-    "Search" : "Rechercher"
+    "More apps" : "Plus d’applis"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

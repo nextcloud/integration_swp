@@ -12,7 +12,6 @@ OC.L10N.register(
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Αυτή η εφαρμογή βοηθητικού προγράμματος υποστηρίζει επαφές OpenXChange/συνδέσμους mailto, κεντρικό μενού, ενοποιημένο στυλ...",
     "Portal" : "Πύλη",
     "Sovereign Workplace portal" : "Πύλη Sovereign Workplace",
-    "More apps" : "Περισσότερες εφαρμογές",
-    "Search" : "Αναζήτηση"
+    "More apps" : "Περισσότερες εφαρμογές"
 },
 "nplurals=2; plural=(n != 1);");

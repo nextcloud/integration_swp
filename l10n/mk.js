@@ -6,7 +6,6 @@ OC.L10N.register(
     "New presentation" : "Нова Презентација",
     "New diagram" : "Нов дијаграм",
     "New text file" : "Нова текстуална датотека",
-    "More apps" : "Повеќе апликации",
-    "Search" : "Барај"
+    "More apps" : "Повеќе апликации"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

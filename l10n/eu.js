@@ -7,7 +7,6 @@ OC.L10N.register(
     "New diagram" : "Diagrama berria",
     "New text file" : "Testu-fitxategi berria",
     "Portal" : "Portala",
-    "More apps" : "Aplikazio gehiago",
-    "Search" : "Bilatu"
+    "More apps" : "Aplikazio gehiago"
 },
 "nplurals=2; plural=(n != 1);");

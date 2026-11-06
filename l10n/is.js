@@ -5,7 +5,6 @@ OC.L10N.register(
     "New spreadsheet" : "Nýr töflureiknir",
     "New presentation" : "Ný kynning",
     "New text file" : "Ný textaskrá",
-    "More apps" : "Fleiri forrit",
-    "Search" : "Search"
+    "More apps" : "Fleiri forrit"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

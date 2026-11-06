@@ -10,7 +10,6 @@
     "This utility app supports OpenXChange contacts/mailto links, central menu, unified style..." : "Ši pagalbinė programėlė palaiko „OpenXChange“ kontaktus ir „mailto“ nuorodas, centrinį meniu, vieningą stilių...",
     "Portal" : "Portalas",
     "Sovereign Workplace portal" : "„Sovereign Workplace“ portalas",
-    "More apps" : "Daugiau programėlių",
-    "Search" : "Paieška"
+    "More apps" : "Daugiau programėlių"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
